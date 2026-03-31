@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Descubra o Brasil — Para onde vamos?</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0057B8">
+    <meta name="description"
+        content="Explore hotéis, restaurantes, pontos turísticos e roteiros por todo o Brasil com a Maya.">
+    <!-- PWA & Mobile Optimization -->
+    <link rel="apple-touch-icon" href="https://via.placeholder.com/180x180/0057B8/FFFFFF?text=DB">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Descubra BR">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+
+<body>
+    <!-- ═══════════════════════════════════════════════════════
+     SCREEN: 3D SPLASH SCREEN
+═══════════════════════════════════════════════════════ -->
+    <div id="splash-screen">
+        <canvas id="splash-canvas"></canvas>
+        <div class="splash-content">
+            <h1 class="splash-title">Descubra o Brasil</h1>
+            <p class="splash-subtitle">Seja Bem Vindo</p>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════
+     SCREEN: HOME
+═══════════════════════════════════════════════════════ -->
+    <div id="screen-home" class="screen active">
+
+        <!-- Top Bar -->
+        <header class="top-bar">
+            <div class="top-bar-left">
+                <img src="/DESCUBRAOBRASIL/logo-descubra.png" alt="Descubra o Brasil" style="height: 32px; width: auto; object-fit: contain;">
+            </div>
+            <div class="top-bar-right" id="top-auth-area">
+                <button class="btn-ghost" id="btn-login-open">Entrar</button>
+                <button class="btn-pill-sm" id="btn-register-open">Cadastrar</button>
+            </div>
+        </header>
+        <!-- ══ WEATHER + CLOCK BAR ══ -->
+        <div class="weather-bar" id="weather-bar">
+            <div class="weather-bar-inner">
+                <span id="app-weather-icon">🌤️</span>
+                <span id="app-weather-temp">--°C</span>
+                <span id="app-weather-city" class="weather-city">Carregando...</span>
+            </div>
+            <div class="clock-bar">
+                <span>🕐</span>
+                <span id="app-clock" class="app-clock-text">--:--:--</span>
+                <span class="clock-label">BSB</span>
+            </div>
+        </div>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-bg">
+                <div class="hero-gradient"></div>
+                <div class="hero-particles" id="hero-particles"></div>
+            </div>
+            <div class="hero-body">
+                <!-- Greeting -->
+                <div class="hero-greeting" id="hero-greeting">
+                    <span class="greeting-wave">👋</span>
+                    <span id="greeting-text">Olá! Onde vamos hoje?</span>
+                </div>
+
+                <!-- ══ SEARCH LUPA (Main Element) ══ -->
+                <div class="search-container">
+                    <div class="search-pill" id="search-pill">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" id="search-input" class="search-field" placeholder="Para onde vamos?"
+                            autocomplete="off" spellcheck="false">
+                        <button class="search-clear hidden" id="search-clear">✕</button>
+                    </div>
+                    <div class="search-drop hidden" id="search-drop">
+                        <div class="search-drop-header">Sugestões rápidas</div>
+                        <div id="search-results"></div>
+                    </div>
+                </div>
+
+                <!-- ══ QUICK ACTION CHIPS ══ -->
+                <div class="quick-chips">
+                    <button class="chip" id="chip-map">
+                        <span class="chip-icon">🗺️</span>
+                        <span>Explorar</span>
+                    </button>
+                    <button class="chip" id="chip-drive">
+                        <span class="chip-icon">🚗</span>
+                        <span>Dirigir</span>
+                    </button>
+                    <button class="chip" id="chip-hotel">
+                        <span class="chip-icon">🏨</span>
+                        <span>Reservar</span>
+                    </button>
+                    <button class="chip" id="chip-food">
+                        <span class="chip-icon">🍽️</span>
+                        <span>Comer</span>
+                    </button>
+                    <button class="chip" id="chip-free">
+                        <span class="chip-icon">📸</span>
+                        <span>Grátis</span>
+                    </button>
+                </div>
+
+                <!-- ══ AUDIENCE BIFURCATION ══ -->
+                <div class="bifurcation-strip">
+                    <a class="bif-card bif-viajante" onclick="goScreen('map')">
+                        <span class="bif-emoji">🌎</span>
+                        <div>
+                            <strong>Sou Viajante</strong>
+                            <small>Explorar destinos com a Maya</small>
+                        </div>
+                    </a>
+                    <a class="bif-card bif-empresa" href="https://wa.me/5538991621135?text=Ol%C3%A1!%20Quero%20modernizar%20meu%20neg%C3%B3cio%20e%20ter%20um%20site%20com%20o%20Descubra%20o%20Brasil." target="_blank" rel="noopener noreferrer">
+                        <span class="bif-emoji">💼</span>
+                        <div>
+                            <strong>Sou Empresa</strong>
+                            <small>Sites, marketing e destaque</small>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ══ STATES EXPLORER (H-Scroll) ══ -->
+    <section class="states-section">
+        <div class="strip-header">
+            <div>
+                <h2>🇧🇷 Explorar por Estado</h2>
+                <p class="strip-sub">Conheça os 27 estados do Brasil</p>
+            </div>
+        </div>
+        <div class="states-scroll" id="states-scroll">
+            <!-- Dynamic: state-pill -->
+        </div>
+    </section>
+
+    <!-- ══ RECENT / POPULAR DESTINATIONS ══ -->
+        <section class="destinations-strip">
+            <div class="strip-header">
+                <h2>Destinos em Alta</h2>
+                <button class="see-all-btn" id="see-all-destinations">Ver todos →</button>
+            </div>
+            <div class="dest-scroll" id="dest-scroll">
+                <!-- injected by JS -->
+            </div>
+        </section>
+
+        <!-- ══ NEWS SECTION ══ -->
+        <section class="news-section">
+            <div class="strip-header">
+                <div>
+                    <h2>📰 Notícias de Turismo</h2>
+                    <p class="strip-sub">Informação atualizada sobre o Brasil</p>
+                </div>
+                <div class="live-badge">
+                    <span class="live-dot"></span>
+                    <span id="news-timestamp">Carregando...</span>
+                </div>
+            </div>
+            <div class="news-grid" id="news-grid">
+                <!-- Skeleton loading placeholders -->
+                <div class="news-skeleton"></div>
+                <div class="news-skeleton"></div>
+                <div class="news-skeleton"></div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════
+     SCREEN: MAP (fullscreen)
+═══════════════════════════════════════════════════════ -->
+    <div id="screen-map" class="screen">
+
+        <!-- Floating back bar -->
+        <div class="map-topbar">
+            <button class="map-back-btn" id="map-back">← Voltar</button>
+            <div class="map-search-mini" id="map-search-mini">
+                <span>🔍</span>
+                <span id="map-destination-label">Explorar</span>
+            </div>
+        </div>
+
+        <!-- Map canvas -->
+        <div id="map-container"></div>
+
+        <!-- Category pills (floating) -->
+        <div class="map-filters" id="map-filters">
+            <button class="filter-pill active" data-cat="all">🌐 Tudo</button>
+            <button class="filter-pill" data-cat="hotel">🏨 Hotéis</button>
+            <button class="filter-pill" data-cat="restaurante">🍽️ Restaurantes</button>
+            <button class="filter-pill" data-cat="bar">🍺 Bares</button>
+            <button class="filter-pill" data-cat="turismo">📸 Grátis</button>
+        </div>
+
+        <!-- Geolocation FAB -->
+        <button class="geo-fab" id="btn-geolocate">📍</button>
+
+        <!-- Maya on map -->
+        <div class="maya-avatar" id="maya-avatar">
+            <div class="maya-body" id="maya-body-click" title="Falar com Maya">
+                <div class="maya-head">
+                    <div class="maya-hair"></div>
+                    <div class="maya-face">
+                        <div class="maya-eyes">
+                            <div class="maya-eye left"></div>
+                            <div class="maya-eye right"></div>
+                        </div>
+                        <div class="maya-mouth"></div>
+                    </div>
+                </div>
+                <div class="maya-torso">
+                    <div class="maya-dress"></div>
+                </div>
+                <div class="maya-legs">
+                    <div class="maya-leg"></div>
+                    <div class="maya-leg"></div>
+                </div>
+            </div>
+            <div class="maya-bubble" id="maya-bubble-text">
+                <p id="maya-speech">Clique em um ponto no mapa! 🗺️</p>
+            </div>
+        </div>
+
+        <!-- Bottom Sheet -->
+        <div class="sheet" id="bottom-sheet">
+            <div class="sheet-handle"></div>
+            <div class="sheet-header">
+                <div class="sheet-title-row">
+                    <span class="sheet-type-icon" id="sheet-icon">📍</span>
+                    <div>
+                        <h3 id="sheet-title">Selecione um local</h3>
+                        <p class="sheet-subtitle" id="sheet-subtitle">no mapa</p>
+                    </div>
+                </div>
+                <button class="sheet-x" id="sheet-close">✕</button>
+            </div>
+
+            <!-- Action buttons row: Dirigir, Reservar -->
+            <div class="sheet-action-row" id="sheet-action-row">
+                <button class="sheet-action-btn primary" id="sheet-btn-drive">
+                    <span>🚗</span>
+                    <span>Dirigir</span>
+                </button>
+                <button class="sheet-action-btn" id="sheet-btn-book">
+                    <span>📅</span>
+                    <span>Reservar</span>
+                </button>
+                <button class="sheet-action-btn" id="sheet-btn-save">
+                    <span>⭐</span>
+                    <span>Salvar</span>
+                </button>
+            </div>
+
+            <!-- Transport options -->
+            <ul class="transport-list" id="transport-list"></ul>
+
+            <button class="btn-full" id="sheet-start">🧭 Iniciar Navegação</button>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════
+     SCREEN: HOTELS
+═══════════════════════════════════════════════════════ -->
+    <div id="screen-hotels" class="screen">
+        <div class="screen-header">
+            <button class="back-btn" onclick="goHome()">←</button>
+            <h2>🏨 Hotéis Disponíveis</h2>
+        </div>
+        <div class="hotels-content">
+            <div class="hotels-grid" id="hotels-grid"></div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════
+     SCREEN: ROTEIROS (Booking-style Tourism Packages)
+═══════════════════════════════════════════════════════ -->
+    <div id="screen-roteiros" class="screen">
+
+        <!-- Header -->
+        <div class="screen-header" style="background:linear-gradient(135deg,#0057B8,#10B981);color:white;padding:16px 16px 20px;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px;">
+                <button onclick="goHome()" style="background:rgba(255,255,255,.2);border:none;color:white;border-radius:50%;width:34px;height:34px;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;">←</button>
+                <div>
+                    <h2 style="font-size:1.1rem;font-weight:800;margin:0;">🗺️ Roteiros &amp; eBooks</h2>
+                    <p style="font-size:.72rem;opacity:.9;margin:0;">Descubra o Brasil do jeito certo</p>
+                </div>
+            </div>
+            <!-- Search bar -->
+            <div style="background:white;border-radius:12px;padding:10px 14px;display:flex;align-items:center;gap:8px;margin-top:10px;box-shadow:0 4px 12px rgba(0,0,0,.15);">
+                <span style="font-size:16px;">🔍</span>
+                <input id="roteiro-search" type="text" placeholder="Buscar destino, estilo ou duração..." style="flex:1;border:none;outline:none;font-size:.85rem;color:#1a1a2e;background:transparent;" />
+            </div>
+        </div>
+
+        <div class="roteiros-content" style="overflow-y:auto;height:calc(100dvh - 170px);padding:0 0 80px;">
+
+            <!-- ── HIGHLIGHT TAGS ── -->
+            <div style="display:flex;gap:8px;overflow-x:auto;padding:12px 16px;scrollbar-width:none;">
+                <button class="rot-chip active" data-cat="all" onclick="filterRoteiros(this,'all')">🌐 Todos</button>
+                <button class="rot-chip" data-cat="praia" onclick="filterRoteiros(this,'praia')">🏖️ Praias</button>
+                <button class="rot-chip" data-cat="aventura" onclick="filterRoteiros(this,'aventura')">🧗 Aventura</button>
+                <button class="rot-chip" data-cat="cultural" onclick="filterRoteiros(this,'cultural')">🏛️ Cultural</button>
+                <button class="rot-chip" data-cat="gastronomia" onclick="filterRoteiros(this,'gastronomia')">🍽️ Gastronomia</button>
+                <button class="rot-chip" data-cat="natureza" onclick="filterRoteiros(this,'natureza')">🌿 Natureza</button>
+            </div>
+
+            <!-- ── FEATURED EBOOK BANNER ── -->
+            <div style="margin:0 16px 20px;" id="ebook-banner">
+                <div style="background:linear-gradient(135deg,#0057B8 0%,#10B981 100%);border-radius:20px;padding:20px;color:white;position:relative;overflow:hidden;">
+                    <div style="position:absolute;top:-20px;right:-20px;font-size:80px;opacity:.12;">📖</div>
+                    <span style="background:rgba(255,255,255,.25);border-radius:999px;padding:3px 10px;font-size:.7rem;font-weight:700;">⭐ MAIS VENDIDO</span>
+                    <h3 style="font-size:1rem;font-weight:800;margin:8px 0 4px;">eBook: 3 Dias Incríveis no Litoral</h3>
+                    <p style="font-size:.78rem;opacity:.9;margin:0 0 12px;">Arraial do Cabo • Roteiro completo com mapas, restaurantes e dicas exclusivas</p>
+                    <div style="display:flex;align-items:center;justify-content:space-between;">
+                        <div>
+                            <span style="font-size:.7rem;opacity:.7;text-decoration:line-through;">De R$97</span>
+                            <div style="font-size:1.5rem;font-weight:900;">R$ 47</div>
+                        </div>
+                        <button onclick="openEbookModal()" style="background:white;color:#0057B8;border:none;border-radius:12px;padding:10px 18px;font-weight:800;font-size:.85rem;cursor:pointer;">Ver Roteiro →</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── BENEFITS STRIP ── -->
+            <div style="display:flex;gap:10px;overflow-x:auto;padding:0 16px 16px;scrollbar-width:none;">
+                <div style="min-width:120px;background:white;border-radius:14px;padding:12px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.06);">
+                    <div style="font-size:24px;margin-bottom:4px;">⏱️</div>
+                    <div style="font-size:.7rem;font-weight:700;color:#1a1a2e;">Economize Tempo</div>
+                    <div style="font-size:.65rem;color:#6b7280;">Roteiros prontos e testados</div>
+                </div>
+                <div style="min-width:120px;background:white;border-radius:14px;padding:12px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.06);">
+                    <div style="font-size:24px;margin-bottom:4px;">🤝</div>
+                    <div style="font-size:.7rem;font-weight:700;color:#1a1a2e;">Suporte 24h</div>
+                    <div style="font-size:.65rem;color:#6b7280;">Equipe disponível na viagem</div>
+                </div>
+                <div style="min-width:120px;background:white;border-radius:14px;padding:12px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.06);">
+                    <div style="font-size:24px;margin-bottom:4px;">🇧🇷</div>
+                    <div style="font-size:.7rem;font-weight:700;color:#1a1a2e;">Experiência Autêntica</div>
+                    <div style="font-size:.65rem;color:#6b7280;">Dicas de quem conhece</div>
+                </div>
+                <div style="min-width:120px;background:white;border-radius:14px;padding:12px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.06);">
+                    <div style="font-size:24px;margin-bottom:4px;">📱</div>
+                    <div style="font-size:.7rem;font-weight:700;color:#1a1a2e;">Mobile-Friendly</div>
+                    <div style="font-size:.65rem;color:#6b7280;">Use no celular durante a viagem</div>
+                </div>
+            </div>
+
+            <!-- ── PACOTES GRID ── -->
+            <div style="padding:0 16px;">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+                    <h3 style="font-size:.95rem;font-weight:800;">Roteiros em Destaque</h3>
+                    <span id="roteiro-count" style="font-size:.75rem;color:#6b7280;">6 roteiros</span>
+                </div>
+                <div id="roteiros-grid" style="display:flex;flex-direction:column;gap:14px;">
+                    <!-- Injected by JS -->
+                </div>
+            </div>
+
+            <!-- ── TRIP PLANNING FORM ── -->
+            <div style="margin:24px 16px 0;background:white;border-radius:20px;padding:20px;box-shadow:0 4px 20px rgba(0,0,0,.08);">
+                <div style="text-align:center;margin-bottom:16px;">
+                    <div style="font-size:28px;margin-bottom:4px;">✈️</div>
+                    <h3 style="font-size:1rem;font-weight:800;color:#1a1a2e;">Monte seu Roteiro Personalizado</h3>
+                    <p style="font-size:.78rem;color:#6b7280;margin-top:4px;">Responda e nossa equipe prepara seu roteiro exclusivo</p>
+                </div>
+                <form id="trip-form" onsubmit="submitTripForm(event)" style="display:flex;flex-direction:column;gap:12px;">
+                    <div class="form-group">
+                        <label class="form-label">🗺️ Destinos desejados</label>
+                        <input id="tf-destino" type="text" placeholder="Ex: Florianópolis, Jericoacoara..." class="form-inp" required />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">🎒 Estilo de viagem</label>
+                        <select id="tf-estilo" class="form-inp" required>
+                            <option value="">Selecione seu estilo</option>
+                            <option value="aventura">🧗 Aventura e Trilhas</option>
+                            <option value="descanso">😴 Descanso e Relaxamento</option>
+                            <option value="cultural">🏛️ Cultural e Histórico</option>
+                            <option value="gastronomia">🍽️ Gastronomia</option>
+                            <option value="praia">🏖️ Praias e Litoral</option>
+                            <option value="natureza">🌿 Ecoturismo e Natureza</option>
+                            <option value="misto">🌎 Misto (vários estilos)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">📅 Duração da viagem</label>
+                        <select id="tf-duracao" class="form-inp" required>
+                            <option value="">Quantos dias?</option>
+                            <option value="3-4">3 a 4 dias (fim de semana)</option>
+                            <option value="5-7">5 a 7 dias (1 semana)</option>
+                            <option value="8-14">8 a 14 dias (2 semanas)</option>
+                            <option value="15+">15 dias ou mais</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">💰 Orçamento aproximado (por pessoa)</label>
+                        <select id="tf-orcamento" class="form-inp" required>
+                            <option value="">Selecione faixa</option>
+                            <option value="ate1k">Até R$1.000</option>
+                            <option value="1k-3k">R$1.000 a R$3.000</option>
+                            <option value="3k-6k">R$3.000 a R$6.000</option>
+                            <option value="6k+">Acima de R$6.000</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">⭐ Preferências especiais</label>
+                        <div id="pref-tags" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;">
+                            <button type="button" class="pref-tag" onclick="togglePref(this)">🍽️ Gastronomia</button>
+                            <button type="button" class="pref-tag" onclick="togglePref(this)">🥾 Trilhas</button>
+                            <button type="button" class="pref-tag" onclick="togglePref(this)">🏖️ Praias</button>
+                            <button type="button" class="pref-tag" onclick="togglePref(this)">🏛️ Museus</button>
+                            <button type="button" class="pref-tag" onclick="togglePref(this)">🎶 Festas/Shows</button>
+                            <button type="button" class="pref-tag" onclick="togglePref(this)">🚗 Road Trip</button>
+                            <button type="button" class="pref-tag" onclick="togglePref(this)">📸 Fotografia</button>
+                            <button type="button" class="pref-tag" onclick="togglePref(this)">🤿 Mergulho</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">📱 Seu WhatsApp</label>
+                        <input id="tf-whatsapp" type="tel" placeholder="(DDD) 99999-9999" class="form-inp" required />
+                    </div>
+                    <button type="submit" style="background:linear-gradient(135deg,#0057B8,#10B981);color:white;border:none;border-radius:14px;padding:14px;font-weight:800;font-size:1rem;cursor:pointer;margin-top:4px;">
+                        🚀 Quero meu Roteiro Personalizado!
+                    </button>
+                </form>
+            </div>
+
+            <!-- ── PAYMENT INFO ── -->
+            <div style="margin:16px 16px 0;background:linear-gradient(135deg,#f0fdf4,#eff6ff);border-radius:20px;padding:16px;border:1px solid #d1fae5;">
+                <h4 style="font-size:.85rem;font-weight:800;color:#1a1a2e;margin-bottom:10px;">🔒 Pagamento 100% Seguro</h4>
+                <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                    <div style="background:white;border-radius:10px;padding:8px 12px;font-size:.75rem;font-weight:700;color:#1a1a2e;display:flex;align-items:center;gap:5px;box-shadow:0 1px 4px rgba(0,0,0,.06);">💰 Pix</div>
+                    <div style="background:white;border-radius:10px;padding:8px 12px;font-size:.75rem;font-weight:700;color:#1a1a2e;display:flex;align-items:center;gap:5px;box-shadow:0 1px 4px rgba(0,0,0,.06);">💳 Cartão</div>
+                    <div style="background:white;border-radius:10px;padding:8px 12px;font-size:.75rem;font-weight:700;color:#1a1a2e;display:flex;align-items:center;gap:5px;box-shadow:0 1px 4px rgba(0,0,0,.06);">📄 Boleto</div>
+                    <div style="background:white;border-radius:10px;padding:8px 12px;font-size:.75rem;font-weight:700;color:#1a1a2e;display:flex;align-items:center;gap:5px;box-shadow:0 1px 4px rgba(0,0,0,.06);">🏦 Mercado Pago</div>
+                </div>
+                <p style="font-size:.7rem;color:#6b7280;margin-top:8px;">✓ Roteiro entregue em PDF interativo com mapas e links</p>
+            </div>
+
+            <!-- ── DEPOIMENTOS ── -->
+            <div style="padding:20px 16px 0;">
+                <h3 style="font-size:.95rem;font-weight:800;margin-bottom:12px;">⭐ O que dizem os viajantes</h3>
+                <div style="display:flex;flex-direction:column;gap:10px;">
+                    <div style="background:white;border-radius:14px;padding:14px;box-shadow:0 2px 8px rgba(0,0,0,.06);">
+                        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+                            <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#0057B8,#10B981);display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-size:.8rem;">AM</div>
+                            <div><div style="font-size:.8rem;font-weight:700;">Ana Martins</div><div style="font-size:.65rem;color:#f59e0b;">⭐⭐⭐⭐⭐</div></div>
+                        </div>
+                        <p style="font-size:.78rem;color:#374151;">"O roteiro de Arraial do Cabo foi perfeito! Cada dica foi incrível, economizei muito e vivi uma experiência única. Recomendo demais! 🏖️"</p>
+                    </div>
+                    <div style="background:white;border-radius:14px;padding:14px;box-shadow:0 2px 8px rgba(0,0,0,.06);">
+                        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+                            <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#F59E0B,#EF4444);display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-size:.8rem;">CR</div>
+                            <div><div style="font-size:.8rem;font-weight:700;">Carlos Rodrigues</div><div style="font-size:.65rem;color:#f59e0b;">⭐⭐⭐⭐⭐</div></div>
+                        </div>
+                        <p style="font-size:.78rem;color:#374151;">"Comprei o roteiro do Pantanal e foi a melhor decisão! Tudo detalhado, com fotos, mapas e sugestões de custo. Vale muito cada centavo! 🌿"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════
+     MODAL: eBOOK DETAIL (Arraial do Cabo)
+═══════════════════════════════════════════════════════ -->
+    <div id="modal-ebook" class="modal-bg hidden" style="z-index:1000;">
+        <div class="modal" style="max-width:400px;width:calc(100%-32px);max-height:90dvh;overflow-y:auto;padding:0;border-radius:24px;">
+            <!-- Header -->
+            <div style="background:linear-gradient(135deg,#0057B8,#10B981);padding:20px;color:white;border-radius:24px 24px 0 0;position:relative;">
+                <button onclick="document.getElementById('modal-ebook').classList.add('hidden')" style="position:absolute;top:12px;right:12px;background:rgba(255,255,255,.2);border:none;color:white;border-radius:50%;width:30px;height:30px;cursor:pointer;font-size:16px;">✕</button>
+                <div style="font-size:11px;opacity:.8;font-weight:700;text-transform:uppercase;letter-spacing:1px;">eBook Digital</div>
+                <h3 style="font-size:1.1rem;font-weight:900;margin:4px 0 2px;">🌊 3 Dias Incríveis no Litoral Brasileiro</h3>
+                <p style="font-size:.75rem;opacity:.85;">📍 Arraial do Cabo – RJ</p>
+                <div style="display:flex;align-items:center;gap:10px;margin-top:12px;">
+                    <div><span style="font-size:.7rem;opacity:.7;text-decoration:line-through;">De R$97</span><br><strong style="font-size:1.6rem;">R$ 47</strong></div>
+                    <button onclick="buyEbook()" style="flex:1;background:white;color:#0057B8;border:none;padding:12px;border-radius:12px;font-weight:900;font-size:.9rem;cursor:pointer;">💳 Comprar Agora</button>
+                </div>
+            </div>
+            <!-- Content -->
+            <div style="padding:16px;">
+                <div style="background:#f0fdf4;border-radius:12px;padding:12px;margin-bottom:14px;border-left:3px solid #10B981;">
+                    <div style="font-weight:800;font-size:.82rem;color:#166534;margin-bottom:6px;">📦 O que está incluso:</div>
+                    <div style="font-size:.78rem;color:#374151;display:flex;flex-direction:column;gap:3px;">
+                        <span>✅ Roteiro dia a dia completo</span>
+                        <span>✅ Mapas e localizações interativos</span>
+                        <span>✅ Sugestões de restaurantes com preços</span>
+                        <span>✅ Links de hospedagem (afiliados)</span>
+                        <span>✅ Lista de o que levar</span>
+                        <span>✅ Dicas de economia exclusivas</span>
+                    </div>
+                </div>
+
+                <!-- DAY 1 -->
+                <div class="ebook-day">
+                    <div class="ebook-day-header">🌄 Dia 1 – Chegada + Passeio Inicial</div>
+                    <div class="ebook-item">🏠 <strong>Check-in</strong> na pousada — região central <span class="ebook-link">📎 Booking</span></div>
+                    <div class="ebook-item">🍽️ Almoço: Restaurante do Zé <span style="color:#10B981;font-size:.7rem;">A partir de R$30</span></div>
+                    <div class="ebook-item">🚶 Caminhada na <strong>Praia dos Anjos</strong></div>
+                    <div class="ebook-item">🌅 Pôr do Sol no <strong>Pontal do Atalaia</strong></div>
+                    <div class="ebook-tip">💡 Leve lanche, água e celular carregado</div>
+                </div>
+
+                <!-- DAY 2 -->
+                <div class="ebook-day">
+                    <div class="ebook-day-header">🌴 Dia 2 – Barco + 7 Praias</div>
+                    <div class="ebook-item">⛵ Passeio de barco pelas 7 praias <span style="color:#10B981;font-size:.7rem;">R$80–R$120</span> <span class="ebook-link">📎 Parceiro</span></div>
+                    <div class="ebook-item">🏖️ Paradas: Praia do Farol, Prainhas do Atalaia</div>
+                    <div class="ebook-item">🥡 Almoço rápido: quentinha nos quiosques</div>
+                    <div class="ebook-item">🌊 Tarde livre na <strong>Praia Grande</strong></div>
+                    <div class="ebook-item">🍕 Jantar: quiosque ou pizzaria local</div>
+                </div>
+
+                <!-- DAY 3 -->
+                <div class="ebook-day">
+                    <div class="ebook-day-header">🌊 Dia 3 – Trilha ou Descanso</div>
+                    <div class="ebook-item">🥾 Trilha para <strong>Praia do Forno</strong> (leve, vista linda)</div>
+                    <div class="ebook-item">🛍️ Visita às lojinhas e artesanato local</div>
+                    <div class="ebook-item">🚗 Check-out e retorno</div>
+                </div>
+
+                <!-- EXTRAS -->
+                <div style="background:#eff6ff;border-radius:12px;padding:12px;margin-top:12px;">
+                    <div style="font-weight:800;font-size:.82rem;color:#1d4ed8;margin-bottom:6px;">📅 Extras Incluídos:</div>
+                    <div style="font-size:.75rem;color:#374151;display:flex;flex-direction:column;gap:3px;">
+                        <span>🏨 Hospedagens com desconto (links afiliados)</span>
+                        <span>🛡️ Seguro Viagem: link Seguros Promo</span>
+                        <span>🚗 Aluguel de carro: link RentCars</span>
+                        <span>☀️ O que levar: roupas leves, protetor, chinelo, óculos</span>
+                    </div>
+                </div>
+
+                <button onclick="buyEbook()" style="width:100%;background:linear-gradient(135deg,#0057B8,#10B981);color:white;border:none;padding:14px;border-radius:14px;font-weight:900;font-size:1rem;cursor:pointer;margin-top:16px;">
+                    🛒 Comprar por R$47 — Receber por WhatsApp
+                </button>
+                <p style="text-align:center;font-size:.68rem;color:#9ca3af;margin-top:8px;">✓ Entrega em PDF via WhatsApp em até 24h</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════
+     MAYA CHAT (Global Floating)
+═══════════════════════════════════════════════════════ -->
+
+    <!-- Maya FAB (visible on all screens) -->
+    <button class="maya-fab" id="maya-fab-btn">
+        <span class="maya-fab-avatar">M</span>
+        <span class="maya-fab-label">Fale com Maya</span>
+    </button>
+
+    <!-- Maya Chat Window -->
+    <div class="maya-chat" id="maya-chat" style="display:none">
+        <div class="maya-chat-header">
+            <div class="maya-chat-info">
+                <div class="maya-chat-avatar">M</div>
+                <div>
+                    <strong>Maya</strong>
+                    <span class="maya-online">● Online</span>
+                </div>
+            </div>
+            <button id="maya-chat-close">✕</button>
+        </div>
+        <div class="maya-chat-body" id="maya-messages">
+            <div class="msg ai">
+                <div class="bubble">Olá! 🇧🇷 Sou a Maya, sua guia de turismo no Brasil. Posso ajudar com destinos,
+                    hotéis, restaurantes e roteiros!</div>
+            </div>
+        </div>
+        <!-- WhatsApp representative button -->
+        <a id="maya-whatsapp-btn"
+            href="https://wa.me/5538991621135?text=Olá!%20Vim%20do%20site%20Descubra%20o%20Brasil%20e%20gostaria%20de%20falar%20com%20um%20representante%20sobre%20uma%20viagem!"
+            target="_blank" rel="noopener noreferrer" class="maya-whatsapp-link">
+            <span>📱</span>
+            <span>Falar com Representante via WhatsApp</span>
+        </a>
+        <div class="maya-chat-footer">
+            <div class="maya-voice-visuals" id="maya-waves">
+                <div class="wave"></div>
+                <div class="wave"></div>
+                <div class="wave"></div>
+                <div class="wave"></div>
+                <div class="wave"></div>
+            </div>
+            <span class="maya-thinking-icon" id="maya-thinking-indicator">⏳</span>
+            <button id="maya-mic-btn" class="maya-mic-btn" title="Falar com Maya">🎤</button>
+            <input type="text" id="maya-input" placeholder="Pergunte sobre destinos, roteiros...">
+            <button id="maya-send">➤</button>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════
+     POI DETAIL PANEL (slides up)
+═══════════════════════════════════════════════════════ -->
+    <div class="poi-panel hidden" id="poi-panel">
+        <button class="poi-panel-close" id="poi-panel-close">✕</button>
+        <div class="poi-header">
+            <span class="poi-big-icon" id="poi-big-icon">📍</span>
+            <div>
+                <h3 id="poi-name">—</h3>
+                <div class="poi-tags">
+                    <span class="poi-tag" id="poi-cat">—</span>
+                    <span class="poi-city" id="poi-city">—</span>
+                </div>
+            </div>
+        </div>
+        <p class="poi-desc" id="poi-desc">—</p>
+        <div class="poi-price-row">
+            <span>Preço médio</span>
+            <strong id="poi-price">—</strong>
+        </div>
+        <div class="poi-actions">
+            <button class="btn-blue btn-full" id="poi-drive-btn">🚗 Como chegar (Google Maps)</button>
+            <button class="btn-outline-blue btn-full mt-8" id="poi-chat-btn">💬 Perguntar à Maya</button>
+        </div>
+        <div class="maya-tip-box">
+            <div class="maya-tip-ava">M</div>
+            <p id="maya-tip-text">Carregando dica...</p>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════
+     MODALS
+═══════════════════════════════════════════════════════ -->
+
+    <!-- Login -->
+    <div class="modal-bg hidden" id="modal-login">
+        <div class="modal">
+            <button class="modal-x" id="modal-login-close">✕</button>
+            <div class="modal-icon">🔑</div>
+            <h3>Bem-vindo de volta!</h3>
+            <p class="modal-sub">Acesse para salvar roteiros e reservas</p>
+            <form id="login-form">
+                <input type="email" id="login-email" placeholder="Email" required>
+                <input type="password" id="login-password" placeholder="Senha" required>
+                <button type="submit" class="btn-blue btn-full">Entrar</button>
+            </form>
+            <div class="google-auth-container" style="margin-top: 15px; display: flex; justify-content: center;">
+                <div id="google-login-btn"></div>
+            </div>
+            <p class="modal-switch">Não tem conta? <a href="#" id="switch-to-register">Cadastre-se</a></p>
+        </div>
+    </div>
+
+    <!-- Register -->
+    <div class="modal-bg hidden" id="modal-register">
+        <div class="modal">
+            <button class="modal-x" id="modal-register-close">✕</button>
+            <div class="modal-icon">✨</div>
+            <h3>Crie sua conta grátis</h3>
+            <p class="modal-sub">Junte-se e explore o Brasil!</p>
+            <form id="register-form">
+                <input type="text" id="reg-name" placeholder="Nome completo" required>
+                <input type="email" id="reg-email" placeholder="Email" required>
+                <input type="password" id="reg-password" placeholder="Senha (mín. 6 caracteres)" required>
+                <button type="submit" class="btn-blue btn-full">Criar Conta</button>
+            </form>
+            <div class="google-auth-container" style="margin-top: 15px; display: flex; justify-content: center;">
+                <div id="google-register-btn"></div>
+            </div>
+            <p class="modal-switch">Já tem conta? <a href="#" id="switch-to-login">Entrar</a></p>
+        </div>
+    </div>
+
+    <!-- Hotel Reservation -->
+    <div class="modal-bg hidden" id="modal-reservation">
+        <div class="modal">
+            <button class="modal-x" id="modal-res-close">✕</button>
+            <div class="modal-icon">🏨</div>
+            <h3 id="res-hotel-name">Reservar Hotel</h3>
+            <form id="reservation-form">
+                <div class="form-row">
+                    <div>
+                        <label>Check-in</label>
+                        <input type="date" id="res-checkin" required>
+                    </div>
+                    <div>
+                        <label>Check-out</label>
+                        <input type="date" id="res-checkout" required>
+                    </div>
+                </div>
+                <div class="res-summary">
+                    <span>Preço/noite</span><strong id="res-price-display">—</strong>
+                    <span>Total</span><strong id="res-total-display" class="total">R$ 0,00</strong>
+                </div>
+                <button type="submit" class="btn-blue btn-full">✅ Confirmar Reserva</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Drive Confirm -->
+    <div class="modal-bg hidden" id="modal-drive">
+        <div class="modal modal-sm">
+            <button class="modal-x" id="modal-drive-close">✕</button>
+            <div class="modal-icon">🚗</div>
+            <h3>Como deseja navegar?</h3>
+            <p class="modal-sub" id="drive-dest-label">Destino: —</p>
+            <div class="drive-options">
+                <button class="drive-opt" id="drive-google">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Google_Maps_Logo_2020.svg/512px-Google_Maps_Logo_2020.svg.png"
+                        width="24" alt="Google Maps">
+                    Google Maps
+                </button>
+                <button class="drive-opt" id="drive-waze">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Waze_svg_sticker.svg/200px-Waze_svg_sticker.svg.png"
+                        width="24" alt="Waze">
+                    Waze
+                </button>
+                <button class="drive-opt" id="drive-osm">
+                    <span style="font-size:1.4rem">🗺️</span>
+                    OpenStreetMap
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- GLOBAL FIXED BOTTOM NAV (persists across all screens) -->
+    <nav class="bottom-nav" id="global-bottom-nav">
+        <button class="bnav-item active" id="bnav-home">
+            <span class="bnav-icon">🏠</span>
+            <span>Início</span>
+        </button>
+        <button class="bnav-item" id="bnav-map">
+            <span class="bnav-icon">🗺️</span>
+            <span>Mapa</span>
+        </button>
+        <button class="bnav-item" id="bnav-roteiros">
+            <span class="bnav-icon">📖</span>
+            <span>Roteiros</span>
+        </button>
+        <button class="bnav-item" id="bnav-hotels">
+            <span class="bnav-icon">🏨</span>
+            <span>Hotéis</span>
+        </button>
+        <button class="bnav-item" id="bnav-account">
+            <span class="bnav-icon">👤</span>
+            <span>Conta</span>
+        </button>
+    </nav>
+
+    <!-- Inline styles for weather bar and clock -->
+    <style>
+        .weather-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(90deg, #eff6ff, #f0fdf4);
+            border-bottom: 1px solid #dbeafe;
+            padding: 6px 16px;
+            font-size: 13px;
+            font-weight: 600;
+            gap: 8px;
+        }
+        .weather-bar-inner {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #1e40af;
+        }
+        .weather-city {
+            color: #475569;
+            font-weight: 500;
+            max-width: 120px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .clock-bar {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #374151;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 999px;
+            padding: 3px 10px;
+        }
+        .app-clock-text {
+            font-family: 'Courier New', monospace;
+            font-weight: 700;
+            color: #0f172a;
+            letter-spacing: 1px;
+        }
+        .clock-label {
+            color: #94a3b8;
+            font-size: 11px;
+        }
+        /* Fix bottom nav to always be sticky */
+        .bottom-nav {
+            position: fixed !important;
+            bottom: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            z-index: 200 !important;
+        }
+        /* Give all screens bottom padding so content doesn't hide behind nav */
+        .screen {
+            padding-bottom: 72px !important;
+        }
+
+        /* ── ROTEIROS STYLES ── */
+        .rot-chip {
+            flex-shrink: 0;
+            background: white;
+            border: 1.5px solid #e5e7eb;
+            border-radius: 999px;
+            padding: 7px 14px;
+            font-size: .78rem;
+            font-weight: 700;
+            color: #374151;
+            cursor: pointer;
+            transition: all .2s;
+            white-space: nowrap;
+        }
+        .rot-chip.active {
+            background: #0057B8;
+            color: white;
+            border-color: #0057B8;
+        }
+        .roteiro-card {
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 3px 16px rgba(0,0,0,.08);
+            border: 1px solid #f1f5f9;
+            transition: transform .2s;
+        }
+        .roteiro-card:active { transform: scale(.98); }
+        .roteiro-card-img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            display: block;
+        }
+        .roteiro-card-body {
+            padding: 14px;
+        }
+        .roteiro-card-tags {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-bottom: 8px;
+        }
+        .roteiro-tag {
+            background: #eff6ff;
+            color: #0057B8;
+            border-radius: 999px;
+            padding: 2px 9px;
+            font-size: .65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .roteiro-tag.green { background: #f0fdf4; color: #166534; }
+        .roteiro-tag.orange { background: #fff7ed; color: #c05621; }
+        .roteiro-card-title {
+            font-size: .92rem;
+            font-weight: 800;
+            color: #1a1a2e;
+            margin-bottom: 4px;
+        }
+        .roteiro-card-meta {
+            font-size: .75rem;
+            color: #6b7280;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .roteiro-card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .roteiro-price {
+            font-size: 1.2rem;
+            font-weight: 900;
+            color: #0057B8;
+        }
+        .roteiro-price small {
+            font-size: .65rem;
+            color: #9ca3af;
+            font-weight: 400;
+            display: block;
+        }
+        .roteiro-btn {
+            background: linear-gradient(135deg, #0057B8, #10B981);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 9px 16px;
+            font-size: .78rem;
+            font-weight: 800;
+            cursor: pointer;
+        }
+        /* Form styles */
+        .form-group { display: flex; flex-direction: column; gap: 4px; }
+        .form-label { font-size: .78rem; font-weight: 700; color: #374151; }
+        .form-inp {
+            border: 1.5px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 10px 14px;
+            font-size: .85rem;
+            color: #1a1a2e;
+            font-family: 'Inter', sans-serif;
+            outline: none;
+            background: #f9fafb;
+            transition: border-color .2s;
+        }
+        .form-inp:focus { border-color: #0057B8; background: white; }
+        .pref-tag {
+            background: #f3f4f6;
+            border: 1.5px solid #e5e7eb;
+            border-radius: 999px;
+            padding: 6px 12px;
+            font-size: .75rem;
+            font-weight: 600;
+            cursor: pointer;
+            color: #374151;
+            transition: all .15s;
+        }
+        .pref-tag.selected {
+            background: #eff6ff;
+            border-color: #0057B8;
+            color: #0057B8;
+        }
+        /* eBook styles */
+        .ebook-day {
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+        .ebook-day-header {
+            background: linear-gradient(135deg, #f0f9ff, #f0fdf4);
+            padding: 10px 14px;
+            font-size: .82rem;
+            font-weight: 800;
+            color: #1a1a2e;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .ebook-item {
+            padding: 8px 14px;
+            font-size: .78rem;
+            color: #374151;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        .ebook-item:last-child { border-bottom: none; }
+        .ebook-tip {
+            background: #fefce8;
+            padding: 8px 14px;
+            font-size: .73rem;
+            color: #92400e;
+            font-weight: 600;
+        }
+        .ebook-link {
+            background: #eff6ff;
+            color: #0057B8;
+            border-radius: 4px;
+            padding: 1px 5px;
+            font-size: .68rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+    </style>
+
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="js/states-db.js"></script>
+    <script src="js/news-rss.js"></script>
+    <script src="js/splash.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/maya-voice.js"></script>
+
+    <!-- PWA Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('[PWA] Service Worker registrado!', reg))
+                    .catch(err => console.log('[PWA] Erro no Service Worker:', err));
+            });
+        }
+    </script>
+</body>
+
+</html>
