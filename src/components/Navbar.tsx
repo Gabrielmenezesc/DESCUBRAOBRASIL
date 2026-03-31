@@ -2,13 +2,14 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Menu, X, Globe, CloudSun, Clock } from "lucide-react";
+import { Menu, X, Clock } from "lucide-react";
 import { useWeather } from "@/hooks/useWeather";
 
 const navLinks = [
   { href: "/", label: "Início" },
   { href: "/noticias", label: "Notícias" },
   { href: "/turismo", label: "Turismo" },
+  { href: "/servicos", label: "Serviços" },
   { href: "/quem-somos", label: "Quem Somos" },
   { href: "/contato", label: "Contato" },
 ];

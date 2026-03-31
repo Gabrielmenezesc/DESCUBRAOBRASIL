@@ -2,8 +2,6 @@
 
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
-import CollaboratorsSection from "@/components/CollaboratorsSection";
-import PartnersSection from "@/components/PartnersSection";
 import NewsSection from "@/components/NewsSection";
 import TourismSection from "@/components/TourismSection";
 import HowItWorksSection from "@/components/HowItWorksSection";
@@ -13,9 +11,8 @@ import FooterSection from "@/components/FooterSection";
 import MayaChat from "@/components/MayaChat";
 import LGPDBanner from "@/components/LGPDBanner";
 import ThemeScrollSpy from "@/components/ThemeScrollSpy";
-import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, Megaphone } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 export default function Home() {
   return (
@@ -23,13 +20,6 @@ export default function Home() {
       <ThemeScrollSpy />
       <Navbar />
       <HeroSection />
-
-
-      {/* Collaborators */}
-      <CollaboratorsSection />
-
-      {/* Business Partners */}
-      <PartnersSection />
 
       {/* News Summary */}
       <section className="py-24 bg-slate-50">

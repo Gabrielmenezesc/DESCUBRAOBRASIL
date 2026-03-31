@@ -6,7 +6,7 @@ import FooterSection from "@/components/FooterSection";
 import MayaChat from "@/components/MayaChat";
 import LGPDBanner from "@/components/LGPDBanner";
 import { motion } from "framer-motion";
-import { Building2, Calendar, Award, Target, Globe, Briefcase, GraduationCap, Clapperboard, Megaphone } from "lucide-react";
+import { Building2, Calendar, Award, Target } from "lucide-react";
 
 const timeline = [
   { year: "2021", title: "Fundação", desc: "Abertura da Rede Brasília News com foco inicial em turismo e comunicação descentralizada." },
@@ -16,14 +16,7 @@ const timeline = [
   { year: "2025", title: "Portal Premium", desc: "Lançamento da plataforma atual com experiência imersiva e roteiros em tempo real." },
 ];
 
-const activities = [
-  { icon: Globe, label: "Portais e Provedores de Conteúdo na Internet" },
-  { icon: Briefcase, label: "Operadores Turísticos e Agências de Viagens" },
-  { icon: Calendar, label: "Organização de Feiras, Congressos e Exposições" },
-  { icon: Megaphone, label: "Agências de Publicidade e Consultoria" },
-  { icon: GraduationCap, label: "Treinamento em Desenvolvimento Profissional" },
-  { icon: Clapperboard, label: "Produção de Espetáculos e Eventos Culturais" },
-];
+
 
 export default function QuemSomosPage() {
   return (

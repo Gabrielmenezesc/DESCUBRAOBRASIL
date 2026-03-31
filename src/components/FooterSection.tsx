@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Mail, MapPin, Phone, Camera, Briefcase, Globe } from "lucide-react";
+import { Mail, MapPin, Phone, Camera, Globe } from "lucide-react";
 
 export default function FooterSection() {
   return (
@@ -36,6 +36,7 @@ export default function FooterSection() {
             <ul className="space-y-4">
               <li><Link href="/" className="hover:text-emerald-400 transition-colors">Início</Link></li>
               <li><Link href="/turismo" className="hover:text-emerald-400 transition-colors">Turismo</Link></li>
+              <li><Link href="/servicos" className="hover:text-emerald-400 transition-colors">Serviços</Link></li>
               <li><Link href="/noticias" className="hover:text-emerald-400 transition-colors">Notícias</Link></li>
               <li><Link href="/contato" className="hover:text-emerald-400 transition-colors">Contato</Link></li>
             </ul>
