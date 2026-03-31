@@ -1300,7 +1300,6 @@ const MAYA_FLOW = {
         msg: '👋 Olá! Sou a **Maya**, sua guia do Descubra o Brasil! Como posso te ajudar?',
         choices: [
             { label: '🌎 Explorar Destinos', next: 'destinos' },
-            { label: '💼 Contratar Serviços', next: 'servicos' },
             { label: '📸 Instagram', next: 'instagram' },
             { label: '💬 Falar com Equipe', next: 'wa_geral' },
         ]
@@ -1342,56 +1341,14 @@ const MAYA_FLOW = {
         msg: '🗺️ Abrindo o mapa interativo para você! Explore os melhores destinos do Brasil!',
         action: 'map'
     },
-    servicos: {
-        msg: '💼 Que serviço você precisa?',
-        choices: [
-            { label: '🎨 Marketing Digital', next: 'marketing' },
-            { label: '🌐 Criação de Site', next: 'site' },
-            { label: '🎬 Vídeos', next: 'video' },
-            { label: '📅 Eventos', next: 'eventos' },
-            { label: '⬅️ Voltar', next: 'start' },
-        ]
-    },
-    marketing: {
-        msg: '🎨 **Marketing Digital:** Gestão de redes sociais, artes profissionais, campanhas Google/Meta e relatórios mensais.\n\nVamos impulsionar sua marca?',
-        choices: [
-            { label: '💬 Solicitar Proposta', next: 'wa_marketing' },
-            { label: '📸 Ver Portfolio', next: 'instagram' },
-            { label: '⬅️ Outros Serviços', next: 'servicos' },
-        ]
-    },
-    site: {
-        msg: '🌐 **Criação de Sites:** Design moderno, responsivo, otimizado para Google (SEO). Entrega em 7-15 dias!',
-        choices: [
-            { label: '💬 Quero meu Site!', next: 'wa_site' },
-            { label: '⬅️ Outros Serviços', next: 'servicos' },
-        ]
-    },
-    video: {
-        msg: '🎬 **Vídeos Promocionais:** Reels, vídeos institucionais, animações — conteúdo que converte!',
-        choices: [
-            { label: '💬 Orçar Vídeo', next: 'wa_video' },
-            { label: '⬅️ Outros Serviços', next: 'servicos' },
-        ]
-    },
-    eventos: {
-        msg: '📅 **Eventos completos:** Feiras, congressos, festas corporativas. Da concepção à execução!',
-        choices: [
-            { label: '💬 Planejar Evento', next: 'wa_evento' },
-            { label: '⬅️ Outros Serviços', next: 'servicos' },
-        ]
-    },
     instagram: {
-        msg: '📸 Siga **@descubraobrasiloficial** e fique por dentro de destinos incríveis, cases de marketing e promoções especiais!',
+        msg: '📸 Siga **@descubraobrasiloficial** e fique por dentro de destinos incríveis e promoções especiais!',
         action: 'instagram'
     },
     wa_geral:    { msg: '💬 Conectando com nossa equipe...', action: 'whatsapp', waText: 'Olá! Quero saber mais sobre o Descubra o Brasil.' },
     wa_turismo:  { msg: '🗺️ Conectando com especialista em turismo...', action: 'whatsapp', waText: 'Olá! Gostaria de informações sobre destinos e roteiros turísticos.' },
-    wa_marketing:{ msg: '🎯 Conectando com nosso time de marketing...', action: 'whatsapp', waText: 'Olá! Tenho interesse em marketing digital. Pode enviar uma proposta?' },
-    wa_site:     { msg: '🌐 Conectando para criar seu site...', action: 'whatsapp', waText: 'Olá! Quero criar um site profissional para meu negócio!' },
-    wa_video:    { msg: '🎬 Conectando para seu vídeo...', action: 'whatsapp', waText: 'Olá! Tenho interesse em vídeos promocionais. Quais os valores?' },
-    wa_evento:   { msg: '📅 Conectando para planejar seu evento...', action: 'whatsapp', waText: 'Olá! Quero organizar um evento. Como vocês trabalham?' },
 };
+
 
 let mayaFlowNode = 'start';
 

@@ -7,7 +7,6 @@ import { useWeather } from "@/hooks/useWeather";
 
 const navLinks = [
   { href: "/", label: "Início" },
-  { href: "/servicos", label: "Anuncie" },
   { href: "/noticias", label: "Notícias" },
   { href: "/turismo", label: "Turismo" },
   { href: "/quem-somos", label: "Quem Somos" },

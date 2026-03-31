@@ -35,8 +35,8 @@ export default function FooterSection() {
             <h4 className="text-white font-bold mb-6 font-mono tracking-wider">NAVEGAÇÃO</h4>
             <ul className="space-y-4">
               <li><Link href="/" className="hover:text-emerald-400 transition-colors">Início</Link></li>
-              <li><Link href="/servicos" className="hover:text-emerald-400 transition-colors">Serviços</Link></li>
               <li><Link href="/turismo" className="hover:text-emerald-400 transition-colors">Turismo</Link></li>
+              <li><Link href="/noticias" className="hover:text-emerald-400 transition-colors">Notícias</Link></li>
               <li><Link href="/contato" className="hover:text-emerald-400 transition-colors">Contato</Link></li>
             </ul>
           </div>

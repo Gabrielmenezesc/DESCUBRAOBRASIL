@@ -122,31 +122,6 @@ export default function QuemSomosPage() {
         </div>
       </section>
 
-      {/* CNPJ Activities */}
-      <section className="py-20 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-10 text-center">
-            Atividades <span className="text-gradient">Econômicas</span>
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {activities.map((act, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: -10 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.05 }}
-                className="flex items-center gap-3 bg-white rounded-xl p-4 border border-slate-100 shadow-sm"
-              >
-                <div className="w-10 h-10 rounded-lg bg-emerald-50 flex items-center justify-center flex-shrink-0">
-                  <act.icon className="w-5 h-5 text-emerald-600" />
-                </div>
-                <span className="text-sm font-medium text-slate-700">{act.label}</span>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Timeline */}
       <section className="py-20 bg-white">
