@@ -240,16 +240,22 @@ export default function MayaChat() {
     setMessages((prev) => [...prev, { from: "user", text }]);
     setIsThinking(true);
 
-    // Mock AI Logic or Keyword matching
+    // Lógica de palavras-chave para simular IA
     setTimeout(() => {
         setIsThinking(false);
-        // Basic keyword matching for demo
         const lower = text.toLowerCase();
-        if (lower.includes("praia") || lower.includes("mar")) addMayaMessage("praias");
-        else if (lower.includes("negócio") || lower.includes("empresa") || lower.includes("marketing")) addMayaMessage("servicos");
-        else if (lower.includes("instagram")) addMayaMessage("instagram");
-        else {
-            const msg = "Entendi! O Brasil é incrível. Posso te falar sobre destinos, nossos serviços digitais ou você pode seguir a gente no Instagram!";
+        if (lower.includes("praia") || lower.includes("mar") || lower.includes("nordeste")) {
+            addMayaMessage("praias");
+        } else if (lower.includes("história") || lower.includes("cultura") || lower.includes("cidade")) {
+            addMayaMessage("cidades");
+        } else if (lower.includes("natureza") || lower.includes("ecoturismo") || lower.includes("trilha")) {
+            addMayaMessage("ecoturismo");
+        } else if (lower.includes("app") || lower.includes("aplicativo") || lower.includes("instalar")) {
+            addMayaMessage("app_redirect");
+        } else if (lower.includes("instagram")) {
+            addMayaMessage("instagram");
+        } else {
+            const msg = "Que legal! O Brasil é cheio de surpresas. Posso te falar sobre destinos (praias, história, ecoturismo), sobre como usar nosso App ou você pode nos seguir no Instagram para ver fotos incríveis!";
             setMessages((prev) => [...prev, { from: "maya", text: msg }]);
             mayaSpeak(msg);
         }
