@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MessageCircle, Briefcase, Sparkles, ArrowRight, Rocket } from "lucide-react";
+import { MessageCircle, Sparkles, ArrowRight, Compass, MapPin } from "lucide-react";
 
 export default function FinalCTASection() {
   return (
@@ -23,7 +23,7 @@ export default function FinalCTASection() {
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm font-bold mb-8"
           >
             <Sparkles className="w-4 h-4" />
-            Sua Próxima Aventura
+            Sua Próxima Aventura Começa Aqui
           </motion.div>
 
           <motion.h2
@@ -33,7 +33,7 @@ export default function FinalCTASection() {
             transition={{ delay: 0.1 }}
             className="text-4xl md:text-6xl font-black text-white mb-4 tracking-tight"
           >
-            Descubra o Brasil em <span className="text-emerald-400">8D</span>
+            Explore o <span className="text-emerald-400">Brasil</span> Inteiro
           </motion.h2>
           
           <motion.p
@@ -43,7 +43,7 @@ export default function FinalCTASection() {
             transition={{ delay: 0.15 }}
             className="text-xl md:text-2xl text-slate-300 mb-8"
           >
-            A IA Maya está esperando para criar seu roteiro perfeito.
+            De praias paradisíacas a chapadas incríveis — cada estado é uma aventura.
           </motion.p>
 
           <motion.p
@@ -53,7 +53,7 @@ export default function FinalCTASection() {
             transition={{ delay: 0.2 }}
             className="text-lg text-slate-400 max-w-2xl mx-auto mb-12 leading-relaxed"
           >
-            Pare de pesquisar e comece a viajar. Baixe o aplicativo <span className="text-white font-bold">Descubra o Brasil</span> e tenha milhares de destinos com turismo inteligente na palma da mão.
+            Descubra destinos por estado, acompanhe notícias de turismo atualizadas, encontre lugares gratuitos e planeje sua viagem pelo <span className="text-white font-bold">Brasil</span> mais lindo que existe.
           </motion.p>
 
           <motion.div
@@ -64,11 +64,11 @@ export default function FinalCTASection() {
             className="flex flex-col sm:flex-row gap-6 justify-center items-center"
           >
             <a 
-              href="/app/index.html" 
+              href="/turismo" 
               className="group flex items-center gap-2 bg-white text-slate-900 px-10 py-5 rounded-2xl font-black text-lg transition-all transform hover:scale-105 hover:shadow-2xl hover:shadow-white/20 shadow-xl"
             >
-              <Rocket className="w-5 h-5" />
-              Abrir Web App
+              <Compass className="w-5 h-5" />
+              Explorar Destinos
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </a>
             
@@ -90,8 +90,8 @@ export default function FinalCTASection() {
             transition={{ delay: 0.5 }}
             className="mt-8 inline-flex items-center gap-2 text-emerald-400/60 text-sm font-medium"
           >
-            <Rocket className="w-4 h-4" />
-            Milhares de destinos no conforto do seu celular
+            <MapPin className="w-4 h-4" />
+            27 estados, milhares de cidades, infinitos destinos
           </motion.div>
 
           <motion.div
@@ -101,7 +101,7 @@ export default function FinalCTASection() {
             transition={{ delay: 0.6 }}
             className="mt-8 text-slate-500 text-sm font-medium tracking-widest uppercase"
           >
-            Rede Brasília News LTDA &copy; {new Date().getFullYear()}
+            Descubra o Brasil &copy; {new Date().getFullYear()}
           </motion.div>
         </div>
       </div>

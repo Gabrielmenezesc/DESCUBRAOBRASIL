@@ -5,7 +5,103 @@ import FooterSection from "@/components/FooterSection";
 import MayaChat from "@/components/MayaChat";
 import LGPDBanner from "@/components/LGPDBanner";
 import { motion } from "framer-motion";
-import { Globe, Map, Compass, Shield, ArrowRight, ExternalLink } from "lucide-react";
+import { Calendar, Map, DollarSign, Sun, Compass, Utensils, Heart, Shield, ArrowRight, Backpack, Clock, Languages } from "lucide-react";
+
+const tips = [
+  {
+    icon: Calendar,
+    title: "Melhor Época para Viajar",
+    desc: "O Nordeste é incrível o ano todo. O Sul brilha no inverno. A Amazônia é ideal de junho a novembro (seca). O Sudeste aquece de dezembro a março.",
+    color: "bg-blue-50 text-blue-600",
+    border: "border-blue-100",
+  },
+  {
+    icon: DollarSign,
+    title: "Viaje Gastando Pouco",
+    desc: "Use ônibus interestaduais, pousadas familiares, e explore atrações gratuitas como parques nacionais, praias e centros históricos.",
+    color: "bg-emerald-50 text-emerald-600",
+    border: "border-emerald-100",
+  },
+  {
+    icon: Map,
+    title: "Roteiros por Estado",
+    desc: "De Roraima ao Rio Grande do Sul — cada estado tem circuitos turísticos completos. Monte seu roteiro por região e aproveite mais.",
+    color: "bg-amber-50 text-amber-600",
+    border: "border-amber-100",
+  },
+  {
+    icon: Utensils,
+    title: "Gastronomia Regional",
+    desc: "Acarajé na Bahia, churrasco no RS, tacacá no Pará, pão de queijo em MG, barreado no PR — o Brasil é um festival de sabores.",
+    color: "bg-rose-50 text-rose-600",
+    border: "border-rose-100",
+  },
+  {
+    icon: Backpack,
+    title: "O que Levar na Mala",
+    desc: "Protetor solar sempre! Para o Norte/Nordeste: roupas leves. Para o Sul: agasalhos no inverno. Para trilhas: tênis reforçado e água.",
+    color: "bg-purple-50 text-purple-600",
+    border: "border-purple-100",
+  },
+  {
+    icon: Shield,
+    title: "Segurança do Viajante",
+    desc: "Evite ostentar objetos caros, guarde documentos em local seguro, mantenha cópias digitais e compartilhe seu roteiro com alguém de confiança.",
+    color: "bg-cyan-50 text-cyan-600",
+    border: "border-cyan-100",
+  },
+];
+
+const stateGuides = [
+  {
+    state: "Bahia",
+    code: "BA",
+    top: "Salvador, Chapada Diamantina, Praia do Forte",
+    bestTime: "Set – Mar",
+    free: "Pelourinho, Farol da Barra, Igreja do Bonfim",
+    image: "https://images.unsplash.com/photo-1597487124413-82a4c4e8de1e?q=80&w=400",
+  },
+  {
+    state: "Rio de Janeiro",
+    code: "RJ",
+    top: "Cristo, Sugarloaf, Búzios, Paraty",
+    bestTime: "Mai – Out",
+    free: "Aterro do Flamengo, Mirante Dona Marta, Escadaria Selarón",
+    image: "https://images.unsplash.com/photo-1483729558449-99ef09a8c325?q=80&w=400",
+  },
+  {
+    state: "Ceará",
+    code: "CE",
+    top: "Jericoacoara, Canoa Quebrada, Fortaleza",
+    bestTime: "Jul – Jan",
+    free: "Praia de Jeri, Duna do Pôr do Sol, Centro Dragão do Mar",
+    image: "https://images.unsplash.com/photo-1505142468610-359e7d316be0?q=80&w=400",
+  },
+  {
+    state: "Minas Gerais",
+    code: "MG",
+    top: "Ouro Preto, Tiradentes, Serra do Cipó, Capitólio",
+    bestTime: "Abr – Set",
+    free: "Igrejas barrocas, Mirantes do Capitólio, Cachoeira Tabuleiro",
+    image: "https://images.unsplash.com/photo-1598301257982-0cf014dabbca?q=80&w=400",
+  },
+  {
+    state: "Amazonas",
+    code: "AM",
+    top: "Manaus, Encontro das Águas, Reserva Mamirauá",
+    bestTime: "Jun – Nov",
+    free: "Teatro Amazonas (entrada gratuita terças), Porto flutuante",
+    image: "https://images.unsplash.com/photo-1618953822098-e6614c1d2e94?q=80&w=400",
+  },
+  {
+    state: "Santa Catarina",
+    code: "SC",
+    top: "Florianópolis, Balneário Camboriú, Bombinhas",
+    bestTime: "Dez – Mar",
+    free: "Lagoinha do Leste (trilha), Mirante do Morro da Cruz",
+    image: "https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?q=80&w=400",
+  },
+];
 
 export default function ServicosPage() {
   return (
@@ -13,21 +109,21 @@ export default function ServicosPage() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="pt-32 pb-20 bg-gradient-to-b from-blue-50 to-white">
+      <section className="pt-32 pb-20 bg-gradient-to-b from-emerald-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.span
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="inline-block px-4 py-1.5 rounded-full bg-blue-100 text-blue-700 text-sm font-bold mb-4"
+            className="inline-block px-4 py-1.5 rounded-full bg-emerald-100 text-emerald-700 text-sm font-bold mb-4"
           >
-            SERVIÇOS TURÍSTICOS
+            🧭 DICAS DE VIAGEM
           </motion.span>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-4xl md:text-6xl font-extrabold text-slate-900 tracking-tight mb-6"
           >
-            Sua Experiência <span className="text-gradient">Completa</span> no Brasil
+            Tudo para sua <span className="text-gradient">Viagem</span> pelo Brasil
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -35,93 +131,106 @@ export default function ServicosPage() {
             transition={{ delay: 0.1 }}
             className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed"
           >
-            Oferecemos suporte especializado para que sua viagem seja inesquecível, do planejamento à execução.
+            Dicas práticas, melhores épocas, gastronomia regional, roteiros gratuitos e guias rápidos por estado para você aproveitar ao máximo.
           </motion.p>
         </div>
       </section>
 
-      {/* Tourism Services Cards */}
+      {/* Tips Cards */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                icon: Map,
-                title: "Roteiros Personalizados",
-                desc: "Planejamos sua rota dia a dia, focando nos seus interesses e no seu orçamento.",
-                color: "text-blue-600",
-                bg: "bg-blue-50"
-              },
-              {
-                icon: Compass,
-                title: "Guia de Destinos",
-                desc: "Acesso a informações exclusivas sobre atrações gratuitas e tesouros escondidos.",
-                color: "text-emerald-600",
-                bg: "bg-emerald-50"
-              },
-              {
-                icon: Shield,
-                title: "Apoio ao Viajante",
-                desc: "Suporte via WhatsApp para emergências e dúvidas durante sua estadia no Brasil.",
-                color: "text-amber-600",
-                bg: "bg-amber-50"
-              }
-            ].map((s, i) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {tips.map((tip, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="p-8 rounded-3xl border border-slate-100 bg-slate-50/50 hover:shadow-xl transition-all"
+                className={`p-8 rounded-3xl border ${tip.border} bg-white hover:shadow-xl transition-all group`}
               >
-                <div className={`w-14 h-14 rounded-2xl ${s.bg} flex items-center justify-center mb-6`}>
-                  <s.icon className={`w-8 h-8 ${s.color}`} />
+                <div className={`w-14 h-14 rounded-2xl ${tip.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
+                  <tip.icon className="w-7 h-7" />
                 </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-3">{s.title}</h3>
-                <p className="text-slate-600 mb-6">{s.desc}</p>
-                <a href="https://wa.me/5538991621135" className="text-sm font-bold text-blue-600 hover:text-blue-500 flex items-center gap-2">
-                  Saiba mais <ArrowRight className="w-4 h-4" />
-                </a>
+                <h3 className="text-xl font-bold text-slate-900 mb-3">{tip.title}</h3>
+                <p className="text-slate-600 leading-relaxed">{tip.desc}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Marketing Redirect Section */}
-      <section className="py-20 bg-slate-900 text-white overflow-hidden relative">
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-blue-500/10 to-transparent pointer-events-none" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-12">
-            <div className="max-w-2xl">
-              <span className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-blue-500/20 text-blue-300 text-sm font-bold mb-6">
-                <Globe className="w-4 h-4" /> B2B & PARCERIAS
-              </span>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 italic">
-                Quer anunciar sua empresa ou destino?
-              </h2>
-              <p className="text-slate-300 text-lg mb-8 leading-relaxed">
-                A gestão de publicidade, marketing e parcerias comerciais do ecossistema Descubra o Brasil é realizada com exclusividade pela <strong className="text-blue-400">Rede Brasília News</strong>.
-              </p>
-              <a
-                href="https://redebrasilianews.com.br/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 bg-white text-slate-900 px-8 py-4 rounded-full font-bold text-lg hover:bg-blue-50 transition-all hover:scale-105"
+      {/* State Quick Guides */}
+      <section className="py-20 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4 text-center">
+            Guia Rápido por <span className="text-gradient">Estado</span>
+          </h2>
+          <p className="text-slate-500 text-center mb-12 max-w-2xl mx-auto">
+            Destinos top, melhor época e atrações gratuitas nos estados mais procurados
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {stateGuides.map((guide, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="bg-white rounded-2xl overflow-hidden shadow-md border border-slate-100 hover:shadow-xl transition-all"
               >
-                Ir para Rede Brasília News
-                <ExternalLink className="w-5 h-5" />
-              </a>
-            </div>
-            <div className="w-full md:w-1/3 aspect-video rounded-3xl bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center p-8 shadow-2xl relative">
-               <div className="text-center">
-                  <p className="text-xs font-mono text-blue-200 mb-2 uppercase tracking-widest">Publicidade Digital</p>
-                  <p className="text-2xl font-black text-white leading-tight">SOLUÇÕES EM<br/>COMUNICAÇÃO</p>
-               </div>
-               <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-white/10 rounded-full blur-2xl" />
-            </div>
+                <div className="relative h-40 overflow-hidden">
+                  <div
+                    className="absolute inset-0 bg-cover bg-center"
+                    style={{ backgroundImage: `url(${guide.image})` }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                  <div className="absolute bottom-3 left-4">
+                    <h3 className="text-xl font-extrabold text-white">{guide.state}</h3>
+                    <span className="text-emerald-300 text-xs font-bold">{guide.code}</span>
+                  </div>
+                </div>
+                <div className="p-5 space-y-3">
+                  <div>
+                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Top destinos</span>
+                    <p className="text-sm text-slate-700 font-medium">{guide.top}</p>
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1">
+                      <Sun className="w-3 h-3" /> Melhor época
+                    </span>
+                    <p className="text-sm text-emerald-600 font-bold">{guide.bestTime}</p>
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">💰 Gratuito</span>
+                    <p className="text-sm text-slate-600">{guide.free}</p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
           </div>
+        </div>
+      </section>
+
+      {/* CTA to Contact */}
+      <section className="py-16 bg-white">
+        <div className="max-w-3xl mx-auto px-4 text-center">
+          <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">
+            Precisa de ajuda para planejar?
+          </h2>
+          <p className="text-slate-600 mb-8">
+            Nosso time vive e respira turismo. Fale com a gente no WhatsApp!
+          </p>
+          <a
+            href="https://wa.me/5538991621135"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 bg-emerald-500 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-emerald-600 transition-colors"
+          >
+            💬 Falar com o Time
+            <ArrowRight className="w-5 h-5" />
+          </a>
         </div>
       </section>
 

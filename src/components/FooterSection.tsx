@@ -36,7 +36,7 @@ export default function FooterSection() {
             <ul className="space-y-4">
               <li><Link href="/" className="hover:text-emerald-400 transition-colors">Início</Link></li>
               <li><Link href="/turismo" className="hover:text-emerald-400 transition-colors">Turismo</Link></li>
-              <li><Link href="/servicos" className="hover:text-emerald-400 transition-colors">Serviços</Link></li>
+              <li><Link href="/servicos" className="hover:text-emerald-400 transition-colors">Dicas de Viagem</Link></li>
               <li><Link href="/noticias" className="hover:text-emerald-400 transition-colors">Notícias</Link></li>
               <li><Link href="/contato" className="hover:text-emerald-400 transition-colors">Contato</Link></li>
             </ul>
