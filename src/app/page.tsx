@@ -6,6 +6,7 @@ import NewsSection from "@/components/NewsSection";
 import TourismSection from "@/components/TourismSection";
 import CultureSection from "@/components/CultureSection";
 import FreeAttractionsSection from "@/components/FreeAttractionsSection";
+import MockupAppSection from "@/components/MockupAppSection";
 import FinalCTASection from "@/components/FinalCTASection";
 import FooterSection from "@/components/FooterSection";
 import MayaChat from "@/components/MayaChat";
@@ -50,6 +51,9 @@ export default function Home() {
       <div id="turismo">
         <TourismSection />
       </div>
+
+      {/* Interactive Hub */}
+      <MockupAppSection />
 
       {/* Culture by Region */}
       <CultureSection />

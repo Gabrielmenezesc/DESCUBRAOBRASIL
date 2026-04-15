@@ -24,31 +24,31 @@ export default function MockupAppSection() {
               transition={{ duration: 0.6 }}
             >
               <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-6 text-slate-900">
-                Experiência 8D <br />
-                <span className="text-gradient">No Seu Dispositivo</span>
+                Experiência <span className="text-gradient">Interativa</span> <br />
+                no seu Dispositivo
               </h2>
               <p className="text-lg text-slate-600 mb-8 leading-relaxed">
-                Navegue no nosso web app totalmente funcional logo ao lado. Experimente a performance fluida, a inteligência da Maya AI e os roteiros dinâmicos sem precisar sair da página.
+                Navegue no nosso portal totalmente funcional ao lado. Experimente a inteligência da Maya AI, mapas interativos e roteiros personalizados sem precisar sair desta página.
               </p>
 
               <div className="space-y-4 mb-10">
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
-                    <Compass className="w-4 h-4 text-primary" />
+                  <div className="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center">
+                    <Compass className="w-4 h-4 text-emerald-600" />
                   </div>
-                  <span className="text-slate-800 font-medium">Turismo com navegação intuitiva e em tempo real</span>
+                  <span className="text-slate-800 font-medium">Turismo com navegação intuitiva em tempo real</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
-                    <Compass className="w-4 h-4 text-primary" />
+                  <div className="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center">
+                    <Compass className="w-4 h-4 text-emerald-600" />
                   </div>
-                  <span className="text-slate-800 font-medium">Test-drive da Maya AI direto no navegador</span>
+                  <span className="text-slate-800 font-medium">Test-drive da Maya AI para dicas de roteiros</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
-                    <Compass className="w-4 h-4 text-primary" />
+                  <div className="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center">
+                    <Compass className="w-4 h-4 text-emerald-600" />
                   </div>
-                  <span className="text-slate-800 font-medium">Modo claro fluido e imersivo (8D)</span>
+                  <span className="text-slate-800 font-medium">Mapas dinâmicos e destinos por estado</span>
                 </div>
               </div>
 
