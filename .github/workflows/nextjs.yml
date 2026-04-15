@@ -5,7 +5,7 @@ name: Deploy Next.js to Pages
 
 on:
   push:
-    branches: ["main"] # Altere aqui se sua branch principal tiver outro nome
+    branches: ["main"]
   workflow_dispatch:
 
 permissions:
@@ -44,9 +44,7 @@ jobs:
           cache: ${{ steps.detect-package-manager.outputs.manager }}
 
       - name: Setup Pages
-        uses: actions/configure-pages@v4
-        with:
-          static_site_generator: next
+        uses: actions/configure-pages@v5
 
       - name: Restore cache
         uses: actions/cache@v4
@@ -63,6 +61,9 @@ jobs:
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
 
+      - name: List output directory
+        run: ls -la ./out || echo "out directory not found"
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -78,3 +79,4 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
