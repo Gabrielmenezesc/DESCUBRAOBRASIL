@@ -61,7 +61,7 @@ export default function MockupAppSection() {
                   Baixar App Agora
                 </button>
                 <a 
-                  href="/DESCUBRAOBRASIL/app/index.html" 
+                  href="/app/index.html" 
                   target="_blank" 
                   rel="noopener noreferrer" 
                   className="inline-flex items-center gap-2 border-2 border-slate-200 text-slate-700 px-8 py-4 rounded-full font-bold text-lg hover:bg-slate-50 transition-colors"
@@ -94,7 +94,7 @@ export default function MockupAppSection() {
               <div className="relative w-full h-full bg-white flex flex-col pt-6 pointer-events-auto">
               {/* Functional App Iframe */}
             <iframe 
-              src="/DESCUBRAOBRASIL/app/index.html" 
+              src="/app/index.html" 
               className="w-full h-full border-none"
               title="Descubra o Brasil App Demo"
               loading="lazy"

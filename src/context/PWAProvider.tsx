@@ -30,7 +30,7 @@ export function PWAProvider({ children }: { children: React.ReactNode }) {
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => {
         navigator.serviceWorker
-          .register("/DESCUBRAOBRASIL/sw.js")
+          .register("/sw.js")
           .then((reg) => console.log("[PWA] SW Registered:", reg.scope))
           .catch((err) => console.error("[PWA] SW Registration failed:", err));
       });
@@ -75,7 +75,7 @@ export function PWAProvider({ children }: { children: React.ReactNode }) {
     }
 
     // Case 3: Fallback — open the web app directly
-    window.open("/DESCUBRAOBRASIL/app/index.html", "_blank");
+    window.open("/app/index.html", "_blank");
   };
 
   return (

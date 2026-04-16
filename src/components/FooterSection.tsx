@@ -12,7 +12,7 @@ export default function FooterSection() {
           {/* Brand Col */}
           <div className="space-y-6">
             <img 
-              src="/DESCUBRAOBRASIL/logo-descubra.png" 
+              src="/logo-descubra.png" 
               alt="Descubra o Brasil" 
               className="h-12 w-auto object-contain"
             />
@@ -24,7 +24,7 @@ export default function FooterSection() {
               <a href="https://instagram.com/descubraobrasiloficial" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-emerald-500 hover:text-white transition-colors border border-slate-700">
                 <Camera className="w-5 h-5" />
               </a>
-              <a href="/DESCUBRAOBRASIL/app/index.html" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-emerald-500 hover:text-white transition-colors border border-slate-700">
+              <a href="/app/index.html" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-emerald-500 hover:text-white transition-colors border border-slate-700">
                 <Globe className="w-5 h-5" />
               </a>
             </div>
@@ -65,9 +65,9 @@ export default function FooterSection() {
           <div>
             <h4 className="text-white font-bold mb-6 font-mono tracking-wider">BAIXE O APP</h4>
             <p className="text-sm mb-4">Escaneie o QR Code ou clique para baixar o app completo no seu celular.</p>
-            <a href="/DESCUBRAOBRASIL/app/index.html" target="_blank" rel="noopener noreferrer" className="inline-block bg-white p-2 rounded-xl group hover:scale-105 transition-transform">
+            <a href="/app/index.html" target="_blank" rel="noopener noreferrer" className="inline-block bg-white p-2 rounded-xl group hover:scale-105 transition-transform">
               <img 
-                src={"https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://gabrielmenezesc.github.io/DESCUBRAOBRASIL/app/index.html"} 
+                src={"https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://descubraobrasil.com/app/index.html"} 
                 alt="QR Code do App Descubra o Brasil" 
                 className="w-24 h-24 object-contain group-hover:opacity-80 transition-opacity" 
               />

@@ -42,7 +42,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group hover:scale-105 transition-transform">
             <img 
-              src="/DESCUBRAOBRASIL/logo-descubra.png" 
+              src="/logo-descubra.png" 
               alt="Descubra o Brasil" 
               className="h-10 w-auto object-contain"
             />

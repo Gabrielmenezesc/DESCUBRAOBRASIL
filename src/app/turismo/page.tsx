@@ -80,7 +80,7 @@ export default function TurismoPage() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2 }}
-            href="/DESCUBRAOBRASIL/app/index.html"
+            href="/app/index.html"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-500 to-emerald-400 text-white px-8 py-4 rounded-full font-bold text-lg hover:shadow-[0_0_20px_rgba(16,185,129,0.5)] transition-shadow"

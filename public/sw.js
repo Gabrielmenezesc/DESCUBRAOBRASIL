@@ -1,8 +1,8 @@
-const CACHE_NAME = "descubra-brasil-site-v1";
+const CACHE_NAME = "descubra-brasil-site-v2";
 const ASSETS = [
-  "/DESCUBRAOBRASIL/",
-  "/DESCUBRAOBRASIL/manifest.json",
-  "/DESCUBRAOBRASIL/app/img/logo.png"
+  "/",
+  "/manifest.json",
+  "/app/img/logo.png"
 ];
 
 self.addEventListener("install", (event) => {

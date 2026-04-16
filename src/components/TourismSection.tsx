@@ -54,7 +54,7 @@ export default function TourismSection() {
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            href="/DESCUBRAOBRASIL/app/index.html"
+            href="/app/index.html"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 text-emerald-600 font-bold hover:text-emerald-500 transition-colors"
