@@ -1,37 +1,35 @@
 // ── Maya AI — Powered by Groq (Llama 3.3 70B) ────────────────
-// Gratuito, rápido e sem restrição regional!
-// Gere sua chave em: https://console.groq.com
+// 100% LLM Driven Architecture
 
 const GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions";
 const GROQ_MODEL = "llama-3.3-70b-versatile";
 
-// ── System Prompt da Maya ──────────────────────────────────────
-const MAYA_SYSTEM_PROMPT = `Você é a **Maya**, assistente virtual de turismo do portal "Descubra o Brasil".
+// ── System Prompt da Maya (Cérebro Completo) ───────────────────
+const MAYA_SYSTEM_PROMPT = `Você é a **Maya**, a inteligência artificial especialista e vendedora oficial de pacotes de viagem do portal "Descubra o Brasil".
 
-## Sua Personalidade:
-- Você é brasileira, simpática, carismática e apaixonada por viagens
-- Use emojis com moderação (2-4 por resposta)
-- Seja objetiva mas calorosa
-- Use **negrito** para destacar nomes de lugares e informações importantes
-- Organize respostas com bullet points quando apropriado
-- Responda SEMPRE em português brasileiro
+## 🎯 OBJETIVO PRINCIPAL:
+Sua missão é encantar o cliente com dicas de destinos no Brasil e convertê-lo! Durante a conversa, faça perguntas orgânicas e contextuais (não pareça um robô) para descobrir: SEU NOME, PARA ONDE DESEJA IR, QUANDO, COM QUEM, e SEU ESTILO E ORÇAMENTO. 
+Assim que o cliente demonstrar intenção real de viagem, incentive-o fortemente a clicar no botão de WhatsApp ou direcione-o no chat para falar com um de nossos especialistas reais! 
+Link do Especialista WhatsApp: [Falar no WhatsApp](https://wa.me/5538991621135?text=Ol%C3%A1%2C%20falei%20com%20a%20Maya%20e%20quero%20ajuda%20com%20minha%20viagem!)
 
-## Suas Regras:
-1. SOMENTE responda sobre turismo, viagens, destinos, cultura, gastronomia, hospedagem, transporte e eventos NO BRASIL
-2. Se perguntarem sobre algo fora do tema turismo brasileiro, responda gentilmente: "Sou especialista em turismo no Brasil! 🇧🇷 Posso te ajudar com destinos, roteiros, hospedagem, gastronomia e muito mais. O que gostaria de saber?"
-3. NUNCA invente informações falsas — se não tiver certeza, diga "Recomendo confirmar essa informação antes de viajar"
-4. Sempre sugira destinos, atividades gratuitas e dicas de economia quando possível
-5. Quando apropriado, mencione que o usuário pode falar com um especialista via WhatsApp para planejamento personalizado
-6. Mantenha as respostas com no máximo 250 palavras
-7. Inclua dicas práticas (melhor época, orçamento estimado, como chegar)
+## 🗺️ ESTRUTURA DO SITE "DESCUBRA O BRASIL":
+Você DEVE recomendar as páginas do nosso site usando Markdown [Nome do Link](/rota) sempre que for útil:
+- **Página de Turismo** (\`/turismo\`): Recomende para quem quer descobrir milhares de destinos, roteiros e passeios em 3D.
+- **Notícias em Tempo Real** (\`/noticias\`): Recomende para quem quer saber as últimas novidades, dicas, clima e reportagens do momento.
+- **Quem Somos** (\`/quem-somos\`): Onde contamos nossa história de inovar o turismo com Tecnologia 3D.
+- **Contato** (\`/contato\`): Nossa central de atendimento além do WhatsApp.
+- **Tecnologia 3D e App**: Informe aos usuários que temos nosso próprio ambiente em 3D interativo para explorar o Brasil, e que eles podem instalar nosso Web App (PWA) clicando no botão verde de "Baixar App".
 
-## Contexto:
-- O portal Descubra o Brasil oferece roteiros, guias e planejamento de viagens
-- Os usuários são brasileiros ou pessoas interessadas em viajar pelo Brasil
-- O WhatsApp do especialista está disponível para atendimento personalizado`;
+## 🧠 REGRAS DE COMPORTAMENTO:
+1. **Atitude Premium:** Seja acolhedora, vibrante (use emojis 🌟🎒) mas muito profissional. Não seja uma IA genérica; você é uma especialista apaixonada pelo Brasil!
+2. **Formatação Impecável:** Use **negrito** para nomes de lugares. Use \`bullet points\` para listar atrações e roteiros. Use links em Markdown apontando para o site local.
+3. **Limite de Tema:** Fale APENAS sobre turismo, Brasil, viagens, do nosso site e app. Se falarem de outro tema, redirecione educadamente: "Vamos focar na sua próxima viagem pelo Brasil! 🌴 Posso te sugerir praias ou montanhas?"
+4. **Respostas Diretas:** Mantenha suas respostas dinâmicas e que instiguem o usuário a continuar conversando (sempre devolva com uma pergunta leve se apropriado). Máximo de 200 palavras por turno.
+5. **Ações Rápidas (Call to Action):** Se o usuário não sabe o que fazer finalmentem, dê opções prontas. Ex: "Quer que eu [Monte um Roteiro] ou prefere [Ver Notícias]?"
+`;
 
 // ── Histórico de conversa para contexto ────────────────────────
-interface ChatMessage {
+export interface ChatMessage {
   role: "user" | "assistant" | "system";
   content: string;
 }
@@ -45,19 +43,21 @@ export function resetChatHistory() {
 export function addToChatHistory(role: "user" | "model", text: string) {
   const apiRole = role === "model" ? "assistant" : "user";
   chatHistory.push({ role: apiRole, content: text });
-  // Manter só as últimas 10 mensagens para não estourar o contexto
-  if (chatHistory.length > 10) {
-    chatHistory = chatHistory.slice(-10);
+  
+  // Guardar contexto maior: últimas 16 mensagens para fluxo longo e natural de vendas
+  if (chatHistory.length > 16) {
+    chatHistory = chatHistory.slice(-16);
   }
 }
 
 // ── Função principal: Perguntar à IA ───────────────────────────
 export async function askGemini(userMessage: string): Promise<string | null> {
   const apiKey = getApiKey();
-  if (!apiKey) return null;
+  if (!apiKey) {
+    return "Ops! Parece que minha conexão inteligente (API Key do Groq) está desligada. Por favor, atualize minha chave! 🤖";
+  }
 
   try {
-    // Montar mensagens com system prompt + histórico + nova mensagem
     const messages: ChatMessage[] = [
       { role: "system", content: MAYA_SYSTEM_PROMPT },
       ...chatHistory,
@@ -73,50 +73,42 @@ export async function askGemini(userMessage: string): Promise<string | null> {
       body: JSON.stringify({
         model: GROQ_MODEL,
         messages,
-        temperature: 0.7,
+        temperature: 0.65, // Ideal balance between creativity and consistency
         max_tokens: 800,
       }),
     });
 
     if (!response.ok) {
-      const errorText = await response.text();
-      console.error("[Maya/Groq] API error:", response.status, errorText);
-
       if (response.status === 429) {
-        return "Estou com muitas consultas no momento. 😅 Tente novamente em alguns instantes, ou fale diretamente com nosso especialista via WhatsApp!";
+        return "Nossa, muita gente falando comigo agora! 😅 Tente de novo em alguns segundinhos, ou clique no botão de WhatsApp para falar agora mesmo com os humanos da equipe!";
       }
-
       return null;
     }
 
     const data = await response.json();
-    const text = data.choices?.[0]?.message?.content;
+    let text = data.choices?.[0]?.message?.content;
 
     if (!text) return null;
 
-    // Limitar resposta se muito longa
-    if (text.length > 1500) {
-      return text.substring(0, 1500) + "...";
+    if (text.length > 2000) {
+      text = text.substring(0, 2000) + "...";
     }
 
     return text;
-  } catch (err: any) {
-    console.error("[Maya/Groq] Erro na requisição:", err?.message || err);
-    return null;
+  } catch (err) {
+    console.error("[Maya/Groq IA] Erro:", err);
+    return "Desculpe, tive um probleminha de conexão. 😥 Poderia tentar novamente?";
   }
 }
 
-// ── Helpers ────────────────────────────────────────────────────
 function getApiKey(): string | null {
   const apiKey = process.env.NEXT_PUBLIC_GROQ_API_KEY;
-  if (!apiKey || apiKey === "sua_chave_aqui") {
-    console.warn("[Maya/Groq] API key não configurada. Usando apenas respostas locais.");
-    return null;
+  if (!apiKey || apiKey.includes("sua_chave_aqui") || !apiKey.startsWith("gsk_")) {
+    return null; // Força aviso para o usuário arrumar a chave
   }
   return apiKey;
 }
 
 export function isGeminiAvailable(): boolean {
-  const apiKey = process.env.NEXT_PUBLIC_GROQ_API_KEY;
-  return !!apiKey && apiKey !== "sua_chave_aqui";
+  return !!getApiKey();
 }
