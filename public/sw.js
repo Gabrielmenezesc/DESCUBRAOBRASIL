@@ -1,10 +1,10 @@
 /* ═══════════════════════════════════════════════════════════════
-   DESCUBRA O BRASIL — Service Worker v3
+   DESCUBRA O BRASIL — Service Worker v4
    Strategy: Cache-first for static, network-first for API
    Caches the full interactive app for offline use
 ═══════════════════════════════════════════════════════════════ */
 
-const CACHE_NAME = 'descubra-brasil-v3';
+const CACHE_NAME = 'descubra-brasil-v4';
 const SHELL_ASSETS = [
   '/',
   '/manifest.json',
