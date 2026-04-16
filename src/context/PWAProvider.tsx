@@ -13,6 +13,7 @@ const PWAContext = createContext<PWAContextType | undefined>(undefined);
 export function PWAProvider({ children }: { children: React.ReactNode }) {
   const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
   const [isInstallable, setIsInstallable] = useState(false);
+  const [showIOSModal, setShowIOSModal] = useState(false);
 
   useEffect(() => {
     const handler = (e: any) => {
@@ -59,18 +60,12 @@ export function PWAProvider({ children }: { children: React.ReactNode }) {
       return;
     }
 
-    // Case 2: iOS Safari — show instructions
+    // Case 2: iOS Safari — show styled modal with instructions
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
     const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
     if (isIOS || isSafari) {
-      alert(
-        "📱 Para instalar o app no seu iPhone/iPad:\n\n" +
-        "1. Toque no botão de Compartilhar (ícone ⬆️) na barra inferior do Safari.\n" +
-        "2. Role para baixo e toque em \"Adicionar à Tela de Início\".\n" +
-        "3. Toque em \"Adicionar\".\n\n" +
-        "Pronto! O app aparecerá na sua tela inicial como um app nativo."
-      );
+      setShowIOSModal(true);
       return;
     }
 
@@ -81,6 +76,130 @@ export function PWAProvider({ children }: { children: React.ReactNode }) {
   return (
     <PWAContext.Provider value={{ deferredPrompt, showInstallPrompt, isInstallable }}>
       {children}
+
+      {/* iOS Installation Modal */}
+      {showIOSModal && (
+        <div
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 99999,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            background: "rgba(0,0,0,0.6)",
+            backdropFilter: "blur(8px)",
+            padding: "16px",
+          }}
+          onClick={() => setShowIOSModal(false)}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              background: "linear-gradient(135deg, #0f172a 0%, #1e293b 100%)",
+              borderRadius: "24px",
+              padding: "32px 24px",
+              maxWidth: "380px",
+              width: "100%",
+              color: "white",
+              textAlign: "center",
+              boxShadow: "0 25px 60px rgba(0,0,0,0.5)",
+              border: "1px solid rgba(255,255,255,0.1)",
+            }}
+          >
+            {/* Icon */}
+            <div style={{ marginBottom: "16px" }}>
+              <img
+                src="/icon-192.png"
+                alt="Descubra o Brasil"
+                style={{
+                  width: "72px",
+                  height: "72px",
+                  borderRadius: "16px",
+                  margin: "0 auto",
+                  display: "block",
+                  boxShadow: "0 8px 24px rgba(16,185,129,0.3)",
+                }}
+              />
+            </div>
+
+            <h3 style={{ fontSize: "1.25rem", fontWeight: 800, marginBottom: "8px" }}>
+              Instalar Descubra o Brasil
+            </h3>
+            <p style={{ fontSize: "0.85rem", color: "#94a3b8", marginBottom: "24px", lineHeight: 1.5 }}>
+              Adicione o app à sua tela inicial para uma experiência completa, rápida e sem navegador.
+            </p>
+
+            {/* Steps */}
+            <div style={{ textAlign: "left", marginBottom: "24px" }}>
+              <div style={{
+                display: "flex", alignItems: "center", gap: "12px",
+                background: "rgba(255,255,255,0.05)", borderRadius: "12px",
+                padding: "12px", marginBottom: "8px",
+              }}>
+                <span style={{ fontSize: "1.5rem" }}>1️⃣</span>
+                <div>
+                  <div style={{ fontWeight: 700, fontSize: "0.85rem" }}>
+                    Toque no botão <span style={{ fontSize: "1.2rem" }}>⬆️</span> Compartilhar
+                  </div>
+                  <div style={{ fontSize: "0.75rem", color: "#64748b" }}>
+                    Na barra inferior do Safari
+                  </div>
+                </div>
+              </div>
+
+              <div style={{
+                display: "flex", alignItems: "center", gap: "12px",
+                background: "rgba(255,255,255,0.05)", borderRadius: "12px",
+                padding: "12px", marginBottom: "8px",
+              }}>
+                <span style={{ fontSize: "1.5rem" }}>2️⃣</span>
+                <div>
+                  <div style={{ fontWeight: 700, fontSize: "0.85rem" }}>
+                    Toque em &quot;Adicionar à Tela de Início&quot;
+                  </div>
+                  <div style={{ fontSize: "0.75rem", color: "#64748b" }}>
+                    Role o menu para encontrar a opção
+                  </div>
+                </div>
+              </div>
+
+              <div style={{
+                display: "flex", alignItems: "center", gap: "12px",
+                background: "rgba(16,185,129,0.15)", borderRadius: "12px",
+                padding: "12px", border: "1px solid rgba(16,185,129,0.3)",
+              }}>
+                <span style={{ fontSize: "1.5rem" }}>✅</span>
+                <div>
+                  <div style={{ fontWeight: 700, fontSize: "0.85rem", color: "#10b981" }}>
+                    Pronto! O app aparece na tela inicial
+                  </div>
+                  <div style={{ fontSize: "0.75rem", color: "#64748b" }}>
+                    Abre como um app nativo, sem barra do navegador
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <button
+              onClick={() => setShowIOSModal(false)}
+              style={{
+                width: "100%",
+                padding: "14px",
+                borderRadius: "14px",
+                border: "none",
+                background: "linear-gradient(135deg, #10b981, #059669)",
+                color: "white",
+                fontWeight: 800,
+                fontSize: "0.95rem",
+                cursor: "pointer",
+              }}
+            >
+              Entendi! 👍
+            </button>
+          </div>
+        </div>
+      )}
     </PWAContext.Provider>
   );
 }
