@@ -60,6 +60,8 @@ jobs:
 
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
+        env:
+          NEXT_PUBLIC_GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
 
       - name: List output directory
         run: ls -la ./out || echo "out directory not found"

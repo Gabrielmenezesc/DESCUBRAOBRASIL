@@ -2,7 +2,8 @@
 
 import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Send, MessageCircle, Mic, MicOff, Loader2, MapPin, Sparkles, Volume2, VolumeX } from "lucide-react";
+import { X, Send, MessageCircle, Mic, MicOff, Loader2, MapPin, Sparkles, Volume2, VolumeX, Bot } from "lucide-react";
+import { askGemini, addToChatHistory, resetChatHistory, isGeminiAvailable } from "@/lib/gemini";
 
 const WHATSAPP_NUMBER = "5538991621135";
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=`;
@@ -14,6 +15,7 @@ interface Message {
   text: string;
   timestamp: Date;
   quickReplies?: QuickReply[];
+  isAI?: boolean;
 }
 
 interface QuickReply {
@@ -455,6 +457,7 @@ export default function MayaChat() {
   const [voiceEnabled, setVoiceEnabled] = useState(false);
   const [pulseButton, setPulseButton] = useState(true);
   const [showProactiveHint, setShowProactiveHint] = useState(false);
+  const [isLoadingAI, setIsLoadingAI] = useState(false);
   
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -569,7 +572,7 @@ export default function MayaChat() {
   }
 
   // ── Add Maya Message ─────────────────────────────────────────
-  function addMayaMessage(text: string, quickReplies?: QuickReply[]) {
+  function addMayaMessage(text: string, quickReplies?: QuickReply[], isAI?: boolean) {
     setIsTyping(true);
     const delay = Math.min(600 + text.length * 6, 1800);
     setTimeout(() => {
@@ -579,7 +582,9 @@ export default function MayaChat() {
         text,
         timestamp: new Date(),
         quickReplies,
+        isAI,
       }]);
+      addToChatHistory("model", text);
       mayaSpeak(text);
     }, delay);
   }
@@ -618,6 +623,7 @@ export default function MayaChat() {
       timestamp: new Date(),
     }]);
     setInputText("");
+    addToChatHistory("user", trimmed);
 
     processMessage(trimmed);
   }
@@ -1267,8 +1273,40 @@ export default function MayaChat() {
     );
   }
 
-  function handleSmartFallback(text: string) {
-    /* REGRA: Nunca dizer apenas "não sei" — sempre oferecer continuação útil */
+  async function handleSmartFallback(text: string) {
+    /* REGRA: Nunca dizer apenas "não sei" — tenta a Gemini AI primeiro */
+
+    // Se a Gemini está disponível, perguntar à IA
+    if (isGeminiAvailable()) {
+      setIsLoadingAI(true);
+      setIsTyping(true);
+
+      try {
+        const aiResponse = await askGemini(text);
+
+        if (aiResponse) {
+          setIsTyping(false);
+          setIsLoadingAI(false);
+          return addMayaMessage(
+            aiResponse,
+            [
+              { label: "🌎 Ver destinos", value: "destino" },
+              { label: "🗺️ Montar roteiro", value: "roteiro" },
+              { label: "🆓 Lugares grátis", value: "gratis" },
+              { label: "💬 Falar com especialista", value: "whatsapp" },
+            ],
+            true // marca como resposta de IA
+          );
+        }
+      } catch (err) {
+        console.error("[Maya] Gemini fallback error:", err);
+      } finally {
+        setIsLoadingAI(false);
+        setIsTyping(false);
+      }
+    }
+
+    // Fallback local se Gemini não disponível ou falhar
     const namePrefix = leadData.nome ? `${leadData.nome}, entendi` : "Entendi";
     addMayaMessage(
       `${namePrefix}! 😊 Com esse perfil, posso te ajudar de algumas formas:\n\n1️⃣ Mostrar **destinos populares** do Brasil\n2️⃣ Encontrar **lugares grátis** para visitar\n3️⃣ Montar um **roteiro personalizado**\n\nQual caminho você prefere?`,
@@ -1457,24 +1495,35 @@ export default function MayaChat() {
                       <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
                     </div>
                   )}
-                  <div
-                    className={`max-w-[82%] px-3.5 py-2.5 text-[13px] leading-relaxed ${
-                      msg.from === "user"
-                        ? "rounded-2xl rounded-br-md text-white"
-                        : "rounded-2xl rounded-bl-md text-slate-700 shadow-sm"
-                    }`}
-                    style={msg.from === "user" ? {
-                      background: "linear-gradient(135deg, #059669, #10b981)",
-                    } : {
-                      background: "white",
-                      border: "1px solid #e2e8f0",
-                    }}
-                    dangerouslySetInnerHTML={{ __html: parseMarkdown(msg.text) }}
-                  />
+                  <div className="max-w-[82%] flex flex-col">
+                    {msg.from === "maya" && msg.isAI && (
+                      <div className="flex items-center gap-1 mb-1 ml-1">
+                        <Bot className="w-3 h-3 text-blue-500" />
+                        <span className="text-[9px] font-bold text-blue-500 uppercase tracking-wider">Resposta com IA</span>
+                      </div>
+                    )}
+                    <div
+                      className={`px-3.5 py-2.5 text-[13px] leading-relaxed ${
+                        msg.from === "user"
+                          ? "rounded-2xl rounded-br-md text-white"
+                          : "rounded-2xl rounded-bl-md text-slate-700 shadow-sm"
+                      }`}
+                      style={msg.from === "user" ? {
+                        background: "linear-gradient(135deg, #059669, #10b981)",
+                      } : msg.isAI ? {
+                        background: "linear-gradient(135deg, #eff6ff, #f0f9ff)",
+                        border: "1px solid #bfdbfe",
+                      } : {
+                        background: "white",
+                        border: "1px solid #e2e8f0",
+                      }}
+                      dangerouslySetInnerHTML={{ __html: parseMarkdown(msg.text) }}
+                    />
+                  </div>
                 </motion.div>
               ))}
 
-              {/* Typing Indicator */}
+              {/* Typing / AI Loading Indicator */}
               {isTyping && (
                 <motion.div
                   initial={{ opacity: 0, y: 8 }}
@@ -1484,21 +1533,31 @@ export default function MayaChat() {
                   <div 
                     className="w-7 h-7 rounded-full flex items-center justify-center text-xs mr-2 flex-shrink-0"
                     style={{
-                      background: "linear-gradient(135deg, #d1fae5, #a7f3d0)",
+                      background: isLoadingAI
+                        ? "linear-gradient(135deg, #dbeafe, #bfdbfe)"
+                        : "linear-gradient(135deg, #d1fae5, #a7f3d0)",
                     }}
                   >
-                    <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
+                    {isLoadingAI
+                      ? <Bot className="w-3.5 h-3.5 text-blue-600 animate-pulse" />
+                      : <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
+                    }
                   </div>
-                  <div className="bg-white border border-slate-200 rounded-2xl rounded-bl-md px-4 py-3 shadow-sm">
-                    <div className="flex items-center gap-1.5">
-                      {[0, 1, 2].map(i => (
-                        <motion.div
-                          key={i}
-                          animate={{ y: [0, -5, 0] }}
-                          transition={{ repeat: Infinity, duration: 0.6, delay: i * 0.15 }}
-                          className="w-2 h-2 rounded-full bg-emerald-400"
-                        />
-                      ))}
+                  <div className={`border rounded-2xl rounded-bl-md px-4 py-3 shadow-sm ${isLoadingAI ? 'bg-blue-50 border-blue-200' : 'bg-white border-slate-200'}`}>
+                    <div className="flex items-center gap-2">
+                      {isLoadingAI && (
+                        <span className="text-[10px] font-bold text-blue-500 uppercase tracking-wider">IA pensando</span>
+                      )}
+                      <div className="flex items-center gap-1.5">
+                        {[0, 1, 2].map(i => (
+                          <motion.div
+                            key={i}
+                            animate={{ y: [0, -5, 0] }}
+                            transition={{ repeat: Infinity, duration: 0.6, delay: i * 0.15 }}
+                            className={`w-2 h-2 rounded-full ${isLoadingAI ? 'bg-blue-400' : 'bg-emerald-400'}`}
+                          />
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </motion.div>
