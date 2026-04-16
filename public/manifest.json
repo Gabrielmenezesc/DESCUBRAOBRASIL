@@ -3,7 +3,7 @@
   "short_name": "Descubra BR",
   "description": "Seu guia inteligente de turismo pelo Brasil — hotéis, restaurantes, roteiros e a IA Maya.",
   "start_url": "/app/index.html",
-  "scope": "/",
+  "scope": "/app/",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#0f172a",
