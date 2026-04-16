@@ -1290,67 +1290,111 @@ function logout() {
 window.logout = logout;
 
 /* ══════════════════════════════════════════════════════════════
-   MAYA FLOW CHAT ENGINE (Offline - No API Needed)
+   MAYA AI CHAT ENGINE — Powered by Groq (Llama 3.3 70B)
+   100% LLM Driven — Same brain as the main site
 ══════════════════════════════════════════════════════════════ */
 const MAYA_WA = 'https://wa.me/5538991621135?text=';
-const MAYA_IG = 'https://instagram.com/descubraobrasiloficial';
 
-const MAYA_FLOW = {
-    start: {
-        msg: '👋 Olá! Sou a **Maya**, sua guia do Descubra o Brasil! Como posso te ajudar?',
-        choices: [
-            { label: '🌎 Explorar Destinos', next: 'destinos' },
-            { label: '📸 Instagram', next: 'instagram' },
-            { label: '💬 Falar com Equipe', next: 'wa_geral' },
-        ]
-    },
-    destinos: {
-        msg: '🗺️ Ótimo! O que você quer explorar?',
-        choices: [
-            { label: '🏖️ Praias', next: 'praias' },
-            { label: '🏙️ Cidades Históricas', next: 'cidades' },
-            { label: '🌿 Ecoturismo', next: 'eco' },
-            { label: '⬅️ Voltar', next: 'start' },
-        ]
-    },
-    praias: {
-        msg: '🏖️ **Fernando de Noronha, Jericoacoara, Arraial do Cabo** — praias paradisíacas que vão te surpreender!\n\nExplore tudo isso no nosso mapa interativo!',
-        choices: [
-            { label: '🗺️ Ver no Mapa', next: 'open_map' },
-            { label: '💬 Tirar Dúvidas', next: 'wa_turismo' },
-            { label: '⬅️ Outros Destinos', next: 'destinos' },
-        ]
-    },
-    cidades: {
-        msg: '🏛️ **Salvador, Ouro Preto, São Luís** — história, arte e cultura brasileira em sua essência!',
-        choices: [
-            { label: '🗺️ Ver no Mapa', next: 'open_map' },
-            { label: '💬 Falar com Especialista', next: 'wa_turismo' },
-            { label: '⬅️ Voltar', next: 'destinos' },
-        ]
-    },
-    eco: {
-        msg: '🌿 **Pantanal, Chapada dos Veadeiros, Amazônia** — a natureza brasileira em todo seu esplendor!',
-        choices: [
-            { label: '🗺️ Explorar no Mapa', next: 'open_map' },
-            { label: '💬 Pacotes Especiais', next: 'wa_turismo' },
-            { label: '⬅️ Voltar', next: 'destinos' },
-        ]
-    },
-    open_map: {
-        msg: '🗺️ Abrindo o mapa interativo para você! Explore os melhores destinos do Brasil!',
-        action: 'map'
-    },
-    instagram: {
-        msg: '📸 Siga **@descubraobrasiloficial** e fique por dentro de destinos incríveis e promoções especiais!',
-        action: 'instagram'
-    },
-    wa_geral:    { msg: '💬 Conectando com nossa equipe...', action: 'whatsapp', waText: 'Olá! Quero saber mais sobre o Descubra o Brasil.' },
-    wa_turismo:  { msg: '🗺️ Conectando com especialista em turismo...', action: 'whatsapp', waText: 'Olá! Gostaria de informações sobre destinos e roteiros turísticos.' },
-};
+const MAYA_APP_SYSTEM_PROMPT = `Você é a **Maya**, a inteligência artificial especialista e vendedora oficial de pacotes de viagem do portal "Descubra o Brasil".
 
+## 🎯 OBJETIVO PRINCIPAL:
+Sua missão é encantar o cliente com dicas de destinos no Brasil e convertê-lo! Durante a conversa, faça perguntas orgânicas e contextuais (não pareça um robô) para descobrir: SEU NOME, PARA ONDE DESEJA IR, QUANDO, COM QUEM, e SEU ESTILO E ORÇAMENTO.
+Assim que o cliente demonstrar intenção real de viagem, incentive-o fortemente a falar com um especialista via WhatsApp!
 
-let mayaFlowNode = 'start';
+## 🗺️ FUNCIONALIDADES DO APP:
+Você está dentro do aplicativo mobile do Descubra o Brasil. O app possui:
+- **Mapa Interativo** com hotéis, restaurantes, bares e pontos turísticos gratuitos
+- **Roteiros & eBooks** com pacotes de viagem completos
+- **Hotéis** com sistema de reserva integrado
+- **Notícias de Turismo** atualizadas em tempo real
+- **Busca por Estados** (todos os 27 estados do Brasil)
+Incentive o usuário a explorar essas funcionalidades!
+
+## 🧠 REGRAS:
+1. Seja acolhedora, vibrante (use emojis 🌟🎒) mas profissional.
+2. Use **negrito** e bullet points para organizar informações.
+3. Fale APENAS sobre turismo, Brasil, viagens e funcionalidades do app.
+4. Respostas curtas e dinâmicas (máximo 150 palavras por turno).
+5. Sempre devolva com uma pergunta leve para manter a conversa.`;
+
+const GROQ_API_URL = 'https://api.groq.com/openai/v1/chat/completions';
+const GROQ_MODEL = 'llama-3.3-70b-versatile';
+
+let mayaChatHistory = [];
+
+function getGroqApiKey() {
+    // In the app context, we read from a global injected during build, or fallback
+    // The key is injected by the Next.js build into the parent page
+    // When running standalone, we check for a global or localStorage
+    try {
+        // Try reading from parent frame (when embedded as iframe in site)
+        if (window.parent && window.parent !== window) {
+            const parentKey = window.parent.__GROQ_KEY__;
+            if (parentKey) return parentKey;
+        }
+    } catch(e) { /* cross-origin, ignore */ }
+
+    // Check localStorage for manually set key
+    const stored = localStorage.getItem('groq_api_key');
+    if (stored && stored.startsWith('gsk_')) return stored;
+
+    // Hardcoded fallback (injected during GitHub Actions build via env)
+    const buildKey = typeof __GROQ_API_KEY__ !== 'undefined' ? __GROQ_API_KEY__ : null;
+    if (buildKey && buildKey.startsWith('gsk_')) return buildKey;
+
+    return null;
+}
+
+async function askMayaAI(userMessage) {
+    const apiKey = getGroqApiKey();
+
+    if (!apiKey) {
+        return '😅 Minha conexão com a inteligência artificial está desligada neste momento. Mas você pode falar diretamente com nossos especialistas pelo WhatsApp! 💬';
+    }
+
+    try {
+        const messages = [
+            { role: 'system', content: MAYA_APP_SYSTEM_PROMPT },
+            ...mayaChatHistory.slice(-12),
+            { role: 'user', content: userMessage }
+        ];
+
+        const response = await fetch(GROQ_API_URL, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${apiKey}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                model: GROQ_MODEL,
+                messages,
+                temperature: 0.65,
+                max_tokens: 600
+            })
+        });
+
+        if (!response.ok) {
+            if (response.status === 429) {
+                return 'Muita gente falando comigo agora! 😅 Tente de novo em alguns segundinhos, ou clique no botão de WhatsApp!';
+            }
+            return null;
+        }
+
+        const data = await response.json();
+        let text = data.choices?.[0]?.message?.content;
+        if (!text) return null;
+        if (text.length > 1500) text = text.substring(0, 1500) + '...';
+
+        // Track history
+        mayaChatHistory.push({ role: 'user', content: userMessage });
+        mayaChatHistory.push({ role: 'assistant', content: text });
+
+        return text;
+    } catch (err) {
+        console.error('[Maya/Groq App] Erro:', err);
+        return 'Desculpe, tive um probleminha de conexão. 😥 Tente novamente!';
+    }
+}
 
 function initMayaFab() {
     doc('maya-fab-btn')?.addEventListener('click', openMayaChat);
@@ -1362,74 +1406,83 @@ function openMayaChat() {
     chat.style.display = 'flex';
     if (!chat.dataset.init) {
         chat.dataset.init = '1';
-        mayaFlowStep('start');
+        appendMayaMsg('Olá! 🌟 Eu sou a **Maya**, a inteligência artificial do Descubra o Brasil!\n\nComo posso ajudar a planejar a sua próxima viagem inesquecível pelo país? ✈️', 'ai');
     }
+    // Focus input
+    setTimeout(() => { doc('maya-input')?.focus(); }, 300);
 }
 
 function initMayaChat() {
     doc('maya-chat-close')?.addEventListener('click', () => { doc('maya-chat').style.display = 'none'; });
-    // No input field needed — flow is choice-based
+
     const inp = doc('maya-input');
     const snd = doc('maya-send');
-    if (inp) inp.style.display = 'none';
-    if (snd) snd.style.display = 'none';
+
+    // Re-enable the input and send (they were hidden in the old flow code)
+    if (inp) {
+        inp.style.display = '';
+        inp.placeholder = 'Pergunte sobre destinos, roteiros...';
+    }
+    if (snd) snd.style.display = '';
+
+    // Send on click
+    snd?.addEventListener('click', () => sendMayaMessage());
+
+    // Send on Enter
+    inp?.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') sendMayaMessage();
+    });
 }
 
-function mayaFlowStep(nodeKey) {
-    const node = MAYA_FLOW[nodeKey];
-    if (!node) { mayaFlowStep('start'); return; }
-    mayaFlowNode = nodeKey;
+async function sendMayaMessage() {
+    const inp = doc('maya-input');
+    const text = inp?.value?.trim();
+    if (!text) return;
 
-    appendMayaMsg(node.msg.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>'), 'ai');
+    // Show user message
+    appendMayaMsg(text, 'user');
+    inp.value = '';
+    inp.disabled = true;
 
-    if (node.action) {
-        setTimeout(() => {
-            if (node.action === 'whatsapp') {
-                window.open(MAYA_WA + encodeURIComponent(node.waText || 'Olá!'), '_blank');
-                setTimeout(() => mayaFlowStep('start'), 2000);
-            } else if (node.action === 'instagram') {
-                window.open(MAYA_IG, '_blank');
-                setTimeout(() => mayaFlowStep('start'), 2000);
-            } else if (node.action === 'map') {
-                goScreen('map');
-                setTimeout(() => mayaFlowStep('start'), 1500);
-            }
-        }, 600);
-        return;
-    }
+    // Show thinking indicator
+    const thinkEl = doc('maya-thinking-indicator');
+    if (thinkEl) thinkEl.style.display = 'inline';
 
-    if (node.choices) {
-        const body = doc('maya-messages');
-        const choiceEl = document.createElement('div');
-        choiceEl.className = 'maya-choices';
-        choiceEl.style.cssText = 'display:flex;flex-direction:column;gap:8px;padding:8px 0;';
-        choiceEl.innerHTML = node.choices.map((c, i) =>
-            `<button class="maya-choice-btn" data-idx="${i}" style="
-                background:#f0fdf4;border:1px solid #86efac;color:#166534;
-                border-radius:12px;padding:10px 14px;text-align:left;cursor:pointer;
-                font-size:14px;font-weight:600;transition:all .2s;
-            " onmouseover="this.style.background='#dcfce7'" onmouseout="this.style.background='#f0fdf4'">${c.label}</button>`
-        ).join('');
+    // Call AI
+    const response = await askMayaAI(text);
 
-        choiceEl.querySelectorAll('.maya-choice-btn').forEach((btn, i) => {
-            btn.addEventListener('click', () => {
-                appendMayaMsg(node.choices[i].label, 'user');
-                choiceEl.remove();
-                setTimeout(() => mayaFlowStep(node.choices[i].next), 400);
-            });
-        });
+    if (thinkEl) thinkEl.style.display = 'none';
+    inp.disabled = false;
+    inp.focus();
 
-        body?.appendChild(choiceEl);
-        body?.scrollTo(0, body.scrollHeight);
+    if (response) {
+        appendMayaMsg(response, 'ai');
+    } else {
+        appendMayaMsg('Eita, minhas engrenagens travaram! 😅 Tente de novo ou fale com nossos especialistas pelo WhatsApp.', 'ai');
     }
 }
 
 function appendMayaMsg(text, role) {
     const body = doc('maya-messages');
     if (!body) return;
+
+    // Format markdown-like syntax
+    const formatted = text
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\n/g, '<br>');
+
     const div = document.createElement('div');
     div.className = `msg ${role}`;
-    div.innerHTML = `<div class="bubble">${text}</div>`;
+
+    if (role === 'ai') {
+        div.innerHTML = `<div class="bubble" style="border-left:3px solid #10B981;background:#f0fdf9;">
+            <div style="font-size:9px;color:#059669;font-weight:700;margin-bottom:4px;display:flex;align-items:center;gap:3px;">🤖 IA da Maya</div>
+            ${formatted}
+        </div>`;
+    } else {
+        div.innerHTML = `<div class="bubble">${formatted}</div>`;
+    }
+
     body.appendChild(div);
     body.scrollTo(0, body.scrollHeight);
     return div;
@@ -1437,4 +1490,5 @@ function appendMayaMsg(text, role) {
 
 /* ── Utility ───────────────────────────────────────────────── */
 function doc(id) { return document.getElementById(id); }
+
 
