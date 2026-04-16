@@ -2,16 +2,36 @@
 
 import { Download } from "lucide-react";
 import { usePWA } from "@/context/PWAProvider";
+import { useState, useEffect } from "react";
 
 export default function FloatingAppButton() {
   const { showInstallPrompt } = usePWA();
+  const [chatOpen, setChatOpen] = useState(false);
+
+  // Observar se o chat da Maya está aberto
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      const chatWindow = document.getElementById("maya-chat-window");
+      setChatOpen(!!chatWindow);
+    });
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Esconder o botão quando o chat está aberto
+  if (chatOpen) return null;
 
   return (
     <button
       onClick={showInstallPrompt}
       id="floating-download-app"
       aria-label="Baixar App"
-      className="fixed right-4 bottom-24 z-[9998] group"
+      className="fixed left-4 bottom-6 z-[9998] group"
       style={{
         display: "flex",
         alignItems: "center",
