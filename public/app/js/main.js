@@ -15,6 +15,7 @@ let userMarker = null;
 let watchId = null;
 let followUser = false;
 let allHotels = [], allPOIs = [];
+let supabase = null; // Defined in run_command or below
 let allMarkers = [];
 let routeLine = null;
 let currentFilter = 'all';
@@ -128,7 +129,20 @@ document.addEventListener('DOMContentLoaded', () => {
     initAppWeatherClock(); // Weather + Clock
     initRoteiros(); // Roteiros platform
     renderStates(); // Render the 27 states
+    initSupabase(); // Phase 3: Universal Auth
 });
+
+function initSupabase() {
+    // In production, these should come from environment or a config script
+    const SB_URL = 'https://sua-url-aqui.supabase.co';
+    const SB_KEY = 'sua-chave-aqui';
+    
+    if (typeof supabase === 'undefined' || !supabase) {
+        if (typeof window.supabase !== 'undefined') {
+            supabase = window.supabase.createClient(SB_URL, SB_KEY);
+        }
+    }
+}
 
 /* ── App Weather + Clock ──────────────────────────────────── */
 function initAppWeatherClock() {
@@ -787,8 +801,30 @@ function initMapScreen() {
     });
 
     // Save button
-    document.getElementById('sheet-btn-save')?.addEventListener('click', () => {
-        Swal.fire({ title: '⭐ Salvo!', text: 'Local salvo nos seus favoritos.', icon: 'success', timer: 1800, showConfirmButton: false });
+    document.getElementById('sheet-btn-save')?.addEventListener('click', async () => {
+        const user = getUser();
+        if (!user) {
+            Swal.fire('Login Necessário', 'Crie uma conta para salvar seus lugares favoritos!', 'info');
+            return;
+        }
+
+        if (activePOI || activeNav) {
+            const item = activePOI || activeNav;
+            try {
+                const { error } = await supabase.from('user_favorites').insert([{
+                    user_id: user.id || user.sub,
+                    poi_name: item.nome || item.name,
+                    lat: item.latitude || item.lat,
+                    lng: item.longitude || item.lng,
+                    category: item.categoria || 'fav'
+                }]);
+                if (error) throw error;
+                Swal.fire({ title: '⭐ Salvo!', text: 'Local sincronizado com sua conta.', icon: 'success', timer: 1800, showConfirmButton: false });
+            } catch (e) {
+                console.error('Erro ao salvar:', e);
+                Swal.fire('Ops!', 'Não foi possível sincronizar o favorito.', 'error');
+            }
+        }
     });
 
     // Load data
@@ -1282,24 +1318,38 @@ function triggerChromeIdentityAuth() {
 
 async function handleGoogleResponse(response) {
     try {
-        const res = await axios.post(`${API}/auth/google`, { credential: response.credential });
-        localStorage.setItem('token', res.data.token);
-        localStorage.setItem('user', JSON.stringify(res.data.user));
+        const { data, error } = await supabase.auth.signInWithIdToken({
+            provider: 'google',
+            token: response.credential,
+        });
+
+        if (error) throw error;
+
+        const sessionUser = data.user;
+        const profile = {
+            id: sessionUser.id,
+            nome: sessionUser.user_metadata?.full_name || sessionUser.email,
+            email: sessionUser.email,
+            avatar: sessionUser.user_metadata?.avatar_url
+        };
+
+        localStorage.setItem('user', JSON.stringify(profile));
 
         doc('modal-login').classList.add('hidden');
         doc('modal-register').classList.add('hidden');
 
-        updateAuthUI(res.data.user);
-        Swal.fire('Bem-vindo! 🎉', `Olá, ${res.data.user.nome.split(' ')[0]}!`, 'success');
+        updateAuthUI(profile);
+        Swal.fire('Bem-vindo! 🎉', `Olá, ${profile.nome.split(' ')[0]}!`, 'success');
     } catch (err) {
-        Swal.fire('Erro', err.response?.data?.error || 'Falha no login com Google.', 'error');
+        console.error('Supabase Auth Error:', err);
+        Swal.fire('Erro', 'Falha no login com Google via Supabase.', 'error');
     }
 }
 
 function getUser() { try { return JSON.parse(localStorage.getItem('user') || 'null'); } catch { return null; } }
 
-function logout() {
-    localStorage.removeItem('token');
+async function logout() {
+    await supabase.auth.signOut();
     localStorage.removeItem('user');
     updateAuthUI(null);
     Swal.fire('Até logo! 👋', '', 'info');

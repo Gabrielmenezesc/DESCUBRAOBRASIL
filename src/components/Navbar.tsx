@@ -5,6 +5,8 @@ import Link from "next/link";
 import { Menu, X, Clock, Sun, Moon } from "lucide-react";
 import { useWeather } from "@/hooks/useWeather";
 import { useTheme } from "next-themes";
+import { supabase } from "@/lib/supabase";
+import { User, LogIn, Crown } from "lucide-react";
 
 
 const navLinks = [
@@ -21,9 +23,21 @@ export default function Navbar() {
   const { weather, loading } = useWeather();
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const [session, setSession] = useState<any>(null);
 
   useEffect(() => {
     setMounted(true);
+    
+    // Check session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+    });
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+
+    return () => subscription.unsubscribe();
   }, []);
 
   // ── Brasília live clock ──────────────────────────────────
@@ -105,11 +119,42 @@ export default function Navbar() {
               </button>
             )}
 
+            {/* Desktop Auth Section */}
+            <div className="hidden lg:flex items-center gap-2 pl-4 border-l border-slate-200 dark:border-slate-800">
+               {session ? (
+                 <Link 
+                   href="/dashboard" 
+                   className="flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500 text-white font-bold text-sm hover:bg-blue-600 transition-colors"
+                 >
+                   {session.user.user_metadata?.avatar_url ? (
+                     <img src={session.user.user_metadata.avatar_url} className="w-5 h-5 rounded-full" />
+                   ) : (
+                     <User className="w-4 h-4" />
+                   )}
+                   <span>Minha Conta</span>
+                 </Link>
+               ) : (
+                 <>
+                   <button 
+                     onClick={() => window.location.href = '/premium'} 
+                     className="flex items-center gap-2 px-4 py-2 rounded-full text-slate-700 dark:text-slate-300 font-bold text-sm hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                   >
+                     <LogIn className="w-4 h-4" /> Entrar
+                   </button>
+                   <Link 
+                     href="/premium" 
+                     className="flex items-center gap-2 px-5 py-2 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold text-sm hover:scale-105 transition-transform"
+                   >
+                     Assinar <Crown className="w-3.5 h-3.5 fill-current" />
+                   </Link>
+                 </>
+               )}
+            </div>
+
             {/* Mobile hamburger */}
             <button
               onClick={() => setOpen(!open)}
-              className="md:hidden p-2 rounded-lg hover:bg-slate-100 dark:bg-slate-800 transition-colors"
-              aria-label="Menu"
+              className="lg:hidden p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
             >
               {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -120,28 +165,47 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {open && (
-        <div className="md:hidden bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border-t border-slate-200 dark:border-slate-800 shadow-lg">
-          <div className="px-4 py-4 space-y-1">
-            {/* Mobile Weather */}
-            {weather && (
-              <div className="flex items-center gap-2 px-4 py-3 rounded-xl bg-gradient-to-r from-blue-50 to-emerald-50 mb-3">
-                <span className="text-2xl">{weather.icon}</span>
-                <div>
-                  <p className="font-bold text-slate-800 dark:text-slate-100">{weather.temperature}°C — {weather.description}</p>
-                  <p className="text-xs text-slate-500 dark:text-slate-400">{weather.city}</p>
-                </div>
-              </div>
-            )}
+        <div className="lg:hidden absolute top-full left-0 right-0 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800 shadow-xl animate-in slide-in-from-top-4 duration-300">
+          <div className="px-4 py-8 space-y-2">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="block px-4 py-3 rounded-xl text-sm font-semibold text-slate-700 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-900/30 transition-all"
+                className="block px-6 py-4 rounded-2xl text-xl font-bold text-slate-800 dark:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all"
               >
                 {link.label}
               </Link>
             ))}
+            
+            <div className="pt-6 mt-6 border-t border-slate-100 dark:border-slate-800 space-y-4 px-2">
+               {session ? (
+                 <Link 
+                   href="/dashboard"
+                   className="block w-full py-5 text-center rounded-2xl bg-blue-500 text-white font-black text-lg shadow-lg shadow-blue-500/30"
+                   onClick={() => setOpen(false)}
+                 >
+                   ✨ Painel do Viajante
+                 </Link>
+               ) : (
+                 <>
+                   <Link 
+                     href="/premium"
+                     className="block w-full py-5 text-center rounded-2xl bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white font-black text-lg"
+                     onClick={() => setOpen(false)}
+                   >
+                     Entrar Agora
+                   </Link>
+                   <Link 
+                     href="/premium"
+                     className="block w-full py-5 text-center rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-black text-lg"
+                     onClick={() => setOpen(false)}
+                   >
+                     Seja Premium <Crown className="inline-block w-5 h-5 ml-1 fill-current" />
+                   </Link>
+                 </>
+               )}
+            </div>
           </div>
         </div>
       )}
