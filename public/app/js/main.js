@@ -130,7 +130,45 @@ document.addEventListener('DOMContentLoaded', () => {
     initRoteiros(); // Roteiros platform
     renderStates(); // Render the 27 states
     initSupabase(); // Phase 3: Universal Auth
+    initAuthListeners(); // Phase 4: Recovery & Plan
 });
+
+function initAuthListeners() {
+    doc('btn-forgot-password')?.addEventListener('click', async () => {
+        const { value: email } = await Swal.fire({
+            title: 'Recuperar Senha',
+            input: 'email',
+            inputLabel: 'Seu endereço de e-mail',
+            inputPlaceholder: 'email@exemplo.com',
+            showCancelButton: true,
+            confirmButtonText: 'Enviar Link',
+            cancelButtonText: 'Cancelar'
+        });
+
+        if (email) {
+            const { error } = await supabase.auth.resetPasswordForEmail(email, {
+                redirectTo: `${window.location.origin}/auth/reset-password`
+            });
+            if (error) {
+                Swal.fire('Erro', error.message, 'error');
+            } else {
+                Swal.fire('Sucesso!', 'Verifique seu e-mail para redefinir a senha.', 'success');
+            }
+        }
+    });
+
+    // Navigation for Premium
+    doc('chip-premium')?.addEventListener('click', () => showScreen('screen-premium'));
+}
+
+function showScreen(screenId) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    doc(screenId)?.classList.add('active');
+    
+    if (screenId === 'screen-premium') {
+        renderPremiumPanel();
+    }
+}
 
 function initSupabase() {
     // In production, these should come from environment or a config script
@@ -1196,28 +1234,60 @@ function initAuth() {
     // Login form
     doc('login-form')?.addEventListener('submit', async e => {
         e.preventDefault();
+        const email = doc('login-email').value;
+        const password = doc('login-password').value;
+        
         try {
-            const res = await axios.post(`${API}/auth/login`, { email: doc('login-email').value, senha: doc('login-password').value });
-            localStorage.setItem('token', res.data.token);
-            localStorage.setItem('user', JSON.stringify(res.data.user));
+            const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+            if (error) throw error;
+
+            const profile = {
+                id: data.user.id,
+                nome: data.user.user_metadata?.full_name || data.user.email,
+                email: data.user.email,
+                avatar: data.user.user_metadata?.avatar_url,
+                plan: data.user.user_metadata?.plan || 'free'
+            };
+
+            localStorage.setItem('user', JSON.stringify(profile));
             doc('modal-login').classList.add('hidden');
-            updateAuthUI(res.data.user);
-            Swal.fire('Bem-vindo! 🎉', `Olá, ${res.data.user.nome.split(' ')[0]}!`, 'success');
+            updateAuthUI(profile);
+            Swal.fire('Bem-vindo! 🎉', `Olá, ${profile.nome.split(' ')[0]}!`, 'success');
         } catch (err) {
-            Swal.fire('Erro', err.response?.data?.error || 'Falha no login.', 'error');
+            Swal.fire('Erro', err.message || 'Falha no login.', 'error');
         }
     });
 
     // Register form
     doc('register-form')?.addEventListener('submit', async e => {
         e.preventDefault();
+        const nome = doc('reg-name').value;
+        const email = doc('reg-email').value;
+        const password = doc('reg-password').value;
+        const plan = doc('reg-plan').value;
+
         try {
-            await axios.post(`${API}/auth/register`, { nome: doc('reg-name').value, email: doc('reg-email').value, senha: doc('reg-password').value });
+            const { data, error } = await supabase.auth.signUp({
+                email,
+                password,
+                options: {
+                    data: {
+                        full_name: nome,
+                        plan: plan
+                    }
+                }
+            });
+            if (error) throw error;
+
+            Swal.fire({
+                title: 'Sucesso!',
+                text: 'Cadastro realizado! Verifique seu e-mail para confirmar a conta.',
+                icon: 'success',
+                confirmButtonColor: '#0057B8'
+            });
             doc('modal-register').classList.add('hidden');
-            doc('modal-login').classList.remove('hidden');
-            Swal.fire('Sucesso!', 'Conta criada! Faça login.', 'success');
         } catch (err) {
-            Swal.fire('Erro', err.response?.data?.error || 'Falha no cadastro.', 'error');
+            Swal.fire('Erro', err.message || 'Falha no cadastro.', 'error');
         }
     });
 }
@@ -1344,6 +1414,71 @@ async function handleGoogleResponse(response) {
         console.error('Supabase Auth Error:', err);
         Swal.fire('Erro', 'Falha no login com Google via Supabase.', 'error');
     }
+}
+
+async function renderPremiumPanel() {
+    const user = getUser();
+    const banner = doc('user-plan-banner');
+    const uName = doc('user-plan-name');
+    const uStatus = doc('user-plan-status');
+    const cta = doc('premium-upgrade-cta');
+    const lock = doc('premium-lock-overlay');
+    const grid = doc('premium-ebooks-grid');
+    const icon = doc('plan-icon-circle');
+
+    if (!user) {
+        uName.innerText = 'Visitante';
+        uStatus.innerText = 'Faça login para ver seu plano';
+        icon.innerText = '👤';
+        cta.classList.remove('hidden');
+        lock.classList.remove('hidden');
+        grid.innerHTML = '';
+        return;
+    }
+
+    // Check plan from metadata or profiles table
+    // For now, we check user_metadata.plan
+    const { data: { user: sbUser } } = await supabase.auth.getUser();
+    const plan = sbUser?.user_metadata?.plan || 'free';
+    const isPremium = plan === 'premium';
+
+    uName.innerText = user.nome;
+    uStatus.innerText = isPremium ? '⭐ Plano Premium Ativo' : 'Plano Grátis';
+    icon.innerText = isPremium ? '👑' : '👤';
+    icon.style.background = isPremium ? '#fef3c7' : '#f1f5f9';
+
+    if (isPremium) {
+        cta.classList.add('hidden');
+        lock.classList.add('hidden');
+        renderEbookGrid(true);
+    } else {
+        cta.classList.remove('hidden');
+        lock.classList.remove('hidden');
+        renderEbookGrid(false);
+    }
+}
+
+function renderEbookGrid(unlocked) {
+    const ebooks = [
+        { title: "Rio de Janeiro", slug: "rio-de-janeiro-em-4-dias" },
+        { title: "Brasília", slug: "brasilia-alem-do-basico" },
+        { title: "Gramado Romântico", slug: "gramado-romantico" },
+        { title: "Salvador Cultural", slug: "salvador-cultural" },
+        { title: "Bonito sem Erro", slug: "bonito-sem-erro" },
+        { title: "Foz em Família", slug: "foz-em-familia" }
+    ];
+
+    const grid = doc('premium-ebooks-grid');
+    grid.innerHTML = ebooks.map(eb => `
+        <div class="ebook-card" style="background:white; border-radius:16px; padding:12px; border:1px solid #e2e8f0; opacity:${unlocked ? '1' : '0.5'}">
+            <div style="aspect-ratio:3/4; background:#f0fdf9; border-radius:10px; margin-bottom:10px; display:flex; align-items:center; justify-content:center; font-size:24px;">📖</div>
+            <h5 style="margin:0; font-size:12px; font-weight:800; min-height:30px;">${eb.title}</h5>
+            ${unlocked ? 
+                `<a href="/pdfs/${eb.slug}.pdf" download class="btn-pill-sm" style="display:block; margin-top:10px; text-align:center; font-size:10px; background:#10B981; color:white; text-decoration:none;">Baixar PDF</a>` : 
+                `<div style="font-size:10px; color:#94a3b8; margin-top:10px; text-align:center;">🔒 Bloqueado</div>`
+            }
+        </div>
+    `).join('');
 }
 
 function getUser() { try { return JSON.parse(localStorage.getItem('user') || 'null'); } catch { return null; } }

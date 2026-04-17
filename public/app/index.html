@@ -115,6 +115,10 @@
                         <span class="chip-icon">📸</span>
                         <span>Grátis</span>
                     </button>
+                    <button class="chip" id="chip-premium" style="background:linear-gradient(135deg,#fef3c7,#fde68a); border:1px solid #f59e0b;">
+                        <span class="chip-icon">💎</span>
+                        <span style="color:#92400e; font-weight:800;">Premium</span>
+                    </button>
                 </div>
 
                 <!-- Tourism Only: No more B2B bifurcation -->
@@ -653,7 +657,14 @@
                 <input type="text" id="reg-name" placeholder="Nome completo" required>
                 <input type="email" id="reg-email" placeholder="Email" required>
                 <input type="password" id="reg-password" placeholder="Senha (mín. 6 caracteres)" required>
-                <button type="submit" class="btn-blue btn-full">Criar Conta</button>
+                <div class="form-group" style="margin-top: 10px;">
+                    <label style="font-size: 12px; font-weight: 700; color: #64748b;">Selecione seu plano:</label>
+                    <select id="reg-plan" style="width: 100%; padding: 12px; border-radius: 12px; border: 1px solid #e2e8f0; margin-top: 5px; outline: none;">
+                        <option value="free">Viajante Grátis (Básico)</option>
+                        <option value="premium">Explorador Premium (Assinante)</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-blue btn-full" style="margin-top: 20px;">Criar Conta</button>
             </form>
             <div class="google-auth-container" style="margin-top: 15px; display: flex; justify-content: center;">
                 <div id="google-register-btn"></div>
@@ -963,6 +974,52 @@
         }
     </style>
 
+    <!-- ═══════════════════════════════════════════════════════
+     SCREEN: PREMIUM (Library & Subscription)
+═══════════════════════════════════════════════════════ -->
+    <div id="screen-premium" class="screen">
+        <div class="screen-header" style="background:linear-gradient(135deg,#0057B8,#10B981); color:white;">
+            <button class="back-btn" onclick="goHome()" style="color:white; border-color:rgba(255,255,255,0.2)">←</button>
+            <h2>💎 Central Premium</h2>
+        </div>
+        
+        <div class="premium-content" style="padding:20px 16px;">
+            <!-- Plan Status Banner -->
+            <div id="user-plan-banner" style="background:white; border-radius:20px; padding:20px; box-shadow:0 4px 15px rgba(0,0,0,0.05); margin-bottom:20px; border:1px solid #e2e8f0;">
+                <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
+                    <div id="plan-icon-circle" style="width:40px; height:40px; border-radius:50%; background:#f1f5f9; display:flex; align-items:center; justify-content:center; font-size:20px;">👤</div>
+                    <div>
+                        <h4 id="user-plan-name" style="margin:0; font-size:16px; font-weight:800;">Carregando...</h4>
+                        <p id="user-plan-status" style="margin:0; font-size:12px; color:#64748b;">Verificando assinatura</p>
+                    </div>
+                </div>
+                <div id="premium-upgrade-cta" class="hidden">
+                    <p style="font-size:13px; color:#475569; margin-bottom:16px;">Assine agora para liberar todos os eBooks e a Maya ilimitada.</p>
+                    <a href="https://link.mercadopago.com.br/descubraobrasil" target="_blank" class="btn-full" style="background:linear-gradient(135deg,#0057B8,#10B981); border:none; color:white; font-weight:800; text-align:center; text-decoration:none; display:block;">💎 Assinar Premium</a>
+                    <div style="margin-top:12px; padding:12px; background:#f8fafc; border-radius:12px; font-size:11px; color:#64748b; text-align:center;">
+                        <strong>🔑 PIX Direto:</strong> 38991621135<br>Envie o comprovante via WhatsApp
+                    </div>
+                </div>
+            </div>
+
+            <!-- eBook Library (Locked or Unlocked) -->
+            <div class="section-header" style="display:flex; align-items:center; justify-content:space-between; margin-bottom:15px;">
+                <h3 style="font-size:18px; font-weight:800; margin:0;">📚 Biblioteca de eBooks</h3>
+                <span style="font-size:11px; background:#d1fae5; color:#065f46; padding:2px 8px; border-radius:99px; font-weight:700;">AI DOCS</span>
+            </div>
+
+            <div id="premium-ebooks-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                <!-- Dynamically injected by JS -->
+            </div>
+            
+            <div id="premium-lock-overlay" class="hidden" style="margin-top:20px; padding:30px 20px; background:rgba(255,255,255,0.9); backdrop-filter:blur(4px); border-radius:20px; text-align:center; border:2px dashed #cbd5e1;">
+                <div style="font-size:40px; margin-bottom:15px;">🔒</div>
+                <h4 style="margin:0 0 10px; font-size:18px;">Conteúdo Bloqueado</h4>
+                <p style="font-size:13px; color:#64748b; margin-bottom:20px;">Torne-se Premium para baixar os roteiros completos em PDF.</p>
+                <button onclick="window.open('https://link.mercadopago.com.br/descubraobrasil')" class="btn-pill-sm" style="background:#0057B8; color:white; border:none; padding:10px 25px;">Ver Planos</button>
+            </div>
+        </div>
+    </div>
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

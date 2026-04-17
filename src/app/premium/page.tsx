@@ -140,34 +140,43 @@ export default function PremiumPage() {
 
           <hr className="border-slate-200 dark:border-slate-800 mb-16" />
 
-          {/* Biblioteca Premium Ebooks */}
-          <div className="mb-16 text-center">
-            <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">Biblioteca Premium de Ebooks</h2>
-            <p className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">Roteiros elaborados por IA e checados por guias, liberados em PDF para você consultar offline durante toda a sua viagem.</p>
-          </div>
-
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-            {ebooks.map((ebook, i) => (
-               <motion.a 
-                 href={`/pdfs/${ebook.slug}.pdf`}
-                 download
-                 initial={{ opacity: 0, scale: 0.9 }}
-                 whileInView={{ opacity: 1, scale: 1 }}
-                 viewport={{ once: true }}
-                 transition={{ delay: i * 0.05 }}
-                 key={ebook.slug}
-                 className="glass-card p-4 flex flex-col group hover:-translate-y-2 transition-transform cursor-pointer"
-               >
-                  <div className="h-32 rounded-lg bg-gradient-to-br from-emerald-100 to-teal-50 dark:from-emerald-900/40 dark:to-teal-900/20 mb-4 flex items-center justify-center">
-                     <BookOpen className="w-8 h-8 text-emerald-500/50 group-hover:text-emerald-500 group-hover:scale-110 transition-all" />
-                  </div>
-                  <h4 className="font-bold text-sm text-slate-900 dark:text-white mb-2 leading-tight flex-1">{ebook.title}</h4>
-                  <div className="flex items-center justify-between mt-2 pt-2 border-t border-slate-100 dark:border-slate-800">
-                     <span className="text-[10px] uppercase font-bold text-slate-400">PDF Premium</span>
-                     <Download className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-                  </div>
-               </motion.a>
-            ))}
+          {/* Call to Action: App Only */}
+          <div className="glass-card p-12 text-center bg-gradient-to-br from-blue-600 to-emerald-600 text-white border-none shadow-2xl">
+            <h2 className="text-3xl font-bold mb-6">A Experiência Premium é Exclusiva no App</h2>
+            <p className="text-xl opacity-90 mb-8 max-w-2xl mx-auto">
+              Para acessar todos os eBooks, roteiros interativos, mapas offline e a Maya ilimitada, você precisa baixar e usar nosso aplicativo.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <a 
+                href="/app/index.html" 
+                className="px-8 py-4 bg-white text-blue-600 rounded-2xl font-bold text-lg hover:scale-105 transition-transform shadow-lg"
+              >
+                Acessar Aplicativo agora
+              </a>
+              <a 
+                href="https://link.mercadopago.com.br/descubraobrasil"
+                target="_blank"
+                className="px-8 py-4 bg-slate-900/40 backdrop-blur-md border border-white/20 text-white rounded-2xl font-bold text-lg hover:bg-slate-900/60 transition-colors"
+              >
+                Assinar via Mercado Pago
+              </a>
+            </div>
+            
+            <div className="mt-10 pt-10 border-t border-white/10 flex flex-col md:flex-row items-center justify-center gap-8">
+              <div className="flex items-center gap-3">
+                 <div className="p-2 bg-white/10 rounded-lg">🛡️</div>
+                 <span className="text-sm font-medium">Pagamento 100% Seguro</span>
+              </div>
+              <div className="flex items-center gap-3">
+                 <div className="p-2 bg-white/10 rounded-lg">📱</div>
+                 <span className="text-sm font-medium">Uso offline no Celular</span>
+              </div>
+              <div className="flex items-center gap-3">
+                 <div className="p-2 bg-white/10 rounded-lg">⚡️</div>
+                 <span className="text-sm font-medium">Liberação via WhatsApp</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
