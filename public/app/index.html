@@ -20,7 +20,7 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v=4.1">
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
@@ -637,6 +637,9 @@
             <form id="login-form">
                 <input type="email" id="login-email" placeholder="Email" required>
                 <input type="password" id="login-password" placeholder="Senha" required>
+                <div style="text-align: right; margin-bottom: 20px;">
+                    <button type="button" id="btn-forgot-password" style="background:none; border:none; color:#0057B8; font-size:12px; cursor:pointer; font-weight:700;">Esqueci minha senha</button>
+                </div>
                 <button type="submit" class="btn-blue btn-full">Entrar</button>
             </form>
             <div class="google-auth-container" style="margin-top: 15px; display: flex; justify-content: center;">
@@ -659,7 +662,7 @@
                 <input type="password" id="reg-password" placeholder="Senha (mín. 6 caracteres)" required>
                 <div class="form-group" style="margin-top: 10px;">
                     <label style="font-size: 12px; font-weight: 700; color: #64748b;">Selecione seu plano:</label>
-                    <select id="reg-plan" style="width: 100%; padding: 12px; border-radius: 12px; border: 1px solid #e2e8f0; margin-top: 5px; outline: none;">
+                    <select id="reg-plan" style="width: 100%; padding: 12px; border-radius: 12px; border: 1px solid #e2e8f0; margin-top: 5px; outline: none; background: #fff;">
                         <option value="free">Viajante Grátis (Básico)</option>
                         <option value="premium">Explorador Premium (Assinante)</option>
                     </select>
@@ -739,9 +742,9 @@
             <span class="bnav-icon">📖</span>
             <span>Roteiros</span>
         </button>
-        <button class="bnav-item" id="bnav-hotels">
-            <span class="bnav-icon">🏨</span>
-            <span>Hotéis</span>
+        <button class="bnav-item" id="bnav-premium" style="color: #f59e0b;">
+            <span class="bnav-icon">💎</span>
+            <span style="font-weight: 800;">Premium</span>
         </button>
         <button class="bnav-item" id="bnav-account">
             <span class="bnav-icon">👤</span>
@@ -1028,8 +1031,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="js/states-db.js"></script>
     <script src="js/news-rss.js"></script>
-    <script src="js/splash.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/data.js?v=4.1"></script>
+    <script src="js/main.js?v=4.1"></script>
     <script src="js/maya-voice.js"></script>
 
     <!-- PWA Service Worker Registration -->

@@ -450,13 +450,18 @@ a {
     gap: 8px;
     flex-wrap: nowrap;
     overflow-x: auto;
-    padding-bottom: 2px;
+    padding: 10px 4px;
     scrollbar-width: none;
     max-width: 100%;
+    -webkit-overflow-scrolling: touch;
 }
 
 .quick-chips::-webkit-scrollbar {
     display: none;
+}
+
+.chip {
+    flex-shrink: 0;
 }
 
 .chip {

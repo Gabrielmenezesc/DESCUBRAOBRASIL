@@ -17,7 +17,7 @@ export default function DashboardPage() {
     async function getProfile() {
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) {
-        window.location.href = "/premium"; // Redireciona se não logado
+        window.location.href = "/"; // Redireciona para a home se não logado
         return;
       }
 
@@ -25,7 +25,7 @@ export default function DashboardPage() {
         name: user.user_metadata?.full_name || user.email,
         email: user.email,
         avatar: user.user_metadata?.avatar_url,
-        plan: "Premium" // Mock por enquanto
+        plan: user.user_metadata?.plan === 'premium' ? 'Premium' : 'Grátis'
       });
 
       // Busca favoritos
@@ -87,9 +87,6 @@ export default function DashboardPage() {
                 <button className="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-600 dark:text-slate-400 font-medium">
                   <Heart className="w-5 h-5" /> Favoritos
                 </button>
-                <Link href="/premium" className="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-600 dark:text-slate-400 font-medium">
-                  <Book className="w-5 h-5" /> Meus eBooks
-                </Link>
                 <button className="w-full flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-600 dark:text-slate-400 font-medium">
                   <Settings className="w-5 h-5" /> Ajustes
                 </button>
@@ -152,33 +149,7 @@ export default function DashboardPage() {
                   )}
                </motion.div>
 
-               {/* eBooks e Downloads */}
-               <motion.div 
-                 initial={{ y: 20, opacity: 0 }}
-                 animate={{ y: 0, opacity: 1 }}
-                 transition={{ delay: 0.2 }}
-                 className="glass-card p-6"
-               >
-                  <h3 className="font-bold text-lg flex items-center gap-2 mb-6">
-                     <Book className="w-5 h-5 text-emerald-500" /> Downloads Premium
-                  </h3>
-                  <div className="space-y-4">
-                     <div className="p-4 rounded-xl border border-dashed border-slate-200 dark:border-slate-700 hover:border-blue-500 transition-colors group cursor-pointer">
-                        <div className="flex items-center gap-3">
-                           <div className="p-3 rounded-full bg-emerald-100/50 dark:bg-emerald-900/30 text-emerald-600">
-                              <Book className="w-5 h-5" />
-                           </div>
-                           <div>
-                              <div className="font-bold text-sm group-hover:text-blue-500 transition-colors">Acessar Biblioteca</div>
-                              <div className="text-[10px] text-slate-500">10 eBooks liberados para você</div>
-                           </div>
-                        </div>
-                     </div>
-                     <Link href="/premium" className="block w-full py-3 text-center rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold text-sm hover:scale-[1.02] transition-transform">
-                        Ver Todos os Ebooks
-                     </Link>
-                  </div>
-               </motion.div>
+
             </div>
           </div>
 

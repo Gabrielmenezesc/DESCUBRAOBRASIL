@@ -43,9 +43,10 @@ export default function BrasiliaPage() {
             <button onClick={() => document.getElementById('maya-chat-button')?.click()} className="w-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold py-4 rounded-xl mb-4">
               Falar com Maya
             </button>
-            <Link href="/premium" className="w-full block text-center glass bg-emerald-50 text-emerald-700 dark:text-emerald-400 font-bold py-4 rounded-xl">
-              Baixar eBook Brasília
-            </Link>
+            <div className="text-center mt-6">
+              <span className="text-xs text-slate-400 uppercase tracking-wider font-bold">Acesse nosso Aplicativo</span>
+              <p className="text-xs mt-2 text-slate-500 dark:text-slate-400">Tenha mapas offline, cupons e a biblioteca completa no seu celular.</p>
+            </div>
           </div>
         </div>
       </section>

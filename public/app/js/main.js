@@ -159,6 +159,7 @@ function initAuthListeners() {
 
     // Navigation for Premium
     doc('chip-premium')?.addEventListener('click', () => showScreen('screen-premium'));
+    doc('bnav-premium')?.addEventListener('click', () => showScreen('screen-premium'));
 }
 
 function showScreen(screenId) {

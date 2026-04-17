@@ -144,14 +144,9 @@ export default function RioDeJaneiroPage() {
                 Criar Roteiro com a Maya
               </button>
               
-              <Link href="/premium" className="w-full block text-center glass bg-gradient-to-r from-emerald-500/10 to-teal-500/10 text-emerald-700 dark:text-emerald-400 font-bold py-4 rounded-xl hover:scale-[1.02] transition-transform border border-emerald-500/20">
-                Baixar eBook 4 Dias no Rio
-              </Link>
-            </div>
-
             <div className="text-center">
-              <span className="text-xs text-slate-400 uppercase tracking-wider font-bold">Faça o Download do App</span>
-              <p className="text-xs mt-2 text-slate-500 dark:text-slate-400">Tenha mapas offline, cupons e a biblioteca de ebooks sempre com você.</p>
+              <span className="text-xs text-slate-400 uppercase tracking-wider font-bold">Acesse nosso Aplicativo</span>
+              <p className="text-xs mt-2 text-slate-500 dark:text-slate-400">Tenha mapas offline, cupons e a biblioteca completa no seu celular.</p>
             </div>
           </div>
         </div>

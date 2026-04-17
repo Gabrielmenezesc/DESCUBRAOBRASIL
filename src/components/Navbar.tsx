@@ -121,34 +121,28 @@ export default function Navbar() {
 
             {/* Desktop Auth Section */}
             <div className="hidden lg:flex items-center gap-2 pl-4 border-l border-slate-200 dark:border-slate-800">
-               {session ? (
-                 <Link 
-                   href="/dashboard" 
-                   className="flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500 text-white font-bold text-sm hover:bg-blue-600 transition-colors"
-                 >
-                   {session.user.user_metadata?.avatar_url ? (
-                     <img src={session.user.user_metadata.avatar_url} className="w-5 h-5 rounded-full" />
-                   ) : (
-                     <User className="w-4 h-4" />
-                   )}
-                   <span>Minha Conta</span>
-                 </Link>
-               ) : (
-                 <>
-                   <button 
-                     onClick={() => window.location.href = '/premium'} 
-                     className="flex items-center gap-2 px-4 py-2 rounded-full text-slate-700 dark:text-slate-300 font-bold text-sm hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
-                   >
-                     <LogIn className="w-4 h-4" /> Entrar
-                   </button>
-                   <Link 
-                     href="/premium" 
-                     className="flex items-center gap-2 px-5 py-2 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold text-sm hover:scale-105 transition-transform"
-                   >
-                     Assinar <Crown className="w-3.5 h-3.5 fill-current" />
-                   </Link>
-                 </>
-               )}
+                {session ? (
+                  <Link 
+                    href="/dashboard" 
+                    className="flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500 text-white font-bold text-sm hover:bg-blue-600 transition-colors"
+                  >
+                    {session.user.user_metadata?.avatar_url ? (
+                      <img src={session.user.user_metadata.avatar_url} className="w-5 h-5 rounded-full" />
+                    ) : (
+                      <User className="w-4 h-4" />
+                    )}
+                    <span>Minha Conta</span>
+                  </Link>
+                ) : (
+                  <>
+                    <button 
+                      onClick={() => alert('Faça login no Aplicativo para acesso completo!')} 
+                      className="flex items-center gap-2 px-4 py-2 rounded-full text-slate-700 dark:text-slate-300 font-bold text-sm hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                    >
+                      <LogIn className="w-4 h-4" /> Entrar
+                    </button>
+                  </>
+                )}
             </div>
 
             {/* Mobile hamburger */}

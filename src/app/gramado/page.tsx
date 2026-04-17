@@ -93,9 +93,10 @@ export default function GramadoPage() {
               <button onClick={() => document.getElementById('maya-chat-button')?.click()} className="w-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold py-4 rounded-xl flex items-center justify-center gap-2 hover:scale-[1.02] transition-transform">
                 Criar Roteiro
               </button>
-              <Link href="/premium" className="w-full block text-center glass bg-gradient-to-r from-emerald-500/10 to-teal-500/10 text-emerald-700 dark:text-emerald-400 font-bold py-4 rounded-xl hover:scale-[1.02] transition-transform border border-emerald-500/20">
-                Baixar eBook Gramado
-              </Link>
+            <div className="text-center mt-6">
+              <span className="text-xs text-slate-400 uppercase tracking-wider font-bold">Acesse nosso Aplicativo</span>
+              <p className="text-xs mt-2 text-slate-500 dark:text-slate-400">Tenha mapas offline, cupons e a biblioteca completa no seu celular.</p>
+            </div>
             </div>
           </div>
         </div>
