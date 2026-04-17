@@ -52,10 +52,16 @@ export default function PremiumPage() {
   ];
 
   const ebooks = [
-    "Rio de Janeiro em 4 dias", "Brasília além do básico", "Gramado romântico",
-    "Salvador cultural", "Bonito sem erro", "Foz em família",
-    "Fernando de Noronha premium", "Lençóis na melhor época",
-    "Chapada aventura leve", "Brasil econômico"
+    { title: "Rio de Janeiro em 4 dias", slug: "rio-de-janeiro-em-4-dias" },
+    { title: "Brasília além do básico", slug: "brasilia-alem-do-basico" },
+    { title: "Gramado romântico", slug: "gramado-romantico" },
+    { title: "Salvador cultural", slug: "salvador-cultural" },
+    { title: "Bonito sem erro", slug: "bonito-sem-erro" },
+    { title: "Foz em família", slug: "foz-em-familia" },
+    { title: "Fernando de Noronha premium", slug: "fernando-de-noronha-premium" },
+    { title: "Lençóis na melhor época", slug: "lencois-na-melhor-epoca" },
+    { title: "Chapada aventura leve", slug: "chapada-aventura-leve" },
+    { title: "Brasil econômico", slug: "brasil-economico" }
   ];
 
   return (
@@ -141,24 +147,26 @@ export default function PremiumPage() {
           </div>
 
           <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-            {ebooks.map((title, i) => (
-               <motion.div 
+            {ebooks.map((ebook, i) => (
+               <motion.a 
+                 href={`/pdfs/${ebook.slug}.pdf`}
+                 download
                  initial={{ opacity: 0, scale: 0.9 }}
                  whileInView={{ opacity: 1, scale: 1 }}
                  viewport={{ once: true }}
                  transition={{ delay: i * 0.05 }}
-                 key={title}
+                 key={ebook.slug}
                  className="glass-card p-4 flex flex-col group hover:-translate-y-2 transition-transform cursor-pointer"
                >
                   <div className="h-32 rounded-lg bg-gradient-to-br from-emerald-100 to-teal-50 dark:from-emerald-900/40 dark:to-teal-900/20 mb-4 flex items-center justify-center">
                      <BookOpen className="w-8 h-8 text-emerald-500/50 group-hover:text-emerald-500 group-hover:scale-110 transition-all" />
                   </div>
-                  <h4 className="font-bold text-sm text-slate-900 dark:text-white mb-2 leading-tight flex-1">{title}</h4>
+                  <h4 className="font-bold text-sm text-slate-900 dark:text-white mb-2 leading-tight flex-1">{ebook.title}</h4>
                   <div className="flex items-center justify-between mt-2 pt-2 border-t border-slate-100 dark:border-slate-800">
                      <span className="text-[10px] uppercase font-bold text-slate-400">PDF Premium</span>
                      <Download className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                   </div>
-               </motion.div>
+               </motion.a>
             ))}
           </div>
         </div>

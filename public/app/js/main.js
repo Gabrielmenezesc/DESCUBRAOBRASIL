@@ -11,6 +11,9 @@ const API = `http://${window.location.hostname}:3000/api`;
 /* ── State ─────────────────────────────────────────────────── */
 let map = null;
 let userLatLng = [-15.78, -47.93]; // Brasília default
+let userMarker = null;
+let watchId = null;
+let followUser = false;
 let allHotels = [], allPOIs = [];
 let allMarkers = [];
 let routeLine = null;
@@ -741,7 +744,21 @@ function initMapScreen() {
     document.getElementById('sheet-close')?.addEventListener('click', closeSheet);
 
     // Geolocation
-    document.getElementById('btn-geolocate')?.addEventListener('click', doGeolocate);
+    document.getElementById('btn-geolocate')?.addEventListener('click', () => {
+        followUser = !followUser;
+        const fab = document.getElementById('btn-geolocate');
+        if (followUser) {
+            fab.style.background = '#10B981';
+            fab.style.color = 'white';
+            doGeolocate();
+            Swal.fire({ title: 'Rastreamento Ativo', text: 'O mapa seguirá sua posição em tempo real.', icon: 'success', toast: true, position: 'top', showConfirmButton: false, timer: 2000 });
+        } else {
+            fab.style.background = 'white';
+            fab.style.color = '#1e293b';
+            if (watchId) navigator.geolocation.clearWatch(watchId);
+            watchId = null;
+        }
+    });
 
     // Maya body click
     document.getElementById('maya-body-click')?.addEventListener('click', () => {

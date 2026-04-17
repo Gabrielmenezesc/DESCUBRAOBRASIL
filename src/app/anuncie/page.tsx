@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import FooterSection from "@/components/FooterSection";
 import { Briefcase, CheckCircle2, Building, Send } from "lucide-react";
+import { useState } from "react";
 
 const plans = [
   {
@@ -128,19 +129,91 @@ export default function AnunciePage() {
           >
              <h2 className="text-3xl font-bold text-white mb-4">Quero ser um Parceiro</h2>
              <p className="text-slate-400 mb-8 max-w-2xl mx-auto">Deixe seus dados e nossa equipe comercial entrará em contato para definir o melhor plano para você.</p>
-             <form className="max-w-md mx-auto grid gap-4" onSubmit={e => e.preventDefault()}>
-                <input type="text" placeholder="Nome da Empresa" className="w-full px-4 py-3 rounded-xl bg-slate-800/50 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 transition-colors" />
-                <input type="email" placeholder="E-mail corporativo" className="w-full px-4 py-3 rounded-xl bg-slate-800/50 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 transition-colors" />
-                <input type="tel" placeholder="WhatsApp" className="w-full px-4 py-3 rounded-xl bg-slate-800/50 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 transition-colors" />
-                <button type="submit" className="w-full py-4 mt-2 rounded-xl bg-emerald-500 text-white font-bold flex items-center justify-center gap-2 hover:bg-emerald-400 transition-colors">
-                  <Send className="w-5 h-5" /> Enviar Solicitação
-                </button>
-             </form>
+             
+             <PartnerForm />
           </motion.div>
         </div>
       </section>
 
       <FooterSection />
     </main>
+  );
+}
+
+function PartnerForm() {
+  const [loading, setLoading] = useState(false);
+  const [sent, setSent] = useState(false);
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setLoading(true);
+    
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      company_name: formData.get("company"),
+      email: formData.get("email"),
+      whatsapp: formData.get("whatsapp"),
+      created_at: new Date().toISOString(),
+    };
+
+    try {
+      const { supabase } = await import("@/lib/supabase");
+      const { error } = await supabase.from("partner_leads").insert([data]);
+      
+      if (error) throw error;
+      setSent(true);
+    } catch (err) {
+      console.error("Error sending lead:", err);
+      alert("Ocorreu um erro ao enviar. Por favor, tente novamente ou entre em contato via WhatsApp.");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  if (sent) {
+    return (
+      <div className="py-8 text-emerald-400 font-bold flex flex-col items-center gap-4">
+        <CheckCircle2 className="w-12 h-12" />
+        <p className="text-xl">Solicitação enviada com sucesso!</p>
+        <p className="text-slate-400 font-normal">Nossa equipe entrará em contato em breve.</p>
+      </div>
+    );
+  }
+
+  return (
+    <form className="max-w-md mx-auto grid gap-4" onSubmit={handleSubmit}>
+      <input 
+        name="company"
+        type="text" 
+        placeholder="Nome da Empresa" 
+        required
+        className="w-full px-4 py-3 rounded-xl bg-slate-800/50 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 transition-colors" 
+      />
+      <input 
+        name="email"
+        type="email" 
+        placeholder="E-mail corporativo" 
+        required
+        className="w-full px-4 py-3 rounded-xl bg-slate-800/50 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 transition-colors" 
+      />
+      <input 
+        name="whatsapp"
+        type="tel" 
+        placeholder="WhatsApp" 
+        required
+        className="w-full px-4 py-3 rounded-xl bg-slate-800/50 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 transition-colors" 
+      />
+      <button 
+        type="submit" 
+        disabled={loading}
+        className="w-full py-4 mt-2 rounded-xl bg-emerald-500 text-white font-bold flex items-center justify-center gap-2 hover:bg-emerald-400 transition-colors disabled:opacity-50 disabled:cursor-wait"
+      >
+        {loading ? (
+          <div className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+        ) : (
+          <><Send className="w-5 h-5" /> Enviar Solicitação</>
+        )}
+      </button>
+    </form>
   );
 }
