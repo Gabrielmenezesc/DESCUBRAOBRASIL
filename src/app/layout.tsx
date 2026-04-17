@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { PWAProvider } from "@/context/PWAProvider";
 import FloatingAppButton from "@/components/FloatingAppButton";
+import FloatingWhatsApp from "@/components/FloatingWhatsApp";
+import { ThemeProvider } from "@/context/ThemeProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,10 +38,13 @@ export default function RootLayout({
         <meta name="mobile-web-app-capable" content="yes" />
       </head>
       <body className="min-h-screen antialiased bg-background text-foreground flex flex-col">
-        <PWAProvider>
-          {children}
-          <FloatingAppButton />
-        </PWAProvider>
+        <ThemeProvider>
+          <PWAProvider>
+            {children}
+            <FloatingAppButton />
+            <FloatingWhatsApp />
+          </PWAProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
