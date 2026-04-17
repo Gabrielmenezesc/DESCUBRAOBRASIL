@@ -6,7 +6,7 @@ import { ExternalLink, TrendingUp, RefreshCw, MapPin, Clock, Filter, ChevronDown
 import { useNews, type NewsItem } from "@/hooks/useNews";
 import { useGeolocation, STATES_LIST } from "@/hooks/useGeolocation";
 
-const CATEGORIES = ["Todos", "Praias", "Cultura", "Ecoturismo", "Gratuito", "Gastronomia", "Destinos", "Natureza", "Hospedagem"];
+const CATEGORIES = ["Todos", "Turismo", "Cidades", "Eventos", "Clima", "Tecnologia", "Destinos", "Gastronomia", "Hospedagem"];
 
 const SOURCE_COLORS: Record<string, string> = {
   "G1 Turismo": "bg-red-100 text-red-700",
