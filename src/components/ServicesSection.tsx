@@ -44,14 +44,14 @@ const services = [
 
 export default function ServicesSection() {
   return (
-    <section id="services" className="py-24 relative overflow-hidden bg-slate-50">
+    <section id="services" className="py-24 relative overflow-hidden bg-slate-50 dark:bg-slate-800/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-5xl font-bold tracking-tight mb-6 text-slate-900"
+            className="text-3xl md:text-5xl font-bold tracking-tight mb-6 text-slate-900 dark:text-white"
           >
             Acelere os Seus <span className="text-gradient">Negócios</span>
           </motion.h2>
@@ -60,7 +60,7 @@ export default function ServicesSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-lg text-slate-600"
+            className="text-lg text-slate-600 dark:text-slate-300"
           >
             O Descubra o Brasil não é só para o turista. É a principal plataforma para decolar o marketing da sua empresa no setor.
           </motion.p>
@@ -74,13 +74,13 @@ export default function ServicesSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: svc.delay }}
-              className="glass-card p-8 group hover:-translate-y-2 transition-all duration-300 bg-white shadow-sm"
+              className="glass-card p-8 group hover:-translate-y-2 transition-all duration-300 bg-white dark:bg-slate-900 shadow-sm"
             >
               <div className="w-12 h-12 rounded-xl bg-emerald-100 flex items-center justify-center mb-6 border border-emerald-200 group-hover:scale-110 transition-transform">
                 <svc.icon className="w-6 h-6 text-emerald-600" />
               </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3">{svc.title}</h3>
-              <p className="text-slate-600 leading-relaxed text-sm">
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">{svc.title}</h3>
+              <p className="text-slate-600 dark:text-slate-300 leading-relaxed text-sm">
                 {svc.desc}
               </p>
             </motion.div>

@@ -5,7 +5,7 @@ import { MessageCircle, Sparkles, ArrowRight, Compass, MapPin } from "lucide-rea
 
 export default function FinalCTASection() {
   return (
-    <section className="py-24 relative overflow-hidden bg-white">
+    <section className="py-24 relative overflow-hidden bg-white dark:bg-slate-900">
       {/* Decorative Blur */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-emerald-500/5 blur-[120px] rounded-full pointer-events-none" />
 
@@ -65,7 +65,7 @@ export default function FinalCTASection() {
           >
             <a 
               href="/turismo" 
-              className="group flex items-center gap-2 bg-white text-slate-900 px-10 py-5 rounded-2xl font-black text-lg transition-all transform hover:scale-105 hover:shadow-2xl hover:shadow-white/20 shadow-xl"
+              className="group flex items-center gap-2 bg-white dark:bg-slate-900 text-slate-900 dark:text-white px-10 py-5 rounded-2xl font-black text-lg transition-all transform hover:scale-105 hover:shadow-2xl hover:shadow-white/20 shadow-xl"
             >
               <Compass className="w-5 h-5" />
               Explorar Destinos
@@ -99,7 +99,7 @@ export default function FinalCTASection() {
             whileInView={{ opacity: 0.4 }}
             viewport={{ once: true }}
             transition={{ delay: 0.6 }}
-            className="mt-8 text-slate-500 text-sm font-medium tracking-widest uppercase"
+            className="mt-8 text-slate-500 dark:text-slate-400 text-sm font-medium tracking-widest uppercase"
           >
             Descubra o Brasil &copy; {new Date().getFullYear()}
           </motion.div>

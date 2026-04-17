@@ -36,7 +36,7 @@ export default function QuemSomosPage() {
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-6xl font-extrabold text-slate-900 tracking-tight mb-4"
+            className="text-4xl md:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4"
           >
             Rede Brasília <span className="text-gradient">News</span>
           </motion.h1>
@@ -44,7 +44,7 @@ export default function QuemSomosPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-lg text-slate-600 max-w-3xl mx-auto"
+            className="text-lg text-slate-600 dark:text-slate-300 max-w-3xl mx-auto"
           >
             Focada no Turismo Nacional — Desde 2021 transformando a forma como o Brasil é descoberto e vivenciado pelos viajantes.
           </motion.p>
@@ -52,7 +52,7 @@ export default function QuemSomosPage() {
       </section>
 
       {/* Company Info */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-slate-900">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
             <motion.div
@@ -62,7 +62,7 @@ export default function QuemSomosPage() {
               className="text-center p-6 rounded-2xl bg-emerald-50 border border-emerald-100"
             >
               <Building2 className="w-8 h-8 text-emerald-600 mx-auto mb-3" />
-              <h3 className="font-bold text-slate-900 mb-1">Situação</h3>
+              <h3 className="font-bold text-slate-900 dark:text-white mb-1">Situação</h3>
               <p className="text-emerald-600 font-bold text-lg">Ativa</p>
             </motion.div>
             <motion.div
@@ -73,7 +73,7 @@ export default function QuemSomosPage() {
               className="text-center p-6 rounded-2xl bg-blue-50 border border-blue-100"
             >
               <Calendar className="w-8 h-8 text-blue-600 mx-auto mb-3" />
-              <h3 className="font-bold text-slate-900 mb-1">Fundação</h3>
+              <h3 className="font-bold text-slate-900 dark:text-white mb-1">Fundação</h3>
               <p className="text-blue-600 font-bold text-lg">20/08/2021</p>
             </motion.div>
             <motion.div
@@ -84,7 +84,7 @@ export default function QuemSomosPage() {
               className="text-center p-6 rounded-2xl bg-amber-50 border border-amber-100"
             >
               <Award className="w-8 h-8 text-amber-600 mx-auto mb-3" />
-              <h3 className="font-bold text-slate-900 mb-1">Natureza</h3>
+              <h3 className="font-bold text-slate-900 dark:text-white mb-1">Natureza</h3>
               <p className="text-amber-600 font-bold text-lg">LTDA</p>
             </motion.div>
           </div>
@@ -96,18 +96,18 @@ export default function QuemSomosPage() {
             viewport={{ once: true }}
             className="prose prose-lg max-w-none"
           >
-            <div className="bg-slate-50 rounded-2xl p-8 border border-slate-100">
-              <h2 className="text-2xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+            <div className="bg-slate-50 dark:bg-slate-800/50 rounded-2xl p-8 border border-slate-100">
+              <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
                 <Target className="w-6 h-6 text-emerald-500" />
                 Nossa Missão
               </h2>
-              <p className="text-slate-600 leading-relaxed mb-6">
+              <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
                 A <strong>Rede Brasília News</strong>, fundada por <strong>Valdir (CEO)</strong>, <strong>Georgiane (Diretora)</strong> e <strong>Gabriel Menezes (TI)</strong>, é uma empresa inovadora que atua focado inteiramente no ecossistema do turismo nacional. Nosso objetivo é democratizar o acesso à informação turística do Brasil, oferecendo ferramentas digitais de ponta para que os viajantes planejem suas rotas com eficiência e economia.
               </p>
-              <p className="text-slate-600 leading-relaxed mb-6">
+              <p className="text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
                 Através do portal <strong>Descubra o Brasil</strong> e do aplicativo com a inteligência artificial <strong>Maya AI</strong>, nós conectamos você aos destinos mais surpreendentes, desde roteiros gratuitos até belezas naturais escondidas por todos os 26 estados mais o Distrito Federal.
               </p>
-              <p className="text-slate-600 leading-relaxed">
+              <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
                 Acreditamos que o Brasil possui um potencial turístico imensurável e trabalhamos diariamente para tornar cada viagem incrível. Nossa paixão é ser o melhor companheiro de viagem na tela do seu celular.
               </p>
             </div>
@@ -117,9 +117,9 @@ export default function QuemSomosPage() {
 
 
       {/* Timeline */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-slate-900">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-12 text-center">
+          <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-12 text-center">
             Nossa <span className="text-gradient">Trajetória</span>
           </h2>
           <div className="space-y-0 relative">
@@ -135,8 +135,8 @@ export default function QuemSomosPage() {
               >
                 <div className="absolute left-3.5 w-5 h-5 rounded-full bg-emerald-500 border-4 border-white shadow" />
                 <span className="text-emerald-600 font-bold text-sm">{item.year}</span>
-                <h3 className="font-bold text-slate-900 text-lg">{item.title}</h3>
-                <p className="text-slate-500 text-sm">{item.desc}</p>
+                <h3 className="font-bold text-slate-900 dark:text-white text-lg">{item.title}</h3>
+                <p className="text-slate-500 dark:text-slate-400 text-sm">{item.desc}</p>
               </motion.div>
             ))}
           </div>

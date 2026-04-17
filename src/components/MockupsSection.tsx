@@ -52,7 +52,7 @@ export default function MockupsSection() {
             </div>
             <div className="h-4 bg-slate-700 w-[105%] -ml-[2.5%] rounded-b-xl shadow-lg" />
             <div className="h-1 bg-slate-600 w-24 mx-auto rounded-full mt-2" />
-            <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 text-slate-500 font-mono text-xs uppercase tracking-widest">
+            <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 text-slate-500 dark:text-slate-400 font-mono text-xs uppercase tracking-widest">
               <Laptop className="w-4 h-4" />
               Desktop Professional
             </div>
@@ -71,7 +71,7 @@ export default function MockupsSection() {
                {/* Phone Notch */}
                <div className="absolute top-6 left-1/2 -translate-x-1/2 w-20 h-5 bg-slate-800 rounded-full z-10" />
             </div>
-            <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-2 text-slate-500 font-mono text-xs uppercase tracking-widest">
+            <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-2 text-slate-500 dark:text-slate-400 font-mono text-xs uppercase tracking-widest">
               <Smartphone className="w-4 h-4" />
               Mobile Experience
             </div>

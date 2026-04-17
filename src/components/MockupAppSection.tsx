@@ -9,7 +9,7 @@ export default function MockupAppSection() {
   const { showInstallPrompt } = usePWA();
 
   return (
-    <section id="app" className="py-24 relative overflow-hidden bg-white">
+    <section id="app" className="py-24 relative overflow-hidden bg-white dark:bg-slate-900">
       <div className="absolute inset-0 bg-blue-50/50 -z-10" />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -23,11 +23,11 @@ export default function MockupAppSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-6 text-slate-900">
+              <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-6 text-slate-900 dark:text-white">
                 Experiência <span className="text-gradient">Interativa</span> <br />
                 no seu Dispositivo
               </h2>
-              <p className="text-lg text-slate-600 mb-8 leading-relaxed">
+              <p className="text-lg text-slate-600 dark:text-slate-300 mb-8 leading-relaxed">
                 Navegue no nosso portal totalmente funcional ao lado. Experimente a inteligência da Maya AI, mapas interativos e roteiros personalizados sem precisar sair desta página.
               </p>
 
@@ -36,19 +36,19 @@ export default function MockupAppSection() {
                   <div className="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center">
                     <Compass className="w-4 h-4 text-emerald-600" />
                   </div>
-                  <span className="text-slate-800 font-medium">Turismo com navegação intuitiva em tempo real</span>
+                  <span className="text-slate-800 dark:text-slate-100 font-medium">Turismo com navegação intuitiva em tempo real</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center">
                     <Compass className="w-4 h-4 text-emerald-600" />
                   </div>
-                  <span className="text-slate-800 font-medium">Test-drive da Maya AI para dicas de roteiros</span>
+                  <span className="text-slate-800 dark:text-slate-100 font-medium">Test-drive da Maya AI para dicas de roteiros</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center">
                     <Compass className="w-4 h-4 text-emerald-600" />
                   </div>
-                  <span className="text-slate-800 font-medium">Mapas dinâmicos e destinos por estado</span>
+                  <span className="text-slate-800 dark:text-slate-100 font-medium">Mapas dinâmicos e destinos por estado</span>
                 </div>
               </div>
 
@@ -64,7 +64,7 @@ export default function MockupAppSection() {
                   href="/app/index.html" 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="inline-flex items-center gap-2 border-2 border-slate-200 text-slate-700 px-8 py-4 rounded-full font-bold text-lg hover:bg-slate-50 transition-colors"
+                  className="inline-flex items-center gap-2 border-2 border-slate-200 text-slate-700 dark:text-slate-200 px-8 py-4 rounded-full font-bold text-lg hover:bg-slate-50 dark:bg-slate-800/50 transition-colors"
                 >
                   Abrir no Navegador
                 </a>
@@ -83,7 +83,7 @@ export default function MockupAppSection() {
               // eslint-disable-next-line @typescript-eslint/ban-ts-comment
               // @ts-ignore
               transition={{ y: { repeat: Infinity, duration: 4, ease: "easeInOut" } }}
-              className="relative w-[340px] h-[680px] rounded-[3.5rem] border-[12px] border-slate-100/80 bg-white shadow-2xl overflow-hidden glass-card ring-1 ring-slate-200"
+              className="relative w-[340px] h-[680px] rounded-[3.5rem] border-[12px] border-slate-100/80 bg-white dark:bg-slate-900 shadow-2xl overflow-hidden glass-card ring-1 ring-slate-200"
             >
               {/* Fake notch */}
               <div className="absolute top-0 inset-x-0 h-6 flex justify-center z-20">
@@ -91,7 +91,7 @@ export default function MockupAppSection() {
               </div>
               
               {/* Inside screen - LIVE EMBEDDED APP */}
-              <div className="relative w-full h-full bg-white flex flex-col pt-6 pointer-events-auto">
+              <div className="relative w-full h-full bg-white dark:bg-slate-900 flex flex-col pt-6 pointer-events-auto">
               {/* Functional App Iframe */}
             <iframe 
               src="/app/index.html" 

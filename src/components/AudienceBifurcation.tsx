@@ -16,7 +16,7 @@ export default function AudienceBifurcation() {
   }
 
   return (
-    <section id="bifurcacao" className="py-24 relative overflow-hidden bg-slate-50">
+    <section id="bifurcacao" className="py-24 relative overflow-hidden bg-slate-50 dark:bg-slate-800/50">
       {/* Abstract Background Shapes */}
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none opacity-20">
         <div className="absolute -top-24 -left-24 w-96 h-96 bg-emerald-200 rounded-full blur-3xl" />
@@ -33,11 +33,11 @@ export default function AudienceBifurcation() {
           <span className="inline-block px-4 py-1.5 rounded-full bg-emerald-100 text-emerald-700 text-sm font-bold mb-4">
             O TURISMO ENCONTRA A TECNOLOGIA
           </span>
-          <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight mb-4">
+          <h2 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tight mb-4">
             Qual o seu foco no{" "}
             <span className="text-gradient">Brasil?</span>
           </h2>
-          <p className="text-slate-600 max-w-2xl mx-auto text-lg">
+          <p className="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto text-lg">
             Seja você um desbravador de destinos ou um empresário buscando escala, temos a solução ideal.
           </p>
         </motion.div>
@@ -50,13 +50,13 @@ export default function AudienceBifurcation() {
             viewport={{ once: true }}
             className="flex-1 group"
           >
-            <div className="h-full bg-white rounded-[2.5rem] p-1 shadow-2xl shadow-emerald-500/10 hover:shadow-emerald-500/20 transition-all">
+            <div className="h-full bg-white dark:bg-slate-900 rounded-[2.5rem] p-1 shadow-2xl shadow-emerald-500/10 hover:shadow-emerald-500/20 transition-all">
               <div className="h-full bg-gradient-to-br from-emerald-50 to-white rounded-[2.3rem] p-8 md:p-12 flex flex-col">
                 <div className="w-16 h-16 rounded-2xl bg-emerald-500 text-white flex items-center justify-center mb-8 shadow-lg shadow-emerald-500/30">
                   <Compass className="w-8 h-8" />
                 </div>
-                <h3 className="text-3xl font-black text-slate-900 mb-4">Sou Viajante</h3>
-                <p className="text-slate-600 mb-8 text-lg leading-relaxed">
+                <h3 className="text-3xl font-black text-slate-900 dark:text-white mb-4">Sou Viajante</h3>
+                <p className="text-slate-600 dark:text-slate-300 mb-8 text-lg leading-relaxed">
                   Quero descobrir roteiros autênticos, usar a inteligência da <strong>Maya</strong> para planejar minha viagem e navegar pelo mapa 3D.
                 </p>
                 <div className="mt-auto flex flex-col gap-4">
@@ -84,7 +84,7 @@ export default function AudienceBifurcation() {
           {/* Central Divider (Visual Only) */}
           <div className="hidden lg:flex flex-col items-center justify-center px-4">
             <div className="w-px h-full bg-gradient-to-b from-transparent via-slate-200 to-transparent" />
-            <div className="w-12 h-12 rounded-full bg-white border border-slate-200 flex items-center justify-center font-bold text-slate-400 shadow-sm my-4">
+            <div className="w-12 h-12 rounded-full bg-white dark:bg-slate-900 border border-slate-200 flex items-center justify-center font-bold text-slate-400 shadow-sm my-4">
               OU
             </div>
             <div className="w-px h-full bg-gradient-to-b from-transparent via-slate-200 to-transparent" />
@@ -97,13 +97,13 @@ export default function AudienceBifurcation() {
             viewport={{ once: true }}
             className="flex-1 group"
           >
-            <div className="h-full bg-white rounded-[2.5rem] p-1 shadow-2xl shadow-blue-500/10 hover:shadow-blue-500/20 transition-all">
+            <div className="h-full bg-white dark:bg-slate-900 rounded-[2.5rem] p-1 shadow-2xl shadow-blue-500/10 hover:shadow-blue-500/20 transition-all">
               <div className="h-full bg-gradient-to-br from-blue-50 to-white rounded-[2.3rem] p-8 md:p-12 flex flex-col">
                 <div className="w-16 h-16 rounded-2xl bg-blue-600 text-white flex items-center justify-center mb-8 shadow-lg shadow-blue-500/30">
                   <Briefcase className="w-8 h-8" />
                 </div>
-                <h3 className="text-3xl font-black text-slate-900 mb-4">Sou Empresa</h3>
-                <p className="text-slate-600 mb-8 text-lg leading-relaxed">
+                <h3 className="text-3xl font-black text-slate-900 dark:text-white mb-4">Sou Empresa</h3>
+                <p className="text-slate-600 dark:text-slate-300 mb-8 text-lg leading-relaxed">
                   Quero modernizar meu negócio com <strong>Marketing 3D</strong>, criação de sites profissionais e ganhar destaque para turistas.
                 </p>
                 <div className="mt-auto flex flex-col gap-4">

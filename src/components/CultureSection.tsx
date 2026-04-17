@@ -53,7 +53,7 @@ const regions = [
 
 export default function CultureSection() {
   return (
-    <section className="py-24 bg-white">
+    <section className="py-24 bg-white dark:bg-slate-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <motion.span
@@ -68,7 +68,7 @@ export default function CultureSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-5xl font-bold tracking-tight text-slate-900 mb-4"
+            className="text-3xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white mb-4"
           >
             Explore por <span className="text-gradient">Região</span>
           </motion.h2>
@@ -77,7 +77,7 @@ export default function CultureSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-lg text-slate-600 max-w-2xl mx-auto"
+            className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto"
           >
             O Brasil é um mosaico de culturas, sabores e tradições. Descubra o que cada região tem de melhor para oferecer.
           </motion.p>

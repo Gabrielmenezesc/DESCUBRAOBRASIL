@@ -26,11 +26,11 @@ export default function HowItWorksSection() {
   ];
 
   return (
-    <section className="py-24 relative overflow-hidden bg-white">
+    <section className="py-24 relative overflow-hidden bg-white dark:bg-slate-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         <div className="text-center mb-20">
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-slate-900 mb-6">
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white mb-6">
             Como <span className="text-gradient">Funciona?</span>
           </h2>
         </div>
@@ -49,11 +49,11 @@ export default function HowItWorksSection() {
               transition={{ delay: step.delay, duration: 0.5 }}
               className="relative z-10 flex flex-col items-center text-center group"
             >
-              <div className="w-20 h-20 rounded-2xl bg-white shadow-xl shadow-slate-200/50 flex items-center justify-center mb-6 border border-emerald-100 group-hover:scale-110 transition-transform duration-300 glow-primary">
+              <div className="w-20 h-20 rounded-2xl bg-white dark:bg-slate-900 shadow-xl shadow-slate-200/50 flex items-center justify-center mb-6 border border-emerald-100 group-hover:scale-110 transition-transform duration-300 glow-primary">
                 {step.icon}
               </div>
-              <h3 className="text-2xl font-bold mb-3 text-slate-900">{step.title}</h3>
-              <p className="text-slate-600 max-w-sm">
+              <h3 className="text-2xl font-bold mb-3 text-slate-900 dark:text-white">{step.title}</h3>
+              <p className="text-slate-600 dark:text-slate-300 max-w-sm">
                 {step.desc}
               </p>
             </motion.div>

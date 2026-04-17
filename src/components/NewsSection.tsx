@@ -60,7 +60,7 @@ export default function NewsSection({ limit, showFilters = false }: { limit?: nu
             <div className="relative">
               <button
                 onClick={() => setShowStateDropdown(!showStateDropdown)}
-                className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 transition-colors text-sm font-semibold text-slate-700 shadow-sm"
+                className="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-slate-200 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:bg-slate-800/50 transition-colors text-sm font-semibold text-slate-700 dark:text-slate-200 shadow-sm"
               >
                 <MapPin className="w-4 h-4 text-emerald-500" />
                 {selectedState 
@@ -72,10 +72,10 @@ export default function NewsSection({ limit, showFilters = false }: { limit?: nu
               </button>
 
               {showStateDropdown && (
-                <div className="absolute top-full left-0 mt-2 w-72 max-h-80 overflow-y-auto bg-white border border-slate-200 rounded-xl shadow-xl z-50">
+                <div className="absolute top-full left-0 mt-2 w-72 max-h-80 overflow-y-auto bg-white dark:bg-slate-900 border border-slate-200 rounded-xl shadow-xl z-50">
                   <button
                     onClick={() => { setSelectedState(""); setShowStateDropdown(false); }}
-                    className="w-full text-left px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-emerald-50 transition-colors border-b border-slate-100"
+                    className="w-full text-left px-4 py-2.5 text-sm font-semibold text-slate-700 dark:text-slate-200 hover:bg-emerald-50 transition-colors border-b border-slate-100"
                   >
                     🌍 Todos os estados
                   </button>
@@ -92,7 +92,7 @@ export default function NewsSection({ limit, showFilters = false }: { limit?: nu
                       key={state.code}
                       onClick={() => { setSelectedState(state.code); setShowStateDropdown(false); }}
                       className={`w-full text-left px-4 py-2 text-sm hover:bg-emerald-50 transition-colors flex items-center justify-between ${
-                        selectedState === state.code ? "bg-emerald-50 text-emerald-700 font-bold" : "text-slate-600"
+                        selectedState === state.code ? "bg-emerald-50 text-emerald-700 font-bold" : "text-slate-600 dark:text-slate-300"
                       }`}
                     >
                       <span>{state.name}</span>
@@ -113,7 +113,7 @@ export default function NewsSection({ limit, showFilters = false }: { limit?: nu
               </span>
               <button
                 onClick={refetch}
-                className="p-2 rounded-lg hover:bg-slate-100 transition-colors text-slate-400 hover:text-emerald-500"
+                className="p-2 rounded-lg hover:bg-slate-100 dark:bg-slate-800 transition-colors text-slate-400 hover:text-emerald-500"
                 title="Atualizar agora"
               >
                 <RefreshCw className={`w-4 h-4 ${loading ? "animate-spin" : ""}`} />
@@ -131,7 +131,7 @@ export default function NewsSection({ limit, showFilters = false }: { limit?: nu
                 className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all ${
                   selectedCategory === cat
                     ? "bg-emerald-500 text-white shadow-sm"
-                    : "bg-slate-100 text-slate-500 hover:bg-slate-200"
+                    : "bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:bg-slate-200"
                 }`}
               >
                 {cat}
@@ -145,11 +145,11 @@ export default function NewsSection({ limit, showFilters = false }: { limit?: nu
       {loading ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {Array.from({ length: limit || 6 }).map((_, i) => (
-            <div key={i} className="bg-white rounded-2xl overflow-hidden shadow-lg animate-pulse">
+            <div key={i} className="bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-lg animate-pulse">
               <div className="h-48 bg-slate-200" />
               <div className="p-5 space-y-3">
                 <div className="h-4 bg-slate-200 rounded w-3/4" />
-                <div className="h-3 bg-slate-100 rounded w-full" />
+                <div className="h-3 bg-slate-100 dark:bg-slate-800 rounded w-full" />
               </div>
             </div>
           ))}
@@ -175,7 +175,7 @@ export default function NewsSection({ limit, showFilters = false }: { limit?: nu
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.05 }}
-                  className="group block bg-white rounded-2xl overflow-hidden shadow-lg shadow-slate-200/50 border border-slate-100 hover:shadow-xl hover:shadow-emerald-100/50 transition-all hover:-translate-y-1"
+                  className="group block bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-lg shadow-slate-200/50 border border-slate-100 hover:shadow-xl hover:shadow-emerald-100/50 transition-all hover:-translate-y-1"
                 >
                   <div className="relative h-48 overflow-hidden">
                     <div
@@ -214,16 +214,16 @@ export default function NewsSection({ limit, showFilters = false }: { limit?: nu
 
                     {/* External link indicator */}
                     <div className="absolute top-3 right-3 w-8 h-8 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                      <ExternalLink className="w-4 h-4 text-slate-600" />
+                      <ExternalLink className="w-4 h-4 text-slate-600 dark:text-slate-300" />
                     </div>
                   </div>
                   
                   <div className="p-5">
-                    <h3 className="font-bold text-slate-900 leading-snug group-hover:text-emerald-600 transition-colors mb-2">
+                    <h3 className="font-bold text-slate-900 dark:text-white leading-snug group-hover:text-emerald-600 transition-colors mb-2">
                       {news.title}
                     </h3>
                     {news.description && (
-                      <p className="text-sm text-slate-500 leading-relaxed line-clamp-2">
+                      <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed line-clamp-2">
                         {news.description}
                       </p>
                     )}

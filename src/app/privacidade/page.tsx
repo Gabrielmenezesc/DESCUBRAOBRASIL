@@ -7,16 +7,16 @@ export const metadata: Metadata = {
 
 export default function PrivacidadePage() {
   return (
-    <main className="min-h-screen bg-white pt-24 pb-16">
+    <main className="min-h-screen bg-white dark:bg-slate-900 pt-24 pb-16">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="text-4xl font-extrabold text-slate-900 mb-8 tracking-tight">
+        <h1 className="text-4xl font-extrabold text-slate-900 dark:text-white mb-8 tracking-tight">
           Política de Privacidade
         </h1>
         <p className="text-sm text-slate-400 mb-8">Última atualização: Março de 2026</p>
 
-        <div className="prose prose-slate max-w-none space-y-6 text-slate-700 leading-relaxed">
+        <div className="prose prose-slate max-w-none space-y-6 text-slate-700 dark:text-slate-200 leading-relaxed">
           <section>
-            <h2 className="text-2xl font-bold text-slate-900 mb-3">1. Informações que Coletamos</h2>
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-3">1. Informações que Coletamos</h2>
             <p>A plataforma Descubra o Brasil pode coletar as seguintes informações:</p>
             <ul className="list-disc pl-6 space-y-2 mt-2">
               <li><strong>Dados de navegação:</strong> páginas visitadas, tempo de permanência, tipo de dispositivo e navegador</li>
@@ -27,7 +27,7 @@ export default function PrivacidadePage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-slate-900 mb-3">2. Como Usamos Seus Dados</h2>
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-3">2. Como Usamos Seus Dados</h2>
             <p>Utilizamos suas informações exclusivamente para:</p>
             <ul className="list-disc pl-6 space-y-2 mt-2">
               <li>Personalizar sua experiência na plataforma</li>
@@ -38,7 +38,7 @@ export default function PrivacidadePage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-slate-900 mb-3">3. Compartilhamento de Dados</h2>
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-3">3. Compartilhamento de Dados</h2>
             <p>Não vendemos, alugamos ou compartilhamos seus dados pessoais com terceiros para fins comerciais. Seus dados podem ser compartilhados apenas com:</p>
             <ul className="list-disc pl-6 space-y-2 mt-2">
               <li>Provedores de serviço essenciais ao funcionamento da plataforma</li>
@@ -47,12 +47,12 @@ export default function PrivacidadePage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-slate-900 mb-3">4. Cookies e Armazenamento Local</h2>
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-3">4. Cookies e Armazenamento Local</h2>
             <p>Utilizamos cookies e armazenamento local (localStorage) para manter suas preferências (como tipo de público selecionado) e garantir o funcionamento do Service Worker (PWA). Você pode gerenciar cookies nas configurações do seu navegador.</p>
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-slate-900 mb-3">5. Seus Direitos (LGPD)</h2>
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-3">5. Seus Direitos (LGPD)</h2>
             <p>De acordo com a Lei Geral de Proteção de Dados (LGPD), você tem direito a:</p>
             <ul className="list-disc pl-6 space-y-2 mt-2">
               <li>Acessar seus dados pessoais</li>
@@ -63,7 +63,7 @@ export default function PrivacidadePage() {
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-slate-900 mb-3">6. Contato do Encarregado de Dados</h2>
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-3">6. Contato do Encarregado de Dados</h2>
             <p>Para exercer seus direitos ou esclarecer dúvidas sobre esta política, entre em contato:</p>
             <p className="mt-2">
               <strong>E-mail:</strong>{" "}

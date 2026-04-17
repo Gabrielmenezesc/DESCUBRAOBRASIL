@@ -35,7 +35,7 @@ const plans = [
 
 export default function PlansSection() {
   return (
-    <section id="plans" className="py-24 relative overflow-hidden bg-white">
+    <section id="plans" className="py-24 relative overflow-hidden bg-white dark:bg-slate-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         <div className="text-center mb-16">
@@ -43,11 +43,11 @@ export default function PlansSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-5xl font-extrabold tracking-tight text-slate-900 mb-6"
+            className="text-3xl md:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-6"
           >
             Invista no seu <span className="text-gradient">Sucesso Digital</span>
           </motion.h2>
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+          <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
             Planos flexíveis que acompanham o crescimento do seu negócio. Escolha o ideal para você.
           </p>
         </div>
@@ -64,7 +64,7 @@ export default function PlansSection() {
               className={`relative flex flex-col p-8 rounded-[2.5rem] transition-all duration-500 ${
                 plan.popular 
                 ? "bg-slate-900 text-white scale-105 shadow-2xl shadow-emerald-500/20 z-10 ring-4 ring-emerald-500/20" 
-                : "bg-white text-slate-900 border border-slate-100 shadow-xl shadow-slate-200"
+                : "bg-white dark:bg-slate-900 text-slate-900 dark:text-white border border-slate-100 shadow-xl shadow-slate-200"
               }`}
             >
               {plan.popular && (
@@ -83,14 +83,14 @@ export default function PlansSection() {
                   <plan.icon className="w-7 h-7" />
                 </div>
                 <h3 className="text-2xl font-black mb-2">{plan.name}</h3>
-                <p className={`text-sm leading-relaxed ${plan.popular ? "text-slate-400" : "text-slate-500"}`}>
+                <p className={`text-sm leading-relaxed ${plan.popular ? "text-slate-400" : "text-slate-500 dark:text-slate-400"}`}>
                   {plan.desc}
                 </p>
               </div>
 
               <div className="mb-10 flex items-baseline gap-1">
                 <span className="text-4xl font-black">{plan.price}</span>
-                {plan.price !== "Sob Consulta" && <span className={`text-sm ${plan.popular ? "text-slate-500" : "text-slate-400"}`}>/projeto</span>}
+                {plan.price !== "Sob Consulta" && <span className={`text-sm ${plan.popular ? "text-slate-500 dark:text-slate-400" : "text-slate-400"}`}>/projeto</span>}
               </div>
 
               <ul className="space-y-4 mb-10 flex-grow">
@@ -101,7 +101,7 @@ export default function PlansSection() {
                     }`}>
                       <Check className="w-3 h-3" />
                     </div>
-                    <span className={`text-sm font-medium ${plan.popular ? "text-slate-300" : "text-slate-700"}`}>{feat}</span>
+                    <span className={`text-sm font-medium ${plan.popular ? "text-slate-300" : "text-slate-700 dark:text-slate-200"}`}>{feat}</span>
                   </li>
                 ))}
               </ul>

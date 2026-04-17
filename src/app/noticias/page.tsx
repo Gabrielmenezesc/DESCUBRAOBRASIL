@@ -24,7 +24,7 @@ export default function NoticiasPage() {
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-6xl font-extrabold text-slate-900 tracking-tight mb-4"
+            className="text-4xl md:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4"
           >
             Turismo no <span className="text-gradient">Brasil</span>
           </motion.h1>
@@ -32,7 +32,7 @@ export default function NoticiasPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-lg text-slate-600 max-w-2xl mx-auto"
+            className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto"
           >
             Notícias de turismo, viagem, cultura e destinos de cada estado do Brasil.
             Filtradas automaticamente — sem política. Atualizadas a cada 30 minutos.

@@ -58,13 +58,13 @@ export default function PartnersSection() {
             <Shield className="w-4 h-4" />
             ECOSSISTEMA DE PARCEIROS OFICIAIS
           </span>
-          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-slate-900 mb-4">
+          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-4">
             Quem Caminha{" "}
             <span className="bg-gradient-to-r from-emerald-500 to-blue-500 bg-clip-text text-transparent">
               Conosco
             </span>
           </h2>
-          <p className="text-lg text-slate-500 max-w-2xl mx-auto">
+          <p className="text-lg text-slate-500 dark:text-slate-400 max-w-2xl mx-auto">
             Organizações e empresas que apoiam o turismo nacional e a democratização da informação no Brasil.
           </p>
         </motion.div>
@@ -107,8 +107,8 @@ export default function PartnersSection() {
                 {p.category}
               </span>
 
-              <h3 className="text-xl font-bold text-slate-900 mb-2">{p.name}</h3>
-              <p className="text-sm text-slate-500 leading-relaxed">{p.desc}</p>
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">{p.name}</h3>
+              <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">{p.desc}</p>
 
               {/* Bottom shine line */}
               <div

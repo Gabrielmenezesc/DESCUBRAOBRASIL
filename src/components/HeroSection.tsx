@@ -41,20 +41,39 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 text-slate-900"
+          className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 text-slate-900 dark:text-white"
         >
-          Descubra o Brasil <br />
-          <span className="text-gradient">De Norte a Sul</span>
+          Descubra o Melhor <br />
+          <span className="text-gradient">do Brasil</span>
         </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="mt-6 text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto mb-10 font-medium leading-relaxed"
+          className="mt-6 text-xl md:text-2xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto mb-8 font-medium leading-relaxed"
         >
-          Explore os melhores destinos de viagem, conheça a cultura de cada estado, encontre lugares gratuitos para visitar e acompanhe notícias de turismo atualizadas em tempo real.
+          Destinos, viagens, experiências e dicas em um só lugar.
         </motion.p>
+        
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="max-w-2xl mx-auto mb-10 relative"
+        >
+          <div className="glass flex items-center p-2 rounded-full shadow-lg border border-emerald-200/50 dark:border-emerald-500/30 bg-white/60 dark:bg-slate-900/60 backdrop-blur-md">
+            <MapPin className="w-6 h-6 text-emerald-500 ml-4 hidden sm:block" />
+            <input 
+              type="text" 
+              placeholder="Buscar cidade, estado ou destino..." 
+              className="w-full bg-transparent border-none outline-none px-4 py-3 text-slate-800 dark:text-slate-200 placeholder-slate-400 dark:placeholder-slate-500 font-medium text-lg"
+            />
+            <button className="bg-gradient-to-r from-emerald-500 to-emerald-400 text-white px-6 py-3 rounded-full font-bold shadow-md shadow-emerald-500/20 hover:scale-105 transition-transform flex items-center gap-2">
+              Buscar
+            </button>
+          </div>
+        </motion.div>
         
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
@@ -63,18 +82,20 @@ export default function HeroSection() {
           className="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
           <a 
-            href="#noticias"
-            className="group flex items-center gap-2 bg-gradient-to-r from-emerald-500 to-emerald-400 text-white px-8 py-4 rounded-full font-bold text-lg transition-all transform hover:scale-105 hover:shadow-[0_0_30px_rgba(16,185,129,0.4)] w-full sm:w-auto justify-center shadow-lg shadow-emerald-500/30"
+            href="#turismo"
+            className="group flex items-center gap-2 glass-card border border-emerald-300 text-emerald-800 dark:text-emerald-100 hover:bg-emerald-50 dark:hover:bg-emerald-900/30 px-8 py-4 rounded-full font-bold text-lg transition-all transform hover:scale-105 w-full sm:w-auto justify-center"
           >
             <Compass className="w-5 h-5" />
-            Ver Notícias de Turismo
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            Explorar destinos
           </a>
           
-          <a href="#turismo" className="group flex items-center gap-2 glass text-slate-800 hover:bg-slate-50 hover:shadow-lg px-8 py-4 rounded-full font-bold text-lg transition-all w-full sm:w-auto justify-center">
-            Ver Destinos
-            <ArrowRight className="w-5 h-5 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
-          </a>
+          <button 
+             onClick={() => document.getElementById('maya-chat-button')?.click()}
+             className="group flex items-center gap-2 bg-slate-900 dark:bg-white dark:bg-slate-900 text-white dark:text-slate-900 dark:text-white px-8 py-4 rounded-full font-bold text-lg transition-all transform hover:scale-105 w-full sm:w-auto justify-center shadow-xl shadow-slate-900/20"
+          >
+            Falar com Maya
+            <Sparkles className="w-5 h-5 ml-1 text-emerald-400" />
+          </button>
         </motion.div>
       </div>
     </section>

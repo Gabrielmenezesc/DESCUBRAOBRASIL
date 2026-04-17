@@ -90,7 +90,7 @@ const typeColors: Record<string, string> = {
 
 export default function FreeAttractionsSection() {
   return (
-    <section className="py-24 bg-slate-50">
+    <section className="py-24 bg-slate-50 dark:bg-slate-800/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <motion.span
@@ -105,7 +105,7 @@ export default function FreeAttractionsSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-5xl font-bold tracking-tight text-slate-900 mb-4"
+            className="text-3xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white mb-4"
           >
             Lugares <span className="text-gradient">Gratuitos</span> para Visitar
           </motion.h2>
@@ -114,7 +114,7 @@ export default function FreeAttractionsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-lg text-slate-600 max-w-2xl mx-auto"
+            className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto"
           >
             Viajar pelo Brasil não precisa ser caro. Confira atrações incríveis sem gastar nada.
           </motion.p>
@@ -128,7 +128,7 @@ export default function FreeAttractionsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.05 }}
-              className="group bg-white rounded-2xl overflow-hidden shadow-md shadow-slate-200/50 border border-slate-100 hover:shadow-xl transition-all hover:-translate-y-1"
+              className="group bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-md shadow-slate-200/50 border border-slate-100 hover:shadow-xl transition-all hover:-translate-y-1"
             >
               <div className="relative h-40 overflow-hidden">
                 <div
@@ -139,7 +139,7 @@ export default function FreeAttractionsSection() {
                 
                 {/* Type badge */}
                 <div className="absolute top-2 left-2">
-                  <span className={`${typeColors[att.type] || "bg-slate-100 text-slate-700"} px-2 py-0.5 rounded-full text-[10px] font-bold`}>
+                  <span className={`${typeColors[att.type] || "bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200"} px-2 py-0.5 rounded-full text-[10px] font-bold`}>
                     {att.type}
                   </span>
                 </div>
@@ -154,14 +154,14 @@ export default function FreeAttractionsSection() {
               </div>
               
               <div className="p-4">
-                <h3 className="font-bold text-slate-900 text-sm leading-snug mb-1 group-hover:text-emerald-600 transition-colors">
+                <h3 className="font-bold text-slate-900 dark:text-white text-sm leading-snug mb-1 group-hover:text-emerald-600 transition-colors">
                   {att.name}
                 </h3>
                 <div className="flex items-center gap-1 text-xs text-slate-400 mb-2">
                   <MapPin className="w-3 h-3" />
                   {att.city}, {att.state}
                 </div>
-                <p className="text-xs text-slate-500 leading-relaxed">{att.description}</p>
+                <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">{att.description}</p>
               </div>
             </motion.div>
           ))}

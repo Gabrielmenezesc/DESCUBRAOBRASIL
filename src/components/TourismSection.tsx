@@ -26,7 +26,7 @@ export default function TourismSection() {
   ];
 
   return (
-    <section id="tourism" className="py-24 relative bg-slate-50">
+    <section id="tourism" className="py-24 relative bg-slate-50 dark:bg-slate-800/50">
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
@@ -35,7 +35,7 @@ export default function TourismSection() {
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="text-3xl md:text-5xl font-bold tracking-tight mb-4 text-slate-900"
+              className="text-3xl md:text-5xl font-bold tracking-tight mb-4 text-slate-900 dark:text-white"
             >
               Destinos em <span className="text-gradient">Alta</span>
             </motion.h2>
@@ -44,7 +44,7 @@ export default function TourismSection() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="text-lg text-slate-600"
+              className="text-lg text-slate-600 dark:text-slate-300"
             >
               A IA Maya pré-configurou os roteiros perfeitos para estes locais. Visite-os no app.
             </motion.p>

@@ -30,7 +30,7 @@ export default function PortfolioSection() {
   };
 
   return (
-    <section className="py-24 relative overflow-hidden bg-slate-50">
+    <section className="py-24 relative overflow-hidden bg-slate-50 dark:bg-slate-800/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         <div className="text-center mb-16">
@@ -38,7 +38,7 @@ export default function PortfolioSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-5xl font-extrabold tracking-tight text-slate-900 mb-6"
+            className="text-3xl md:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-6"
           >
             Portfólio de <span className="text-gradient">Impacto</span>
           </motion.h2>
@@ -47,7 +47,7 @@ export default function PortfolioSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-lg text-slate-600 max-w-2xl mx-auto"
+            className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto"
           >
             Confira alguns de nossos trabalhos e a transformação que geramos para nossos parceiros.
           </motion.p>
@@ -87,8 +87,8 @@ export default function PortfolioSection() {
         {/* Before/After SliderSection */}
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-10">
-            <h3 className="text-2xl font-bold text-slate-900">Transformação Real</h3>
-            <p className="text-slate-500 text-sm mt-2">Arraste para ver o poder do nosso design.</p>
+            <h3 className="text-2xl font-bold text-slate-900 dark:text-white">Transformação Real</h3>
+            <p className="text-slate-500 dark:text-slate-400 text-sm mt-2">Arraste para ver o poder do nosso design.</p>
           </div>
 
           <div className="relative aspect-[16/9] rounded-3xl overflow-hidden shadow-2xl shadow-slate-300 border border-white">
@@ -118,10 +118,10 @@ export default function PortfolioSection() {
               className="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-20"
             />
             <div 
-              className="absolute top-0 bottom-0 w-1 bg-white shadow-lg pointer-events-none z-10"
+              className="absolute top-0 bottom-0 w-1 bg-white dark:bg-slate-900 shadow-lg pointer-events-none z-10"
               style={{ left: `${sliderPos}%` }}
             >
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-xl border border-slate-200">
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white dark:bg-slate-900 flex items-center justify-center shadow-xl border border-slate-200">
                 <div className="flex gap-1">
                   <div className="w-1 h-3 bg-slate-300 rounded-full" />
                   <div className="w-1 h-3 bg-slate-300 rounded-full" />

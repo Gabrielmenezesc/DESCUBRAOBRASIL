@@ -64,7 +64,7 @@ export default function TurismoPage() {
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-6xl font-extrabold text-slate-900 tracking-tight mb-4"
+            className="text-4xl md:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4"
           >
             Destinos <span className="text-gradient">Incríveis</span>
           </motion.h1>
@@ -72,7 +72,7 @@ export default function TurismoPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-lg text-slate-600 max-w-2xl mx-auto mb-8"
+            className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto mb-8"
           >
             Explore os melhores destinos do Brasil. Para uma experiência completa com roteiros, mapas e Maya AI, abra nosso app.
           </motion.p>
@@ -94,9 +94,9 @@ export default function TurismoPage() {
       <TourismSection />
 
       {/* Extra Destinations */}
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-white dark:bg-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-12 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-12 text-center">
             Mais Destinos para <span className="text-gradient">Descobrir</span>
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

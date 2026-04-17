@@ -121,7 +121,7 @@ export default function ServicosPage() {
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-6xl font-extrabold text-slate-900 tracking-tight mb-6"
+            className="text-4xl md:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-6"
           >
             Tudo para sua <span className="text-gradient">Viagem</span> pelo Brasil
           </motion.h1>
@@ -129,7 +129,7 @@ export default function ServicosPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed"
+            className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed"
           >
             Dicas práticas, melhores épocas, gastronomia regional, roteiros gratuitos e guias rápidos por estado para você aproveitar ao máximo.
           </motion.p>
@@ -137,7 +137,7 @@ export default function ServicosPage() {
       </section>
 
       {/* Tips Cards */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-white dark:bg-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {tips.map((tip, i) => (
@@ -147,13 +147,13 @@ export default function ServicosPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className={`p-8 rounded-3xl border ${tip.border} bg-white hover:shadow-xl transition-all group`}
+                className={`p-8 rounded-3xl border ${tip.border} bg-white dark:bg-slate-900 hover:shadow-xl transition-all group`}
               >
                 <div className={`w-14 h-14 rounded-2xl ${tip.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
                   <tip.icon className="w-7 h-7" />
                 </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-3">{tip.title}</h3>
-                <p className="text-slate-600 leading-relaxed">{tip.desc}</p>
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">{tip.title}</h3>
+                <p className="text-slate-600 dark:text-slate-300 leading-relaxed">{tip.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -161,12 +161,12 @@ export default function ServicosPage() {
       </section>
 
       {/* State Quick Guides */}
-      <section className="py-20 bg-slate-50">
+      <section className="py-20 bg-slate-50 dark:bg-slate-800/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4 text-center">
             Guia Rápido por <span className="text-gradient">Estado</span>
           </h2>
-          <p className="text-slate-500 text-center mb-12 max-w-2xl mx-auto">
+          <p className="text-slate-500 dark:text-slate-400 text-center mb-12 max-w-2xl mx-auto">
             Destinos top, melhor época e atrações gratuitas nos estados mais procurados
           </p>
 
@@ -178,7 +178,7 @@ export default function ServicosPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="bg-white rounded-2xl overflow-hidden shadow-md border border-slate-100 hover:shadow-xl transition-all"
+                className="bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-md border border-slate-100 hover:shadow-xl transition-all"
               >
                 <div className="relative h-40 overflow-hidden">
                   <div
@@ -194,7 +194,7 @@ export default function ServicosPage() {
                 <div className="p-5 space-y-3">
                   <div>
                     <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Top destinos</span>
-                    <p className="text-sm text-slate-700 font-medium">{guide.top}</p>
+                    <p className="text-sm text-slate-700 dark:text-slate-200 font-medium">{guide.top}</p>
                   </div>
                   <div>
                     <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1">
@@ -204,7 +204,7 @@ export default function ServicosPage() {
                   </div>
                   <div>
                     <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">💰 Gratuito</span>
-                    <p className="text-sm text-slate-600">{guide.free}</p>
+                    <p className="text-sm text-slate-600 dark:text-slate-300">{guide.free}</p>
                   </div>
                 </div>
               </motion.div>
@@ -214,12 +214,12 @@ export default function ServicosPage() {
       </section>
 
       {/* CTA to Contact */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-white dark:bg-slate-900">
         <div className="max-w-3xl mx-auto px-4 text-center">
-          <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-4">
+          <h2 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-4">
             Precisa de ajuda para planejar?
           </h2>
-          <p className="text-slate-600 mb-8">
+          <p className="text-slate-600 dark:text-slate-300 mb-8">
             Nosso time vive e respira turismo. Fale com a gente no WhatsApp!
           </p>
           <a

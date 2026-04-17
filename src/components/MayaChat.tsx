@@ -151,7 +151,7 @@ export default function MayaChat() {
     setShowProactiveHint(false);
     if (!started) {
       setStarted(true);
-      const greeting = "Olá! Eu sou a Maya 🦖, a inteligência artificial do Descubra o Brasil.\n\nComo posso ajudar a planejar a sua próxima viagem inesquecível pelo país?";
+      const greeting = "Olá ✨ Sou Maya.\n\nSua especialista em turismo no Brasil.\nPara onde vamos hoje?";
       
       setMessages([{
         from: "maya",
@@ -197,7 +197,7 @@ export default function MayaChat() {
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, scale: 0.9 }}
-                className="bg-white rounded-2xl shadow-xl p-3 pr-8 relative cursor-pointer group hover:scale-105 transition-transform max-w-[250px]"
+                className="bg-white dark:bg-slate-900 rounded-2xl shadow-xl p-3 pr-8 relative cursor-pointer group hover:scale-105 transition-transform max-w-[250px]"
                 onClick={openChat}
               >
                 <button
@@ -211,8 +211,8 @@ export default function MayaChat() {
                     <img src="/logo-descubra.png" alt="Maya Avatar" className="w-full h-full object-cover" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-xs text-slate-800">Maya</h4>
-                    <p className="text-xs text-slate-600 font-medium">Bora planejar sua viagem das férias? ✈️</p>
+                    <h4 className="font-bold text-xs text-slate-800 dark:text-slate-100">Maya</h4>
+                    <p className="text-xs text-slate-600 dark:text-slate-300 font-medium">Bora planejar sua viagem das férias? ✈️</p>
                   </div>
                 </div>
               </motion.div>
@@ -251,7 +251,7 @@ export default function MayaChat() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 50, scale: 0.95 }}
             transition={{ type: "spring", stiffness: 300, damping: 25 }}
-            className="fixed bottom-4 right-4 z-[9999] w-full max-w-[calc(100vw-2rem)] sm:max-w-[400px] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-slate-100"
+            className="fixed bottom-4 right-4 z-[9999] w-full max-w-[calc(100vw-2rem)] sm:max-w-[400px] bg-white dark:bg-slate-900 rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-slate-100"
             style={{ maxHeight: 'min(700px, calc(100vh - 2rem))', height: '600px' }}
             id="maya-chat-window"
           >
@@ -259,7 +259,7 @@ export default function MayaChat() {
             <div className="bg-emerald-600 p-4 flex items-center justify-between shadow-md relative z-10">
               <div className="flex items-center gap-3">
                 <div className="relative">
-                  <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center p-0.5 shadow-inner">
+                  <div className="w-10 h-10 rounded-full bg-white dark:bg-slate-900 flex items-center justify-center p-0.5 shadow-inner">
                     <img src="/logo-descubra.png" alt="Maya" className="w-full h-full object-cover rounded-full" />
                   </div>
                   <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-400 rounded-full border-2 border-emerald-600"></div>
@@ -310,8 +310,8 @@ export default function MayaChat() {
                             msg.from === "user"
                               ? "bg-slate-800 text-white rounded-br-sm"
                               : msg.isAI
-                                ? "bg-blue-50 text-slate-800 border-l-4 border-l-blue-400 rounded-bl-sm"
-                                : "bg-white border border-slate-100 text-slate-700 rounded-bl-sm"
+                                ? "bg-blue-50 text-slate-800 dark:text-slate-100 border-l-4 border-l-blue-400 rounded-bl-sm"
+                                : "bg-white dark:bg-slate-900 border border-slate-100 text-slate-700 dark:text-slate-200 rounded-bl-sm"
                           }`}
                         >
                           {msg.from === "maya" ? (
@@ -344,7 +344,7 @@ export default function MayaChat() {
                       <div className="w-6 h-6 min-w-[24px] rounded-full bg-emerald-100 flex items-center justify-center overflow-hidden">
                         <img src="/logo-descubra.png" alt="Maya" className="w-full h-full object-cover" />
                       </div>
-                      <div className="bg-white border text-center border-slate-100 px-4 py-3 rounded-2xl rounded-bl-sm shadow-sm flex items-center gap-1.5 min-w-[100px]">
+                      <div className="bg-white dark:bg-slate-900 border text-center border-slate-100 px-4 py-3 rounded-2xl rounded-bl-sm shadow-sm flex items-center gap-1.5 min-w-[100px]">
                         <Bot className="w-4 h-4 text-emerald-500 animate-pulse" />
                         <span className="flex gap-0.5">
                           <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-bounce [animation-delay:-0.3s]"></span>
@@ -360,7 +360,7 @@ export default function MayaChat() {
             </div>
 
             {/* Input Area */}
-            <div className="p-3 bg-slate-50 border-t border-slate-100">
+            <div className="p-3 bg-slate-50 dark:bg-slate-800/50 border-t border-slate-100">
               <div className="relative flex items-center gap-2">
                 <input
                   ref={inputRef}
@@ -370,13 +370,13 @@ export default function MayaChat() {
                   onKeyDown={(e) => e.key === "Enter" && handleUserMessage(inputText)}
                   placeholder={isSpeaking ? "Maya testá falando..." : "Digite sua mensagem..."}
                   disabled={isSpeaking || isTyping}
-                  className="w-full pl-4 pr-12 py-3 bg-white border border-slate-200 rounded-xl outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 shadow-sm text-[15px] transition-all disabled:opacity-50 disabled:bg-slate-100"
+                  className="w-full pl-4 pr-12 py-3 bg-white dark:bg-slate-900 border border-slate-200 rounded-xl outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 shadow-sm text-[15px] transition-all disabled:opacity-50 disabled:bg-slate-100 dark:bg-slate-800"
                 />
                 
                 {voiceEnabled && (
                   <button
                     onClick={toggleVoice}
-                    className={`absolute right-12 p-2 rounded-lg transition-colors ${isListening ? 'text-red-500 bg-red-50 animate-pulse' : 'text-slate-400 hover:text-emerald-500 hover:bg-slate-100'}`}
+                    className={`absolute right-12 p-2 rounded-lg transition-colors ${isListening ? 'text-red-500 bg-red-50 animate-pulse' : 'text-slate-400 hover:text-emerald-500 hover:bg-slate-100 dark:bg-slate-800'}`}
                     disabled={isSpeaking}
                   >
                     {isListening ? <MicOff className="w-4 h-4" /> : <Mic className="w-4 h-4" />}

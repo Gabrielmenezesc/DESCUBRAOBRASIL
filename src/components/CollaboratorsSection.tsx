@@ -25,7 +25,7 @@ const team = [
 
 export default function CollaboratorsSection() {
   return (
-    <section className="py-24 bg-white relative overflow-hidden">
+    <section className="py-24 bg-white dark:bg-slate-900 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -36,10 +36,10 @@ export default function CollaboratorsSection() {
           <span className="inline-block px-4 py-1.5 rounded-full bg-blue-50 text-blue-600 text-sm font-bold mb-4">
             NOSSA EQUIPE
           </span>
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-slate-900 mb-4">
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-slate-900 dark:text-white mb-4">
             Quem Faz o Brasil <span className="text-gradient">Acontecer</span>
           </h2>
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+          <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
             Uma equipe multidisciplinar apaixonada por tecnologia, turismo e transformação digital.
           </p>
         </motion.div>
@@ -62,8 +62,8 @@ export default function CollaboratorsSection() {
                   <span className="text-3xl font-extrabold text-white">{member.initials}</span>
                 </div>
               </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-1">{member.name}</h3>
-              <p className="text-sm text-slate-500 font-medium">{member.role}</p>
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-1">{member.name}</h3>
+              <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">{member.role}</p>
             </motion.div>
           ))}
         </div>

@@ -36,7 +36,7 @@ const webServices = [
 
 export default function WebDevSection() {
   return (
-    <section className="py-24 relative overflow-hidden bg-white">
+    <section className="py-24 relative overflow-hidden bg-white dark:bg-slate-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         <div className="text-center mb-20">
@@ -44,11 +44,11 @@ export default function WebDevSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-5xl font-extrabold tracking-tight text-slate-900 mb-6"
+            className="text-3xl md:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-6"
           >
             Criação de <span className="text-gradient">Sites Profissionais</span>
           </motion.h2>
-          <p className="text-lg text-slate-600 max-w-3xl mx-auto">
+          <p className="text-lg text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
             Criamos sites modernos, rápidos e profissionais que geram resultados reais para sua marca no ambiente digital.
           </p>
         </div>
@@ -86,24 +86,24 @@ export default function WebDevSection() {
                 <div className="w-12 h-12 rounded-2xl bg-slate-900 text-white flex items-center justify-center shadow-lg group-hover:glow-primary">
                   <svc.icon className="w-6 h-6" />
                 </div>
-                <h3 className="text-3xl font-extrabold text-slate-900 tracking-tight">{svc.title}</h3>
-                <p className="text-lg text-slate-600 leading-relaxed font-medium">
+                <h3 className="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">{svc.title}</h3>
+                <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
                   {svc.desc}
                 </p>
                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
-                  <li className="flex items-center gap-2 text-slate-900 font-bold text-sm">
+                  <li className="flex items-center gap-2 text-slate-900 dark:text-white font-bold text-sm">
                     <CheckCircle2 className="w-4 h-4 text-emerald-500" />
                     Design Exclusivo
                   </li>
-                  <li className="flex items-center gap-2 text-slate-900 font-bold text-sm">
+                  <li className="flex items-center gap-2 text-slate-900 dark:text-white font-bold text-sm">
                     <CheckCircle2 className="w-4 h-4 text-emerald-500" />
                     Foco em Conversão
                   </li>
-                  <li className="flex items-center gap-2 text-slate-900 font-bold text-sm">
+                  <li className="flex items-center gap-2 text-slate-900 dark:text-white font-bold text-sm">
                     <CheckCircle2 className="w-4 h-4 text-emerald-500" />
                     Suporte VIP
                   </li>
-                  <li className="flex items-center gap-2 text-slate-900 font-bold text-sm">
+                  <li className="flex items-center gap-2 text-slate-900 dark:text-white font-bold text-sm">
                     <CheckCircle2 className="w-4 h-4 text-emerald-500" />
                     SEO Otimizado
                   </li>

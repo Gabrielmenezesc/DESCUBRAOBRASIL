@@ -59,7 +59,7 @@ export default function PremiumPage() {
               </div>
               <h2 className="text-2xl font-bold mb-2 text-slate-800 dark:text-slate-100">Já sou Premium</h2>
               <p className="text-slate-500 dark:text-slate-400 mb-8">Acesse sua conta para visualizar roteiros e favoritos.</p>
-              <button className="w-full py-3 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold hover:scale-[1.02] transition-transform">
+              <button className="w-full py-3 rounded-xl bg-slate-900 dark:bg-white dark:bg-slate-900 text-white dark:text-slate-900 dark:text-white font-bold hover:scale-[1.02] transition-transform">
                 Fazer Login
               </button>
             </motion.div>

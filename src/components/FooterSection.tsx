@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Mail, MapPin, Phone, Camera, Globe } from "lucide-react";
+import { Mail, MapPin, Phone, Globe } from "lucide-react";
 
 export default function FooterSection() {
   return (
@@ -21,8 +21,8 @@ export default function FooterSection() {
               Explore com a gente.
             </p>
             <div className="flex gap-4">
-              <a href="https://instagram.com/descubraobrasiloficial" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-emerald-500 hover:text-white transition-colors border border-slate-700">
-                <Camera className="w-5 h-5" />
+              <a href="https://instagram.com/descubraobrasiloficial" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-emerald-500 hover:text-white dark:text-slate-900 transition-colors border border-slate-700 dark:border-slate-200">
+                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="css-i6dzq1"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
               </a>
               <a href="/app/index.html" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-emerald-500 hover:text-white transition-colors border border-slate-700">
                 <Globe className="w-5 h-5" />
@@ -65,7 +65,7 @@ export default function FooterSection() {
           <div>
             <h4 className="text-white font-bold mb-6 font-mono tracking-wider">BAIXE O APP</h4>
             <p className="text-sm mb-4">Escaneie o QR Code ou clique para baixar o app completo no seu celular.</p>
-            <a href="/app/index.html" target="_blank" rel="noopener noreferrer" className="inline-block bg-white p-2 rounded-xl group hover:scale-105 transition-transform">
+            <a href="/app/index.html" target="_blank" rel="noopener noreferrer" className="inline-block bg-white dark:bg-slate-900 p-2 rounded-xl group hover:scale-105 transition-transform">
               <img 
                 src={"https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://descubraobrasil.com/app/index.html"} 
                 alt="QR Code do App Descubra o Brasil" 
