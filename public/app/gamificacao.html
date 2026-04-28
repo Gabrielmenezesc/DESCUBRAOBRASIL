@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Descubra o Brasil App</title>
+    
+    <!-- PWA Setup -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#fcf8f2">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="images/icons/icon-192x192.png">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/gamificacao.css">
+    
+    <!-- Icons (Lucide) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <main class="app-container">
+        
+        <!-- Hero Section -->
+        <header class="hero-section" id="hero-section">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <div class="brand-logo">
+                    <img src="../logo-descubra.png" alt="Logo" class="logo-img" onerror="this.src='https://via.placeholder.com/150x40?text=Descubra+Brasil'">
+                </div>
+                <h2 class="welcome-text" id="welcome-text">Bem-vindo ao Brasil!</h2>
+            </div>
+            <div class="hero-bottom-text">
+                <h1>Escolha sua aventura!</h1>
+            </div>
+        </header>
+
+        <!-- Main Action Buttons -->
+        <section class="action-grid">
+            <button class="action-btn btn-red" onclick="alert('Gerando Roteiro...')">
+                <div class="btn-icon">🗺️🕒</div>
+                <h3 class="btn-title">Roteiros<br>Personalizados</h3>
+                <p class="btn-desc">Monte seu<br>passeio ideal</p>
+            </button>
+            
+            <button class="action-btn btn-blue" onclick="window.location.href='/app/ar.html'">
+                <div class="btn-icon">🔍🗿</div>
+                <h3 class="btn-title">Caça ao<br>Tesouro AR</h3>
+                <p class="btn-desc">Descubra<br>segredos da cidade</p>
+            </button>
+            
+            <button class="action-btn btn-orange" onclick="alert('Buscando ofertas...')">
+                <div class="btn-icon">🛍️%</div>
+                <h3 class="btn-title">Ofertas<br>Locais</h3>
+                <p class="btn-desc">Descontos em<br>restaurantes & lojas</p>
+            </button>
+        </section>
+
+        <!-- Daily Challenges -->
+        <section class="challenges-section">
+            <div class="section-header">
+                <h2>Desafios de Hoje</h2>
+            </div>
+            
+            <div class="challenge-banner">
+                <div class="challenge-bg"></div>
+                <div class="challenge-content">
+                    <div class="challenge-text">
+                        <h3>Descubra o<br>Monumento</h3>
+                    </div>
+                    <div class="challenge-reward">
+                        <span class="xp-value">+100 XP</span>
+                        <span class="xp-icon">🌟</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Must See Places Carousel -->
+        <section class="places-section">
+            <div class="section-header">
+                <h2>Lugares Imperdíveis</h2>
+                <div class="dots-indicator">
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                </div>
+            </div>
+            
+            <div class="places-carousel" id="places-carousel">
+                <!-- Injetado dinamicamente via JS -->
+                <div class="place-card skeleton"></div>
+                <div class="place-card skeleton"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item active">
+            <i data-lucide="home"></i>
+            <span>Início</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i data-lucide="map"></i>
+            <span>Mapa</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i data-lucide="crosshair"></i>
+            <span>Missões</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i data-lucide="ticket"></i>
+            <span>Passes</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i data-lucide="user"></i>
+            <span>Perfil</span>
+        </a>
+    </nav>
+
+    <!-- App Logic -->
+    <script src="js/gamificacao.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
