@@ -12,43 +12,43 @@ const tips = [
     icon: Calendar,
     title: "Melhor Época para Viajar",
     desc: "O Nordeste é incrível o ano todo. O Sul brilha no inverno. A Amazônia é ideal de junho a novembro (seca). O Sudeste aquece de dezembro a março.",
-    color: "bg-blue-50 text-blue-600",
-    border: "border-blue-100",
+    color: "bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400",
+    border: "border-blue-100 dark:border-blue-800",
   },
   {
     icon: DollarSign,
     title: "Viaje Gastando Pouco",
     desc: "Use ônibus interestaduais, pousadas familiares, e explore atrações gratuitas como parques nacionais, praias e centros históricos.",
-    color: "bg-emerald-50 text-emerald-600",
-    border: "border-emerald-100",
+    color: "bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400",
+    border: "border-emerald-100 dark:border-emerald-800",
   },
   {
     icon: Map,
     title: "Roteiros por Estado",
     desc: "De Roraima ao Rio Grande do Sul — cada estado tem circuitos turísticos completos. Monte seu roteiro por região e aproveite mais.",
-    color: "bg-amber-50 text-amber-600",
-    border: "border-amber-100",
+    color: "bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400",
+    border: "border-amber-100 dark:border-amber-800",
   },
   {
     icon: Utensils,
     title: "Gastronomia Regional",
     desc: "Acarajé na Bahia, churrasco no RS, tacacá no Pará, pão de queijo em MG, barreado no PR — o Brasil é um festival de sabores.",
-    color: "bg-rose-50 text-rose-600",
-    border: "border-rose-100",
+    color: "bg-rose-50 dark:bg-rose-900/20 text-rose-600 dark:text-rose-400",
+    border: "border-rose-100 dark:border-rose-800",
   },
   {
     icon: Backpack,
     title: "O que Levar na Mala",
     desc: "Protetor solar sempre! Para o Norte/Nordeste: roupas leves. Para o Sul: agasalhos no inverno. Para trilhas: tênis reforçado e água.",
-    color: "bg-purple-50 text-purple-600",
-    border: "border-purple-100",
+    color: "bg-purple-50 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400",
+    border: "border-purple-100 dark:border-purple-800",
   },
   {
     icon: Shield,
     title: "Segurança do Viajante",
     desc: "Evite ostentar objetos caros, guarde documentos em local seguro, mantenha cópias digitais e compartilhe seu roteiro com alguém de confiança.",
-    color: "bg-cyan-50 text-cyan-600",
-    border: "border-cyan-100",
+    color: "bg-cyan-50 dark:bg-cyan-900/20 text-cyan-600 dark:text-cyan-400",
+    border: "border-cyan-100 dark:border-cyan-800",
   },
 ];
 
@@ -109,30 +109,17 @@ export default function ServicosPage() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="pt-32 pb-20 bg-gradient-to-b from-emerald-50 to-white">
+      <section className="pt-32 pb-20 bg-gradient-to-b from-emerald-50 to-white dark:from-emerald-950/30 dark:to-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.span
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="inline-block px-4 py-1.5 rounded-full bg-emerald-100 text-emerald-700 text-sm font-bold mb-4"
-          >
+          <span className="animate-fade-in inline-block px-4 py-1.5 rounded-full bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300 text-sm font-bold mb-4">
             🧭 DICAS DE VIAGEM
-          </motion.span>
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-6"
-          >
+          </span>
+          <h1 className="animate-fade-in-up text-4xl md:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-6">
             Tudo para sua <span className="text-gradient">Viagem</span> pelo Brasil
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed"
-          >
+          </h1>
+          <p className="animate-fade-in-up animate-delay-100 text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
             Dicas práticas, melhores épocas, gastronomia regional, roteiros gratuitos e guias rápidos por estado para você aproveitar ao máximo.
-          </motion.p>
+          </p>
         </div>
       </section>
 
@@ -178,7 +165,7 @@ export default function ServicosPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-md border border-slate-100 hover:shadow-xl transition-all"
+                className="bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-md border border-slate-100 dark:border-slate-800 hover:shadow-xl transition-all"
               >
                 <div className="relative h-40 overflow-hidden">
                   <div
@@ -200,7 +187,7 @@ export default function ServicosPage() {
                     <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1">
                       <Sun className="w-3 h-3" /> Melhor época
                     </span>
-                    <p className="text-sm text-emerald-600 font-bold">{guide.bestTime}</p>
+                    <p className="text-sm text-emerald-600 dark:text-emerald-400 font-bold">{guide.bestTime}</p>
                   </div>
                   <div>
                     <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">💰 Gratuito</span>

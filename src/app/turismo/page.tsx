@@ -5,7 +5,6 @@ import TourismSection from "@/components/TourismSection";
 import FooterSection from "@/components/FooterSection";
 import MayaChat from "@/components/MayaChat";
 import LGPDBanner from "@/components/LGPDBanner";
-import { motion } from "framer-motion";
 import { MapPin, Smartphone } from "lucide-react";
 
 const extraDestinations = [
@@ -52,34 +51,18 @@ export default function TurismoPage() {
     <main className="min-h-screen bg-background text-foreground">
       <Navbar />
 
-      <section className="pt-28 pb-16 bg-gradient-to-b from-emerald-50 to-white">
+      <section className="pt-28 pb-16 bg-gradient-to-b from-emerald-50 to-white dark:from-emerald-950/30 dark:to-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.span
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="inline-block px-4 py-1.5 rounded-full bg-emerald-100 text-emerald-700 text-sm font-bold mb-4"
-          >
+          <span className="inline-block px-4 py-1.5 rounded-full bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300 text-sm font-bold mb-4">
             TURISMO
-          </motion.span>
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4"
-          >
+          </span>
+          <h1 className="text-4xl md:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
             Destinos <span className="text-gradient">Incríveis</span>
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto mb-8"
-          >
+          </h1>
+          <p className="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto mb-8">
             Explore os melhores destinos do Brasil. Para uma experiência completa com roteiros, mapas e Maya AI, abra nosso app.
-          </motion.p>
-          <motion.a
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2 }}
+          </p>
+          <a
             href="/app/index.html"
             target="_blank"
             rel="noopener noreferrer"
@@ -87,7 +70,7 @@ export default function TurismoPage() {
           >
             <Smartphone className="w-5 h-5" />
             Explorar no App
-          </motion.a>
+          </a>
         </div>
       </section>
 
@@ -101,12 +84,8 @@ export default function TurismoPage() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {extraDestinations.map((dest, i) => (
-              <motion.div
+              <div
                 key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
                 className="group relative h-[320px] rounded-2xl overflow-hidden shadow-lg"
               >
                 <div
@@ -124,7 +103,7 @@ export default function TurismoPage() {
                     {dest.description}
                   </p>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>

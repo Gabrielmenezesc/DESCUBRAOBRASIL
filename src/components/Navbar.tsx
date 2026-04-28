@@ -6,7 +6,7 @@ import { Menu, X, Clock, Sun, Moon } from "lucide-react";
 import { useWeather } from "@/hooks/useWeather";
 import { useTheme } from "next-themes";
 import { supabase } from "@/lib/supabase";
-import { User, LogIn, Crown } from "lucide-react";
+import { User, LogIn } from "lucide-react";
 
 
 const navLinks = [
@@ -182,22 +182,15 @@ export default function Navbar() {
                    ✨ Painel do Viajante
                  </Link>
                ) : (
-                 <>
-                   <Link 
-                     href="/premium"
-                     className="block w-full py-5 text-center rounded-2xl bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white font-black text-lg"
-                     onClick={() => setOpen(false)}
-                   >
-                     Entrar Agora
-                   </Link>
-                   <Link 
-                     href="/premium"
-                     className="block w-full py-5 text-center rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-black text-lg"
-                     onClick={() => setOpen(false)}
-                   >
-                     Seja Premium <Crown className="inline-block w-5 h-5 ml-1 fill-current" />
-                   </Link>
-                 </>
+                 <a 
+                   href="/app/index.html"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   className="block w-full py-5 text-center rounded-2xl bg-gradient-to-r from-emerald-500 to-emerald-400 text-white font-black text-lg shadow-lg shadow-emerald-500/30"
+                   onClick={() => setOpen(false)}
+                 >
+                   📱 Baixar o App
+                 </a>
                )}
             </div>
           </div>

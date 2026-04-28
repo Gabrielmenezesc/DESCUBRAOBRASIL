@@ -1,7 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ArrowRight, Sparkles, MapPin, Compass } from "lucide-react";
+import { Sparkles, MapPin, Compass } from "lucide-react";
 import Globe from "./Globe";
 
 export default function HeroSection() {
@@ -14,54 +13,29 @@ export default function HeroSection() {
       
       {/* Content wrapper */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mt-[-10vh]">
-        {/* ── Badge: Turismo ── */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-gradient-to-r from-emerald-500/10 to-blue-500/10 border border-emerald-300/40 shadow-sm mb-4"
-        >
+        {/* Badge: Turismo */}
+        <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-gradient-to-r from-emerald-500/10 to-blue-500/10 border border-emerald-300/40 shadow-sm mb-4">
           <MapPin className="w-4 h-4 text-emerald-500" />
-          <span className="text-sm font-extrabold text-emerald-700 tracking-wide">
+          <span className="text-sm font-extrabold text-emerald-700 dark:text-emerald-300 tracking-wide">
             27 Estados • Milhares de Destinos • 100% Gratuito
           </span>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-emerald-200 shadow-sm mb-8"
-        >
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-emerald-200 shadow-sm mb-8">
           <Sparkles className="w-4 h-4 text-emerald-500 animate-pulse" />
-          <span className="text-sm font-bold text-emerald-700">Destinos, Cultura, Estados e Notícias de Turismo</span>
-        </motion.div>
+          <span className="text-sm font-bold text-emerald-700 dark:text-emerald-300">Destinos, Cultura, Estados e Notícias de Turismo</span>
+        </div>
 
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 text-slate-900 dark:text-white"
-        >
+        <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 text-slate-900 dark:text-white">
           Descubra o Melhor <br />
           <span className="text-gradient">do Brasil</span>
-        </motion.h1>
+        </h1>
 
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="mt-6 text-xl md:text-2xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto mb-8 font-medium leading-relaxed"
-        >
+        <p className="mt-6 text-xl md:text-2xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto mb-8 font-medium leading-relaxed">
           Destinos, viagens, experiências e dicas em um só lugar.
-        </motion.p>
+        </p>
         
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="max-w-2xl mx-auto mb-10 relative"
-        >
+        <div className="max-w-2xl mx-auto mb-10 relative">
           <div className="glass flex items-center p-2 rounded-full shadow-lg border border-emerald-200/50 dark:border-emerald-500/30 bg-white/60 dark:bg-slate-900/60 backdrop-blur-md">
             <MapPin className="w-6 h-6 text-emerald-500 ml-4 hidden sm:block" />
             <input 
@@ -73,14 +47,9 @@ export default function HeroSection() {
               Buscar
             </button>
           </div>
-        </motion.div>
+        </div>
         
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-        >
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <a 
             href="#turismo"
             className="group flex items-center gap-2 glass-card border border-emerald-300 text-emerald-800 dark:text-emerald-100 hover:bg-emerald-50 dark:hover:bg-emerald-900/30 px-8 py-4 rounded-full font-bold text-lg transition-all transform hover:scale-105 w-full sm:w-auto justify-center"
@@ -91,12 +60,12 @@ export default function HeroSection() {
           
           <button 
              onClick={() => document.getElementById('maya-chat-button')?.click()}
-             className="group flex items-center gap-2 bg-slate-900 dark:bg-white dark:bg-slate-900 text-white dark:text-slate-900 dark:text-white px-8 py-4 rounded-full font-bold text-lg transition-all transform hover:scale-105 w-full sm:w-auto justify-center shadow-xl shadow-slate-900/20"
+             className="group flex items-center gap-2 bg-slate-900 dark:bg-slate-800 text-white px-8 py-4 rounded-full font-bold text-lg transition-all transform hover:scale-105 w-full sm:w-auto justify-center shadow-xl shadow-slate-900/20"
           >
             Falar com Maya
             <Sparkles className="w-5 h-5 ml-1 text-emerald-400" />
           </button>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

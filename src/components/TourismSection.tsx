@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { MapPin, ArrowUpRight } from "lucide-react";
 
 export default function TourismSection() {
@@ -27,33 +26,18 @@ export default function TourismSection() {
 
   return (
     <section id="tourism" className="py-24 relative bg-slate-50 dark:bg-slate-800/50">
-      
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
           <div className="max-w-2xl">
-            <motion.h2 
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="text-3xl md:text-5xl font-bold tracking-tight mb-4 text-slate-900 dark:text-white"
-            >
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4 text-slate-900 dark:text-white">
               Destinos em <span className="text-gradient">Alta</span>
-            </motion.h2>
-            <motion.p 
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="text-lg text-slate-600 dark:text-slate-300"
-            >
+            </h2>
+            <p className="text-lg text-slate-600 dark:text-slate-300">
               A IA Maya pré-configurou os roteiros perfeitos para estes locais. Visite-os no app.
-            </motion.p>
+            </p>
           </div>
           
-          <motion.a 
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+          <a 
             href="/app/index.html"
             target="_blank"
             rel="noopener noreferrer"
@@ -61,18 +45,14 @@ export default function TourismSection() {
           >
             Ver Tudo no App
             <ArrowUpRight className="w-5 h-5" />
-          </motion.a>
+          </a>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {destinations.map((dest, i) => (
-            <motion.div
+            <div
               key={i}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.15 }}
-              className="group relative h-[400px] rounded-3xl overflow-hidden cursor-pointer shadow-lg shadow-slate-200"
+              className="group relative h-[400px] rounded-3xl overflow-hidden cursor-pointer shadow-lg shadow-slate-200 dark:shadow-slate-900/50"
             >
               <div 
                 className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
@@ -92,7 +72,7 @@ export default function TourismSection() {
                   {dest.description}
                 </p>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

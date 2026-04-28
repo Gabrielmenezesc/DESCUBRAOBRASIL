@@ -1,0 +1,252 @@
+{
+  "uf_code": "PR",
+  "slug": "parana",
+  "state_name": "Paraná",
+  "capital": "Curitiba",
+  "region": "Sul",
+  "general_info": {
+    "climate": "subtropical",
+    "best_time": "abril a setembro para serras, cidades e natureza com clima mais estável; verão para litoral",
+    "intro": "Paraná funciona muito bem em um modelo misto de turismo gratuito urbano e experiencias pagas de natureza. O estado permite roteiros familiares, românticos e de aventura.",
+    "biomes": ["Mata Atlântica"]
+  },
+  "free_tourism": {
+    "public_beaches": [
+      {
+        "name": "orlas públicas do litoral paranaense",
+        "city": "Matinhos / Guaratuba / Pontal do Paraná",
+        "lat": -25.8176,
+        "lng": -48.5436,
+        "tags": ["gratuito", "praia pública", "família", "casal"]
+      }
+    ],
+    "parks": [
+      {
+        "name": "Jardim Botânico",
+        "city": "Curitiba",
+        "lat": -25.4410,
+        "lng": -49.2398,
+        "tags": ["gratuito", "cidade", "natureza", "família"]
+      },
+      {
+        "name": "Parque Barigui",
+        "city": "Curitiba",
+        "lat": -25.4246,
+        "lng": -49.3087,
+        "tags": ["gratuito", "cidade", "natureza", "família"]
+      }
+    ],
+    "trails": [
+      {
+        "name": "trilhas em áreas costeiras e ilhas protegidas",
+        "city": "Ilha do Mel / entorno",
+        "lat": -25.5450,
+        "lng": -48.3150,
+        "tags": ["gratuito", "natureza", "aventura", "casal"]
+      }
+    ],
+    "waterfalls": [
+      {
+        "name": "cânions e cachoeiras em circuitos de natureza",
+        "city": "Campos Gerais / interior",
+        "lat": -25.2407,
+        "lng": -50.0088,
+        "tags": ["gratuito", "natureza", "aventura"]
+      }
+    ],
+    "squares_historic_centers": [
+      {
+        "name": "Largo da Ordem",
+        "city": "Curitiba",
+        "lat": -25.4297,
+        "lng": -49.2718,
+        "tags": ["gratuito", "cidade", "cultura", "família"]
+      }
+    ],
+    "viewpoints": [
+      {
+        "name": "Parque Tanguá e mirantes urbanos",
+        "city": "Curitiba",
+        "lat": -25.3794,
+        "lng": -49.2754,
+        "tags": ["gratuito", "cidade", "casal", "pôr do sol"]
+      }
+    ],
+    "free_events": [
+      {
+        "name": "programação de Natal em espaços públicos",
+        "period": "novembro a dezembro",
+        "city": "Curitiba e outras cidades",
+        "paid": false
+      }
+    ]
+  },
+  "paid_tourism": {
+    "parks_and_tickets": [
+      {
+        "name": "Cataratas do Iguaçu",
+        "city": "Foz do Iguaçu",
+        "lat": -25.6953,
+        "lng": -54.4367,
+        "tags": ["pago", "natureza", "família", "casal"]
+      },
+      {
+        "name": "Parque Estadual de Vila Velha",
+        "city": "Ponta Grossa",
+        "lat": -25.2407,
+        "lng": -50.0088,
+        "tags": ["pago", "natureza", "aventura", "família"]
+      }
+    ],
+    "guided_tours": [
+      {
+        "name": "walking tours e circuitos históricos",
+        "city": "Curitiba e cidades históricas",
+        "lat": -25.4284,
+        "lng": -49.2733,
+        "tags": ["pago", "cidade", "cultura", "casal"]
+      }
+    ],
+    "boat_tours": [],
+    "museums": [
+      {
+        "name": "Museu Oscar Niemeyer",
+        "city": "Curitiba",
+        "lat": -25.4103,
+        "lng": -49.2676,
+        "tags": ["pago", "cultura", "cidade", "família"]
+      }
+    ],
+    "water_parks": [],
+    "adventure": [
+      {
+        "name": "trem turístico Curitiba–Morretes e circuitos de serra",
+        "city": "Curitiba / Morretes",
+        "lat": -25.4284,
+        "lng": -49.2733,
+        "tags": ["pago", "paisagem", "casal", "família"]
+      }
+    ]
+  },
+  "top_attractions": [
+    {
+      "name": "Cataratas do Iguaçu",
+      "short_description": "Principal icone natural do estado e do pais.",
+      "category": "natureza",
+      "is_free": false,
+      "city": "Foz do Iguaçu",
+      "lat": -25.6953,
+      "lng": -54.4367,
+      "tags": ["pago", "natureza", "família", "casal"]
+    },
+    {
+      "name": "Jardim Botânico",
+      "short_description": "Cartão-postal urbano e peça central do turismo gratuito em Curitiba.",
+      "category": "cidade",
+      "is_free": true,
+      "city": "Curitiba",
+      "lat": -25.4410,
+      "lng": -49.2398,
+      "tags": ["gratuito", "cidade", "natureza", "família"]
+    },
+    {
+      "name": "Largo da Ordem",
+      "short_description": "Centro histórico vivo com feiras, gastronomia e patrimônio.",
+      "category": "cultura",
+      "is_free": true,
+      "city": "Curitiba",
+      "lat": -25.4297,
+      "lng": -49.2718,
+      "tags": ["gratuito", "cidade", "cultura", "família"]
+    },
+    {
+      "name": "Parque Estadual de Vila Velha",
+      "short_description": "Arenitos e natura de Campos Gerais com alta força visual.",
+      "category": "natureza",
+      "is_free": false,
+      "city": "Ponta Grossa",
+      "lat": -25.2407,
+      "lng": -50.0088,
+      "tags": ["pago", "natureza", "aventura", "casal"]
+    },
+    {
+      "name": "Morretes",
+      "short_description": "Cidade histórica associada ao barreado e à serra paranaense.",
+      "category": "cultura",
+      "is_free": true,
+      "city": "Morretes",
+      "lat": -25.4766,
+      "lng": -48.8344,
+      "tags": ["gratuito", "cidade", "gastronomia", "casal"]
+    }
+  ],
+  "unique_experiences": [
+    "Combinação rara de turismo urbano gratuito com natureza de alto impacto",
+    "Barreado como ancora gastronômica de destino",
+    "Litoral, serra e centros urbanos conectados em roteiros curtos"
+  ],
+  "gastronomy": {
+    "signature_dishes": ["barreado", "carne de onça", "pinhão", "pierogi em rotas locais"],
+    "street_food": ["feiras urbanas", "pastéis e comidas de feira", "doces e produtos coloniais"],
+    "budget_eats": [
+      "Mercado Municipal de Curitiba",
+      "feiras do Largo da Ordem",
+      "casas populares de barreado em Morretes"
+    ]
+  },
+  "events_festivals": [
+    { "name": "Natal de Curitiba e programações públicas correlatas", "period": "novembro a dezembro", "city": "Curitiba", "paid": false },
+    { "name": "MünchenFest", "period": "fim do ano", "city": "Ponta Grossa", "paid": true },
+    { "name": "Festival das Cataratas", "period": "calendário anual", "city": "Foz do Iguaçu", "paid": true }
+  ],
+  "itineraries": {
+    "one_day": [
+      "Curitiba gratuita com Jardim Botânico, Largo da Ordem e Parque Tanguá"
+    ],
+    "three_days": [
+      "Dia 1 Curitiba",
+      "Dia 2 Serra e Morretes",
+      "Dia 3 Foz do Iguaçu ou Campos Gerais"
+    ],
+    "seven_days": [
+      "Dias 1-2 Curitiba",
+      "Dias 3-4 litoral e ilhas",
+      "Dias 5-6 Campos Gerais",
+      "Dia 7 Foz do Iguaçu"
+    ]
+  },
+  "budgets": {
+    "economico": { "daily_brl_min": 230, "daily_brl_max": 360 },
+    "medio": { "daily_brl_min": 500, "daily_brl_max": 800 },
+    "luxo": { "daily_brl_min": 1100, "daily_brl_max": 2000 }
+  },
+  "map_settings": {
+    "default_center": { "lat": -24.9, "lng": -51.7 },
+    "default_zoom": 6
+  },
+  "official_sources": {
+    "tourism": ["Secretaria de Turismo do Paraná", "Viaje Paraná", "Curitiba Turismo"],
+    "news": ["Notícias do Turismo PR", "Viaje Paraná Notícias", "Prefeitura de Curitiba / turismo"],
+    "maps": ["IBGE"],
+    "images": ["Wikimedia Commons", "Unsplash", "Pexels", "acervo oficial com licença validada"],
+    "notes": ["Litoral e ilhas devem ter campo de taxa local e sazonalidade de acesso"]
+  },
+  "maya_snippets": [
+    {
+      "intent": "quero um roteiro economico",
+      "user_example": "consigo conhecer Curitiba gastando pouco?",
+      "assistant_snippet": "Sim. Posso montar um dia gratuito com Jardim Botânico, Largo da Ordem, Parque Tanguá e mercado, ou ampliar para 3 dias com serra e Morretes."
+    },
+    {
+      "intent": "quero natureza iconica",
+      "user_example": "qual eh o combo mais forte de natureza no Parana?",
+      "assistant_snippet": "O combo mais forte é Cataratas do Iguaçu, Vila Velha e litoral/ilhas, com possibilidade de trem turístico e parques urbanos em Curitiba."
+    }
+  ],
+  "seo": {
+    "title": "Descubra Paraná: turismo gratuito, Curitiba, Cataratas e mapa",
+    "meta_description": "Guia do Paraná com atrações gratuitas em Curitiba, natureza, litoral, gastronomia e roteiros com mapa interativo.",
+    "keywords": ["parana turismo", "curitiba gratis", "cataratas do iguacu", "morretes", "barreado"]
+  },
+  "last_verified": "2026-04-27"
+}

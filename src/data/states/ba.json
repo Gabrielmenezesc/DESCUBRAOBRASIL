@@ -1,0 +1,254 @@
+{
+  "uf_code": "BA",
+  "slug": "bahia",
+  "state_name": "Bahia",
+  "capital": "Salvador",
+  "region": "Nordeste",
+  "general_info": {
+    "climate": "tropical com variações por litoral, serras e sertão",
+    "best_time": "setembro a março para costa e capital; julho a outubro para baleias; meia estação para Chapada",
+    "intro": "Bahia entrega escalabilidade editorial rara: sol e praia, centro histórico, cultura afro-brasileira, gastronomia e ecoturismo em varias zonas turísticas.",
+    "biomes": ["Mata Atlântica", "Caatinga", "Cerrado"]
+  },
+  "free_tourism": {
+    "public_beaches": [
+      {
+        "name": "Porto da Barra",
+        "city": "Salvador",
+        "lat": -13.0088,
+        "lng": -38.5316,
+        "tags": ["gratuito", "praia pública", "família", "casal"]
+      },
+      {
+        "name": "Praia de Itapuã",
+        "city": "Salvador",
+        "lat": -12.9476,
+        "lng": -38.3531,
+        "tags": ["gratuito", "praia pública", "cidade", "casal"]
+      }
+    ],
+    "parks": [
+      {
+        "name": "Farol da Barra e entorno",
+        "city": "Salvador",
+        "lat": -13.0094,
+        "lng": -38.5319,
+        "tags": ["gratuito", "cidade", "mirante", "fotografia"]
+      }
+    ],
+    "trails": [
+      {
+        "name": "Trilhas e mirantes na Chapada Diamantina",
+        "city": "Lençóis / Ibicoara / Mucugê",
+        "lat": -12.5618,
+        "lng": -41.3927,
+        "tags": ["gratuito", "natureza", "aventura", "casal"]
+      }
+    ],
+    "waterfalls": [
+      {
+        "name": "Cachoeiras da Chapada em áreas de acesso público ou baixo custo",
+        "city": "Chapada Diamantina",
+        "lat": -12.4589,
+        "lng": -41.4728,
+        "tags": ["gratuito", "natureza", "aventura"]
+      }
+    ],
+    "squares_historic_centers": [
+      {
+        "name": "Pelourinho e centro histórico",
+        "city": "Salvador",
+        "lat": -12.9714,
+        "lng": -38.5103,
+        "tags": ["gratuito", "cidade", "cultura", "família"]
+      }
+    ],
+    "viewpoints": [
+      {
+        "name": "Elevador Lacerda e Cidade Alta/Cidade Baixa",
+        "city": "Salvador",
+        "lat": -12.9718,
+        "lng": -38.5120,
+        "tags": ["gratuito", "cidade", "mirante", "casal"]
+      }
+    ],
+    "free_events": [
+      {
+        "name": "Festival do Turismo Cultural da Baía de Todos-os-Santos",
+        "period": "calendário variável",
+        "city": "Salvador e Recôncavo",
+        "paid": false
+      }
+    ]
+  },
+  "paid_tourism": {
+    "parks_and_tickets": [
+      {
+        "name": "Parque Nacional da Chapada Diamantina",
+        "city": "Lençóis",
+        "lat": -12.5618,
+        "lng": -41.3927,
+        "tags": ["pago", "natureza", "aventura", "ecoturismo"]
+      }
+    ],
+    "guided_tours": [
+      {
+        "name": "Walking tours históricos e afrocentrados",
+        "city": "Salvador",
+        "lat": -12.9714,
+        "lng": -38.5103,
+        "tags": ["pago", "cultura", "cidade", "casal"]
+      }
+    ],
+    "boat_tours": [
+      {
+        "name": "Passeios náuticos e travessias pela Baía de Todos-os-Santos",
+        "city": "Salvador",
+        "lat": -12.9747,
+        "lng": -38.5106,
+        "tags": ["pago", "barco", "natureza", "casal"]
+      }
+    ],
+    "museums": [
+      {
+        "name": "Museus e casas culturais do centro histórico",
+        "city": "Salvador",
+        "lat": -12.9712,
+        "lng": -38.5108,
+        "tags": ["pago", "cultura", "cidade", "família"]
+      }
+    ],
+    "water_parks": [],
+    "adventure": [
+      {
+        "name": "Observação de baleias-jubarte e trilhas de aventura",
+        "city": "litoral baiano",
+        "lat": -13.006,
+        "lng": -38.503,
+        "tags": ["pago", "natureza", "casal", "ecoturismo"]
+      }
+    ]
+  },
+  "top_attractions": [
+    {
+      "name": "Pelourinho",
+      "short_description": "Núcleo histórico-cultural de Salvador e âncora de turismo urbano.",
+      "category": "cultura",
+      "is_free": true,
+      "city": "Salvador",
+      "lat": -12.9714,
+      "lng": -38.5103,
+      "tags": ["gratuito", "cidade", "cultura", "família"]
+    },
+    {
+      "name": "Farol da Barra",
+      "short_description": "Cartão-postal com vista de costa, pôr do sol e circuito urbano.",
+      "category": "cidade",
+      "is_free": true,
+      "city": "Salvador",
+      "lat": -13.0094,
+      "lng": -38.5319,
+      "tags": ["gratuito", "cidade", "casal", "fotografia"]
+    },
+    {
+      "name": "Porto da Barra",
+      "short_description": "Praia urbana pública de grande apelo turístico.",
+      "category": "natureza",
+      "is_free": true,
+      "city": "Salvador",
+      "lat": -13.0088,
+      "lng": -38.5316,
+      "tags": ["gratuito", "praia pública", "família", "casal"]
+    },
+    {
+      "name": "Chapada Diamantina",
+      "short_description": "Principal eixo baiano de ecoturismo, trilhas, mirantes e cachoeiras.",
+      "category": "natureza",
+      "is_free": false,
+      "city": "Lençóis / região",
+      "lat": -12.5618,
+      "lng": -41.3927,
+      "tags": ["pago", "natureza", "aventura", "casal"]
+    },
+    {
+      "name": "Baía de Todos-os-Santos",
+      "short_description": "Circuito náutico, cultural e gastronômico de grande escala.",
+      "category": "natureza",
+      "is_free": false,
+      "city": "Salvador e Recôncavo",
+      "lat": -12.9747,
+      "lng": -38.5106,
+      "tags": ["pago", "barco", "cultura", "casal"]
+    }
+  ],
+  "unique_experiences": [
+    "Circuitos afrocentrados e patrimonio imaterial vivo",
+    "Tabuleiros licenciados de acarajé como experiencia de rua",
+    "Integração entre litoral, centro histórico, recôncavo e chapadas"
+  ],
+  "gastronomy": {
+    "signature_dishes": ["acarajé", "abara", "moqueca baiana", "caruru", "vatapá"],
+    "street_food": ["acarajé", "abara", "cocadas", "petiscos de dendê"],
+    "budget_eats": [
+      "tabuleiros licenciados de acarajé",
+      "Mercado do Rio Vermelho",
+      "feiras e mercados populares da capital e do Recôncavo"
+    ]
+  },
+  "events_festivals": [
+    { "name": "Carnaval de Salvador", "period": "fevereiro ou março", "city": "Salvador", "paid": false },
+    { "name": "Lavagem do Bonfim", "period": "janeiro", "city": "Salvador", "paid": false },
+    { "name": "Festival do Turismo Cultural da Baía de Todos-os-Santos", "period": "calendário variável", "city": "Salvador e Recôncavo", "paid": false }
+  ],
+  "itineraries": {
+    "one_day": [
+      "Manha no Pelourinho",
+      "Almoço popular e memorial gastronômico",
+      "Tarde no Farol e Porto da Barra"
+    ],
+    "three_days": [
+      "Dia 1 centro histórico e costa",
+      "Dia 2 Itapuã e circuitos culturais",
+      "Dia 3 Recôncavo ou passeio náutico"
+    ],
+    "seven_days": [
+      "Dias 1-3 Salvador",
+      "Dias 4-5 Recôncavo e Baía de Todos-os-Santos",
+      "Dias 6-7 Chapada Diamantina"
+    ]
+  },
+  "budgets": {
+    "economico": { "daily_brl_min": 230, "daily_brl_max": 360 },
+    "medio": { "daily_brl_min": 480, "daily_brl_max": 780 },
+    "luxo": { "daily_brl_min": 1000, "daily_brl_max": 2000 }
+  },
+  "map_settings": {
+    "default_center": { "lat": -12.9, "lng": -41.7 },
+    "default_zoom": 6
+  },
+  "official_sources": {
+    "tourism": ["SETUR-BA", "Visit Salvador da Bahia", "ICMBio para parques e unidades"],
+    "news": ["Notícias da SETUR-BA", "Portal do Governo da Bahia", "portal municipal oficial de turismo da capital"],
+    "maps": ["IBGE"],
+    "images": ["Wikimedia Commons", "Unsplash", "Pexels", "acervo oficial com licença validada"],
+    "notes": ["Eventos de rua devem ter campo de recorrência e data específica por ano"]
+  },
+  "maya_snippets": [
+    {
+      "intent": "quero algo afro e cultural",
+      "user_example": "o que fazer com foco em cultura afro em Salvador?",
+      "assistant_snippet": "Posso sugerir um roteiro com Pelourinho, circuitos afro, memorial das baianas de acarajé e culinária tradicional em um ou três dias."
+    },
+    {
+      "intent": "quero praia gratuita",
+      "user_example": "me indica praias e pontos gratuitos",
+      "assistant_snippet": "Os filtros mais fortes para Bahia são praias públicas, centro histórico, mirantes e eventos gratuitos em Salvador e no Recôncavo."
+    }
+  ],
+  "seo": {
+    "title": "Descubra Bahia: turismo gratuito, Salvador, Chapada e mapa",
+    "meta_description": "Guia da Bahia com praias públicas, centro histórico, Chapada Diamantina, gastronomia, eventos e roteiros com mapa interativo.",
+    "keywords": ["bahia turismo", "pelourinho", "salvador gratis", "chapada diamantina", "acaraje"]
+  },
+  "last_verified": "2026-04-27"
+}
