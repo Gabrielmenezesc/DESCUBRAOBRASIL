@@ -150,6 +150,7 @@ export default function RioDeJaneiroPage() {
             </div>
           </div>
         </div>
+        </div>
 
       </section>
 
