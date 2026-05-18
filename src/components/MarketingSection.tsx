@@ -98,7 +98,7 @@ export default function MarketingSection() {
           <motion.a
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            href="https://wa.me/5538991621135"
+            href="https://wa.me/5561995659907"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-slate-900 text-white px-10 py-4 rounded-2xl font-bold text-lg hover:bg-slate-800 transition-all shadow-xl shadow-slate-200"

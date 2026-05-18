@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Compass, Briefcase, ArrowRight } from "lucide-react";
 import Link from "next/link";
 
-const WA_NUMBER = "5538991621135";
+const WA_NUMBER = "5561995659907";
 const WA_B2C = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent("Olá! Preciso de suporte para minha viagem pelo Brasil!")}`;
 const WA_B2B = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent("Olá! Quero modernizar meu negócio e ter um site com o Descubra o Brasil.")}`;
 

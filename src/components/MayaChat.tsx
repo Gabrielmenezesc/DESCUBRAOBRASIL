@@ -2,11 +2,11 @@
 
 import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Send, Mic, MicOff, Loader2, Sparkles, Volume2, VolumeX, Bot } from "lucide-react";
+import { X, Send, Mic, MicOff, Loader2, Sparkles, Volume2, VolumeX, Bot, Phone, User } from "lucide-react";
 import { askGemini, addToChatHistory, resetChatHistory, isGeminiAvailable } from "@/lib/gemini";
 import ReactMarkdown from "react-markdown";
 
-const WHATSAPP_NUMBER = "5538991621135";
+const WHATSAPP_NUMBER = "5561995659907";
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=`;
 
 interface Message {
@@ -28,6 +28,7 @@ export default function MayaChat() {
   const [voiceEnabled, setVoiceEnabled] = useState(false);
   const [pulseButton, setPulseButton] = useState(true);
   const [showProactiveHint, setShowProactiveHint] = useState(false);
+  const [messageCount, setMessageCount] = useState(0);
   
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -164,6 +165,39 @@ export default function MayaChat() {
     }
   }
 
+  function buildWhatsAppContext() {
+    const userMessages = messages.filter(m => m.from === "user").map(m => m.text);
+    const lastMayaMsg = messages.filter(m => m.from === "maya").slice(-1)[0]?.text || "";
+    
+    let contextParts = [
+      "🤖 *Conversei com a Maya AI no site Descubra o Brasil*",
+      "",
+    ];
+    
+    if (userMessages.length > 0) {
+      contextParts.push("📋 *O que eu falei:*");
+      userMessages.slice(-5).forEach(msg => {
+        contextParts.push(`• ${msg}`);
+      });
+      contextParts.push("");
+    }
+    
+    if (lastMayaMsg) {
+      const clean = lastMayaMsg.replace(/\*\*/g, "").replace(/\[.*?\]\(.*?\)/g, "").substring(0, 200);
+      contextParts.push(`💬 *Última resposta da Maya:* ${clean}...`);
+      contextParts.push("");
+    }
+    
+    contextParts.push("👋 Gostaria de continuar com um atendente humano!");
+    
+    return encodeURIComponent(contextParts.join("\n"));
+  }
+
+  function openWhatsAppHuman() {
+    const context = buildWhatsAppContext();
+    window.open(`${WHATSAPP_URL}${context}`, "_blank");
+  }
+
   async function handleUserMessage(text: string) {
     if (!text.trim()) return;
 
@@ -173,6 +207,7 @@ export default function MayaChat() {
     addToChatHistory("user", text);
     setInputText("");
     setIsTyping(true);
+    setMessageCount(prev => prev + 1);
 
     // Call Groq / AI API directly for everything
     const aiResponse = await askGemini(text);
@@ -182,7 +217,7 @@ export default function MayaChat() {
       addMayaMessage(aiResponse);
     } else {
       setIsTyping(false);
-      addMayaMessage("Eita, minhas engrenagens deram uma travadinha aqui no servidor. 😅 Você pode tentar de novo ou [falar com nossos especialistas no WhatsApp](https://wa.me/5538991621135?text=Ol%C3%A1%2C%20falei%20com%20a%20Maya%20e%20deu%20erro).");
+      addMayaMessage("Eita, minhas engrenagens deram uma travadinha aqui no servidor. 😅 Você pode tentar de novo ou [falar com nossos especialistas no WhatsApp](https://wa.me/5561995659907?text=Ol%C3%A1%2C%20falei%20com%20a%20Maya%20e%20deu%20erro).");
     }
   }
 
@@ -359,6 +394,23 @@ export default function MayaChat() {
               </div>
             </div>
 
+            {/* Falar com Humano - WhatsApp Bar */}
+            {messageCount >= 1 && (
+              <div className="px-3 py-2 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 border-t border-green-200/50 dark:border-green-800/30">
+                <button
+                  onClick={openWhatsAppHuman}
+                  className="w-full flex items-center justify-center gap-2 py-2 px-4 rounded-xl bg-green-600 hover:bg-green-700 text-white font-bold text-sm transition-all hover:scale-[1.02] active:scale-[0.98] shadow-md shadow-green-600/20"
+                >
+                  <Phone className="w-4 h-4" />
+                  Falar com Humano via WhatsApp
+                  <User className="w-4 h-4" />
+                </button>
+                <p className="text-[10px] text-center text-green-700/60 dark:text-green-400/40 mt-1 font-medium">
+                  A conversa com a Maya será enviada ao atendente
+                </p>
+              </div>
+            )}
+
             {/* Input Area */}
             <div className="p-3 bg-slate-50 dark:bg-slate-800/50 border-t border-slate-100">
               <div className="relative flex items-center gap-2">
@@ -368,7 +420,7 @@ export default function MayaChat() {
                   value={inputText}
                   onChange={(e) => setInputText(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && handleUserMessage(inputText)}
-                  placeholder={isSpeaking ? "Maya testá falando..." : "Digite sua mensagem..."}
+                  placeholder={isSpeaking ? "Maya está falando..." : "Digite sua mensagem..."}
                   disabled={isSpeaking || isTyping}
                   className="w-full pl-4 pr-12 py-3 bg-white dark:bg-slate-900 border border-slate-200 rounded-xl outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 shadow-sm text-[15px] transition-all disabled:opacity-50 disabled:bg-slate-100 dark:bg-slate-800"
                 />
@@ -391,8 +443,9 @@ export default function MayaChat() {
                   {isTyping ? <Loader2 className="w-4 h-4 animate-spin" /> : <Send className="w-4 h-4" />}
                 </button>
               </div>
-              <div className="mt-2 flex items-center justify-end px-1">
-                <span className="text-[9px] text-slate-300 font-bold tracking-widest uppercase">Inteligência Artificial Llama 3</span>
+              <div className="mt-2 flex items-center justify-between px-1">
+                <span className="text-[9px] text-slate-300 font-bold tracking-widest uppercase">🤖 Maya IA + 👤 Humano</span>
+                <span className="text-[9px] text-slate-300 font-bold tracking-widest uppercase">Gemini AI</span>
               </div>
             </div>
           </motion.div>

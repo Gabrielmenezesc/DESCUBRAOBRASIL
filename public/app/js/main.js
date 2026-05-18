@@ -378,7 +378,7 @@ function openRoteiroDetail(id) {
         const r = ROTEIROS_DB.find(x => x.id === id);
         if (!r) return;
         const waMsg = encodeURIComponent(`Olá! Tenho interesse no eBook: "${r.title}". Quero saber mais e como comprar!`);
-        window.open(`https://wa.me/5538991621135?text=${waMsg}`, '_blank');
+        window.open(`https://wa.me/5561995659907?text=${waMsg}`, '_blank');
     }
 }
 window.openRoteiroDetail = openRoteiroDetail;
@@ -387,7 +387,7 @@ function buyRoteiro(id) {
     const r = ROTEIROS_DB.find(x => x.id === id);
     if (!r) return;
     const waMsg = encodeURIComponent(`Olá! Quero comprar o eBook: "${r.title}" por R$${r.price}. Como fazer o pagamento?`);
-    window.open(`https://wa.me/5538991621135?text=${waMsg}`, '_blank');
+    window.open(`https://wa.me/5561995659907?text=${waMsg}`, '_blank');
 }
 window.buyRoteiro = buyRoteiro;
 
@@ -398,7 +398,7 @@ window.openEbookModal = openEbookModal;
 
 function buyEbook() {
     const waMsg = encodeURIComponent('Olá! Quero comprar o eBook "3 Dias Incríveis no Litoral Brasileiro - Arraial do Cabo" por R$47. Como pagar?');
-    window.open(`https://wa.me/5538991621135?text=${waMsg}`, '_blank');
+    window.open(`https://wa.me/5561995659907?text=${waMsg}`, '_blank');
 }
 window.buyEbook = buyEbook;
 
@@ -425,7 +425,7 @@ function submitTripForm(e) {
         `⭐ Preferências: ${prefs || 'Nenhuma específica'}\n` +
         `📱 WhatsApp do cliente: ${wpp}`
     );
-    window.open(`https://wa.me/5538991621135?text=${msg}`, '_blank');
+    window.open(`https://wa.me/5561995659907?text=${msg}`, '_blank');
     document.getElementById('trip-form')?.reset();
     document.querySelectorAll('.pref-tag.selected').forEach(b => b.classList.remove('selected'));
 }
@@ -1496,7 +1496,7 @@ window.logout = logout;
    MAYA AI CHAT ENGINE — Powered by Groq (Llama 3.3 70B)
    100% LLM Driven — Same brain as the main site
 ══════════════════════════════════════════════════════════════ */
-const MAYA_WA = 'https://wa.me/5538991621135?text=';
+const MAYA_WA = 'https://wa.me/5561995659907?text=';
 
 const MAYA_APP_SYSTEM_PROMPT = `Você é a **Maya**, a inteligência artificial especialista e vendedora oficial de pacotes de viagem do portal "Descubra o Brasil".
 

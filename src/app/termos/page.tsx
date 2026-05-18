@@ -47,7 +47,7 @@ export default function TermosPage() {
 
           <section>
             <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-3">6. Contato</h2>
-            <p>Para dúvidas sobre estes Termos de Uso, entre em contato pelo e-mail <a href="mailto:contato@descubraobrasil.com" className="text-emerald-600 font-bold hover:underline">contato@descubraobrasil.com</a> ou pelo WhatsApp <a href="https://wa.me/5538991621135" target="_blank" rel="noopener noreferrer" className="text-emerald-600 font-bold hover:underline">+55 38 99162-1135</a>.</p>
+            <p>Para dúvidas sobre estes Termos de Uso, entre em contato pelo e-mail <a href="mailto:contato@descubraobrasil.com" className="text-emerald-600 font-bold hover:underline">contato@descubraobrasil.com</a> ou pelo WhatsApp <a href="https://wa.me/5561995659907" target="_blank" rel="noopener noreferrer" className="text-emerald-600 font-bold hover:underline">+55 61 99565-9907</a>.</p>
           </section>
         </div>
       </div>

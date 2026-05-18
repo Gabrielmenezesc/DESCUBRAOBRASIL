@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 export default function FloatingWhatsApp() {
   return (
     <motion.a
-      href="https://wa.me/5538991621135" // Maya human representative
+      href="https://wa.me/5561995659907" // Maya human representative
       target="_blank"
       rel="noopener noreferrer"
       initial={{ scale: 0, opacity: 0 }}

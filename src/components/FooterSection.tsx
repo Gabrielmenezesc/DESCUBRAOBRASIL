@@ -48,7 +48,7 @@ export default function FooterSection() {
             <ul className="space-y-4">
               <li className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-emerald-400" />
-                <a href="https://wa.me/5538991621135" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">+55 38 99162-1135</a>
+                <a href="https://wa.me/5561995659907" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">+55 61 99565-9907</a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-emerald-400" />

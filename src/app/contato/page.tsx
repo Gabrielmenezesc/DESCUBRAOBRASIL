@@ -60,12 +60,12 @@ export default function ContatoPage() {
               </div>
             </div>
             <div className="space-y-6">
-              <a href="https://wa.me/5538991621135?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20serviços%20do%20Descubra%20o%20Brasil." target="_blank" rel="noopener noreferrer" className="block bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-2xl p-6 hover:shadow-lg transition-all group">
+              <a href="https://wa.me/5561995659907?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20os%20serviços%20do%20Descubra%20o%20Brasil." target="_blank" rel="noopener noreferrer" className="block bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-2xl p-6 hover:shadow-lg transition-all group">
                 <div className="flex items-center gap-4">
                   <div className="w-14 h-14 rounded-full bg-green-500 flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg shadow-green-500/30"><MessageCircle className="w-7 h-7 text-white" /></div>
                   <div>
                     <h3 className="font-bold text-slate-900 dark:text-white text-lg">WhatsApp Direto</h3>
-                    <p className="text-green-600 dark:text-green-400 font-medium">+55 38 99162-1135</p>
+                    <p className="text-green-600 dark:text-green-400 font-medium">+55 61 99565-9907</p>
                     <p className="text-slate-500 dark:text-slate-400 text-sm">Resposta rápida • Atendimento personalizado</p>
                   </div>
                 </div>
@@ -77,7 +77,7 @@ export default function ContatoPage() {
                 </div>
                 <div className="flex items-center gap-4">
                   <div className="w-10 h-10 rounded-lg bg-emerald-50 dark:bg-emerald-900/30 flex items-center justify-center"><Phone className="w-5 h-5 text-emerald-600" /></div>
-                  <div><h4 className="font-bold text-slate-900 dark:text-white text-sm">Telefone</h4><p className="text-slate-600 dark:text-slate-300 text-sm">+55 38 99162-1135</p></div>
+                  <div><h4 className="font-bold text-slate-900 dark:text-white text-sm">Telefone</h4><p className="text-slate-600 dark:text-slate-300 text-sm">+55 61 99565-9907</p></div>
                 </div>
                 <div className="flex items-center gap-4">
                   <div className="w-10 h-10 rounded-lg bg-amber-50 dark:bg-amber-900/30 flex items-center justify-center"><MapPin className="w-5 h-5 text-amber-600" /></div>
