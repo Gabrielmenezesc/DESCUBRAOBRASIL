@@ -1,12 +1,18 @@
 "use client";
 
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Download, Compass } from "lucide-react";
-
 import { usePWA } from "@/context/PWAProvider";
 
 export default function MockupAppSection() {
   const { showInstallPrompt } = usePWA();
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      (window as any).__GROQ_KEY__ = process.env.NEXT_PUBLIC_GROQ_API_KEY;
+    }
+  }, []);
 
   return (
     <section id="app" className="py-24 relative overflow-hidden bg-white dark:bg-slate-900">

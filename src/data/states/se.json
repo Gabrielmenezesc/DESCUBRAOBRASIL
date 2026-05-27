@@ -1,0 +1,207 @@
+{
+  "uf_code": "SE",
+  "slug": "sergipe",
+  "state_name": "Sergipe",
+  "capital": "Aracaju",
+  "region": "Nordeste",
+  "general_info": {
+    "climate": "tropical com variações regionais marcantes",
+    "best_time": "época seca para trilhas, época de chuvas para cachoeiras e rios",
+    "intro": "Conheça o estado do Sergipe. Repleto de pontos turísticos, cultura e gastronomia típica marcante.",
+    "biomes": [
+      "Caatinga",
+      "Mata Atlântica"
+    ]
+  },
+  "free_tourism": {
+    "public_beaches": [],
+    "parks": [],
+    "trails": [
+      {
+        "name": "Parque Nacional Serra de Itabaiana",
+        "city": "Itabaiana",
+        "lat": -10.742,
+        "lng": -37.334,
+        "tags": [
+          "gratuito",
+          "cachoeira",
+          "trilha"
+        ]
+      }
+    ],
+    "waterfalls": [
+      {
+        "name": "Parque Nacional Serra de Itabaiana",
+        "city": "Itabaiana",
+        "lat": -10.742,
+        "lng": -37.334,
+        "tags": [
+          "gratuito",
+          "cachoeira",
+          "trilha"
+        ]
+      }
+    ],
+    "squares_historic_centers": [],
+    "viewpoints": [],
+    "free_events": [
+      {
+        "name": "Festividades Populares de Sergipe",
+        "period": "Calendário móvel anual",
+        "city": "Aracaju",
+        "paid": false
+      }
+    ]
+  },
+  "paid_tourism": {
+    "parks_and_tickets": [],
+    "guided_tours": [],
+    "boat_tours": [],
+    "museums": [],
+    "water_parks": [],
+    "adventure": []
+  },
+  "top_attractions": [
+    {
+      "name": "Orla de Atalaia",
+      "short_description": "Uma das orlas mais bonitas do Nordeste, repleta de lagos, quadras e o Oceanário.",
+      "category": "cidade",
+      "is_free": true,
+      "city": "Aracaju",
+      "lat": -10.985,
+      "lng": -37.051,
+      "tags": [
+        "gratuito",
+        "lazer",
+        "esporte"
+      ]
+    },
+    {
+      "name": "Cânion do Xingó",
+      "short_description": "Navegação por águas verdes do Rio São Francisco ladeadas por imponentes paredões de rocha.",
+      "category": "natureza",
+      "is_free": false,
+      "city": "Canindé de São Francisco",
+      "lat": -9.642,
+      "lng": -37.795,
+      "tags": [
+        "pago",
+        "canyon",
+        "passeio"
+      ]
+    },
+    {
+      "name": "Parque Nacional Serra de Itabaiana",
+      "short_description": "Reserva ecológica com cachoeiras, trilhas e o famoso Poço das Moças.",
+      "category": "natureza",
+      "is_free": true,
+      "city": "Itabaiana",
+      "lat": -10.742,
+      "lng": -37.334,
+      "tags": [
+        "gratuito",
+        "cachoeira",
+        "trilha"
+      ]
+    }
+  ],
+  "unique_experiences": [
+    "Explorar as belezas e gastronomia de Sergipe",
+    "Roteiros guiados por pontos turísticos de Aracaju"
+  ],
+  "gastronomy": {
+    "signature_dishes": [
+      "caranguejo cozido",
+      "arroz de capote",
+      "aratu na palha"
+    ],
+    "street_food": [
+      "pastel de caranguejo",
+      "tapioca"
+    ],
+    "budget_eats": [
+      "Mercado Municipal Antônio Franco",
+      "Orla de Atalaia"
+    ]
+  },
+  "events_festivals": [
+    {
+      "name": "Festival Estadual de Sergipe",
+      "period": "Anual",
+      "city": "Aracaju",
+      "paid": false
+    }
+  ],
+  "itineraries": {
+    "one_day": [
+      "Manhã no centro de Aracaju",
+      "Almoço típico regional",
+      "Tarde nos parques ou praias locais"
+    ],
+    "three_days": [
+      "Dia 1: Passeio histórico por Aracaju",
+      "Dia 2: Aventura natural ou praias",
+      "Dia 3: Gastronomia e artesanato local"
+    ],
+    "seven_days": [
+      "Dias 1-2: Aracaju e arredores",
+      "Dias 3-5: Roteiro interiorano ou litoral distante",
+      "Dias 6-7: Ecoturismo nos parques estaduais"
+    ]
+  },
+  "budgets": {
+    "economico": {
+      "daily_brl_min": 150,
+      "daily_brl_max": 250
+    },
+    "medio": {
+      "daily_brl_min": 350,
+      "daily_brl_max": 600
+    },
+    "luxo": {
+      "daily_brl_min": 800,
+      "daily_brl_max": 1800
+    }
+  },
+  "map_settings": {
+    "default_center": {
+      "lat": -10.902,
+      "lng": -37.182
+    },
+    "default_zoom": 9
+  },
+  "official_sources": {
+    "tourism": [
+      "Secretaria de Turismo de Sergipe",
+      "Portal de Aracaju"
+    ],
+    "news": [
+      "Notícias de Sergipe"
+    ],
+    "maps": [
+      "IBGE"
+    ],
+    "images": [
+      "Unsplash",
+      "Pexels"
+    ],
+    "notes": []
+  },
+  "maya_snippets": [
+    {
+      "intent": "o que fazer de graca",
+      "user_example": "o que fazer de graça em Aracaju?",
+      "assistant_snippet": "Em Aracaju, você pode conhecer parques públicos e passear pelas praças históricas sem pagar nada."
+    }
+  ],
+  "seo": {
+    "title": "Descubra Sergipe: turismo, o que fazer, mapa e roteiros",
+    "meta_description": "Guia de viagem para o estado de Sergipe com pontos turísticos gratuitos, gastronomia típica e roteiros no mapa.",
+    "keywords": [
+      "sergipe turismo",
+      "o que fazer em sergipe",
+      "roteiro sergipe"
+    ]
+  },
+  "last_verified": "2026-05-27"
+}

@@ -1,0 +1,206 @@
+{
+  "uf_code": "DF",
+  "slug": "distrito-federal",
+  "state_name": "Distrito Federal",
+  "capital": "Brasília",
+  "region": "Centro-Oeste",
+  "general_info": {
+    "climate": "tropical com variações regionais marcantes",
+    "best_time": "época seca para trilhas, época de chuvas para cachoeiras e rios",
+    "intro": "Conheça o estado do Distrito Federal. Repleto de pontos turísticos, cultura e gastronomia típica marcante.",
+    "biomes": [
+      "Cerrado"
+    ]
+  },
+  "free_tourism": {
+    "public_beaches": [],
+    "parks": [],
+    "trails": [],
+    "waterfalls": [],
+    "squares_historic_centers": [
+      {
+        "name": "Congresso Nacional",
+        "city": "Brasília",
+        "lat": -15.799,
+        "lng": -47.864,
+        "tags": [
+          "gratuito",
+          "arquitetura",
+          "história"
+        ]
+      }
+    ],
+    "viewpoints": [],
+    "free_events": [
+      {
+        "name": "Festividades Populares de Distrito Federal",
+        "period": "Calendário móvel anual",
+        "city": "Brasília",
+        "paid": false
+      }
+    ]
+  },
+  "paid_tourism": {
+    "parks_and_tickets": [
+      {
+        "name": "Parque Nacional de Brasília",
+        "city": "Brasília",
+        "lat": -15.732,
+        "lng": -47.961,
+        "tags": [
+          "pago",
+          "lazer",
+          "natureza"
+        ]
+      }
+    ],
+    "guided_tours": [],
+    "boat_tours": [],
+    "museums": [],
+    "water_parks": [],
+    "adventure": []
+  },
+  "top_attractions": [
+    {
+      "name": "Congresso Nacional",
+      "short_description": "O coração político do país, projetado pelo renomado arquiteto Oscar Niemeyer.",
+      "category": "cultura",
+      "is_free": true,
+      "city": "Brasília",
+      "lat": -15.799,
+      "lng": -47.864,
+      "tags": [
+        "gratuito",
+        "arquitetura",
+        "história"
+      ]
+    },
+    {
+      "name": "Catedral Metropolitana de Brasília",
+      "short_description": "Obra-prima de Niemeyer com vitrais coloridos deslumbrantes.",
+      "category": "cultura",
+      "is_free": true,
+      "city": "Brasília",
+      "lat": -15.798,
+      "lng": -47.875,
+      "tags": [
+        "gratuito",
+        "religião",
+        "arquitetura"
+      ]
+    },
+    {
+      "name": "Parque Nacional de Brasília",
+      "short_description": "Conhecido como Água Mineral, possui piscinas naturais e trilhas de cerrado.",
+      "category": "natureza",
+      "is_free": false,
+      "city": "Brasília",
+      "lat": -15.732,
+      "lng": -47.961,
+      "tags": [
+        "pago",
+        "lazer",
+        "natureza"
+      ]
+    }
+  ],
+  "unique_experiences": [
+    "Explorar as belezas e gastronomia de Distrito Federal",
+    "Roteiros guiados por pontos turísticos de Brasília"
+  ],
+  "gastronomy": {
+    "signature_dishes": [
+      "filé mignon ao molho de jabuticaba",
+      "pato no tucupi (regionalizado)",
+      "arroz com pequi"
+    ],
+    "street_food": [
+      "pastel com caldo de cana",
+      "cachorro-quente prensado"
+    ],
+    "budget_eats": [
+      "Pontão do Lago Sul",
+      "Feira da Torre de TV"
+    ]
+  },
+  "events_festivals": [
+    {
+      "name": "Festival Estadual de Distrito Federal",
+      "period": "Anual",
+      "city": "Brasília",
+      "paid": false
+    }
+  ],
+  "itineraries": {
+    "one_day": [
+      "Manhã no centro de Brasília",
+      "Almoço típico regional",
+      "Tarde nos parques ou praias locais"
+    ],
+    "three_days": [
+      "Dia 1: Passeio histórico por Brasília",
+      "Dia 2: Aventura natural ou praias",
+      "Dia 3: Gastronomia e artesanato local"
+    ],
+    "seven_days": [
+      "Dias 1-2: Brasília e arredores",
+      "Dias 3-5: Roteiro interiorano ou litoral distante",
+      "Dias 6-7: Ecoturismo nos parques estaduais"
+    ]
+  },
+  "budgets": {
+    "economico": {
+      "daily_brl_min": 150,
+      "daily_brl_max": 250
+    },
+    "medio": {
+      "daily_brl_min": 350,
+      "daily_brl_max": 600
+    },
+    "luxo": {
+      "daily_brl_min": 800,
+      "daily_brl_max": 1800
+    }
+  },
+  "map_settings": {
+    "default_center": {
+      "lat": -15.78,
+      "lng": -47.929
+    },
+    "default_zoom": 10
+  },
+  "official_sources": {
+    "tourism": [
+      "Secretaria de Turismo de Distrito Federal",
+      "Portal de Brasília"
+    ],
+    "news": [
+      "Notícias de Distrito Federal"
+    ],
+    "maps": [
+      "IBGE"
+    ],
+    "images": [
+      "Unsplash",
+      "Pexels"
+    ],
+    "notes": []
+  },
+  "maya_snippets": [
+    {
+      "intent": "o que fazer de graca",
+      "user_example": "o que fazer de graça em Brasília?",
+      "assistant_snippet": "Em Brasília, você pode conhecer parques públicos e passear pelas praças históricas sem pagar nada."
+    }
+  ],
+  "seo": {
+    "title": "Descubra Distrito Federal: turismo, o que fazer, mapa e roteiros",
+    "meta_description": "Guia de viagem para o estado de Distrito Federal com pontos turísticos gratuitos, gastronomia típica e roteiros no mapa.",
+    "keywords": [
+      "distrito federal turismo",
+      "o que fazer em distrito-federal",
+      "roteiro distrito-federal"
+    ]
+  },
+  "last_verified": "2026-05-27"
+}

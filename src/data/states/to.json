@@ -1,0 +1,206 @@
+{
+  "uf_code": "TO",
+  "slug": "tocantins",
+  "state_name": "Tocantins",
+  "capital": "Palmas",
+  "region": "Norte",
+  "general_info": {
+    "climate": "tropical com variações regionais marcantes",
+    "best_time": "época seca para trilhas, época de chuvas para cachoeiras e rios",
+    "intro": "Conheça o estado do Tocantins. Repleto de pontos turísticos, cultura e gastronomia típica marcante.",
+    "biomes": [
+      "Cerrado"
+    ]
+  },
+  "free_tourism": {
+    "public_beaches": [
+      {
+        "name": "Praia da Graciosa",
+        "city": "Palmas",
+        "lat": -10.187,
+        "lng": -48.361,
+        "tags": [
+          "gratuito",
+          "lago",
+          "praia"
+        ]
+      }
+    ],
+    "parks": [],
+    "trails": [],
+    "waterfalls": [],
+    "squares_historic_centers": [],
+    "viewpoints": [],
+    "free_events": [
+      {
+        "name": "Festividades Populares de Tocantins",
+        "period": "Calendário móvel anual",
+        "city": "Palmas",
+        "paid": false
+      }
+    ]
+  },
+  "paid_tourism": {
+    "parks_and_tickets": [],
+    "guided_tours": [],
+    "boat_tours": [],
+    "museums": [],
+    "water_parks": [],
+    "adventure": [
+      {
+        "name": "Parque Estadual do Jalapão",
+        "city": "Mateiros",
+        "lat": -10.452,
+        "lng": -46.584,
+        "tags": [
+          "pago",
+          "fervedouro",
+          "aventura"
+        ]
+      }
+    ]
+  },
+  "top_attractions": [
+    {
+      "name": "Parque Estadual do Jalapão",
+      "short_description": "Oásis de dunas douradas, fervedouros de águas azuladas que impedem afundar e cachoeiras.",
+      "category": "natureza",
+      "is_free": false,
+      "city": "Mateiros",
+      "lat": -10.452,
+      "lng": -46.584,
+      "tags": [
+        "pago",
+        "fervedouro",
+        "aventura"
+      ]
+    },
+    {
+      "name": "Praia da Graciosa",
+      "short_description": "Orla fluvial urbanizada às margens do Lago de Palmas com pôr do sol clássico do cerrado.",
+      "category": "natureza",
+      "is_free": true,
+      "city": "Palmas",
+      "lat": -10.187,
+      "lng": -48.361,
+      "tags": [
+        "gratuito",
+        "lago",
+        "praia"
+      ]
+    },
+    {
+      "name": "Cachoeira da Roncadeira",
+      "short_description": "Queda de 70 metros de altura em um desfiladeiro com trilha ecológica exuberante.",
+      "category": "natureza",
+      "is_free": false,
+      "city": "Taquaruçu",
+      "lat": -10.312,
+      "lng": -48.123,
+      "tags": [
+        "pago",
+        "cachoeira",
+        "rapel"
+      ]
+    }
+  ],
+  "unique_experiences": [
+    "Explorar as belezas e gastronomia de Tocantins",
+    "Roteiros guiados por pontos turísticos de Palmas"
+  ],
+  "gastronomy": {
+    "signature_dishes": [
+      "peixe na telha",
+      "paçoca de carne seca no pilão",
+      "chambari"
+    ],
+    "street_food": [
+      "chambari",
+      "tapioca de coco"
+    ],
+    "budget_eats": [
+      "Feira do Bosque em Palmas",
+      "Mercado Municipal"
+    ]
+  },
+  "events_festivals": [
+    {
+      "name": "Festival Estadual de Tocantins",
+      "period": "Anual",
+      "city": "Palmas",
+      "paid": false
+    }
+  ],
+  "itineraries": {
+    "one_day": [
+      "Manhã no centro de Palmas",
+      "Almoço típico regional",
+      "Tarde nos parques ou praias locais"
+    ],
+    "three_days": [
+      "Dia 1: Passeio histórico por Palmas",
+      "Dia 2: Aventura natural ou praias",
+      "Dia 3: Gastronomia e artesanato local"
+    ],
+    "seven_days": [
+      "Dias 1-2: Palmas e arredores",
+      "Dias 3-5: Roteiro interiorano ou litoral distante",
+      "Dias 6-7: Ecoturismo nos parques estaduais"
+    ]
+  },
+  "budgets": {
+    "economico": {
+      "daily_brl_min": 150,
+      "daily_brl_max": 250
+    },
+    "medio": {
+      "daily_brl_min": 350,
+      "daily_brl_max": 600
+    },
+    "luxo": {
+      "daily_brl_min": 800,
+      "daily_brl_max": 1800
+    }
+  },
+  "map_settings": {
+    "default_center": {
+      "lat": -9.791,
+      "lng": -48.247
+    },
+    "default_zoom": 6
+  },
+  "official_sources": {
+    "tourism": [
+      "Secretaria de Turismo de Tocantins",
+      "Portal de Palmas"
+    ],
+    "news": [
+      "Notícias de Tocantins"
+    ],
+    "maps": [
+      "IBGE"
+    ],
+    "images": [
+      "Unsplash",
+      "Pexels"
+    ],
+    "notes": []
+  },
+  "maya_snippets": [
+    {
+      "intent": "o que fazer de graca",
+      "user_example": "o que fazer de graça em Palmas?",
+      "assistant_snippet": "Em Palmas, você pode conhecer parques públicos e passear pelas praças históricas sem pagar nada."
+    }
+  ],
+  "seo": {
+    "title": "Descubra Tocantins: turismo, o que fazer, mapa e roteiros",
+    "meta_description": "Guia de viagem para o estado de Tocantins com pontos turísticos gratuitos, gastronomia típica e roteiros no mapa.",
+    "keywords": [
+      "tocantins turismo",
+      "o que fazer em tocantins",
+      "roteiro tocantins"
+    ]
+  },
+  "last_verified": "2026-05-27"
+}

@@ -1,0 +1,207 @@
+{
+  "uf_code": "RN",
+  "slug": "rio-grande-do-norte",
+  "state_name": "Rio Grande do Norte",
+  "capital": "Natal",
+  "region": "Nordeste",
+  "general_info": {
+    "climate": "tropical com variações regionais marcantes",
+    "best_time": "época seca para trilhas, época de chuvas para cachoeiras e rios",
+    "intro": "Conheça o estado do Rio Grande do Norte. Repleto de pontos turísticos, cultura e gastronomia típica marcante.",
+    "biomes": [
+      "Caatinga",
+      "Mata Atlântica"
+    ]
+  },
+  "free_tourism": {
+    "public_beaches": [
+      {
+        "name": "Praia da Pipa",
+        "city": "Tibau do Sul",
+        "lat": -6.23,
+        "lng": -35.045,
+        "tags": [
+          "gratuito",
+          "praia",
+          "golfinhos"
+        ]
+      }
+    ],
+    "parks": [],
+    "trails": [],
+    "waterfalls": [],
+    "squares_historic_centers": [],
+    "viewpoints": [],
+    "free_events": [
+      {
+        "name": "Festividades Populares de Rio Grande do Norte",
+        "period": "Calendário móvel anual",
+        "city": "Natal",
+        "paid": false
+      }
+    ]
+  },
+  "paid_tourism": {
+    "parks_and_tickets": [
+      {
+        "name": "Maior Cajueiro do Mundo",
+        "city": "Parnamirim",
+        "lat": -5.978,
+        "lng": -35.123,
+        "tags": [
+          "pago",
+          "natureza",
+          "curiosidade"
+        ]
+      }
+    ],
+    "guided_tours": [],
+    "boat_tours": [],
+    "museums": [],
+    "water_parks": [],
+    "adventure": []
+  },
+  "top_attractions": [
+    {
+      "name": "Dunas de Genipabu",
+      "short_description": "Parque turístico de dunas com passeios clássicos de buggy com ou sem emoção.",
+      "category": "natureza",
+      "is_free": false,
+      "city": "Extremoz",
+      "lat": -5.706,
+      "lng": -35.197,
+      "tags": [
+        "pago",
+        "dunas",
+        "buggy"
+      ]
+    },
+    {
+      "name": "Maior Cajueiro do Mundo",
+      "short_description": "Gigantesca árvore frutífera que cobre mais de 8 mil metros quadrados.",
+      "category": "natureza",
+      "is_free": false,
+      "city": "Parnamirim",
+      "lat": -5.978,
+      "lng": -35.123,
+      "tags": [
+        "pago",
+        "natureza",
+        "curiosidade"
+      ]
+    },
+    {
+      "name": "Praia da Pipa",
+      "short_description": "Vilarejo praiano badalado com falésias imponentes e golfinhos nadando perto da praia.",
+      "category": "natureza",
+      "is_free": true,
+      "city": "Tibau do Sul",
+      "lat": -6.23,
+      "lng": -35.045,
+      "tags": [
+        "gratuito",
+        "praia",
+        "golfinhos"
+      ]
+    }
+  ],
+  "unique_experiences": [
+    "Explorar as belezas e gastronomia de Rio Grande do Norte",
+    "Roteiros guiados por pontos turísticos de Natal"
+  ],
+  "gastronomy": {
+    "signature_dishes": [
+      "carne de sol com macaxeira",
+      "ginga com tapioca",
+      "paçoca potiguar"
+    ],
+    "street_food": [
+      "ginga com tapioca",
+      "tapioca recheada"
+    ],
+    "budget_eats": [
+      "Mercado de Ponta Negra",
+      "praias de Natal"
+    ]
+  },
+  "events_festivals": [
+    {
+      "name": "Festival Estadual de Rio Grande do Norte",
+      "period": "Anual",
+      "city": "Natal",
+      "paid": false
+    }
+  ],
+  "itineraries": {
+    "one_day": [
+      "Manhã no centro de Natal",
+      "Almoço típico regional",
+      "Tarde nos parques ou praias locais"
+    ],
+    "three_days": [
+      "Dia 1: Passeio histórico por Natal",
+      "Dia 2: Aventura natural ou praias",
+      "Dia 3: Gastronomia e artesanato local"
+    ],
+    "seven_days": [
+      "Dias 1-2: Natal e arredores",
+      "Dias 3-5: Roteiro interiorano ou litoral distante",
+      "Dias 6-7: Ecoturismo nos parques estaduais"
+    ]
+  },
+  "budgets": {
+    "economico": {
+      "daily_brl_min": 150,
+      "daily_brl_max": 250
+    },
+    "medio": {
+      "daily_brl_min": 350,
+      "daily_brl_max": 600
+    },
+    "luxo": {
+      "daily_brl_min": 800,
+      "daily_brl_max": 1800
+    }
+  },
+  "map_settings": {
+    "default_center": {
+      "lat": -5.811,
+      "lng": -36.568
+    },
+    "default_zoom": 8
+  },
+  "official_sources": {
+    "tourism": [
+      "Secretaria de Turismo de Rio Grande do Norte",
+      "Portal de Natal"
+    ],
+    "news": [
+      "Notícias de Rio Grande do Norte"
+    ],
+    "maps": [
+      "IBGE"
+    ],
+    "images": [
+      "Unsplash",
+      "Pexels"
+    ],
+    "notes": []
+  },
+  "maya_snippets": [
+    {
+      "intent": "o que fazer de graca",
+      "user_example": "o que fazer de graça em Natal?",
+      "assistant_snippet": "Em Natal, você pode conhecer parques públicos e passear pelas praças históricas sem pagar nada."
+    }
+  ],
+  "seo": {
+    "title": "Descubra Rio Grande do Norte: turismo, o que fazer, mapa e roteiros",
+    "meta_description": "Guia de viagem para o estado de Rio Grande do Norte com pontos turísticos gratuitos, gastronomia típica e roteiros no mapa.",
+    "keywords": [
+      "rio grande do norte turismo",
+      "o que fazer em rio-grande-do-norte",
+      "roteiro rio-grande-do-norte"
+    ]
+  },
+  "last_verified": "2026-05-27"
+}

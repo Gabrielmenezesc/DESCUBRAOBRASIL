@@ -79,6 +79,21 @@
                     <span id="greeting-text">Olá! Onde vamos hoje?</span>
                 </div>
 
+                <!-- ══ GAMIFICATION HUD ══ -->
+                <div class="app-gamification-hud" id="app-gamification-hud" style="margin-top: 14px; margin-bottom: 8px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 18px; padding: 12px 16px; display: flex; flex-direction: column; gap: 8px; width: 100%; text-align: left; cursor: pointer; backdrop-filter: blur(10px);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; font-size: 0.8rem;">
+                        <span style="font-weight: 800; color: #10B981;" id="app-hud-rank">Recruta de Viagem</span>
+                        <span style="font-weight: 800; color: white;" id="app-hud-level">Nível 1</span>
+                    </div>
+                    <div style="width: 100%; height: 6px; background: rgba(0,0,0,0.3); border-radius: 3px; overflow: hidden;">
+                        <div id="app-hud-progress" style="width: 0%; height: 100%; background: linear-gradient(90deg, #10B981, #3b82f6); border-radius: 3px; transition: width 0.4s;"></div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; font-size: 0.7rem; color: #94a3b8; font-weight: 600;">
+                        <span id="app-hud-xp">0 / 100 XP</span>
+                        <span id="app-hud-states">🎒 0/27 Estados</span>
+                    </div>
+                </div>
+
                 <!-- ══ SEARCH LUPA (Main Element) ══ -->
                 <div class="search-container">
                     <div class="search-pill" id="search-pill">
@@ -627,6 +642,45 @@
      MODALS
 ═══════════════════════════════════════════════════════ -->
 
+    <!-- Modal: Adventure & Gamification Hub -->
+    <div class="modal-bg hidden" id="modal-adventure" style="z-index: 1000;">
+        <div class="modal" style="max-width: 420px; width: calc(100% - 32px); max-height: 85vh; overflow-y: auto; border-radius: 24px; padding: 20px;">
+            <button class="modal-x" id="modal-adventure-close" onclick="document.getElementById('modal-adventure').classList.add('hidden')">✕</button>
+            <div style="text-align: center; margin-bottom: 20px;">
+                <div style="font-size: 32px;">🧭</div>
+                <h3 style="font-size: 1.25rem; font-weight: 800; color: #1a1a2e; margin-top: 5px;">Seu Passaporte de Viagem</h3>
+                <p style="font-size: 0.78rem; color: #6b7280; margin-top: 2px;">Colete carimbos explorando estados e decifrando charadas!</p>
+            </div>
+            
+            <!-- Rank & XP -->
+            <div style="background: #f8fafc; border-radius: 16px; padding: 14px; margin-bottom: 20px; border: 1px solid #e2e8f0; text-align: left;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+                    <span style="font-size:0.85rem; font-weight:800; color:#0f172a;" id="adv-rank">Recruta</span>
+                    <span style="font-size:0.8rem; font-weight:700; color:#10B981;" id="adv-level">Nível 1</span>
+                </div>
+                <div style="width:100%; height:8px; background:#e2e8f0; border-radius:4px; overflow:hidden; margin-bottom:6px;">
+                    <div id="adv-progress" style="width:0%; height:100%; background:#10B981; border-radius:4px;"></div>
+                </div>
+                <div style="display:flex; justify-content:space-between; font-size:0.7rem; color:#64748b;">
+                    <span id="adv-xp">0 / 100 XP</span>
+                    <span id="adv-states">0/27 Estados</span>
+                </div>
+            </div>
+
+            <!-- Stamps -->
+            <h4 style="font-size: 0.85rem; font-weight: 800; color: #0f172a; margin-bottom: 10px; text-align: left;">🎒 Seus Carimbos:</h4>
+            <div id="adv-stamps-grid" style="display:grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px;">
+                <!-- Injected via JS -->
+            </div>
+
+            <!-- Achievements -->
+            <h4 style="font-size: 0.85rem; font-weight: 800; color: #0f172a; margin-bottom: 10px; text-align: left;">🏆 Suas Conquistas:</h4>
+            <div id="adv-achievements-list" style="display:flex; flex-direction:column; gap:8px;">
+                <!-- Injected via JS -->
+            </div>
+        </div>
+    </div>
+
     <!-- Login -->
     <div class="modal-bg hidden" id="modal-login">
         <div class="modal">
@@ -1034,6 +1088,7 @@
     <script src="js/data.js?v=4.1"></script>
     <script src="js/main.js?v=4.1"></script>
     <script src="js/maya-voice.js"></script>
+    <script src="js/gamificacao.js"></script>
 
     <!-- PWA Service Worker Registration -->
     <script>
@@ -1048,10 +1103,7 @@
     
     <!-- Inject API Key for standalone app Maya -->
     <script>
-        // Esta chave é a mesma usada pelo Next.js. Dividida para evitar bloqueios de scanner no Git.
-        var p1 = "gsk_p8PUSxvDZ2MievFc7AyiWGdyb3";
-        var p2 = "FYjkCRM6CZAryHWALkraq7mvVK";
-        window.__GROQ_API_KEY__ = p1 + p2;
+        window.__GROQ_API_KEY__ = null;
     </script>
 </body>
 

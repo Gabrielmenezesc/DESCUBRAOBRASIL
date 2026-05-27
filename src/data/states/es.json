@@ -1,0 +1,231 @@
+{
+  "uf_code": "ES",
+  "slug": "espirito-santo",
+  "state_name": "Espírito Santo",
+  "capital": "Vitória",
+  "region": "Sudeste",
+  "general_info": {
+    "climate": "tropical com variações regionais marcantes",
+    "best_time": "época seca para trilhas, época de chuvas para cachoeiras e rios",
+    "intro": "Conheça o estado do Espírito Santo. Repleto de pontos turísticos, cultura e gastronomia típica marcante.",
+    "biomes": [
+      "Mata Atlântica"
+    ]
+  },
+  "free_tourism": {
+    "public_beaches": [
+      {
+        "name": "Praia do Morro",
+        "city": "Guarapari",
+        "lat": -20.65,
+        "lng": -40.485,
+        "tags": [
+          "gratuito",
+          "praia",
+          "família"
+        ]
+      }
+    ],
+    "parks": [],
+    "trails": [
+      {
+        "name": "Pedra Azul",
+        "city": "Domingos Martins",
+        "lat": -20.407,
+        "lng": -41.018,
+        "tags": [
+          "gratuito",
+          "natureza",
+          "trilha"
+        ]
+      }
+    ],
+    "waterfalls": [],
+    "squares_historic_centers": [
+      {
+        "name": "Convento da Penha",
+        "city": "Vila Velha",
+        "lat": -20.329,
+        "lng": -40.287,
+        "tags": [
+          "gratuito",
+          "história",
+          "vista"
+        ]
+      }
+    ],
+    "viewpoints": [
+      {
+        "name": "Convento da Penha",
+        "city": "Vila Velha",
+        "lat": -20.329,
+        "lng": -40.287,
+        "tags": [
+          "gratuito",
+          "história",
+          "vista"
+        ]
+      }
+    ],
+    "free_events": [
+      {
+        "name": "Festividades Populares de Espírito Santo",
+        "period": "Calendário móvel anual",
+        "city": "Vitória",
+        "paid": false
+      }
+    ]
+  },
+  "paid_tourism": {
+    "parks_and_tickets": [],
+    "guided_tours": [],
+    "boat_tours": [],
+    "museums": [],
+    "water_parks": [],
+    "adventure": []
+  },
+  "top_attractions": [
+    {
+      "name": "Convento da Penha",
+      "short_description": "Santuário histórico fundado em 1558 no topo de um penhasco com vista panorâmica.",
+      "category": "cultura",
+      "is_free": true,
+      "city": "Vila Velha",
+      "lat": -20.329,
+      "lng": -40.287,
+      "tags": [
+        "gratuito",
+        "história",
+        "vista"
+      ]
+    },
+    {
+      "name": "Pedra Azul",
+      "short_description": "Formação de granito imponente no Parque Estadual da Pedra Azul que muda de tom sob o sol.",
+      "category": "natureza",
+      "is_free": true,
+      "city": "Domingos Martins",
+      "lat": -20.407,
+      "lng": -41.018,
+      "tags": [
+        "gratuito",
+        "natureza",
+        "trilha"
+      ]
+    },
+    {
+      "name": "Praia do Morro",
+      "short_description": "Uma das praias mais badaladas e estruturadas do balneário de Guarapari.",
+      "category": "natureza",
+      "is_free": true,
+      "city": "Guarapari",
+      "lat": -20.65,
+      "lng": -40.485,
+      "tags": [
+        "gratuito",
+        "praia",
+        "família"
+      ]
+    }
+  ],
+  "unique_experiences": [
+    "Explorar as belezas e gastronomia de Espírito Santo",
+    "Roteiros guiados por pontos turísticos de Vitória"
+  ],
+  "gastronomy": {
+    "signature_dishes": [
+      "moqueca capixaba",
+      "torta capixaba",
+      "caranguejada"
+    ],
+    "street_food": [
+      "pastel de vento",
+      "tapioca",
+      "peroá frito"
+    ],
+    "budget_eats": [
+      "Mercado da Vila Rubim",
+      "quiosques da Praia de Camburi"
+    ]
+  },
+  "events_festivals": [
+    {
+      "name": "Festival Estadual de Espírito Santo",
+      "period": "Anual",
+      "city": "Vitória",
+      "paid": false
+    }
+  ],
+  "itineraries": {
+    "one_day": [
+      "Manhã no centro de Vitória",
+      "Almoço típico regional",
+      "Tarde nos parques ou praias locais"
+    ],
+    "three_days": [
+      "Dia 1: Passeio histórico por Vitória",
+      "Dia 2: Aventura natural ou praias",
+      "Dia 3: Gastronomia e artesanato local"
+    ],
+    "seven_days": [
+      "Dias 1-2: Vitória e arredores",
+      "Dias 3-5: Roteiro interiorano ou litoral distante",
+      "Dias 6-7: Ecoturismo nos parques estaduais"
+    ]
+  },
+  "budgets": {
+    "economico": {
+      "daily_brl_min": 150,
+      "daily_brl_max": 250
+    },
+    "medio": {
+      "daily_brl_min": 350,
+      "daily_brl_max": 600
+    },
+    "luxo": {
+      "daily_brl_min": 800,
+      "daily_brl_max": 1800
+    }
+  },
+  "map_settings": {
+    "default_center": {
+      "lat": -19.183,
+      "lng": -40.3
+    },
+    "default_zoom": 8
+  },
+  "official_sources": {
+    "tourism": [
+      "Secretaria de Turismo de Espírito Santo",
+      "Portal de Vitória"
+    ],
+    "news": [
+      "Notícias de Espírito Santo"
+    ],
+    "maps": [
+      "IBGE"
+    ],
+    "images": [
+      "Unsplash",
+      "Pexels"
+    ],
+    "notes": []
+  },
+  "maya_snippets": [
+    {
+      "intent": "o que fazer de graca",
+      "user_example": "o que fazer de graça em Vitória?",
+      "assistant_snippet": "Em Vitória, você pode conhecer parques públicos e passear pelas praças históricas sem pagar nada."
+    }
+  ],
+  "seo": {
+    "title": "Descubra Espírito Santo: turismo, o que fazer, mapa e roteiros",
+    "meta_description": "Guia de viagem para o estado de Espírito Santo com pontos turísticos gratuitos, gastronomia típica e roteiros no mapa.",
+    "keywords": [
+      "espírito santo turismo",
+      "o que fazer em espirito-santo",
+      "roteiro espirito-santo"
+    ]
+  },
+  "last_verified": "2026-05-27"
+}

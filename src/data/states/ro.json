@@ -1,0 +1,229 @@
+{
+  "uf_code": "RO",
+  "slug": "rondonia",
+  "state_name": "Rondônia",
+  "capital": "Porto Velho",
+  "region": "Norte",
+  "general_info": {
+    "climate": "tropical com variações regionais marcantes",
+    "best_time": "época seca para trilhas, época de chuvas para cachoeiras e rios",
+    "intro": "Conheça o estado do Rondônia. Repleto de pontos turísticos, cultura e gastronomia típica marcante.",
+    "biomes": [
+      "Amazônia"
+    ]
+  },
+  "free_tourism": {
+    "public_beaches": [],
+    "parks": [],
+    "trails": [],
+    "waterfalls": [],
+    "squares_historic_centers": [
+      {
+        "name": "Estrada de Ferro Madeira-Mamoré (EFMM)",
+        "city": "Porto Velho",
+        "lat": -8.761,
+        "lng": -63.91,
+        "tags": [
+          "gratuito",
+          "história",
+          "trem"
+        ]
+      },
+      {
+        "name": "Real Forte Príncipe da Beira",
+        "city": "Costa Marques",
+        "lat": -12.428,
+        "lng": -64.423,
+        "tags": [
+          "gratuito",
+          "história",
+          "forte"
+        ]
+      }
+    ],
+    "viewpoints": [],
+    "free_events": [
+      {
+        "name": "Festividades Populares de Rondônia",
+        "period": "Calendário móvel anual",
+        "city": "Porto Velho",
+        "paid": false
+      }
+    ]
+  },
+  "paid_tourism": {
+    "parks_and_tickets": [
+      {
+        "name": "Parque Nacional de Pacaás Novos",
+        "city": "Guajará-Mirim",
+        "lat": -10.752,
+        "lng": -63.785,
+        "tags": [
+          "pago",
+          "natureza",
+          "aventura"
+        ]
+      }
+    ],
+    "guided_tours": [],
+    "boat_tours": [],
+    "museums": [],
+    "water_parks": [],
+    "adventure": [
+      {
+        "name": "Parque Nacional de Pacaás Novos",
+        "city": "Guajará-Mirim",
+        "lat": -10.752,
+        "lng": -63.785,
+        "tags": [
+          "pago",
+          "natureza",
+          "aventura"
+        ]
+      }
+    ]
+  },
+  "top_attractions": [
+    {
+      "name": "Estrada de Ferro Madeira-Mamoré (EFMM)",
+      "short_description": "Complexo histórico ferroviário às margens do Rio Madeira na capital.",
+      "category": "cultura",
+      "is_free": true,
+      "city": "Porto Velho",
+      "lat": -8.761,
+      "lng": -63.91,
+      "tags": [
+        "gratuito",
+        "história",
+        "trem"
+      ]
+    },
+    {
+      "name": "Real Forte Príncipe da Beira",
+      "short_description": "A maior fortificação portuguesa construída no interior da selva amazônica.",
+      "category": "cultura",
+      "is_free": true,
+      "city": "Costa Marques",
+      "lat": -12.428,
+      "lng": -64.423,
+      "tags": [
+        "gratuito",
+        "história",
+        "forte"
+      ]
+    },
+    {
+      "name": "Parque Nacional de Pacaás Novos",
+      "short_description": "Reserva ecológica abrigando montanhas e picos elevados cobertos de floresta tropical.",
+      "category": "natureza",
+      "is_free": false,
+      "city": "Guajará-Mirim",
+      "lat": -10.752,
+      "lng": -63.785,
+      "tags": [
+        "pago",
+        "natureza",
+        "aventura"
+      ]
+    }
+  ],
+  "unique_experiences": [
+    "Explorar as belezas e gastronomia de Rondônia",
+    "Roteiros guiados por pontos turísticos de Porto Velho"
+  ],
+  "gastronomy": {
+    "signature_dishes": [
+      "caldeirada de tucunaré",
+      "peixe assado na brasa",
+      "tapioca com castanha"
+    ],
+    "street_food": [
+      "pastel com tacacá",
+      "espetinho"
+    ],
+    "budget_eats": [
+      "Mercado Central de Porto Velho",
+      "barraquinhas da Praça da EFMM"
+    ]
+  },
+  "events_festivals": [
+    {
+      "name": "Festival Estadual de Rondônia",
+      "period": "Anual",
+      "city": "Porto Velho",
+      "paid": false
+    }
+  ],
+  "itineraries": {
+    "one_day": [
+      "Manhã no centro de Porto Velho",
+      "Almoço típico regional",
+      "Tarde nos parques ou praias locais"
+    ],
+    "three_days": [
+      "Dia 1: Passeio histórico por Porto Velho",
+      "Dia 2: Aventura natural ou praias",
+      "Dia 3: Gastronomia e artesanato local"
+    ],
+    "seven_days": [
+      "Dias 1-2: Porto Velho e arredores",
+      "Dias 3-5: Roteiro interiorano ou litoral distante",
+      "Dias 6-7: Ecoturismo nos parques estaduais"
+    ]
+  },
+  "budgets": {
+    "economico": {
+      "daily_brl_min": 150,
+      "daily_brl_max": 250
+    },
+    "medio": {
+      "daily_brl_min": 350,
+      "daily_brl_max": 600
+    },
+    "luxo": {
+      "daily_brl_min": 800,
+      "daily_brl_max": 1800
+    }
+  },
+  "map_settings": {
+    "default_center": {
+      "lat": -10.902,
+      "lng": -62.771
+    },
+    "default_zoom": 7
+  },
+  "official_sources": {
+    "tourism": [
+      "Secretaria de Turismo de Rondônia",
+      "Portal de Porto Velho"
+    ],
+    "news": [
+      "Notícias de Rondônia"
+    ],
+    "maps": [
+      "IBGE"
+    ],
+    "images": [
+      "Unsplash",
+      "Pexels"
+    ],
+    "notes": []
+  },
+  "maya_snippets": [
+    {
+      "intent": "o que fazer de graca",
+      "user_example": "o que fazer de graça em Porto Velho?",
+      "assistant_snippet": "Em Porto Velho, você pode conhecer parques públicos e passear pelas praças históricas sem pagar nada."
+    }
+  ],
+  "seo": {
+    "title": "Descubra Rondônia: turismo, o que fazer, mapa e roteiros",
+    "meta_description": "Guia de viagem para o estado de Rondônia com pontos turísticos gratuitos, gastronomia típica e roteiros no mapa.",
+    "keywords": [
+      "rondônia turismo",
+      "o que fazer em rondonia",
+      "roteiro rondonia"
+    ]
+  },
+  "last_verified": "2026-05-27"
+}

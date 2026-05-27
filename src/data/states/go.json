@@ -1,0 +1,206 @@
+{
+  "uf_code": "GO",
+  "slug": "goias",
+  "state_name": "Goiás",
+  "capital": "Goiânia",
+  "region": "Centro-Oeste",
+  "general_info": {
+    "climate": "tropical com variações regionais marcantes",
+    "best_time": "época seca para trilhas, época de chuvas para cachoeiras e rios",
+    "intro": "Conheça o estado do Goiás. Repleto de pontos turísticos, cultura e gastronomia típica marcante.",
+    "biomes": [
+      "Cerrado"
+    ]
+  },
+  "free_tourism": {
+    "public_beaches": [],
+    "parks": [],
+    "trails": [],
+    "waterfalls": [],
+    "squares_historic_centers": [
+      {
+        "name": "Centro Histórico de Pirenópolis",
+        "city": "Pirenópolis",
+        "lat": -15.852,
+        "lng": -48.959,
+        "tags": [
+          "gratuito",
+          "história",
+          "casal"
+        ]
+      }
+    ],
+    "viewpoints": [],
+    "free_events": [
+      {
+        "name": "Festividades Populares de Goiás",
+        "period": "Calendário móvel anual",
+        "city": "Goiânia",
+        "paid": false
+      }
+    ]
+  },
+  "paid_tourism": {
+    "parks_and_tickets": [],
+    "guided_tours": [],
+    "boat_tours": [],
+    "museums": [],
+    "water_parks": [],
+    "adventure": [
+      {
+        "name": "Parque Nacional da Chapada dos Veadeiros",
+        "city": "Alto Paraíso de Goiás",
+        "lat": -14.135,
+        "lng": -47.788,
+        "tags": [
+          "pago",
+          "ecoturismo",
+          "aventura"
+        ]
+      }
+    ]
+  },
+  "top_attractions": [
+    {
+      "name": "Parque Nacional da Chapada dos Veadeiros",
+      "short_description": "Cânions de cristal, cachoeiras de tirar o fôlego e misticismo.",
+      "category": "natureza",
+      "is_free": false,
+      "city": "Alto Paraíso de Goiás",
+      "lat": -14.135,
+      "lng": -47.788,
+      "tags": [
+        "pago",
+        "ecoturismo",
+        "aventura"
+      ]
+    },
+    {
+      "name": "Centro Histórico de Pirenópolis",
+      "short_description": "Casario colonial português, ruas de pedras e famosas Cavalhadas.",
+      "category": "cultura",
+      "is_free": true,
+      "city": "Pirenópolis",
+      "lat": -15.852,
+      "lng": -48.959,
+      "tags": [
+        "gratuito",
+        "história",
+        "casal"
+      ]
+    },
+    {
+      "name": "Hot Park",
+      "short_description": "Parque aquático de águas naturalmente quentes em Rio Quente.",
+      "category": "lazer",
+      "is_free": false,
+      "city": "Rio Quente",
+      "lat": -17.773,
+      "lng": -48.761,
+      "tags": [
+        "pago",
+        "águas termais",
+        "família"
+      ]
+    }
+  ],
+  "unique_experiences": [
+    "Explorar as belezas e gastronomia de Goiás",
+    "Roteiros guiados por pontos turísticos de Goiânia"
+  ],
+  "gastronomy": {
+    "signature_dishes": [
+      "pequizada",
+      "empadão goiano",
+      "galinhada com pequi"
+    ],
+    "street_food": [
+      "pamonha doce e salgada",
+      "espetinho de carne"
+    ],
+    "budget_eats": [
+      "Mercado Popular de Goiânia",
+      "Feira da Lua"
+    ]
+  },
+  "events_festivals": [
+    {
+      "name": "Festival Estadual de Goiás",
+      "period": "Anual",
+      "city": "Goiânia",
+      "paid": false
+    }
+  ],
+  "itineraries": {
+    "one_day": [
+      "Manhã no centro de Goiânia",
+      "Almoço típico regional",
+      "Tarde nos parques ou praias locais"
+    ],
+    "three_days": [
+      "Dia 1: Passeio histórico por Goiânia",
+      "Dia 2: Aventura natural ou praias",
+      "Dia 3: Gastronomia e artesanato local"
+    ],
+    "seven_days": [
+      "Dias 1-2: Goiânia e arredores",
+      "Dias 3-5: Roteiro interiorano ou litoral distante",
+      "Dias 6-7: Ecoturismo nos parques estaduais"
+    ]
+  },
+  "budgets": {
+    "economico": {
+      "daily_brl_min": 150,
+      "daily_brl_max": 250
+    },
+    "medio": {
+      "daily_brl_min": 350,
+      "daily_brl_max": 600
+    },
+    "luxo": {
+      "daily_brl_min": 800,
+      "daily_brl_max": 1800
+    }
+  },
+  "map_settings": {
+    "default_center": {
+      "lat": -15.827,
+      "lng": -49.837
+    },
+    "default_zoom": 7
+  },
+  "official_sources": {
+    "tourism": [
+      "Secretaria de Turismo de Goiás",
+      "Portal de Goiânia"
+    ],
+    "news": [
+      "Notícias de Goiás"
+    ],
+    "maps": [
+      "IBGE"
+    ],
+    "images": [
+      "Unsplash",
+      "Pexels"
+    ],
+    "notes": []
+  },
+  "maya_snippets": [
+    {
+      "intent": "o que fazer de graca",
+      "user_example": "o que fazer de graça em Goiânia?",
+      "assistant_snippet": "Em Goiânia, você pode conhecer parques públicos e passear pelas praças históricas sem pagar nada."
+    }
+  ],
+  "seo": {
+    "title": "Descubra Goiás: turismo, o que fazer, mapa e roteiros",
+    "meta_description": "Guia de viagem para o estado de Goiás com pontos turísticos gratuitos, gastronomia típica e roteiros no mapa.",
+    "keywords": [
+      "goiás turismo",
+      "o que fazer em goias",
+      "roteiro goias"
+    ]
+  },
+  "last_verified": "2026-05-27"
+}

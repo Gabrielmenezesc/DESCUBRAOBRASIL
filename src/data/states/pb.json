@@ -1,0 +1,207 @@
+{
+  "uf_code": "PB",
+  "slug": "paraiba",
+  "state_name": "Paraíba",
+  "capital": "João Pessoa",
+  "region": "Nordeste",
+  "general_info": {
+    "climate": "tropical com variações regionais marcantes",
+    "best_time": "época seca para trilhas, época de chuvas para cachoeiras e rios",
+    "intro": "Conheça o estado do Paraíba. Repleto de pontos turísticos, cultura e gastronomia típica marcante.",
+    "biomes": [
+      "Caatinga",
+      "Mata Atlântica"
+    ]
+  },
+  "free_tourism": {
+    "public_beaches": [
+      {
+        "name": "Praia de Tambaú",
+        "city": "João Pessoa",
+        "lat": -7.116,
+        "lng": -34.821,
+        "tags": [
+          "gratuito",
+          "praia",
+          "cidade"
+        ]
+      }
+    ],
+    "parks": [],
+    "trails": [],
+    "waterfalls": [],
+    "squares_historic_centers": [],
+    "viewpoints": [],
+    "free_events": [
+      {
+        "name": "Festividades Populares de Paraíba",
+        "period": "Calendário móvel anual",
+        "city": "João Pessoa",
+        "paid": false
+      }
+    ]
+  },
+  "paid_tourism": {
+    "parks_and_tickets": [
+      {
+        "name": "Lajedo de Pai Mateus",
+        "city": "Cabaceiras",
+        "lat": -7.498,
+        "lng": -36.291,
+        "tags": [
+          "pago",
+          "história",
+          "natureza"
+        ]
+      }
+    ],
+    "guided_tours": [],
+    "boat_tours": [],
+    "museums": [],
+    "water_parks": [],
+    "adventure": []
+  },
+  "top_attractions": [
+    {
+      "name": "Pôr do Sol na Praia do Jacaré",
+      "short_description": "Pôr do sol ao som do Bolero de Ravel tocado por Jurandy do Sax no meio do rio.",
+      "category": "cultura",
+      "is_free": true,
+      "city": "Cabedelo",
+      "lat": -7.034,
+      "lng": -34.843,
+      "tags": [
+        "gratuito",
+        "música",
+        "romântico"
+      ]
+    },
+    {
+      "name": "Praia de Tambaú",
+      "short_description": "Praia urbana central com calçadão movimentado e recifes com piscinas naturais próximas.",
+      "category": "natureza",
+      "is_free": true,
+      "city": "João Pessoa",
+      "lat": -7.116,
+      "lng": -34.821,
+      "tags": [
+        "gratuito",
+        "praia",
+        "cidade"
+      ]
+    },
+    {
+      "name": "Lajedo de Pai Mateus",
+      "short_description": "Formação rochosa mística no semiárido do Cariri com pedras arredondadas.",
+      "category": "natureza",
+      "is_free": false,
+      "city": "Cabaceiras",
+      "lat": -7.498,
+      "lng": -36.291,
+      "tags": [
+        "pago",
+        "história",
+        "natureza"
+      ]
+    }
+  ],
+  "unique_experiences": [
+    "Explorar as belezas e gastronomia de Paraíba",
+    "Roteiros guiados por pontos turísticos de João Pessoa"
+  ],
+  "gastronomy": {
+    "signature_dishes": [
+      "rubacão",
+      "bode guisado",
+      "carne de sol com nata"
+    ],
+    "street_food": [
+      "tapioca de coco",
+      "cuzcuz recheado"
+    ],
+    "budget_eats": [
+      "Mercado de Tambaú",
+      "Feirinha de Artesanato"
+    ]
+  },
+  "events_festivals": [
+    {
+      "name": "Festival Estadual de Paraíba",
+      "period": "Anual",
+      "city": "João Pessoa",
+      "paid": false
+    }
+  ],
+  "itineraries": {
+    "one_day": [
+      "Manhã no centro de João Pessoa",
+      "Almoço típico regional",
+      "Tarde nos parques ou praias locais"
+    ],
+    "three_days": [
+      "Dia 1: Passeio histórico por João Pessoa",
+      "Dia 2: Aventura natural ou praias",
+      "Dia 3: Gastronomia e artesanato local"
+    ],
+    "seven_days": [
+      "Dias 1-2: João Pessoa e arredores",
+      "Dias 3-5: Roteiro interiorano ou litoral distante",
+      "Dias 6-7: Ecoturismo nos parques estaduais"
+    ]
+  },
+  "budgets": {
+    "economico": {
+      "daily_brl_min": 150,
+      "daily_brl_max": 250
+    },
+    "medio": {
+      "daily_brl_min": 350,
+      "daily_brl_max": 600
+    },
+    "luxo": {
+      "daily_brl_min": 800,
+      "daily_brl_max": 1800
+    }
+  },
+  "map_settings": {
+    "default_center": {
+      "lat": -7.24,
+      "lng": -36.782
+    },
+    "default_zoom": 8
+  },
+  "official_sources": {
+    "tourism": [
+      "Secretaria de Turismo de Paraíba",
+      "Portal de João Pessoa"
+    ],
+    "news": [
+      "Notícias de Paraíba"
+    ],
+    "maps": [
+      "IBGE"
+    ],
+    "images": [
+      "Unsplash",
+      "Pexels"
+    ],
+    "notes": []
+  },
+  "maya_snippets": [
+    {
+      "intent": "o que fazer de graca",
+      "user_example": "o que fazer de graça em João Pessoa?",
+      "assistant_snippet": "Em João Pessoa, você pode conhecer parques públicos e passear pelas praças históricas sem pagar nada."
+    }
+  ],
+  "seo": {
+    "title": "Descubra Paraíba: turismo, o que fazer, mapa e roteiros",
+    "meta_description": "Guia de viagem para o estado de Paraíba com pontos turísticos gratuitos, gastronomia típica e roteiros no mapa.",
+    "keywords": [
+      "paraíba turismo",
+      "o que fazer em paraiba",
+      "roteiro paraiba"
+    ]
+  },
+  "last_verified": "2026-05-27"
+}

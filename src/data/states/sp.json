@@ -1,0 +1,207 @@
+{
+  "uf_code": "SP",
+  "slug": "sao-paulo",
+  "state_name": "São Paulo",
+  "capital": "São Paulo",
+  "region": "Sudeste",
+  "general_info": {
+    "climate": "tropical com variações regionais marcantes",
+    "best_time": "época seca para trilhas, época de chuvas para cachoeiras e rios",
+    "intro": "Conheça o estado do São Paulo. Repleto de pontos turísticos, cultura e gastronomia típica marcante.",
+    "biomes": [
+      "Mata Atlântica",
+      "Cerrado"
+    ]
+  },
+  "free_tourism": {
+    "public_beaches": [],
+    "parks": [
+      {
+        "name": "Parque do Ibirapuera",
+        "city": "São Paulo",
+        "lat": -23.587,
+        "lng": -46.657,
+        "tags": [
+          "gratuito",
+          "parque",
+          "esporte"
+        ]
+      }
+    ],
+    "trails": [],
+    "waterfalls": [],
+    "squares_historic_centers": [],
+    "viewpoints": [],
+    "free_events": [
+      {
+        "name": "Festividades Populares de São Paulo",
+        "period": "Calendário móvel anual",
+        "city": "São Paulo",
+        "paid": false
+      }
+    ]
+  },
+  "paid_tourism": {
+    "parks_and_tickets": [],
+    "guided_tours": [],
+    "boat_tours": [],
+    "museums": [
+      {
+        "name": "Museu de Arte de São Paulo (MASP)",
+        "city": "São Paulo",
+        "lat": -23.561,
+        "lng": -46.656,
+        "tags": [
+          "pago",
+          "arte",
+          "museu"
+        ]
+      }
+    ],
+    "water_parks": [],
+    "adventure": []
+  },
+  "top_attractions": [
+    {
+      "name": "Avenida Paulista",
+      "short_description": "Polo financeiro e cultural aos domingos, aberta para pedestres com shows e arte.",
+      "category": "cidade",
+      "is_free": true,
+      "city": "São Paulo",
+      "lat": -23.561,
+      "lng": -46.655,
+      "tags": [
+        "gratuito",
+        "cultura",
+        "cidade"
+      ]
+    },
+    {
+      "name": "Parque do Ibirapuera",
+      "short_description": "Oásis urbano projetado por Niemeyer e Burle Marx, com museus e lagos.",
+      "category": "natureza",
+      "is_free": true,
+      "city": "São Paulo",
+      "lat": -23.587,
+      "lng": -46.657,
+      "tags": [
+        "gratuito",
+        "parque",
+        "esporte"
+      ]
+    },
+    {
+      "name": "Museu de Arte de São Paulo (MASP)",
+      "short_description": "Museu icônico suspenso por quatro colunas vermelhas na Avenida Paulista.",
+      "category": "cultura",
+      "is_free": false,
+      "city": "São Paulo",
+      "lat": -23.561,
+      "lng": -46.656,
+      "tags": [
+        "pago",
+        "arte",
+        "museu"
+      ]
+    }
+  ],
+  "unique_experiences": [
+    "Explorar as belezas e gastronomia de São Paulo",
+    "Roteiros guiados por pontos turísticos de São Paulo"
+  ],
+  "gastronomy": {
+    "signature_dishes": [
+      "virado à paulista",
+      "sanduíche de mortadela",
+      "pastel de feira"
+    ],
+    "street_food": [
+      "pastel com caldo de cana",
+      "dogão com purê"
+    ],
+    "budget_eats": [
+      "Mercado Municipal de SP (Mercadão)",
+      "restaurantes da Liberdade"
+    ]
+  },
+  "events_festivals": [
+    {
+      "name": "Festival Estadual de São Paulo",
+      "period": "Anual",
+      "city": "São Paulo",
+      "paid": false
+    }
+  ],
+  "itineraries": {
+    "one_day": [
+      "Manhã no centro de São Paulo",
+      "Almoço típico regional",
+      "Tarde nos parques ou praias locais"
+    ],
+    "three_days": [
+      "Dia 1: Passeio histórico por São Paulo",
+      "Dia 2: Aventura natural ou praias",
+      "Dia 3: Gastronomia e artesanato local"
+    ],
+    "seven_days": [
+      "Dias 1-2: São Paulo e arredores",
+      "Dias 3-5: Roteiro interiorano ou litoral distante",
+      "Dias 6-7: Ecoturismo nos parques estaduais"
+    ]
+  },
+  "budgets": {
+    "economico": {
+      "daily_brl_min": 150,
+      "daily_brl_max": 250
+    },
+    "medio": {
+      "daily_brl_min": 350,
+      "daily_brl_max": 600
+    },
+    "luxo": {
+      "daily_brl_min": 800,
+      "daily_brl_max": 1800
+    }
+  },
+  "map_settings": {
+    "default_center": {
+      "lat": -22.259,
+      "lng": -48.248
+    },
+    "default_zoom": 7
+  },
+  "official_sources": {
+    "tourism": [
+      "Secretaria de Turismo de São Paulo",
+      "Portal de São Paulo"
+    ],
+    "news": [
+      "Notícias de São Paulo"
+    ],
+    "maps": [
+      "IBGE"
+    ],
+    "images": [
+      "Unsplash",
+      "Pexels"
+    ],
+    "notes": []
+  },
+  "maya_snippets": [
+    {
+      "intent": "o que fazer de graca",
+      "user_example": "o que fazer de graça em São Paulo?",
+      "assistant_snippet": "Em São Paulo, você pode conhecer parques públicos e passear pelas praças históricas sem pagar nada."
+    }
+  ],
+  "seo": {
+    "title": "Descubra São Paulo: turismo, o que fazer, mapa e roteiros",
+    "meta_description": "Guia de viagem para o estado de São Paulo com pontos turísticos gratuitos, gastronomia típica e roteiros no mapa.",
+    "keywords": [
+      "são paulo turismo",
+      "o que fazer em sao-paulo",
+      "roteiro sao-paulo"
+    ]
+  },
+  "last_verified": "2026-05-27"
+}

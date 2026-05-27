@@ -1,0 +1,183 @@
+{
+  "uf_code": "RS",
+  "slug": "rio-grande-do-sul",
+  "state_name": "Rio Grande do Sul",
+  "capital": "Porto Alegre",
+  "region": "Sul",
+  "general_info": {
+    "climate": "tropical com variações regionais marcantes",
+    "best_time": "época seca para trilhas, época de chuvas para cachoeiras e rios",
+    "intro": "Conheça o estado do Rio Grande do Sul. Repleto de pontos turísticos, cultura e gastronomia típica marcante.",
+    "biomes": [
+      "Pampa",
+      "Mata Atlântica"
+    ]
+  },
+  "free_tourism": {
+    "public_beaches": [],
+    "parks": [],
+    "trails": [],
+    "waterfalls": [],
+    "squares_historic_centers": [],
+    "viewpoints": [],
+    "free_events": [
+      {
+        "name": "Festividades Populares de Rio Grande do Sul",
+        "period": "Calendário móvel anual",
+        "city": "Porto Alegre",
+        "paid": false
+      }
+    ]
+  },
+  "paid_tourism": {
+    "parks_and_tickets": [],
+    "guided_tours": [],
+    "boat_tours": [],
+    "museums": [],
+    "water_parks": [],
+    "adventure": []
+  },
+  "top_attractions": [
+    {
+      "name": "Catedral de Pedra de Canela",
+      "short_description": "Imponente templo gótico no centro da serra gaúcha com show de luzes noturno.",
+      "category": "cultura",
+      "is_free": true,
+      "city": "Canela",
+      "lat": -29.361,
+      "lng": -50.814,
+      "tags": [
+        "gratuito",
+        "religião",
+        "luzes"
+      ]
+    },
+    {
+      "name": "Ruínas de São Miguel das Missões",
+      "short_description": "Sítio arqueológico jesuíta tombado pela UNESCO, com espetáculo de som e luz.",
+      "category": "cultura",
+      "is_free": false,
+      "city": "São Miguel das Missões",
+      "lat": -28.563,
+      "lng": -54.554,
+      "tags": [
+        "pago",
+        "história",
+        "patrimônio"
+      ]
+    },
+    {
+      "name": "Vale dos Vinhedos",
+      "short_description": "Polo vinícola clássico com vinícolas abertas a visitações e degustações nos parreirais.",
+      "category": "cultura",
+      "is_free": true,
+      "city": "Bento Gonçalves",
+      "lat": -29.172,
+      "lng": -51.523,
+      "tags": [
+        "gratuito",
+        "vinhos",
+        "paisagem"
+      ]
+    }
+  ],
+  "unique_experiences": [
+    "Explorar as belezas e gastronomia de Rio Grande do Sul",
+    "Roteiros guiados por pontos turísticos de Porto Alegre"
+  ],
+  "gastronomy": {
+    "signature_dishes": [
+      "churrasco gaúcho",
+      "arroz de carreteiro",
+      "galeto ao primo canto"
+    ],
+    "street_food": [
+      "xis gaúcho",
+      "pastel de vento"
+    ],
+    "budget_eats": [
+      "Mercado Público de Porto Alegre",
+      "churrascarias locais"
+    ]
+  },
+  "events_festivals": [
+    {
+      "name": "Festival Estadual de Rio Grande do Sul",
+      "period": "Anual",
+      "city": "Porto Alegre",
+      "paid": false
+    }
+  ],
+  "itineraries": {
+    "one_day": [
+      "Manhã no centro de Porto Alegre",
+      "Almoço típico regional",
+      "Tarde nos parques ou praias locais"
+    ],
+    "three_days": [
+      "Dia 1: Passeio histórico por Porto Alegre",
+      "Dia 2: Aventura natural ou praias",
+      "Dia 3: Gastronomia e artesanato local"
+    ],
+    "seven_days": [
+      "Dias 1-2: Porto Alegre e arredores",
+      "Dias 3-5: Roteiro interiorano ou litoral distante",
+      "Dias 6-7: Ecoturismo nos parques estaduais"
+    ]
+  },
+  "budgets": {
+    "economico": {
+      "daily_brl_min": 150,
+      "daily_brl_max": 250
+    },
+    "medio": {
+      "daily_brl_min": 350,
+      "daily_brl_max": 600
+    },
+    "luxo": {
+      "daily_brl_min": 800,
+      "daily_brl_max": 1800
+    }
+  },
+  "map_settings": {
+    "default_center": {
+      "lat": -29.84,
+      "lng": -53.768
+    },
+    "default_zoom": 7
+  },
+  "official_sources": {
+    "tourism": [
+      "Secretaria de Turismo de Rio Grande do Sul",
+      "Portal de Porto Alegre"
+    ],
+    "news": [
+      "Notícias de Rio Grande do Sul"
+    ],
+    "maps": [
+      "IBGE"
+    ],
+    "images": [
+      "Unsplash",
+      "Pexels"
+    ],
+    "notes": []
+  },
+  "maya_snippets": [
+    {
+      "intent": "o que fazer de graca",
+      "user_example": "o que fazer de graça em Porto Alegre?",
+      "assistant_snippet": "Em Porto Alegre, você pode conhecer parques públicos e passear pelas praças históricas sem pagar nada."
+    }
+  ],
+  "seo": {
+    "title": "Descubra Rio Grande do Sul: turismo, o que fazer, mapa e roteiros",
+    "meta_description": "Guia de viagem para o estado de Rio Grande do Sul com pontos turísticos gratuitos, gastronomia típica e roteiros no mapa.",
+    "keywords": [
+      "rio grande do sul turismo",
+      "o que fazer em rio-grande-do-sul",
+      "roteiro rio-grande-do-sul"
+    ]
+  },
+  "last_verified": "2026-05-27"
+}

@@ -1,0 +1,208 @@
+{
+  "uf_code": "PE",
+  "slug": "pernambuco",
+  "state_name": "Pernambuco",
+  "capital": "Recife",
+  "region": "Nordeste",
+  "general_info": {
+    "climate": "tropical com variações regionais marcantes",
+    "best_time": "época seca para trilhas, época de chuvas para cachoeiras e rios",
+    "intro": "Conheça o estado do Pernambuco. Repleto de pontos turísticos, cultura e gastronomia típica marcante.",
+    "biomes": [
+      "Caatinga",
+      "Mata Atlântica"
+    ]
+  },
+  "free_tourism": {
+    "public_beaches": [
+      {
+        "name": "Praia de Porto de Galinhas",
+        "city": "Ipojuca",
+        "lat": -8.502,
+        "lng": -35.006,
+        "tags": [
+          "gratuito",
+          "praia",
+          "turismo"
+        ]
+      }
+    ],
+    "parks": [],
+    "trails": [],
+    "waterfalls": [],
+    "squares_historic_centers": [
+      {
+        "name": "Centro Histórico de Olinda",
+        "city": "Olinda",
+        "lat": -8.012,
+        "lng": -34.848,
+        "tags": [
+          "gratuito",
+          "história",
+          "carnaval"
+        ]
+      }
+    ],
+    "viewpoints": [],
+    "free_events": [
+      {
+        "name": "Festividades Populares de Pernambuco",
+        "period": "Calendário móvel anual",
+        "city": "Recife",
+        "paid": false
+      }
+    ]
+  },
+  "paid_tourism": {
+    "parks_and_tickets": [],
+    "guided_tours": [],
+    "boat_tours": [],
+    "museums": [],
+    "water_parks": [],
+    "adventure": []
+  },
+  "top_attractions": [
+    {
+      "name": "Centro Histórico de Olinda",
+      "short_description": "Cidade colonial famosa pelas ladeiras coloridas, igrejas barrocas e bonecos gigantes.",
+      "category": "cultura",
+      "is_free": true,
+      "city": "Olinda",
+      "lat": -8.012,
+      "lng": -34.848,
+      "tags": [
+        "gratuito",
+        "história",
+        "carnaval"
+      ]
+    },
+    {
+      "name": "Praia de Porto de Galinhas",
+      "short_description": "Águas mornas e piscinas naturais de corais acessíveis a pé ou por jangada.",
+      "category": "natureza",
+      "is_free": true,
+      "city": "Ipojuca",
+      "lat": -8.502,
+      "lng": -35.006,
+      "tags": [
+        "gratuito",
+        "praia",
+        "turismo"
+      ]
+    },
+    {
+      "name": "Fernando de Noronha - Baía do Sancho",
+      "short_description": "Frequentemente eleita a praia mais bonita do mundo, santuário ecológico de fauna marinha.",
+      "category": "natureza",
+      "is_free": false,
+      "city": "Fernando de Noronha",
+      "lat": -3.854,
+      "lng": -32.441,
+      "tags": [
+        "pago",
+        "parque nacional",
+        "mergulho"
+      ]
+    }
+  ],
+  "unique_experiences": [
+    "Explorar as belezas e gastronomia de Pernambuco",
+    "Roteiros guiados por pontos turísticos de Recife"
+  ],
+  "gastronomy": {
+    "signature_dishes": [
+      "arrumadinho",
+      "bolo de rolo",
+      "cartola"
+    ],
+    "street_food": [
+      "caldinho de camarão",
+      "tapioca",
+      "espetinho"
+    ],
+    "budget_eats": [
+      "Mercado da Boa Vista",
+      "Mercado de São José"
+    ]
+  },
+  "events_festivals": [
+    {
+      "name": "Festival Estadual de Pernambuco",
+      "period": "Anual",
+      "city": "Recife",
+      "paid": false
+    }
+  ],
+  "itineraries": {
+    "one_day": [
+      "Manhã no centro de Recife",
+      "Almoço típico regional",
+      "Tarde nos parques ou praias locais"
+    ],
+    "three_days": [
+      "Dia 1: Passeio histórico por Recife",
+      "Dia 2: Aventura natural ou praias",
+      "Dia 3: Gastronomia e artesanato local"
+    ],
+    "seven_days": [
+      "Dias 1-2: Recife e arredores",
+      "Dias 3-5: Roteiro interiorano ou litoral distante",
+      "Dias 6-7: Ecoturismo nos parques estaduais"
+    ]
+  },
+  "budgets": {
+    "economico": {
+      "daily_brl_min": 150,
+      "daily_brl_max": 250
+    },
+    "medio": {
+      "daily_brl_min": 350,
+      "daily_brl_max": 600
+    },
+    "luxo": {
+      "daily_brl_min": 800,
+      "daily_brl_max": 1800
+    }
+  },
+  "map_settings": {
+    "default_center": {
+      "lat": -8.411,
+      "lng": -37.598
+    },
+    "default_zoom": 7
+  },
+  "official_sources": {
+    "tourism": [
+      "Secretaria de Turismo de Pernambuco",
+      "Portal de Recife"
+    ],
+    "news": [
+      "Notícias de Pernambuco"
+    ],
+    "maps": [
+      "IBGE"
+    ],
+    "images": [
+      "Unsplash",
+      "Pexels"
+    ],
+    "notes": []
+  },
+  "maya_snippets": [
+    {
+      "intent": "o que fazer de graca",
+      "user_example": "o que fazer de graça em Recife?",
+      "assistant_snippet": "Em Recife, você pode conhecer parques públicos e passear pelas praças históricas sem pagar nada."
+    }
+  ],
+  "seo": {
+    "title": "Descubra Pernambuco: turismo, o que fazer, mapa e roteiros",
+    "meta_description": "Guia de viagem para o estado de Pernambuco com pontos turísticos gratuitos, gastronomia típica e roteiros no mapa.",
+    "keywords": [
+      "pernambuco turismo",
+      "o que fazer em pernambuco",
+      "roteiro pernambuco"
+    ]
+  },
+  "last_verified": "2026-05-27"
+}

@@ -1,0 +1,219 @@
+{
+  "uf_code": "CE",
+  "slug": "ceara",
+  "state_name": "Ceará",
+  "capital": "Fortaleza",
+  "region": "Nordeste",
+  "general_info": {
+    "climate": "tropical com variações regionais marcantes",
+    "best_time": "época seca para trilhas, época de chuvas para cachoeiras e rios",
+    "intro": "Conheça o estado do Ceará. Repleto de pontos turísticos, cultura e gastronomia típica marcante.",
+    "biomes": [
+      "Caatinga",
+      "Mata Atlântica"
+    ]
+  },
+  "free_tourism": {
+    "public_beaches": [
+      {
+        "name": "Parque Nacional de Jericoacoara",
+        "city": "Jijoca de Jericoacoara",
+        "lat": -2.797,
+        "lng": -40.512,
+        "tags": [
+          "gratuito",
+          "praia",
+          "natureza"
+        ]
+      },
+      {
+        "name": "Praia de Canoa Quebrada",
+        "city": "Aracati",
+        "lat": -4.529,
+        "lng": -37.701,
+        "tags": [
+          "gratuito",
+          "praia",
+          "aventura"
+        ]
+      }
+    ],
+    "parks": [],
+    "trails": [],
+    "waterfalls": [],
+    "squares_historic_centers": [],
+    "viewpoints": [],
+    "free_events": [
+      {
+        "name": "Festividades Populares de Ceará",
+        "period": "Calendário móvel anual",
+        "city": "Fortaleza",
+        "paid": false
+      }
+    ]
+  },
+  "paid_tourism": {
+    "parks_and_tickets": [],
+    "guided_tours": [],
+    "boat_tours": [],
+    "museums": [],
+    "water_parks": [
+      {
+        "name": "Beach Park",
+        "city": "Aquiraz",
+        "lat": -3.842,
+        "lng": -38.389,
+        "tags": [
+          "pago",
+          "diversão",
+          "família"
+        ]
+      }
+    ],
+    "adventure": []
+  },
+  "top_attractions": [
+    {
+      "name": "Parque Nacional de Jericoacoara",
+      "short_description": "Dunas deslumbrantes, lagoas de água doce e a famosa Pedra Furada.",
+      "category": "natureza",
+      "is_free": true,
+      "city": "Jijoca de Jericoacoara",
+      "lat": -2.797,
+      "lng": -40.512,
+      "tags": [
+        "gratuito",
+        "praia",
+        "natureza"
+      ]
+    },
+    {
+      "name": "Praia de Canoa Quebrada",
+      "short_description": "Falésias vermelhas icônicas, dunas e passeios de buggy emocionantes.",
+      "category": "natureza",
+      "is_free": true,
+      "city": "Aracati",
+      "lat": -4.529,
+      "lng": -37.701,
+      "tags": [
+        "gratuito",
+        "praia",
+        "aventura"
+      ]
+    },
+    {
+      "name": "Beach Park",
+      "short_description": "Um dos maiores parques aquáticos da América Latina, na praia do Porto das Dunas.",
+      "category": "lazer",
+      "is_free": false,
+      "city": "Aquiraz",
+      "lat": -3.842,
+      "lng": -38.389,
+      "tags": [
+        "pago",
+        "diversão",
+        "família"
+      ]
+    }
+  ],
+  "unique_experiences": [
+    "Explorar as belezas e gastronomia de Ceará",
+    "Roteiros guiados por pontos turísticos de Fortaleza"
+  ],
+  "gastronomy": {
+    "signature_dishes": [
+      "baião de dois",
+      "peixada cearense",
+      "carne de sol com macaxeira"
+    ],
+    "street_food": [
+      "pastel de arraia",
+      "tapioca recheada",
+      "espetinho"
+    ],
+    "budget_eats": [
+      "Mercado Central de Fortaleza",
+      "Feirinha da Beira Mar"
+    ]
+  },
+  "events_festivals": [
+    {
+      "name": "Festival Estadual de Ceará",
+      "period": "Anual",
+      "city": "Fortaleza",
+      "paid": false
+    }
+  ],
+  "itineraries": {
+    "one_day": [
+      "Manhã no centro de Fortaleza",
+      "Almoço típico regional",
+      "Tarde nos parques ou praias locais"
+    ],
+    "three_days": [
+      "Dia 1: Passeio histórico por Fortaleza",
+      "Dia 2: Aventura natural ou praias",
+      "Dia 3: Gastronomia e artesanato local"
+    ],
+    "seven_days": [
+      "Dias 1-2: Fortaleza e arredores",
+      "Dias 3-5: Roteiro interiorano ou litoral distante",
+      "Dias 6-7: Ecoturismo nos parques estaduais"
+    ]
+  },
+  "budgets": {
+    "economico": {
+      "daily_brl_min": 150,
+      "daily_brl_max": 250
+    },
+    "medio": {
+      "daily_brl_min": 350,
+      "daily_brl_max": 600
+    },
+    "luxo": {
+      "daily_brl_min": 800,
+      "daily_brl_max": 1800
+    }
+  },
+  "map_settings": {
+    "default_center": {
+      "lat": -5.103,
+      "lng": -39.638
+    },
+    "default_zoom": 7
+  },
+  "official_sources": {
+    "tourism": [
+      "Secretaria de Turismo de Ceará",
+      "Portal de Fortaleza"
+    ],
+    "news": [
+      "Notícias de Ceará"
+    ],
+    "maps": [
+      "IBGE"
+    ],
+    "images": [
+      "Unsplash",
+      "Pexels"
+    ],
+    "notes": []
+  },
+  "maya_snippets": [
+    {
+      "intent": "o que fazer de graca",
+      "user_example": "o que fazer de graça em Fortaleza?",
+      "assistant_snippet": "Em Fortaleza, você pode conhecer parques públicos e passear pelas praças históricas sem pagar nada."
+    }
+  ],
+  "seo": {
+    "title": "Descubra Ceará: turismo, o que fazer, mapa e roteiros",
+    "meta_description": "Guia de viagem para o estado de Ceará com pontos turísticos gratuitos, gastronomia típica e roteiros no mapa.",
+    "keywords": [
+      "ceará turismo",
+      "o que fazer em ceara",
+      "roteiro ceara"
+    ]
+  },
+  "last_verified": "2026-05-27"
+}

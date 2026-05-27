@@ -1,0 +1,194 @@
+{
+  "uf_code": "RR",
+  "slug": "roraima",
+  "state_name": "Roraima",
+  "capital": "Boa Vista",
+  "region": "Norte",
+  "general_info": {
+    "climate": "tropical com variações regionais marcantes",
+    "best_time": "época seca para trilhas, época de chuvas para cachoeiras e rios",
+    "intro": "Conheça o estado do Roraima. Repleto de pontos turísticos, cultura e gastronomia típica marcante.",
+    "biomes": [
+      "Amazônia"
+    ]
+  },
+  "free_tourism": {
+    "public_beaches": [],
+    "parks": [],
+    "trails": [],
+    "waterfalls": [],
+    "squares_historic_centers": [
+      {
+        "name": "Monumento aos Garimpeiros",
+        "city": "Boa Vista",
+        "lat": 2.819,
+        "lng": -60.672,
+        "tags": [
+          "gratuito",
+          "monumento",
+          "história"
+        ]
+      }
+    ],
+    "viewpoints": [],
+    "free_events": [
+      {
+        "name": "Festividades Populares de Roraima",
+        "period": "Calendário móvel anual",
+        "city": "Boa Vista",
+        "paid": false
+      }
+    ]
+  },
+  "paid_tourism": {
+    "parks_and_tickets": [],
+    "guided_tours": [],
+    "boat_tours": [],
+    "museums": [],
+    "water_parks": [],
+    "adventure": []
+  },
+  "top_attractions": [
+    {
+      "name": "Monte Roraima",
+      "short_description": "O majestoso monte tepui na tríplice fronteira, cercado de lendas e desfiladeiros.",
+      "category": "natureza",
+      "is_free": false,
+      "city": "Uiramutã",
+      "lat": 5.143,
+      "lng": -60.759,
+      "tags": [
+        "pago",
+        "trekking",
+        "mistério"
+      ]
+    },
+    {
+      "name": "Orla Taumanan",
+      "short_description": "Plataforma suspensa sobre o Rio Branco na capital, ponto de encontro e shows ao vivo.",
+      "category": "cidade",
+      "is_free": true,
+      "city": "Boa Vista",
+      "lat": 2.822,
+      "lng": -60.669,
+      "tags": [
+        "gratuito",
+        "rio",
+        "lazer"
+      ]
+    },
+    {
+      "name": "Monumento aos Garimpeiros",
+      "short_description": "Grande estátua de bronze e fonte luminosa no centro da Praça do Centro Cívico.",
+      "category": "cidade",
+      "is_free": true,
+      "city": "Boa Vista",
+      "lat": 2.819,
+      "lng": -60.672,
+      "tags": [
+        "gratuito",
+        "monumento",
+        "história"
+      ]
+    }
+  ],
+  "unique_experiences": [
+    "Explorar as belezas e gastronomia de Roraima",
+    "Roteiros guiados por pontos turísticos de Boa Vista"
+  ],
+  "gastronomy": {
+    "signature_dishes": [
+      "damurida",
+      "peixe jaraqui frito",
+      "paçoca de carne de sol com banana"
+    ],
+    "street_food": [
+      "tapioca do mercado",
+      "salgados"
+    ],
+    "budget_eats": [
+      "Mercado Municipal de Boa Vista",
+      "Orla Taumanan"
+    ]
+  },
+  "events_festivals": [
+    {
+      "name": "Festival Estadual de Roraima",
+      "period": "Anual",
+      "city": "Boa Vista",
+      "paid": false
+    }
+  ],
+  "itineraries": {
+    "one_day": [
+      "Manhã no centro de Boa Vista",
+      "Almoço típico regional",
+      "Tarde nos parques ou praias locais"
+    ],
+    "three_days": [
+      "Dia 1: Passeio histórico por Boa Vista",
+      "Dia 2: Aventura natural ou praias",
+      "Dia 3: Gastronomia e artesanato local"
+    ],
+    "seven_days": [
+      "Dias 1-2: Boa Vista e arredores",
+      "Dias 3-5: Roteiro interiorano ou litoral distante",
+      "Dias 6-7: Ecoturismo nos parques estaduais"
+    ]
+  },
+  "budgets": {
+    "economico": {
+      "daily_brl_min": 150,
+      "daily_brl_max": 250
+    },
+    "medio": {
+      "daily_brl_min": 350,
+      "daily_brl_max": 600
+    },
+    "luxo": {
+      "daily_brl_min": 800,
+      "daily_brl_max": 1800
+    }
+  },
+  "map_settings": {
+    "default_center": {
+      "lat": 2.103,
+      "lng": -61.398
+    },
+    "default_zoom": 6
+  },
+  "official_sources": {
+    "tourism": [
+      "Secretaria de Turismo de Roraima",
+      "Portal de Boa Vista"
+    ],
+    "news": [
+      "Notícias de Roraima"
+    ],
+    "maps": [
+      "IBGE"
+    ],
+    "images": [
+      "Unsplash",
+      "Pexels"
+    ],
+    "notes": []
+  },
+  "maya_snippets": [
+    {
+      "intent": "o que fazer de graca",
+      "user_example": "o que fazer de graça em Boa Vista?",
+      "assistant_snippet": "Em Boa Vista, você pode conhecer parques públicos e passear pelas praças históricas sem pagar nada."
+    }
+  ],
+  "seo": {
+    "title": "Descubra Roraima: turismo, o que fazer, mapa e roteiros",
+    "meta_description": "Guia de viagem para o estado de Roraima com pontos turísticos gratuitos, gastronomia típica e roteiros no mapa.",
+    "keywords": [
+      "roraima turismo",
+      "o que fazer em roraima",
+      "roteiro roraima"
+    ]
+  },
+  "last_verified": "2026-05-27"
+}
