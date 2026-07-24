@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/api/', '/admin/'],
     },
-    sitemap: `${process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.descubraobrasil.com'}/sitemap.xml`,
+    sitemap: `${process.env.NEXT_PUBLIC_SITE_URL ?? 'https://gabrielmenezesc.github.io/DESCUBRAOBRASIL'}/sitemap.xml`,
   }
 }
