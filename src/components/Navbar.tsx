@@ -7,6 +7,7 @@ import { useWeather } from "@/hooks/useWeather";
 import { useTheme } from "next-themes";
 import { supabase } from "@/lib/supabase";
 import { User, LogIn } from "lucide-react";
+import { assetPath } from "@/lib/assetPath";
 
 
 const navLinks = [
@@ -84,7 +85,7 @@ export default function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group hover:scale-105 transition-transform">
             <img 
-              src="/logo-descubra.png" 
+              src={assetPath('/logo-descubra.png')}
               alt="Descubra o Brasil" 
               className="h-10 w-auto object-contain"
             />

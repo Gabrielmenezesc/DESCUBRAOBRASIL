@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, Send, Mic, MicOff, Loader2, Sparkles, Volume2, VolumeX, Bot, Phone, User } from "lucide-react";
 import { askGemini, addToChatHistory, resetChatHistory, isGeminiAvailable } from "@/lib/gemini";
 import ReactMarkdown from "react-markdown";
+import { assetPath } from "@/lib/assetPath";
 
 const WHATSAPP_NUMBER = "5561995659907";
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=`;
@@ -243,7 +244,7 @@ export default function MayaChat() {
                 </button>
                 <div className="flex gap-3">
                   <div className="w-10 h-10 min-w-[40px] rounded-full bg-emerald-100 flex items-center justify-center border-2 border-emerald-500 overflow-hidden">
-                    <img src="/logo-descubra.png" alt="Maya Avatar" className="w-full h-full object-cover" />
+                    <img src={assetPath('/logo-descubra.png')} alt="Maya Avatar" className="w-full h-full object-cover" />
                   </div>
                   <div>
                     <h4 className="font-bold text-xs text-slate-800 dark:text-slate-100">Maya</h4>
@@ -262,7 +263,7 @@ export default function MayaChat() {
             >
               <div className="absolute inset-0 bg-emerald-400 rounded-full opacity-0 group-hover:opacity-20 blur-md transition-opacity"></div>
               <Sparkles className="w-6 h-6 absolute text-emerald-200/50 -top-1 -right-1 opacity-0 group-hover:opacity-100 transition-all group-hover:rotate-12 group-hover:scale-110" />
-              <img src="/logo-descubra.png" alt="Maya" className="w-10 h-10 object-cover rounded-full" />
+              <img src={assetPath('/logo-descubra.png')} alt="Maya" className="w-10 h-10 object-cover rounded-full" />
               <span className="absolute -top-1 -right-1 flex h-4 w-4">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-4 w-4 bg-red-500 border-2 border-white"></span>
@@ -295,7 +296,7 @@ export default function MayaChat() {
               <div className="flex items-center gap-3">
                 <div className="relative">
                   <div className="w-10 h-10 rounded-full bg-white dark:bg-slate-900 flex items-center justify-center p-0.5 shadow-inner">
-                    <img src="/logo-descubra.png" alt="Maya" className="w-full h-full object-cover rounded-full" />
+                    <img src={assetPath('/logo-descubra.png')} alt="Maya" className="w-full h-full object-cover rounded-full" />
                   </div>
                   <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-400 rounded-full border-2 border-emerald-600"></div>
                 </div>
@@ -331,7 +332,7 @@ export default function MayaChat() {
                     <div className="flex items-end gap-2 max-w-[85%]">
                       {msg.from === "maya" && (
                         <div className="w-6 h-6 min-w-[24px] rounded-full bg-emerald-100 border border-emerald-200 flex-shrink-0 flex items-center justify-center overflow-hidden shadow-sm">
-                          <img src="/logo-descubra.png" alt="Maya" className="w-full h-full object-cover" />
+                          <img src={assetPath('/logo-descubra.png')} alt="Maya" className="w-full h-full object-cover" />
                         </div>
                       )}
                       <div className="flex flex-col">
@@ -377,7 +378,7 @@ export default function MayaChat() {
                   <div className="flex justify-start">
                     <div className="flex items-end gap-2 max-w-[85%]">
                       <div className="w-6 h-6 min-w-[24px] rounded-full bg-emerald-100 flex items-center justify-center overflow-hidden">
-                        <img src="/logo-descubra.png" alt="Maya" className="w-full h-full object-cover" />
+                        <img src={assetPath('/logo-descubra.png')} alt="Maya" className="w-full h-full object-cover" />
                       </div>
                       <div className="bg-white dark:bg-slate-900 border text-center border-slate-100 px-4 py-3 rounded-2xl rounded-bl-sm shadow-sm flex items-center gap-1.5 min-w-[100px]">
                         <Bot className="w-4 h-4 text-emerald-500 animate-pulse" />

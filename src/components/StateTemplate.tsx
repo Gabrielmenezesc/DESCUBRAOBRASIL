@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { MapPin, Info, DollarSign, Calendar, Navigation, Sunrise, TreePine, ChefHat, Sparkles } from "lucide-react";
+import { assetPath } from "@/lib/assetPath";
 
 // Import map component dynamically to disable SSR (Leaflet requires window)
 const StateMap = dynamic(() => import("@/components/StateMap"), {
@@ -268,7 +269,7 @@ export default function StateTemplate({ data }: { data: any }) {
         
         <div className="flex items-center gap-3 mb-8 relative z-10">
           <div className="w-12 h-12 rounded-full bg-emerald-800 border-2 border-emerald-400 flex items-center justify-center overflow-hidden">
-            <img src="/logo-descubra.png" alt="Maya" className="w-full h-full object-cover" />
+            <img src={assetPath('/logo-descubra.png')} alt="Maya" className="w-full h-full object-cover" />
           </div>
           <div>
             <h2 className="text-2xl font-bold text-white">Pergunte para a Maya</h2>

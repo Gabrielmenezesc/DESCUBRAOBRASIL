@@ -3,7 +3,7 @@ import { MetadataRoute } from 'next'
 export const dynamic = 'force-static'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://descubraobrasil.com' // Ajuste para o domínio real
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://gabrielmenezesc.github.io/DESCUBRAOBRASIL'
 
   return [
     {
