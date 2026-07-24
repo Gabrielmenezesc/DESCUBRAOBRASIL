@@ -73,7 +73,7 @@ function AnimatedCounter({ value, duration = 2 }: { value: number; duration?: nu
 
 export default function StatsSection() {
   return (
-    <section className="py-24 relative overflow-hidden bg-slate-950">
+    <section className="py-24 relative overflow-hidden bg-slate-50 dark:bg-slate-950">
       {/* Decorative Glows */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[300px] bg-emerald-500/5 blur-[120px] rounded-full pointer-events-none" />
       
@@ -82,11 +82,11 @@ export default function StatsSection() {
           <span className="inline-block px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold mb-4 uppercase tracking-widest">
             Nosso Alcance
           </span>
-          <h2 className="text-3xl md:text-5xl font-black tracking-tight text-white mb-4">
+          <h2 className="text-3xl md:text-5xl font-black tracking-tight text-slate-900 dark:text-white mb-4">
             O Maior Ecossistema de <br />
             <span className="text-gradient">Turismo Digital</span> do Brasil
           </h2>
-          <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+          <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
             Unindo tecnologia, gamificação e dados reais para transformar a forma como você planeja e vivencia suas viagens pelo país.
           </p>
         </ScrollReveal>
@@ -96,7 +96,7 @@ export default function StatsSection() {
             <ScrollReveal
               key={idx}
               delay={idx * 0.1}
-              className="relative p-8 rounded-3xl border border-white/10 bg-slate-900/40 backdrop-blur-md hover:border-emerald-500/30 transition-all duration-300 hover:translate-y-[-4px] group"
+              className="relative p-8 rounded-3xl border border-slate-200 dark:border-white/10 bg-white/40 dark:bg-slate-900/40 backdrop-blur-md hover:border-emerald-500/30 transition-all duration-300 hover:translate-y-[-4px] group"
             >
               <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent rounded-3xl pointer-events-none" />
               
@@ -104,13 +104,13 @@ export default function StatsSection() {
                 <stat.icon className="w-6 h-6" />
               </div>
               
-              <div className="text-4xl md:text-5xl font-black text-white mb-2 tracking-tight">
+              <h3 className="text-4xl font-black text-slate-900 dark:text-white mb-1 tracking-tight">
                 <AnimatedCounter value={stat.value} />
-                <span className="text-emerald-400">{stat.suffix}</span>
-              </div>
+                <span>{stat.suffix}</span>
+              </h3>
               
-              <h3 className="text-lg font-bold text-slate-200 mb-2">{stat.label}</h3>
-              <p className="text-sm text-slate-400 leading-relaxed">{stat.description}</p>
+              <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">{stat.label}</h3>
+              <p className="text-sm text-slate-500 dark:text-slate-400 font-medium leading-relaxed">{stat.description}</p>
             </ScrollReveal>
           ))}
         </div>

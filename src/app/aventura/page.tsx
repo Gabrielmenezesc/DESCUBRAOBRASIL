@@ -48,7 +48,7 @@ export default function AventuraPage() {
 
   if (loading || !stats) {
     return (
-      <main className="min-h-screen bg-slate-950 flex flex-col justify-between">
+      <main className="min-h-screen bg-slate-50 dark:bg-slate-950 flex flex-col justify-between">
         <Navbar />
         <div className="flex-1 flex items-center justify-center">
           <div className="w-10 h-10 rounded-full border-4 border-emerald-500 border-t-transparent animate-spin" />
@@ -68,7 +68,7 @@ export default function AventuraPage() {
   if (stats.level >= 5) rankName = "Mochileiro Lendário";
 
   return (
-    <main className="min-h-screen bg-slate-950 text-white flex flex-col justify-between">
+    <main className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white flex flex-col justify-between">
       <Navbar />
       
       {/* Top Banner section */}
@@ -82,22 +82,22 @@ export default function AventuraPage() {
               <Sparkles className="w-3.5 h-3.5" />
               Central de Aventura do Descubra
             </span>
-            <h1 className="text-4xl md:text-6xl font-black text-white mt-4 tracking-tight leading-none">
+            <h1 className="text-4xl md:text-6xl font-black text-slate-900 dark:text-white mt-4 tracking-tight leading-none">
               Sua <span className="text-gradient">Jornada</span> Gamificada
             </h1>
-            <p className="text-slate-400 max-w-xl mx-auto mt-3 text-sm md:text-base">
+            <p className="text-slate-600 dark:text-slate-400 max-w-xl mx-auto mt-3 text-sm md:text-base">
               Acompanhe seu avanço de mochileiro, carimbe estados, complete missões arqueológicas e seja o maior aventureiro do país.
             </p>
           </ScrollReveal>
 
           {/* Traveler HUD Profile Card */}
           <ScrollReveal direction="up" delay={0.1} className="max-w-4xl mx-auto mb-16">
-            <div className="p-6 md:p-8 rounded-[2rem] border border-white/10 bg-slate-900/40 backdrop-blur-xl flex flex-col md:flex-row items-center gap-8 shadow-2xl">
+            <div className="p-6 md:p-8 rounded-[2rem] border border-slate-200 dark:border-white/10 bg-white/40 dark:bg-slate-900/40 backdrop-blur-xl flex flex-col md:flex-row items-center gap-8 shadow-2xl">
               
               {/* Left Column: Avatar & Level */}
               <div className="relative flex-shrink-0">
                 <div className="w-24 h-24 rounded-full bg-gradient-to-tr from-emerald-500 to-indigo-500 p-1 flex items-center justify-center shadow-lg shadow-emerald-500/10">
-                  <div className="w-full h-full rounded-full bg-slate-950 flex flex-col items-center justify-center">
+                  <div className="w-full h-full rounded-full bg-slate-100 dark:bg-slate-950 flex flex-col items-center justify-center">
                     <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">NÍVEL</span>
                     <span className="text-3xl font-black text-emerald-400 leading-none">{stats.level}</span>
                   </div>
@@ -124,7 +124,7 @@ export default function AventuraPage() {
 
                 {/* Progress bar */}
                 <div className="space-y-1.5">
-                  <div className="w-full h-4 rounded-full bg-slate-950 border border-white/5 p-0.5 overflow-hidden">
+                  <div className="w-full h-4 rounded-full bg-slate-200 dark:bg-slate-950 border border-slate-300 dark:border-white/5 p-0.5 overflow-hidden">
                     <div 
                       className="h-full rounded-full bg-gradient-to-r from-emerald-500 via-teal-400 to-indigo-500 transition-all duration-500" 
                       style={{ width: `${percentage}%` }}
@@ -141,7 +141,7 @@ export default function AventuraPage() {
 
           {/* Navigation Tabs bar */}
           <ScrollReveal direction="up" delay={0.2} className="max-w-4xl mx-auto mb-10">
-            <div className="flex flex-wrap gap-2 justify-center p-2 rounded-2xl bg-slate-950/80 border border-white/5 max-w-3xl mx-auto">
+            <div className="flex flex-wrap gap-2 justify-center p-2 rounded-2xl bg-white/80 dark:bg-slate-950/80 border border-slate-200 dark:border-white/5 max-w-3xl mx-auto">
               <button
                 onClick={() => setActiveTab("passport")}
                 className={`flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm transition-all ${

@@ -78,7 +78,7 @@ export default function Navbar() {
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       scrolled 
         ? "bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl border-b border-slate-200/40 dark:border-slate-800/40 shadow-md py-1" 
-        : "bg-transparent border-b border-transparent py-3 text-white"
+        : "bg-transparent border-b border-transparent py-3 text-slate-800 dark:text-white"
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
@@ -100,7 +100,7 @@ export default function Navbar() {
                 className={`px-4 py-2 rounded-full text-sm font-semibold transition-all ${
                   scrolled
                     ? "text-slate-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-900/30"
-                    : "text-slate-200 hover:text-white hover:bg-white/10"
+                    : "text-slate-800 dark:text-slate-200 hover:text-emerald-600 dark:hover:text-white hover:bg-emerald-50/50 dark:hover:bg-white/10"
                 }`}
               >
                 {link.label}
@@ -115,7 +115,7 @@ export default function Navbar() {
               <div className={`hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full border text-sm transition-colors ${
                 scrolled
                   ? "bg-gradient-to-r from-blue-50 to-emerald-50 dark:from-blue-900/30 dark:to-emerald-900/30 border-blue-100 dark:border-blue-800/50 text-slate-800 dark:text-slate-200"
-                  : "bg-white/10 border-white/10 text-white"
+                  : "bg-slate-900/10 dark:bg-white/10 border-slate-900/10 dark:border-white/10 text-slate-800 dark:text-white"
               }`}>
                 <span className="text-lg">{weather.icon}</span>
                 <span className="font-bold">{weather.temperature}°C</span>
@@ -137,7 +137,7 @@ export default function Navbar() {
               <div className={`hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-sm transition-colors ${
                 scrolled
                   ? "bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300"
-                  : "bg-white/10 border-white/10 text-white/90"
+                  : "bg-slate-900/10 dark:bg-white/10 border-slate-900/10 dark:border-white/10 text-slate-800 dark:text-white/90"
               }`}>
                 <Clock className={`w-3.5 h-3.5 ${scrolled ? "text-slate-400 dark:text-slate-500" : "text-emerald-400 animate-pulse"}`} />
                 <span className="font-mono font-bold text-xs">{clock}</span>
@@ -152,11 +152,11 @@ export default function Navbar() {
                 className={`p-2 rounded-full transition-colors ${
                   scrolled 
                     ? "hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300" 
-                    : "hover:bg-white/10 text-slate-200 hover:text-white"
+                    : "hover:bg-slate-900/10 dark:hover:bg-white/10 text-slate-700 dark:text-slate-200 hover:text-emerald-600 dark:hover:text-white"
                 }`}
                 aria-label="Toggle Theme"
               >
-                {theme === "dark" ? <Sun className="w-5 h-5 text-amber-500" /> : <Moon className={`w-5 h-5 ${scrolled ? "text-slate-600 dark:text-slate-300" : "text-slate-200"}`} />}
+                {theme === "dark" ? <Sun className="w-5 h-5 text-amber-500" /> : <Moon className={`w-5 h-5 ${scrolled ? "text-slate-600 dark:text-slate-300" : "text-slate-700 dark:text-slate-200"}`} />}
               </button>
             )}
 
@@ -183,7 +183,7 @@ export default function Navbar() {
                       className={`flex items-center gap-2 px-4 py-2 rounded-full font-bold text-sm transition-colors ${
                         scrolled
                           ? "text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800"
-                          : "text-slate-200 hover:text-white hover:bg-white/10"
+                          : "text-slate-700 dark:text-slate-200 hover:text-emerald-600 dark:hover:text-white hover:bg-slate-900/10 dark:hover:bg-white/10"
                       }`}
                     >
                       <LogIn className="w-4 h-4" /> Entrar

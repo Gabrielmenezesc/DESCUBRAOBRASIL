@@ -51,7 +51,7 @@ export default function PerfilPage() {
 
   if (loading) {
     return (
-      <main className="min-h-screen bg-slate-950 flex flex-col justify-between">
+      <main className="min-h-screen bg-slate-50 dark:bg-slate-950 flex flex-col justify-between">
         <Navbar />
         <div className="flex-1 flex items-center justify-center">
           <div className="w-10 h-10 rounded-full border-4 border-emerald-500 border-t-transparent animate-spin" />
@@ -64,7 +64,7 @@ export default function PerfilPage() {
   const { percentage, nextLevelXP } = stats ? getXPProgress(stats.xp) : { percentage: 0, nextLevelXP: 100 };
 
   return (
-    <main className="min-h-screen bg-slate-950 text-white flex flex-col justify-between">
+    <main className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white flex flex-col justify-between">
       <Navbar />
 
       <section className="relative pt-32 pb-16 overflow-hidden">
@@ -73,16 +73,16 @@ export default function PerfilPage() {
 
         <div className="max-w-4xl mx-auto px-4 relative z-10">
           <ScrollReveal direction="down" className="text-center mb-10">
-            <h1 className="text-4xl md:text-5xl font-black text-white">Seu Perfil de Viajante</h1>
-            <p className="text-slate-400 text-sm mt-2">Sua identidade e progresso de exploração no Descubra o Brasil.</p>
+            <h1 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white">Seu Perfil de Viajante</h1>
+            <p className="text-slate-600 dark:text-slate-400 text-sm mt-2">Sua identidade e progresso de exploração no Descubra o Brasil.</p>
           </ScrollReveal>
 
           {/* Profile Card & Session check */}
           <ScrollReveal direction="up" delay={0.1} className="space-y-8">
-            <div className="p-8 rounded-[2.5rem] border border-white/10 bg-slate-900/40 backdrop-blur-xl relative overflow-hidden shadow-2xl">
+            <div className="p-8 rounded-[2.5rem] border border-slate-200 dark:border-white/10 bg-white/40 dark:bg-slate-900/40 backdrop-blur-xl relative overflow-hidden shadow-2xl">
               <div className="flex flex-col md:flex-row items-center gap-8">
                 {/* User avatar/icon */}
-                <div className="w-24 h-24 rounded-full bg-slate-950 border-2 border-emerald-500 flex items-center justify-center text-4xl shadow-lg relative">
+                <div className="w-24 h-24 rounded-full bg-slate-100 dark:bg-slate-950 border-2 border-emerald-500 flex items-center justify-center text-4xl shadow-lg relative">
                   {session?.user?.user_metadata?.avatar_url ? (
                     <img 
                       src={session.user.user_metadata.avatar_url} 
@@ -96,7 +96,7 @@ export default function PerfilPage() {
 
                 {/* User info details */}
                 <div className="flex-1 text-center md:text-left space-y-2">
-                  <h2 className="text-2xl font-black text-white">
+                  <h2 className="text-2xl font-black text-slate-900 dark:text-white">
                     {session?.user?.email || "Explorador Anônimo"}
                   </h2>
                   <span className="inline-block px-3 py-1 bg-emerald-500/10 text-emerald-400 text-xs font-bold rounded-full border border-emerald-500/20">
@@ -135,7 +135,7 @@ export default function PerfilPage() {
 
               {/* Demonstrative Alert Box */}
               {authError && (
-                <div className="mt-6 flex items-start gap-2.5 bg-slate-950 p-4 rounded-xl border border-white/5 text-xs text-slate-400">
+                <div className="mt-6 flex items-start gap-2.5 bg-slate-100 dark:bg-slate-950 p-4 rounded-xl border border-slate-200 dark:border-white/5 text-xs text-slate-600 dark:text-slate-400">
                   <AlertCircle className="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" />
                   <span>{authError}</span>
                 </div>

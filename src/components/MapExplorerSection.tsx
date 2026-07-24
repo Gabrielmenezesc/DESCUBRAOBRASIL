@@ -65,7 +65,7 @@ export default function MapExplorerSection() {
   };
 
   return (
-    <section id="map-explorer" className="py-24 relative overflow-hidden bg-slate-950 text-white">
+    <section id="map-explorer" className="py-24 relative overflow-hidden bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-white">
       {/* Decorative Blur */}
       <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[400px] h-[400px] bg-emerald-500/5 blur-[120px] rounded-full pointer-events-none" />
 
@@ -138,7 +138,7 @@ export default function MapExplorerSection() {
 
                   <Link
                     href={`/turismo/${selectedState.slug}`}
-                    className="w-full flex items-center justify-center gap-1.5 bg-slate-950/80 hover:bg-slate-950 hover:text-emerald-400 border border-white/5 py-4 rounded-full font-bold text-sm text-slate-200 transition-all hover:scale-105"
+                    className="w-full flex items-center justify-center gap-1.5 bg-white/80 dark:bg-slate-950/80 hover:bg-slate-100 dark:hover:bg-slate-950 hover:text-emerald-500 dark:hover:text-emerald-400 border border-slate-200 dark:border-white/5 py-4 rounded-full font-bold text-sm text-slate-800 dark:text-slate-200 transition-all hover:scale-105"
                   >
                     <span>Ver Roteiro Completo</span>
                     <ChevronRight className="w-4 h-4" />
