@@ -2,6 +2,7 @@
 
 import Navbar from "@/components/Navbar";
 import NewsSection from "@/components/NewsSection";
+import TopDestinos from "@/components/TopDestinos";
 import FooterSection from "@/components/FooterSection";
 import MayaChat from "@/components/MayaChat";
 import LGPDBanner from "@/components/LGPDBanner";
@@ -25,6 +26,8 @@ export default function NoticiasPage() {
           </p>
         </div>
       </section>
+
+      <TopDestinos />
 
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

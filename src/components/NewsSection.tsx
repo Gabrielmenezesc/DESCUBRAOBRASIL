@@ -2,17 +2,15 @@
 
 import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
-import { ExternalLink, TrendingUp, RefreshCw, MapPin, Clock, Filter, ChevronDown } from "lucide-react";
+import Link from "next/link";
+import { ExternalLink, TrendingUp, RefreshCw, MapPin, Clock, Filter, ChevronDown, ArrowRight } from "lucide-react";
 import { useNews, type NewsItem } from "@/hooks/useNews";
 import { useGeolocation, STATES_LIST } from "@/hooks/useGeolocation";
 
 const CATEGORIES = ["Todos", "Turismo", "Cidades", "Eventos", "Clima", "Tecnologia", "Destinos", "Gastronomia", "Hospedagem"];
 
 const SOURCE_COLORS: Record<string, string> = {
-  "G1 Turismo": "bg-red-100 text-red-700",
-  "Folha Turismo": "bg-amber-100 text-amber-700",
-  "UOL Viagem": "bg-purple-100 text-purple-700",
-  "Brasil Turismo": "bg-emerald-100 text-emerald-700",
+  "Redação Descubra o Brasil": "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-300",
 };
 
 function formatTimeAgo(dateStr: string): string {
@@ -166,16 +164,10 @@ export default function NewsSection({ limit, showFilters = false }: { limit?: nu
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredNews.map((news: NewsItem, i: number) => (
-                <motion.a
+                <Link
                   key={i}
-                  href={news.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.05 }}
-                  className="group block bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-lg shadow-slate-200/50 border border-slate-100 hover:shadow-xl hover:shadow-emerald-100/50 transition-all hover:-translate-y-1"
+                  href={`/noticias/${news.slug}`}
+                  className="group block bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-lg shadow-slate-200/50 dark:shadow-none border border-slate-100 dark:border-slate-800 hover:shadow-xl transition-all hover:-translate-y-1"
                 >
                   <div className="relative h-48 overflow-hidden">
                     <div
@@ -186,10 +178,10 @@ export default function NewsSection({ limit, showFilters = false }: { limit?: nu
                     
                     {/* Badges */}
                     <div className="absolute top-3 left-3 flex flex-wrap gap-2">
-                      <span className={`${SOURCE_COLORS[news.source] || "bg-emerald-100 text-emerald-700"} px-3 py-1 rounded-full text-xs font-bold shadow-sm`}>
+                      <span className={`${SOURCE_COLORS[news.source] || "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-300"} px-3 py-1 rounded-full text-xs font-bold shadow-sm`}>
                         {news.source}
                       </span>
-                      <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-bold shadow-sm">
+                      <span className="bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 px-3 py-1 rounded-full text-xs font-bold shadow-sm">
                         {news.category}
                       </span>
                     </div>
@@ -212,9 +204,9 @@ export default function NewsSection({ limit, showFilters = false }: { limit?: nu
                       </div>
                     )}
 
-                    {/* External link indicator */}
-                    <div className="absolute top-3 right-3 w-8 h-8 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                      <ExternalLink className="w-4 h-4 text-slate-600 dark:text-slate-300" />
+                    {/* Internal link indicator */}
+                    <div className="absolute top-3 right-3 w-8 h-8 bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                      <ArrowRight className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                     </div>
                   </div>
                   
@@ -228,7 +220,7 @@ export default function NewsSection({ limit, showFilters = false }: { limit?: nu
                       </p>
                     )}
                   </div>
-                </motion.a>
+                </Link>
               ))}
             </div>
           )}
