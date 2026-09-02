@@ -12,12 +12,9 @@ import { assetPath } from "@/lib/assetPath";
 
 const navLinks = [
   { href: "/", label: "Início" },
-  { href: "/noticias", label: "Notícias" },
   { href: "/turismo", label: "Turismo" },
   { href: "/aventura", label: "Aventuras 🧭" },
   { href: "/servicos", label: "Dicas" },
-  { href: "/quem-somos", label: "Quem Somos" },
-  { href: "/contato", label: "Contato" },
 ];
 
 export default function Navbar() {

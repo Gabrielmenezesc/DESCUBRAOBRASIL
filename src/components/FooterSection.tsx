@@ -9,7 +9,7 @@ export default function FooterSection() {
   return (
     <footer id="contact" className="bg-slate-900 pt-24 pb-12 relative overflow-hidden text-slate-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-16">
           
           {/* Brand Col */}
           <div className="space-y-6">
@@ -39,27 +39,6 @@ export default function FooterSection() {
               <li><Link href="/" className="hover:text-emerald-400 transition-colors">Início</Link></li>
               <li><Link href="/turismo" className="hover:text-emerald-400 transition-colors">Turismo</Link></li>
               <li><Link href="/servicos" className="hover:text-emerald-400 transition-colors">Dicas de Viagem</Link></li>
-              <li><Link href="/noticias" className="hover:text-emerald-400 transition-colors">Notícias</Link></li>
-              <li><Link href="/contato" className="hover:text-emerald-400 transition-colors">Contato</Link></li>
-            </ul>
-          </div>
-
-          {/* Contact Col */}
-          <div>
-            <h4 className="text-white font-bold mb-6 font-mono tracking-wider">CONTATO</h4>
-            <ul className="space-y-4">
-              <li className="flex items-center gap-3">
-                <Phone className="w-5 h-5 text-emerald-400" />
-                <a href="https://wa.me/5561995659907" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">+55 61 99565-9907</a>
-              </li>
-              <li className="flex items-center gap-3">
-                <Mail className="w-5 h-5 text-emerald-400" />
-                <a href="mailto:contato@descubraobrasil.com" className="hover:text-white transition-colors">contato@descubraobrasil.com</a>
-              </li>
-              <li className="flex items-center gap-3">
-                <MapPin className="w-5 h-5 text-emerald-400" />
-                <span>Brasil, 100% Digital</span>
-              </li>
             </ul>
           </div>
 
