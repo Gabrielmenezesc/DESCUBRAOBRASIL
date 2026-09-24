@@ -14,10 +14,10 @@ interface LeaderboardUser {
 }
 
 const MOCK_LEADERS: LeaderboardUser[] = [
-  { name: "Gabriel Siqueira", level: 8, xp: 6400, isCurrentUser: false, avatar: "👨‍💻" },
-  { name: "Beatriz Mello", level: 6, xp: 3600, isCurrentUser: false, avatar: "👩‍🌾" },
-  { name: "Lucas Albuquerque", level: 5, xp: 2500, isCurrentUser: false, avatar: "🧗" },
-  { name: "Mariana Souza", level: 4, xp: 1800, isCurrentUser: false, avatar: "🏕️" }
+  { name: "Gabriel Siqueira", level: 8, xp: 6400, isCurrentUser: false, avatar: "‍" },
+  { name: "Beatriz Mello", level: 6, xp: 3600, isCurrentUser: false, avatar: "‍" },
+  { name: "Lucas Albuquerque", level: 5, xp: 2500, isCurrentUser: false, avatar: "" },
+  { name: "Mariana Souza", level: 4, xp: 1800, isCurrentUser: false, avatar: "️" }
 ];
 
 export default function Leaderboard() {
@@ -34,7 +34,7 @@ export default function Leaderboard() {
         level: userStats.level,
         xp: userStats.xp,
         isCurrentUser: true,
-        avatar: "🧭"
+        avatar: ""
       };
 
       // Merge and sort

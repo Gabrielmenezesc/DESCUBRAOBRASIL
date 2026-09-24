@@ -39,7 +39,7 @@ export default function Missions() {
       if (result.success) {
         setFeedback(prev => ({
           ...prev,
-          [missionId]: { type: "success", message: `Resposta Correta! Você ganhou +${mission.xpReward} XP! 🎉` }
+          [missionId]: { type: "success", message: `Resposta Correta! Você ganhou +${mission.xpReward} XP! ` }
         }));
         fetchStats();
       } else {
@@ -51,7 +51,7 @@ export default function Missions() {
     } else {
       setFeedback(prev => ({
         ...prev,
-        [missionId]: { type: "error", message: "Resposta incorreta. Tente novamente! 🤔" }
+        [missionId]: { type: "error", message: "Resposta incorreta. Tente novamente! " }
       }));
     }
   };

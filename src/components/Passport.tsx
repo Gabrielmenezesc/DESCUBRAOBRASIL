@@ -6,18 +6,18 @@ import { Landmark, Lock, Sparkles } from "lucide-react";
 import { getGamificationStats, visitState } from "@/lib/gamification";
 
 const ALL_STATES = [
-  { code: "RJ", name: "Rio de Janeiro", color: "from-blue-500 to-cyan-500", icon: "🏖️" },
-  { code: "BA", name: "Bahia", color: "from-orange-500 to-amber-500", icon: "🥁" },
-  { code: "AM", name: "Amazonas", color: "from-green-600 to-emerald-500", icon: "🐆" },
-  { code: "SP", name: "São Paulo", color: "from-indigo-600 to-purple-500", icon: "🏙️" },
-  { code: "DF", name: "Distrito Federal", color: "from-yellow-500 to-amber-600", icon: "🏛️" },
-  { code: "GO", name: "Goiás", color: "from-teal-500 to-emerald-600", icon: "🏞️" },
-  { code: "MG", name: "Minas Gerais", color: "from-red-500 to-rose-600", icon: "☕" },
-  { code: "PR", name: "Paraná", color: "from-emerald-700 to-green-600", icon: "🌲" },
-  { code: "RS", name: "Rio Grande do Sul", color: "from-red-600 to-yellow-500", icon: "🧉" },
-  { code: "SC", name: "Santa Catarina", color: "from-blue-600 to-indigo-500", icon: "🌉" },
-  { code: "PE", name: "Pernambuco", color: "from-yellow-400 to-red-500", icon: "🎭" },
-  { code: "CE", name: "Ceará", color: "from-orange-400 to-amber-500", icon: "⛵" },
+  { code: "RJ", name: "Rio de Janeiro", color: "from-blue-500 to-cyan-500", icon: "️" },
+  { code: "BA", name: "Bahia", color: "from-orange-500 to-amber-500", icon: "" },
+  { code: "AM", name: "Amazonas", color: "from-green-600 to-emerald-500", icon: "" },
+  { code: "SP", name: "São Paulo", color: "from-indigo-600 to-purple-500", icon: "️" },
+  { code: "DF", name: "Distrito Federal", color: "from-yellow-500 to-amber-600", icon: "️" },
+  { code: "GO", name: "Goiás", color: "from-teal-500 to-emerald-600", icon: "️" },
+  { code: "MG", name: "Minas Gerais", color: "from-red-500 to-rose-600", icon: "" },
+  { code: "PR", name: "Paraná", color: "from-emerald-700 to-green-600", icon: "" },
+  { code: "RS", name: "Rio Grande do Sul", color: "from-red-600 to-yellow-500", icon: "" },
+  { code: "SC", name: "Santa Catarina", color: "from-blue-600 to-indigo-500", icon: "" },
+  { code: "PE", name: "Pernambuco", color: "from-yellow-400 to-red-500", icon: "" },
+  { code: "CE", name: "Ceará", color: "from-orange-400 to-amber-500", icon: "" },
 ];
 
 export default function Passport() {
@@ -109,7 +109,7 @@ export default function Passport() {
                 {/* Stamped visual indicator */}
                 {isStamped && (
                   <div className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-emerald-500 flex items-center justify-center text-slate-950 font-bold text-[10px] shadow-md border border-slate-900 animate-bounce">
-                    ✓
+                    
                   </div>
                 )}
 

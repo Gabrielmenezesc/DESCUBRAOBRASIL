@@ -8,7 +8,7 @@ const partners = [
   {
     name: "Rede Brasília News",
     category: "Comunicação & Notícias",
-    icon: "📡",
+    icon: "",
     gradient: "from-blue-500 to-blue-700",
     bg: "bg-blue-50",
     border: "border-blue-100",
@@ -18,7 +18,7 @@ const partners = [
   {
     name: "Rádio Esperança FM",
     category: "Rádio & Entretenimento",
-    icon: "📻",
+    icon: "",
     gradient: "from-emerald-500 to-emerald-700",
     bg: "bg-emerald-50",
     border: "border-emerald-100",
@@ -28,7 +28,7 @@ const partners = [
   {
     name: "Drogaria São Pedro",
     category: "Saúde & Bem-Estar",
-    icon: "💊",
+    icon: "",
     gradient: "from-amber-500 to-amber-700",
     bg: "bg-amber-50",
     border: "border-amber-100",

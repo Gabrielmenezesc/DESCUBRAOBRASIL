@@ -44,13 +44,13 @@ export default function TreasureHunt() {
     if (userGuess.includes(correctAnswer) || correctAnswer.includes(userGuess) && userGuess.length > 4) {
       const result = await findTreasure(selectedTreasure.id);
       if (result.success) {
-        setFeedback({ type: "success", message: `Incrível! Você escavou e encontrou o ${selectedTreasure.title}! +${selectedTreasure.xpReward} XP 🎉` });
+        setFeedback({ type: "success", message: `Incrível! Você escavou e encontrou o ${selectedTreasure.title}! +${selectedTreasure.xpReward} XP ` });
         fetchStats();
       } else {
         setFeedback({ type: "success", message: "Você já desvendou este baú!" });
       }
     } else {
-      setFeedback({ type: "error", message: "Nada encontrado neste ponto. Analise a pista novamente! 🔍" });
+      setFeedback({ type: "error", message: "Nada encontrado neste ponto. Analise a pista novamente! " });
     }
   };
 
@@ -106,7 +106,7 @@ export default function TreasureHunt() {
                 }`}
               >
                 <div className="flex items-center gap-3">
-                  <span className="text-2xl">{isFound ? "🔓" : "🔒"}</span>
+                  <span className="text-2xl">{isFound ? "" : ""}</span>
                   <div>
                     <span className="block font-bold text-sm">{t.title}</span>
                     <span className="block text-[10px] font-black text-slate-500 uppercase">{t.stateCode}</span>
@@ -114,7 +114,7 @@ export default function TreasureHunt() {
                 </div>
                 {isFound && (
                   <span className="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-bold flex items-center justify-center border border-emerald-500/30">
-                    ✓
+                    
                   </span>
                 )}
               </button>

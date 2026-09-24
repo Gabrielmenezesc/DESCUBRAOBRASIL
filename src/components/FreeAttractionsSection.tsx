@@ -99,7 +99,7 @@ export default function FreeAttractionsSection() {
             viewport={{ once: true }}
             className="inline-block px-4 py-1.5 rounded-full bg-emerald-50 text-emerald-600 text-sm font-bold mb-4"
           >
-            💰 GRATUITO
+             GRATUITO
           </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}

@@ -39,14 +39,14 @@ export interface Treasure {
 }
 
 export const ACHIEVEMENTS: Achievement[] = [
-  { id: "first_steps", title: "Primeiros Passos", description: "Iniciou sua jornada de exploração pelo Brasil.", icon: "🧭", xpReward: 50, category: "exploration" },
-  { id: "maya_friend", title: "Amigo da Maya", description: "Interagiu com a Inteligência Artificial Maya.", icon: "🤖", xpReward: 50, category: "maya" },
-  { id: "rj_explorer", title: "Explorador Imperial", description: "Desvendou os encantos do Rio de Janeiro.", icon: "🏖️", xpReward: 100, category: "exploration" },
-  { id: "ba_explorer", title: "Alma Soteropolitana", description: "Imergiu na cultura e história da Bahia.", icon: "🥁", xpReward: 100, category: "exploration" },
-  { id: "am_explorer", title: "Desbravador da Selva", description: "Explorou as belezas naturais do Amazonas.", icon: "🐆", xpReward: 100, category: "exploration" },
-  { id: "five_stamps", title: "Viajante Experiente", description: "Coletou 5 carimbos diferentes no seu passaporte.", icon: "🗺️", xpReward: 300, category: "special" },
-  { id: "treasure_hunter", title: "Caçador de Relíquias", description: "Encontrou seu primeiro tesouro escondido no mapa.", icon: "💎", xpReward: 200, category: "special" },
-  { id: "master_explorer", title: "Super Mochileiro", description: "Atingiu o nível 5 de aventura.", icon: "👑", xpReward: 500, category: "special" }
+  { id: "first_steps", title: "Primeiros Passos", description: "Iniciou sua jornada de exploração pelo Brasil.", icon: "", xpReward: 50, category: "exploration" },
+  { id: "maya_friend", title: "Amigo da Maya", description: "Interagiu com a Inteligência Artificial Maya.", icon: "", xpReward: 50, category: "maya" },
+  { id: "rj_explorer", title: "Explorador Imperial", description: "Desvendou os encantos do Rio de Janeiro.", icon: "️", xpReward: 100, category: "exploration" },
+  { id: "ba_explorer", title: "Alma Soteropolitana", description: "Imergiu na cultura e história da Bahia.", icon: "", xpReward: 100, category: "exploration" },
+  { id: "am_explorer", title: "Desbravador da Selva", description: "Explorou as belezas naturais do Amazonas.", icon: "", xpReward: 100, category: "exploration" },
+  { id: "five_stamps", title: "Viajante Experiente", description: "Coletou 5 carimbos diferentes no seu passaporte.", icon: "️", xpReward: 300, category: "special" },
+  { id: "treasure_hunter", title: "Caçador de Relíquias", description: "Encontrou seu primeiro tesouro escondido no mapa.", icon: "", xpReward: 200, category: "special" },
+  { id: "master_explorer", title: "Super Mochileiro", description: "Atingiu o nível 5 de aventura.", icon: "", xpReward: 500, category: "special" }
 ];
 
 export const MISSIONS: Mission[] = [

@@ -16,7 +16,7 @@ export default function ShareButton() {
 
   const handleShare = async () => {
     const stats = await getGamificationStats();
-    const shareText = `🎒 Estou explorando o Brasil no "Descubra o Brasil"! Já carimbei ${stats.visitedStates.length} estados e cheguei ao Nível ${stats.level} (${stats.xp} XP)! 🧭\nVenha desbravar também: https://descubraobrasil.com.br`;
+    const shareText = ` Estou explorando o Brasil no "Descubra o Brasil"! Já carimbei ${stats.visitedStates.length} estados e cheguei ao Nível ${stats.level} (${stats.xp} XP)! \nVenha desbravar também: https://descubraobrasil.com.br`;
 
     if (navigator.share) {
       try {
@@ -35,7 +35,7 @@ export default function ShareButton() {
 
   const copyToClipboard = async () => {
     const stats = await getGamificationStats();
-    const shareText = `🎒 Estou explorando o Brasil no "Descubra o Brasil"! Já carimbei ${stats.visitedStates.length} estados e cheguei ao Nível ${stats.level} (${stats.xp} XP)! 🧭\nVenha desbravar também: https://descubraobrasil.com.br`;
+    const shareText = ` Estou explorando o Brasil no "Descubra o Brasil"! Já carimbei ${stats.visitedStates.length} estados e cheguei ao Nível ${stats.level} (${stats.xp} XP)! \nVenha desbravar também: https://descubraobrasil.com.br`;
 
     try {
       await navigator.clipboard.writeText(shareText);
@@ -77,7 +77,7 @@ export default function ShareButton() {
           
           <a
             href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
-              `🎒 Estou explorando o Brasil no "Descubra o Brasil"! Venha desbravar também: https://descubraobrasil.com.br`
+              ` Estou explorando o Brasil no "Descubra o Brasil"! Venha desbravar também: https://descubraobrasil.com.br`
             )}`}
             target="_blank"
             rel="noopener noreferrer"
@@ -89,7 +89,7 @@ export default function ShareButton() {
 
           <a
             href={`https://wa.me/?text=${encodeURIComponent(
-              `🎒 Estou explorando o Brasil no "Descubra o Brasil"! Venha desbravar também: https://descubraobrasil.com.br`
+              ` Estou explorando o Brasil no "Descubra o Brasil"! Venha desbravar também: https://descubraobrasil.com.br`
             )}`}
             target="_blank"
             rel="noopener noreferrer"

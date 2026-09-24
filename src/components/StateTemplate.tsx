@@ -138,10 +138,10 @@ export default function StateTemplate({ data }: { data: any }) {
                 <p className="text-sm text-slate-600 dark:text-slate-400 mb-3">{item.short_description}</p>
                 <div className="flex flex-wrap gap-2">
                   <span className="px-2 py-1 rounded-md bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs text-slate-500 font-medium">
-                    📍 {item.city}
+                     {item.city}
                   </span>
                   <span className="px-2 py-1 rounded-md bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs text-slate-500 font-medium">
-                    🏷️ {item.category}
+                    ️ {item.category}
                   </span>
                 </div>
               </div>
@@ -285,7 +285,7 @@ export default function StateTemplate({ data }: { data: any }) {
                   {snippet.intent}
                 </span>
                 <p className="text-white text-sm font-medium flex items-start gap-2">
-                  <span className="text-emerald-400 mt-1 text-xs">👤</span> "{snippet.user_example}"
+                  <span className="text-emerald-400 mt-1 text-xs"></span> "{snippet.user_example}"
                 </p>
               </div>
               <div className="bg-white/5 border border-white/10 rounded-xl p-4">

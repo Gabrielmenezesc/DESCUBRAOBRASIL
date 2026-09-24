@@ -10,27 +10,27 @@ interface WeatherData {
 }
 
 const weatherCodeMap: Record<number, { description: string; icon: string }> = {
-  0: { description: "Céu Limpo", icon: "☀️" },
-  1: { description: "Parcialmente Limpo", icon: "🌤️" },
-  2: { description: "Parcialmente Nublado", icon: "⛅" },
-  3: { description: "Nublado", icon: "☁️" },
-  45: { description: "Nevoeiro", icon: "🌫️" },
-  48: { description: "Nevoeiro Gelado", icon: "🌫️" },
-  51: { description: "Garoa Leve", icon: "🌦️" },
-  53: { description: "Garoa Moderada", icon: "🌦️" },
-  55: { description: "Garoa Intensa", icon: "🌧️" },
-  61: { description: "Chuva Leve", icon: "🌧️" },
-  63: { description: "Chuva Moderada", icon: "🌧️" },
-  65: { description: "Chuva Forte", icon: "🌧️" },
-  71: { description: "Neve Leve", icon: "🌨️" },
-  73: { description: "Neve Moderada", icon: "🌨️" },
-  75: { description: "Neve Forte", icon: "❄️" },
-  80: { description: "Pancadas Leves", icon: "🌦️" },
-  81: { description: "Pancadas Moderadas", icon: "🌧️" },
-  82: { description: "Pancadas Fortes", icon: "⛈️" },
-  95: { description: "Tempestade", icon: "⛈️" },
-  96: { description: "Tempestade com Granizo", icon: "⛈️" },
-  99: { description: "Tempestade Severa", icon: "⛈️" },
+  0: { description: "Céu Limpo", icon: "️" },
+  1: { description: "Parcialmente Limpo", icon: "️" },
+  2: { description: "Parcialmente Nublado", icon: "" },
+  3: { description: "Nublado", icon: "️" },
+  45: { description: "Nevoeiro", icon: "️" },
+  48: { description: "Nevoeiro Gelado", icon: "️" },
+  51: { description: "Garoa Leve", icon: "️" },
+  53: { description: "Garoa Moderada", icon: "️" },
+  55: { description: "Garoa Intensa", icon: "️" },
+  61: { description: "Chuva Leve", icon: "️" },
+  63: { description: "Chuva Moderada", icon: "️" },
+  65: { description: "Chuva Forte", icon: "️" },
+  71: { description: "Neve Leve", icon: "️" },
+  73: { description: "Neve Moderada", icon: "️" },
+  75: { description: "Neve Forte", icon: "️" },
+  80: { description: "Pancadas Leves", icon: "️" },
+  81: { description: "Pancadas Moderadas", icon: "️" },
+  82: { description: "Pancadas Fortes", icon: "️" },
+  95: { description: "Tempestade", icon: "️" },
+  96: { description: "Tempestade com Granizo", icon: "️" },
+  99: { description: "Tempestade Severa", icon: "️" },
 };
 
 export function useWeather() {
@@ -87,7 +87,7 @@ export function useWeather() {
         const weatherData = await weatherRes.json();
         const current = weatherData.current_weather;
         const code = current?.weathercode ?? 0;
-        const mapped = weatherCodeMap[code] || { description: "Céu Limpo", icon: "☀️" };
+        const mapped = weatherCodeMap[code] || { description: "Céu Limpo", icon: "️" };
 
         setWeather({
           city,
@@ -100,7 +100,7 @@ export function useWeather() {
           city: "Brasil",
           temperature: 25,
           description: "Céu Limpo",
-          icon: "☀️",
+          icon: "️",
         });
       } finally {
         setLoading(false);

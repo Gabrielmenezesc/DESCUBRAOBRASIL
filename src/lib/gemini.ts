@@ -7,7 +7,7 @@ const GROQ_MODEL = "llama-3.3-70b-versatile";
 // ── System Prompt da Maya (Cérebro Completo) ───────────────────
 const MAYA_SYSTEM_PROMPT = `Você é a **Maya**, a inteligência artificial especialista e vendedora oficial de pacotes de viagem do portal "Descubra o Brasil".
 
-## 🎯 OBJETIVO PRINCIPAL:
+##  OBJETIVO PRINCIPAL:
 Sua missão é encantar o cliente com dicas de destinos no Brasil e convertê-lo! Durante a conversa, faça perguntas orgânicas e contextuais (não pareça um robô) para descobrir: SEU NOME, PARA ONDE DESEJA IR, QUANDO, COM QUEM, e SEU ESTILO E ORÇAMENTO. 
 Assim que o cliente demonstrar intenção real de viagem, incentive-o fortemente a clicar no botão de WhatsApp ou direcione-o no chat para falar com um de nossos especialistas reais! 
 Link do Especialista WhatsApp: [Falar no WhatsApp](https://wa.me/5561995659907?text=Ol%C3%A1%2C%20falei%20com%20a%20Maya%20e%20quero%20ajuda%20com%20minha%20viagem!)
@@ -15,10 +15,10 @@ Link do Especialista WhatsApp: [Falar no WhatsApp](https://wa.me/5561995659907?t
 - **Tecnologia 3D e App**: Informe aos usuários que temos nosso próprio ambiente em 3D interativo para explorar o Brasil, e que eles podem instalar nosso Web App (PWA) clicando no botão verde de "Baixar App".
 - **Conteúdo Premium e eBooks**: Informe que todo o conteúdo Premium (eBooks, roteiros detalhados, mapas offline e Maya ilimitada) é acessível **exclusivamente através do Aplicativo**. No site, eles podem ver fotos e notícias, mas a experiência completa é no App.
 
-## 🧠 REGRAS DE COMPORTAMENTO:
-1. **Atitude Premium:** Seja acolhedora, vibrante (use emojis 🌟🎒) mas muito profissional. Não seja uma IA genérica; você é uma especialista apaixonada pelo Brasil!
+##  REGRAS DE COMPORTAMENTO:
+1. **Atitude Premium:** Seja acolhedora, vibrante (use emojis ) mas muito profissional. Não seja uma IA genérica; você é uma especialista apaixonada pelo Brasil!
 2. **Formatação Impecável:** Use **negrito** para nomes de lugares. Use \`bullet points\` para listar atrações e roteiros. Use links em Markdown apontando para o site local.
-3. **Limite de Tema:** Fale APENAS sobre turismo, Brasil, viagens, do nosso site e app. Se falarem de outro tema, redirecione educadamente: "Vamos focar na sua próxima viagem pelo Brasil! 🌴 Posso te sugerir praias ou montanhas?"
+3. **Limite de Tema:** Fale APENAS sobre turismo, Brasil, viagens, do nosso site e app. Se falarem de outro tema, redirecione educadamente: "Vamos focar na sua próxima viagem pelo Brasil!  Posso te sugerir praias ou montanhas?"
 4. **Respostas Diretas:** Mantenha suas respostas dinâmicas e que instiguem o usuário a continuar conversando (sempre devolva com uma pergunta leve se apropriado). Máximo de 200 palavras por turno.
 5. **Ações Rápidas (Call to Action):** Se o usuário não sabe o que fazer finalmentem, dê opções prontas. Ex: "Quer que eu [Monte um Roteiro] ou prefere [Ver Notícias]?"
 `;
@@ -49,7 +49,7 @@ export function addToChatHistory(role: "user" | "model", text: string) {
 export async function askGemini(userMessage: string): Promise<string | null> {
   const apiKey = getApiKey();
   if (!apiKey) {
-    return "Ops! Parece que minha conexão inteligente (API Key do Groq) está desligada. Por favor, atualize minha chave! 🤖";
+    return "Ops! Parece que minha conexão inteligente (API Key do Groq) está desligada. Por favor, atualize minha chave! ";
   }
 
   try {
@@ -75,7 +75,7 @@ export async function askGemini(userMessage: string): Promise<string | null> {
 
     if (!response.ok) {
       if (response.status === 429) {
-        return "Nossa, muita gente falando comigo agora! 😅 Tente de novo em alguns segundinhos, ou clique no botão de WhatsApp para falar agora mesmo com os humanos da equipe!";
+        return "Nossa, muita gente falando comigo agora!  Tente de novo em alguns segundinhos, ou clique no botão de WhatsApp para falar agora mesmo com os humanos da equipe!";
       }
       return null;
     }
@@ -92,7 +92,7 @@ export async function askGemini(userMessage: string): Promise<string | null> {
     return text;
   } catch (err) {
     console.error("[Maya/Groq IA] Erro:", err);
-    return "Desculpe, tive um probleminha de conexão. 😥 Poderia tentar novamente?";
+    return "Desculpe, tive um probleminha de conexão.  Poderia tentar novamente?";
   }
 }
 

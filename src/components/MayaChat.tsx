@@ -153,7 +153,7 @@ export default function MayaChat() {
     setShowProactiveHint(false);
     if (!started) {
       setStarted(true);
-      const greeting = "Olá ✨ Sou Maya.\n\nSua especialista em turismo no Brasil.\nPara onde vamos hoje?";
+      const greeting = "Olá  Sou Maya.\n\nSua especialista em turismo no Brasil.\nPara onde vamos hoje?";
       
       setMessages([{
         from: "maya",
@@ -171,12 +171,12 @@ export default function MayaChat() {
     const lastMayaMsg = messages.filter(m => m.from === "maya").slice(-1)[0]?.text || "";
     
     let contextParts = [
-      "🤖 *Conversei com a Maya AI no site Descubra o Brasil*",
+      " *Conversei com a Maya AI no site Descubra o Brasil*",
       "",
     ];
     
     if (userMessages.length > 0) {
-      contextParts.push("📋 *O que eu falei:*");
+      contextParts.push(" *O que eu falei:*");
       userMessages.slice(-5).forEach(msg => {
         contextParts.push(`• ${msg}`);
       });
@@ -185,11 +185,11 @@ export default function MayaChat() {
     
     if (lastMayaMsg) {
       const clean = lastMayaMsg.replace(/\*\*/g, "").replace(/\[.*?\]\(.*?\)/g, "").substring(0, 200);
-      contextParts.push(`💬 *Última resposta da Maya:* ${clean}...`);
+      contextParts.push(` *Última resposta da Maya:* ${clean}...`);
       contextParts.push("");
     }
     
-    contextParts.push("👋 Gostaria de continuar com um atendente humano!");
+    contextParts.push(" Gostaria de continuar com um atendente humano!");
     
     return encodeURIComponent(contextParts.join("\n"));
   }
@@ -218,7 +218,7 @@ export default function MayaChat() {
       addMayaMessage(aiResponse);
     } else {
       setIsTyping(false);
-      addMayaMessage("Eita, minhas engrenagens deram uma travadinha aqui no servidor. 😅 Você pode tentar de novo ou [falar com nossos especialistas no WhatsApp](https://wa.me/5561995659907?text=Ol%C3%A1%2C%20falei%20com%20a%20Maya%20e%20deu%20erro).");
+      addMayaMessage("Eita, minhas engrenagens deram uma travadinha aqui no servidor.  Você pode tentar de novo ou [falar com nossos especialistas no WhatsApp](https://wa.me/5561995659907?text=Ol%C3%A1%2C%20falei%20com%20a%20Maya%20e%20deu%20erro).");
     }
   }
 
@@ -248,7 +248,7 @@ export default function MayaChat() {
                   </div>
                   <div>
                     <h4 className="font-bold text-xs text-slate-800 dark:text-slate-100">Maya</h4>
-                    <p className="text-xs text-slate-600 dark:text-slate-300 font-medium">Bora planejar sua viagem das férias? ✈️</p>
+                    <p className="text-xs text-slate-600 dark:text-slate-300 font-medium">Bora planejar sua viagem das férias? ️</p>
                   </div>
                 </div>
               </motion.div>
@@ -445,7 +445,7 @@ export default function MayaChat() {
                 </button>
               </div>
               <div className="mt-2 flex items-center justify-between px-1">
-                <span className="text-[9px] text-slate-300 font-bold tracking-widest uppercase">🤖 Maya IA + 👤 Humano</span>
+                <span className="text-[9px] text-slate-300 font-bold tracking-widest uppercase"> Maya IA +  Humano</span>
                 <span className="text-[9px] text-slate-300 font-bold tracking-widest uppercase">Gemini AI</span>
               </div>
             </div>
