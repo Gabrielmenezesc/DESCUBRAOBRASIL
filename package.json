@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test": "node --test tests/*.test.mjs",
+    "generate:app-data": "node scripts/generate-app-data.mjs",
+    "update:news": "node scripts/update-tourism-news.mjs"
   },
   "dependencies": {
     "@google/genai": "^1.50.1",
