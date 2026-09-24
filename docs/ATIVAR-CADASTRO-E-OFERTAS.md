@@ -11,9 +11,9 @@ O app funciona sem conta e salva progresso no navegador. Para ativar sincroniza�
 
 Chaves secretas, especialmente `service_role`, não podem entrar no repositório. O fluxo por e-mail pode ser ativado sem Google.
 
-## Ativar a Maya com IA
+## Ativar a Maya com Gemini
 
-1. Gere ou valide uma chave no Google AI Studio.
+1. Gere ou valide uma chave no Google AI Studio. A função usa o alias oficial `gemini-flash-latest`.
 2. No Supabase CLI, execute `supabase secrets set GEMINI_API_KEY=SUA_CHAVE`.
 3. Publique a função com `supabase functions deploy maya --no-verify-jwt`.
 4. Informe a URL da função no campo `mayaProxyUrl` de `public/app/config.json`.
