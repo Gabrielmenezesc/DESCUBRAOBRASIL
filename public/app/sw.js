@@ -1,78 +1,44 @@
-/* ═══════════════════════════════════════════════════════════════
-   DESCUBRA O BRASIL — Service Worker v1
-   Strategy: Cache-first for static, network-first for API
-═══════════════════════════════════════════════════════════════ */
-
-const CACHE_NAME = 'descubra-brasil-v1';
-const SHELL_ASSETS = [
-  './',
-  './index.html',
-  './css/style.css',
-  './js/main.js',
-  './js/splash.js',
-  './js/maya-voice.js',
-  './manifest.json'
+// Cache only this app's public shell; never cache authentication or API traffic.
+const CACHE_PREFIX = 'descubra-app-' + new URL(self.registration.scope).pathname + '-';
+const CACHE_NAME = CACHE_PREFIX + 'mobile-v2';
+const ASSETS = [
+  "index.html",
+  "gamificacao.html",
+  "css/style.css?v=4.1",
+  "css/gamificacao.css",
+  "css/mobile.css",
+  "js/main.js?v=4.1",
+  "js/mobile.js",
+  "js/maya-voice.js",
+  "js/states-db.js",
+  "js/news-rss.js",
+  "js/gamificacao.js",
+  "manifest.json",
+  "../icon-192.png",
+  "../icon-512.png",
+  "../logo-descubra.png"
 ];
-
-// ── Install: pre-cache shell ──
-self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      console.log('[SW] Caching shell assets');
-      return cache.addAll(SHELL_ASSETS);
-    })
-  );
-  self.skipWaiting();
+const SHELL = new Set(ASSETS.map(path => new URL(path, self.location.href).href));
+self.addEventListener('install', event => {
+  event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll([...SHELL])).then(() => self.skipWaiting()));
 });
-
-// ── Activate: clean old caches ──
-self.addEventListener('activate', (event) => {
-  event.waitUntil(
-    caches.keys().then((keys) => {
-      return Promise.all(
-        keys
-          .filter((key) => key !== CACHE_NAME)
-          .map((key) => {
-            console.log('[SW] Removing old cache:', key);
-            return caches.delete(key);
-          })
-      );
-    })
-  );
-  self.clients.claim();
+self.addEventListener('activate', event => {
+  event.waitUntil(caches.keys().then(keys => Promise.all(keys
+    .filter(key => key.startsWith(CACHE_PREFIX) && key !== CACHE_NAME)
+    .map(key => caches.delete(key)))).then(() => self.clients.claim()));
 });
-
-// ── Fetch: smart strategy ──
-self.addEventListener('fetch', (event) => {
-  const url = new URL(event.request.url);
-
-  // Network-first for API calls
-  if (url.pathname.startsWith('/api') || url.hostname !== location.hostname) {
-    event.respondWith(
-      fetch(event.request)
-        .then((response) => {
-          // Cache API responses for offline fallback
-          const clone = response.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
-          return response;
-        })
-        .catch(() => caches.match(event.request))
-    );
-    return;
-  }
-
-  // Cache-first for static assets
-  event.respondWith(
-    caches.match(event.request).then((cached) => {
+self.addEventListener('fetch', event => {
+  if (event.request.method !== 'GET' || !SHELL.has(event.request.url)) return;
+  event.respondWith((async () => {
+    const cache = await caches.open(CACHE_NAME);
+    try {
+      const response = await fetch(event.request);
+      if (response.ok) await cache.put(event.request, response.clone());
+      return response;
+    } catch (error) {
+      const cached = await cache.match(event.request);
       if (cached) return cached;
-      return fetch(event.request).then((response) => {
-        // Cache any new static assets
-        if (response.ok && event.request.method === 'GET') {
-          const clone = response.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
-        }
-        return response;
-      });
-    })
-  );
+      throw error;
+    }
+  })());
 });

@@ -2,24 +2,29 @@
   "name": "Descubra o Brasil",
   "short_name": "Descubra BR",
   "description": "Seu guia inteligente de turismo pelo Brasil — hotéis, restaurantes, roteiros e a IA Maya.",
-  "start_url": "/app/index.html",
-  "scope": "/app/",
+  "start_url": "./app/index.html",
+  "scope": "./app/",
   "display": "standalone",
-  "orientation": "portrait",
+  "orientation": "any",
   "background_color": "#0f172a",
   "theme_color": "#10b981",
-  "categories": ["travel", "tourism"],
+  "categories": [
+    "travel",
+    "tourism"
+  ],
   "icons": [
     {
-      "src": "/icon-192.png",
+      "src": "./icon-192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
-      "src": "/icon-512.png",
+      "src": "./icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     }
-  ]
+  ],
+  "id": "./app/index.html"
 }

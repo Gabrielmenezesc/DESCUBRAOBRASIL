@@ -1,0 +1,44 @@
+/* Shared mobile layout for the travel app and passport. */
+:root { --mobile-height: 100dvh; --mobile-top: 0px; }
+body { width: 100%; }
+button, a, input, select, textarea { touch-action: manipulation; }
+button:focus-visible, a:focus-visible { outline: 3px solid #0057b8; outline-offset: 3px; }
+.screen { padding-top: env(safe-area-inset-top, 0px); overflow-x: hidden; visibility: hidden; }
+.screen.active { visibility: visible; }
+.screen > * { flex-shrink: 0; }
+.bottom-nav { height: calc(70px + env(safe-area-inset-bottom, 0px)); }
+.bnav-item { min-width: 0; flex: 1; min-height: 48px; padding-inline: 4px; }
+.maya-fab { bottom: calc(86px + env(safe-area-inset-bottom, 0px)); }
+.maya-chat { max-height: calc(var(--mobile-height) - 170px - env(safe-area-inset-bottom, 0px)); }
+.modal-bg { top: var(--mobile-top); bottom: auto; height: var(--mobile-height); }
+.modal { max-height: 100%; }
+input { min-width: 0; }
+#screen-roteiros .screen-header { display: block; }
+#maya-send { flex-shrink: 0; }
+.splash-content { max-width: calc(100% - 32px); padding: 24px; }
+.splash-title { font-size: clamp(1.5rem, 7vw, 2.8rem); }
+.app-container { min-height: 100dvh; padding-bottom: env(safe-area-inset-bottom, 0px); }
+.action-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.action-btn { min-width: 0; overflow-wrap: anywhere; }
+@media (max-width: 360px) {
+  .action-grid { grid-template-columns: 1fr; }
+  .action-btn { min-height: 140px; }
+}
+@media (max-width: 767px) {
+  input, select, textarea { font-size: 16px !important; }
+  .top-bar { flex-wrap: wrap; gap: 8px; padding: 8px 12px; }
+  .top-bar-left { min-width: 0; }
+  .top-bar-left img { max-width: 100%; }
+  .top-bar button, .modal-x, .maya-chat-header button { min-height: 44px; min-width: 44px; }
+  .maya-chat { width: calc(100% - 20px); right: 10px; }
+  .maya-chat:focus-within {
+    top: calc(var(--mobile-top) + env(safe-area-inset-top, 0px) + 8px);
+    bottom: auto;
+    height: calc(var(--mobile-height) - env(safe-area-inset-top, 0px) - 16px);
+    max-height: none;
+  }
+  .modal { padding: 24px 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}

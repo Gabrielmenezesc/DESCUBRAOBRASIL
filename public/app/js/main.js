@@ -15,7 +15,7 @@ let userMarker = null;
 let watchId = null;
 let followUser = false;
 let allHotels = [], allPOIs = [];
-let supabase = null; // Defined in run_command or below
+let supabaseClient = null; // Defined in run_command or below
 let allMarkers = [];
 let routeLine = null;
 let currentFilter = 'all';
@@ -146,7 +146,7 @@ function initAuthListeners() {
         });
 
         if (email) {
-            const { error } = await supabase.auth.resetPasswordForEmail(email, {
+            const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
                 redirectTo: `${window.location.origin}/auth/reset-password`
             });
             if (error) {
@@ -176,9 +176,9 @@ function initSupabase() {
     const SB_URL = 'https://sua-url-aqui.supabase.co';
     const SB_KEY = 'sua-chave-aqui';
     
-    if (typeof supabase === 'undefined' || !supabase) {
+    if (typeof supabaseClient === 'undefined' || !supabaseClient) {
         if (typeof window.supabase !== 'undefined') {
-            supabase = window.supabase.createClient(SB_URL, SB_KEY);
+            supabaseClient = window.supabase.createClient(SB_URL, SB_KEY);
         }
     }
 }
@@ -850,7 +850,7 @@ function initMapScreen() {
         if (activePOI || activeNav) {
             const item = activePOI || activeNav;
             try {
-                const { error } = await supabase.from('user_favorites').insert([{
+                const { error } = await supabaseClient.from('user_favorites').insert([{
                     user_id: user.id || user.sub,
                     poi_name: item.nome || item.name,
                     lat: item.latitude || item.lat,
@@ -1239,7 +1239,7 @@ function initAuth() {
         const password = doc('login-password').value;
         
         try {
-            const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+            const { data, error } = await supabaseClient.auth.signInWithPassword({ email, password });
             if (error) throw error;
 
             const profile = {
@@ -1268,7 +1268,7 @@ function initAuth() {
         const plan = doc('reg-plan').value;
 
         try {
-            const { data, error } = await supabase.auth.signUp({
+            const { data, error } = await supabaseClient.auth.signUp({
                 email,
                 password,
                 options: {
@@ -1389,7 +1389,7 @@ function triggerChromeIdentityAuth() {
 
 async function handleGoogleResponse(response) {
     try {
-        const { data, error } = await supabase.auth.signInWithIdToken({
+        const { data, error } = await supabaseClient.auth.signInWithIdToken({
             provider: 'google',
             token: response.credential,
         });
@@ -1439,7 +1439,7 @@ async function renderPremiumPanel() {
 
     // Check plan from metadata or profiles table
     // For now, we check user_metadata.plan
-    const { data: { user: sbUser } } = await supabase.auth.getUser();
+    const { data: { user: sbUser } } = await supabaseClient.auth.getUser();
     const plan = sbUser?.user_metadata?.plan || 'free';
     const isPremium = plan === 'premium';
 
@@ -1485,7 +1485,7 @@ function renderEbookGrid(unlocked) {
 function getUser() { try { return JSON.parse(localStorage.getItem('user') || 'null'); } catch { return null; } }
 
 async function logout() {
-    await supabase.auth.signOut();
+    await supabaseClient.auth.signOut();
     localStorage.removeItem('user');
     updateAuthUI(null);
     Swal.fire('Até logo! 👋', '', 'info');

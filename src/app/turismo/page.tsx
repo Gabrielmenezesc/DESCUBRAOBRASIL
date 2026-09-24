@@ -1,5 +1,7 @@
 "use client";
 
+import { assetPath } from "@/lib/assetPath";
+
 import Navbar from "@/components/Navbar";
 import TourismSection from "@/components/TourismSection";
 import FooterSection from "@/components/FooterSection";
@@ -63,7 +65,7 @@ export default function TurismoPage() {
             Explore os melhores destinos do Brasil. Para uma experiência completa com roteiros, mapas e Maya AI, abra nosso app.
           </p>
           <a
-            href="/app/index.html"
+            href={assetPath("/app/index.html")}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-500 to-emerald-400 text-white px-8 py-4 rounded-full font-bold text-lg hover:shadow-[0_0_20px_rgba(16,185,129,0.5)] transition-shadow"

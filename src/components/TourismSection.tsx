@@ -1,5 +1,7 @@
 "use client";
 
+import { assetPath } from "@/lib/assetPath";
+
 import { MapPin, ArrowUpRight } from "lucide-react";
 
 export default function TourismSection() {
@@ -38,7 +40,7 @@ export default function TourismSection() {
           </div>
           
           <a 
-            href="/app/index.html"
+            href={assetPath("/app/index.html")}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 text-emerald-600 font-bold hover:text-emerald-500 transition-colors"

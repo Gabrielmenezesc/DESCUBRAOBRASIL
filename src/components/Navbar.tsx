@@ -231,7 +231,7 @@ export default function Navbar() {
                  </Link>
                ) : (
                  <a 
-                   href="/app/index.html"
+                   href={assetPath("/app/index.html")}
                    target="_blank"
                    rel="noopener noreferrer"
                    className="block w-full py-5 text-center rounded-2xl bg-gradient-to-r from-emerald-500 to-emerald-400 text-white font-black text-lg shadow-lg shadow-emerald-500/30"

@@ -3,26 +3,28 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Descubra o Brasil — Para onde vamos?</title>
-    <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="./manifest.json">
     <meta name="theme-color" content="#0057B8">
     <meta name="description"
         content="Explore hotéis, restaurantes, pontos turísticos e roteiros por todo o Brasil com a Maya.">
     <!-- PWA & Mobile Optimization -->
-    <link rel="apple-touch-icon" href="/icon-192.png">
+    <link rel="apple-touch-icon" href="../icon-192.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Descubra BR">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" <link
+    <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
     <link rel="stylesheet" href="css/style.css?v=4.1">
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link rel="stylesheet" href="css/mobile.css">
+    <script src="js/mobile.js" defer></script>
 </head>
 
 <body>
@@ -45,7 +47,7 @@
         <!-- Top Bar -->
         <header class="top-bar">
             <div class="top-bar-left">
-                <img src="/logo-descubra.png" alt="Descubra o Brasil" style="height: 32px; width: auto; object-fit: contain;">
+                <img src="../logo-descubra.png" alt="Descubra o Brasil" style="height: 32px; width: auto; object-fit: contain;">
             </div>
             <div class="top-bar-right" id="top-auth-area">
                 <button class="btn-ghost" id="btn-login-open">Entrar</button>
@@ -853,17 +855,9 @@
             color: #94a3b8;
             font-size: 11px;
         }
-        /* Fix bottom nav to always be sticky */
-        .bottom-nav {
-            position: fixed !important;
-            bottom: 0 !important;
-            left: 0 !important;
-            right: 0 !important;
-            z-index: 200 !important;
-        }
         /* Give all screens bottom padding so content doesn't hide behind nav */
         .screen {
-            padding-bottom: 72px !important;
+            padding-bottom: calc(var(--bottom-nav-h) + env(safe-area-inset-bottom, 0px)) !important;
         }
 
         /* ── ROTEIROS STYLES ── */

@@ -1,5 +1,7 @@
 "use client";
 
+import { assetPath } from "@/lib/assetPath";
+
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 interface PWAContextType {
@@ -29,12 +31,13 @@ export function PWAProvider({ children }: { children: React.ReactNode }) {
 
     // Register Service Worker
     if ("serviceWorker" in navigator) {
-      window.addEventListener("load", () => {
+      const registerWorker = () => {
         navigator.serviceWorker
-          .register("/sw.js")
+          .register(assetPath("app/sw.js"))
           .then((reg) => console.log("[PWA] SW Registered:", reg.scope))
           .catch((err) => console.error("[PWA] SW Registration failed:", err));
-      });
+      };
+      registerWorker();
     }
 
     window.addEventListener("appinstalled", () => {
@@ -70,7 +73,7 @@ export function PWAProvider({ children }: { children: React.ReactNode }) {
     }
 
     // Case 3: Fallback — open the web app directly
-    window.open("/app/index.html", "_blank");
+    window.open(assetPath("/app/index.html"), "_blank", "noopener,noreferrer");
   };
 
   return (
