@@ -1,4 +1,4 @@
 :HL["/DESCUBRAOBRASIL/_next/static/chunks/066jf0nk75nic.css","style"]
 :HL["/DESCUBRAOBRASIL/_next/static/chunks/0w3le3jw_b1pn.css","style"]
 :HL["/DESCUBRAOBRASIL/_next/static/chunks/07~ufo8e6xwjr.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"/_not-found","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"IdnZDNa5i6vj8OhWIwrZc"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"/_not-found","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"PI8FPSkDDU3zEeIyyMEQu"}
