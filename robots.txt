@@ -1,0 +1,6 @@
+User-Agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+
+Sitemap: https://gabrielmenezesc.github.io/DESCUBRAOBRASIL/sitemap.xml

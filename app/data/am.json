@@ -1,0 +1,247 @@
+{
+  "uf_code": "AM",
+  "slug": "amazonas",
+  "state_name": "Amazonas",
+  "capital": "Manaus",
+  "region": "Norte",
+  "general_info": {
+    "climate": "equatorial",
+    "best_time": "junho a novembro para combinar praias de rio, deslocamentos mais previsiveis e trilhas urbanas; marco a agosto para experiencias de cheia",
+    "intro": "Amazonas combina floresta, rios, cultura urbana e experiencias comunitarias. Para o site, vale trabalhar duas vitrines sazonais: seca e cheia.",
+    "biomes": ["Amazônia"]
+  },
+  "free_tourism": {
+    "public_beaches": [
+      {
+        "name": "Praia da Ponta Negra",
+        "city": "Manaus",
+        "lat": -3.0883,
+        "lng": -60.1114,
+        "tags": ["gratuito", "natureza", "cidade", "família", "casal"]
+      }
+    ],
+    "parks": [
+      {
+        "name": "Largo de São Sebastião",
+        "city": "Manaus",
+        "lat": -3.1302,
+        "lng": -60.0237,
+        "tags": ["gratuito", "cidade", "cultura", "família"]
+      }
+    ],
+    "trails": [
+      {
+        "name": "Trilhas comunitárias em experiências de base local",
+        "city": "Alto Rio Negro / Tarumã",
+        "lat": -2.9816,
+        "lng": -60.1073,
+        "tags": ["gratuito", "natureza", "cultura", "aventura"]
+      }
+    ],
+    "waterfalls": [
+      {
+        "name": "Cachoeira da Neblina",
+        "city": "Presidente Figueiredo",
+        "lat": -2.0380,
+        "lng": -59.9400,
+        "tags": ["gratuito", "natureza", "aventura", "casal"]
+      }
+    ],
+    "squares_historic_centers": [
+      {
+        "name": "Centro histórico e entorno do porto",
+        "city": "Manaus",
+        "lat": -3.1340,
+        "lng": -60.0220,
+        "tags": ["gratuito", "cidade", "cultura", "fotografia"]
+      }
+    ],
+    "viewpoints": [
+      {
+        "name": "Mirante Lúcia Almeida",
+        "city": "Manaus",
+        "lat": -3.1345,
+        "lng": -60.0188,
+        "tags": ["gratuito", "cidade", "casal", "pôr do sol"]
+      }
+    ],
+    "free_events": [
+      {
+        "name": "Semana do Quadrinho Nacional de Manaus",
+        "period": "março",
+        "city": "Manaus",
+        "paid": false
+      }
+    ]
+  },
+  "paid_tourism": {
+    "parks_and_tickets": [
+      {
+        "name": "Teatro Amazonas",
+        "city": "Manaus",
+        "lat": -3.1303,
+        "lng": -60.0234,
+        "tags": ["pago", "cultura", "cidade", "casal"]
+      }
+    ],
+    "guided_tours": [
+      {
+        "name": "Encontro das Águas com guia",
+        "city": "Manaus",
+        "lat": -3.1415,
+        "lng": -59.9095,
+        "tags": ["pago", "natureza", "barco", "família"]
+      }
+    ],
+    "boat_tours": [
+      {
+        "name": "Passeios fluviais e cruzeiros regionais",
+        "city": "Manaus",
+        "lat": -3.1360,
+        "lng": -60.0210,
+        "tags": ["pago", "natureza", "barco", "casal"]
+      }
+    ],
+    "museums": [
+      {
+        "name": "Museus e circuitos históricos do centro",
+        "city": "Manaus",
+        "lat": -3.1310,
+        "lng": -60.0227,
+        "tags": ["pago", "cultura", "cidade", "família"]
+      }
+    ],
+    "water_parks": [],
+    "adventure": [
+      {
+        "name": "Birdwatching e experiencias de selva com operadores credenciados",
+        "city": "Manaus e interior",
+        "lat": -3.1190,
+        "lng": -60.0217,
+        "tags": ["pago", "natureza", "aventura", "ecoturismo"]
+      }
+    ]
+  },
+  "top_attractions": [
+    {
+      "name": "Teatro Amazonas",
+      "short_description": "Marco historico e simbolo cultural do estado.",
+      "category": "cultura",
+      "is_free": false,
+      "city": "Manaus",
+      "lat": -3.1303,
+      "lng": -60.0234,
+      "tags": ["pago", "cidade", "cultura", "casal"]
+    },
+    {
+      "name": "Encontro das Águas",
+      "short_description": "Fenomeno natural de confluencia entre rios de cores diferentes.",
+      "category": "natureza",
+      "is_free": false,
+      "city": "Manaus",
+      "lat": -3.1415,
+      "lng": -59.9095,
+      "tags": ["pago", "natureza", "família", "casal"]
+    },
+    {
+      "name": "Praia da Ponta Negra",
+      "short_description": "Orla urbana com praia de rio, calçadão e eventos.",
+      "category": "natureza",
+      "is_free": true,
+      "city": "Manaus",
+      "lat": -3.0883,
+      "lng": -60.1114,
+      "tags": ["gratuito", "natureza", "cidade", "família"]
+    },
+    {
+      "name": "Cachoeira da Neblina",
+      "short_description": "Uma das cachoeiras mais conhecidas de Presidente Figueiredo.",
+      "category": "natureza",
+      "is_free": true,
+      "city": "Presidente Figueiredo",
+      "lat": -2.0380,
+      "lng": -59.9400,
+      "tags": ["gratuito", "natureza", "aventura", "casal"]
+    },
+    {
+      "name": "Festival de Parintins",
+      "short_description": "A maior experiencia cultural amazonense ligada aos bois-bumbas.",
+      "category": "cultura",
+      "is_free": false,
+      "city": "Parintins",
+      "lat": -2.6280,
+      "lng": -56.7359,
+      "tags": ["pago", "cultura", "evento", "casal"]
+    }
+  ],
+  "unique_experiences": [
+    "Vivencias ribeirinhas e comunitarias ligadas aos rios e a floresta",
+    "Calendario cultural de Parintins",
+    "Temporadas distintas de seca e cheia que mudam completamente a experiencia do destino"
+  ],
+  "gastronomy": {
+    "signature_dishes": ["tacacá", "tambaqui", "pirarucu", "x-caboquinho"],
+    "street_food": ["tacacá", "kikão", "sanduiches regionais", "doces de frutas amazônicas"],
+    "budget_eats": [
+      "Mercado Municipal Adolpho Lisboa",
+      "Feiras e boxes populares da Panair",
+      "Quiosques da orla da Ponta Negra"
+    ]
+  },
+  "events_festivals": [
+    { "name": "Festival de Parintins", "period": "junho", "city": "Parintins", "paid": true },
+    { "name": "#SouManaus / eventos oficiais de artes integradas", "period": "segundo semestre", "city": "Manaus", "paid": false }
+  ],
+  "itineraries": {
+    "one_day": [
+      "Manha no Teatro Amazonas e Largo de São Sebastião",
+      "Tarde no centro histórico e mercado",
+      "Fim de tarde na Ponta Negra"
+    ],
+    "three_days": [
+      "Dia 1 em Manaus histórico",
+      "Dia 2 Encontro das Águas e passeio fluvial",
+      "Dia 3 Presidente Figueiredo"
+    ],
+    "seven_days": [
+      "Dias 1-2 Manaus",
+      "Dias 3-4 rio e floresta",
+      "Dias 5-6 Presidente Figueiredo ou interior",
+      "Dia 7 circuito cultural e gastronomico"
+    ]
+  },
+  "budgets": {
+    "economico": { "daily_brl_min": 220, "daily_brl_max": 320 },
+    "medio": { "daily_brl_min": 450, "daily_brl_max": 700 },
+    "luxo": { "daily_brl_min": 950, "daily_brl_max": 1800 }
+  },
+  "map_settings": {
+    "default_center": { "lat": -3.5, "lng": -62.2 },
+    "default_zoom": 5
+  },
+  "official_sources": {
+    "tourism": ["Amazonastur", "Guia Turístico Digital do Amazonas", "Atrativos Turísticos da Amazonastur"],
+    "news": ["Amazonastur Notícias", "Portal da Prefeitura de Manaus / cultura e turismo"],
+    "maps": ["IBGE"],
+    "images": ["Wikimedia Commons", "Unsplash", "Pexels", "acervo oficial com licença validada"],
+    "notes": ["Validar licenças de fotos institucionais antes do uso comercial"]
+  },
+  "maya_snippets": [
+    {
+      "intent": "quero um roteiro gratuito",
+      "user_example": "o que fazer de graça em Manaus hoje?",
+      "assistant_snippet": "Posso montar um roteiro gratuito com Largo de São Sebastião, centro histórico, mirante e Ponta Negra, ajustando para família, casal ou chuva."
+    },
+    {
+      "intent": "quero natureza",
+      "user_example": "quero selva e cachoeira",
+      "assistant_snippet": "Para natureza, o melhor filtro é combinar cachoeiras de Presidente Figueiredo, experiências fluviais e vivências comunitárias conforme seca ou cheia."
+    }
+  ],
+  "seo": {
+    "title": "Descubra Amazonas: turismo gratuito, rios, cultura e mapa",
+    "meta_description": "Guia do Amazonas com atrações gratuitas e pagas, roteiro em Manaus e interior, gastronomia regional e mapa interativo.",
+    "keywords": ["amazonas turismo", "manaus gratis", "parintins", "presidente figueiredo", "encontro das aguas"]
+  },
+  "last_verified": "2026-04-27"
+}
