@@ -13,8 +13,8 @@ Chaves secretas, especialmente `service_role`, não podem entrar no repositório
 
 ## Ativar a Maya com IA
 
-1. Confirme que a chave pertence à Groq e começa com `gsk_`.
-2. No Supabase CLI, execute `supabase secrets set GROQ_API_KEY=SUA_CHAVE`.
+1. Gere ou valide uma chave no Google AI Studio.
+2. No Supabase CLI, execute `supabase secrets set GEMINI_API_KEY=SUA_CHAVE`.
 3. Publique a função com `supabase functions deploy maya --no-verify-jwt`.
 4. Informe a URL da função no campo `mayaProxyUrl` de `public/app/config.json`.
 
