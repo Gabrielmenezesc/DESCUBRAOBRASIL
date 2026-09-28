@@ -1,4 +1,6 @@
 /* Shared editorial identity, including high-contrast dark theme. */
+.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+.app-main:focus{outline:none}
 .pro-site{background:linear-gradient(180deg,var(--soft),var(--surface) 620px)}
 .pro-hero h1{font-weight:800!important;letter-spacing:-.045em!important}
 .pro-hero h1 em{font-family:inherit!important;font-weight:800!important;font-style:normal;color:var(--green);background:linear-gradient(100deg,var(--green) 35%,var(--gold));background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent}
