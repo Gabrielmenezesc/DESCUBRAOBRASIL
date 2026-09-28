@@ -1,0 +1,36 @@
+/* Shared editorial identity, including high-contrast dark theme. */
+.pro-site{background:linear-gradient(180deg,var(--soft),var(--surface) 620px)}
+.pro-hero h1{font-weight:800!important;letter-spacing:-.045em!important}
+.pro-hero h1 em{font-family:inherit!important;font-weight:800!important;font-style:normal;color:var(--green);background:linear-gradient(100deg,var(--green) 35%,var(--gold));background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.pro-kicker{display:inline-flex;padding:8px 15px;border-radius:999px;background:var(--soft);color:var(--accent);letter-spacing:.06em!important}
+.pro-proof{border:0!important;gap:14px!important;max-width:100%!important}
+.pro-proof>span{flex:1;padding:20px 15px;border:1px solid var(--line);border-radius:18px;background:var(--panel)}
+.pro-proof>span:nth-child(1) strong{color:var(--green)}
+.pro-proof>span:nth-child(2) strong{color:var(--accent)}
+.pro-proof>span:nth-child(3) strong{color:var(--gold)}
+.pro-section h2,.pro-page h1{font-weight:750!important}
+.pro-nav-actions .pro-button{display:inline-flex!important;border-radius:999px}
+.pro-feature{border-radius:20px;background:var(--panel)}
+.pro-button{border-radius:999px!important}
+.app-main>h1{font-weight:800;max-width:850px;margin-bottom:20px}
+.app-main>.eyebrow{display:inline-block;border-radius:999px;padding:7px 14px;background:var(--soft);letter-spacing:.06em}
+.app-main>.page-lead{margin-bottom:35px}
+.app-header{box-shadow:0 1px 10px var(--shadow)}
+.maya-box{padding:30px!important;border-radius:24px!important;border-top:3px solid var(--green)!important;background:linear-gradient(150deg,var(--panel),var(--soft))!important}
+.maya-heading{display:flex;align-items:center;gap:16px;margin-bottom:20px;flex-wrap:wrap}
+.maya-heading h2{margin:3px 0 0;font-size:28px}
+.maya-heading>.tag{margin-left:auto;align-self:center;color:var(--green)}
+.maya-avatar{display:grid;place-items:center;width:56px;height:56px;background:var(--green);color:var(--panel);border-radius:18px;font-size:28px;font-weight:800}
+.maya-messages:empty{display:none}
+.maya-messages{margin-top:22px;max-height:580px;scroll-behavior:smooth}
+.maya-message{line-height:1.75;overflow-wrap:anywhere;background:var(--panel);border:1px solid var(--line);max-width:94%;margin:0}
+.maya-message.user{background:var(--accent);color:var(--on-accent);border:0}
+.maya-form{align-items:end!important}
+.maya-form textarea{min-height:80px;margin:0;background:var(--panel)}
+.maya-form button{min-height:52px}
+.maya-sources{margin-top:18px;padding-top:14px;border-top:1px solid var(--line);display:grid;gap:8px;font-size:13px}
+.maya-search-suggestions{width:100%;height:160px;border:0;border-radius:12px;background:white}
+.maya-suggestions button{background:var(--panel);color:var(--accent);border-radius:999px}
+.news-list article{box-shadow:none}
+.whatsapp-float{background:var(--green)!important;color:var(--surface)!important}
+@media(max-width:600px){.pro-maya-link{display:none!important}.pro-nav-actions{gap:6px!important}.pro-nav-actions .pro-button{padding:9px 12px!important;font-size:12px!important}.pro-brand{font-size:17px!important}.pro-brand small{font-size:8px!important}.pro-proof{gap:8px!important}.pro-proof>span{padding:14px 10px}.pro-proof strong{font-size:17px!important}.maya-box{padding:20px!important}.maya-heading>.tag{margin-left:0}.maya-heading h2{font-size:24px}.maya-message{max-width:100%}.maya-form{grid-template-columns:1fr!important}}
