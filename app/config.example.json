@@ -1,1 +1,1 @@
-{"supabaseUrl":"https://SEU-PROJETO.supabase.co","supabaseKey":"SUA-CHAVE-ANON-PUBLICA","googleEnabled":false}
+{"supabaseUrl":"https://SEU-PROJETO.supabase.co","supabaseKey":"SUA-CHAVE-ANON-PUBLICA","googleEnabled":false,"mayaProxyUrl":"https://SEU-PROJETO.supabase.co/functions/v1/maya"}
