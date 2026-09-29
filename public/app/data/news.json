@@ -1,7 +1,17 @@
 {
   "source": "https://www.gov.br/turismo/pt-br/assuntos/noticias",
-  "fetchedAt": "2026-09-28T18:11:04.505Z",
+  "fetchedAt": "2026-09-29T16:32:12.397Z",
   "items": [
+    {
+      "title": "Ministro do Turismo participa da entrega de moradias do Minha Casa, Minha Vida em João Pessoa e Campina Grande",
+      "url": "https://www.gov.br/turismo/pt-br/assuntos/noticias/ministro-do-turismo-participa-da-entrega-de-moradias-do-minha-casa-minha-vida-em-joao-pessoa-e-campina-grande",
+      "date": "2026-09-29T12:00:00-03:00"
+    },
+    {
+      "title": "Ministério do Turismo participa da abertura da ABAV Expo 2026, em São Paulo",
+      "url": "https://www.gov.br/turismo/pt-br/assuntos/noticias/ministerio-do-turismo-participa-da-abertura-da-abav-expo-2026-em-sao-paulo-1",
+      "date": "2026-09-29T12:00:00-03:00"
+    },
     {
       "title": "Ministério do Turismo e BID abrem seleção para consultoria voltada ao financiamento do setor no Brasil",
       "url": "https://www.gov.br/turismo/pt-br/assuntos/noticias/ministerio-do-turismo-e-bid-abrem-selecao-para-consultoria-voltada-ao-financiamento-do-setor-no-brasil",
@@ -51,16 +61,6 @@
       "title": "Trilha Verde da Maria Fumaça valoriza patrimônio histórico, natureza e turismo de experiência em Minas Gerais",
       "url": "https://www.gov.br/turismo/pt-br/assuntos/noticias/trilha-verde-da-maria-fumaca-valoriza-patrimonio-historico-natureza-e-turismo-de-experiencia-em-minas-gerais",
       "date": "2026-09-16T12:00:00-03:00"
-    },
-    {
-      "title": "Ministro do Turismo prestigia a 63ª Equipotel e a 9ª edição do Congresso Nacional de Hotéis",
-      "url": "https://www.gov.br/turismo/pt-br/assuntos/noticias/ministro-do-turismo-prestigia-a-63a-equipotel-e-a-9a-edicao-do-congresso-nacional-de-hoteis",
-      "date": "2026-09-15T12:00:00-03:00"
-    },
-    {
-      "title": "Parque Nacional de Ubajara: santuário de grutas, biodiversidade e paisagens deslumbrantes no Ceará",
-      "url": "https://www.gov.br/turismo/pt-br/assuntos/noticias/parque-nacional-de-ubajara-santuario-de-grutas-biodiversidade-e-paisagens-deslumbrantes-no-ceara",
-      "date": "2026-09-11T12:00:00-03:00"
     }
   ]
 }
