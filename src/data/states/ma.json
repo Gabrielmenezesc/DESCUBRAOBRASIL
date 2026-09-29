@@ -1,0 +1,208 @@
+{
+  "uf_code": "MA",
+  "slug": "maranhao",
+  "state_name": "Maranhão",
+  "capital": "São Luís",
+  "region": "Nordeste",
+  "general_info": {
+    "climate": "tropical com variações regionais marcantes",
+    "best_time": "época seca para trilhas, época de chuvas para cachoeiras e rios",
+    "intro": "Conheça o estado do Maranhão. Repleto de pontos turísticos, cultura e gastronomia típica marcante.",
+    "biomes": [
+      "Cerrado",
+      "Caatinga",
+      "Amazônia"
+    ]
+  },
+  "free_tourism": {
+    "public_beaches": [],
+    "parks": [],
+    "trails": [],
+    "waterfalls": [],
+    "squares_historic_centers": [
+      {
+        "name": "Centro Histórico de São Luís",
+        "city": "São Luís",
+        "lat": -2.529,
+        "lng": -44.306,
+        "tags": [
+          "gratuito",
+          "história",
+          "arquitetura"
+        ]
+      }
+    ],
+    "viewpoints": [],
+    "free_events": [
+      {
+        "name": "Festividades Populares de Maranhão",
+        "period": "Calendário móvel anual",
+        "city": "São Luís",
+        "paid": false
+      }
+    ]
+  },
+  "paid_tourism": {
+    "parks_and_tickets": [
+      {
+        "name": "Cachoeira do Santuário",
+        "city": "Carolina",
+        "lat": -7.135,
+        "lng": -47.461,
+        "tags": [
+          "pago",
+          "cachoeira",
+          "natureza"
+        ]
+      }
+    ],
+    "guided_tours": [],
+    "boat_tours": [],
+    "museums": [],
+    "water_parks": [],
+    "adventure": []
+  },
+  "top_attractions": [
+    {
+      "name": "Parque Nacional dos Lençóis Maranhenses",
+      "short_description": "Dunas gigantescas esculpidas pelo vento com lagoas de água doce azul-turquesa.",
+      "category": "natureza",
+      "is_free": true,
+      "city": "Barreirinhas",
+      "lat": -2.502,
+      "lng": -43.123,
+      "tags": [
+        "gratuito",
+        "aventura",
+        "paisagem"
+      ]
+    },
+    {
+      "name": "Centro Histórico de São Luís",
+      "short_description": "Ruas coloniais repletas de casarões revestidos por azulejos portugueses clássicos.",
+      "category": "cultura",
+      "is_free": true,
+      "city": "São Luís",
+      "lat": -2.529,
+      "lng": -44.306,
+      "tags": [
+        "gratuito",
+        "história",
+        "arquitetura"
+      ]
+    },
+    {
+      "name": "Cachoeira do Santuário",
+      "short_description": "Queda d'água dentro de uma gruta na região da Chapada das Mesas.",
+      "category": "natureza",
+      "is_free": false,
+      "city": "Carolina",
+      "lat": -7.135,
+      "lng": -47.461,
+      "tags": [
+        "pago",
+        "cachoeira",
+        "natureza"
+      ]
+    }
+  ],
+  "unique_experiences": [
+    "Explorar as belezas e gastronomia de Maranhão",
+    "Roteiros guiados por pontos turísticos de São Luís"
+  ],
+  "gastronomy": {
+    "signature_dishes": [
+      "arroz de cuxá",
+      "peixe pedra frito",
+      "caranguejo toc-toc"
+    ],
+    "street_food": [
+      "juçara (açaí regional)",
+      "tapioca de coco"
+    ],
+    "budget_eats": [
+      "Mercado das Mercês em São Luís",
+      "ruas históricas da capital"
+    ]
+  },
+  "events_festivals": [
+    {
+      "name": "Festival Estadual de Maranhão",
+      "period": "Anual",
+      "city": "São Luís",
+      "paid": false
+    }
+  ],
+  "itineraries": {
+    "one_day": [
+      "Manhã no centro de São Luís",
+      "Almoço típico regional",
+      "Tarde nos parques ou praias locais"
+    ],
+    "three_days": [
+      "Dia 1: Passeio histórico por São Luís",
+      "Dia 2: Aventura natural ou praias",
+      "Dia 3: Gastronomia e artesanato local"
+    ],
+    "seven_days": [
+      "Dias 1-2: São Luís e arredores",
+      "Dias 3-5: Roteiro interiorano ou litoral distante",
+      "Dias 6-7: Ecoturismo nos parques estaduais"
+    ]
+  },
+  "budgets": {
+    "economico": {
+      "daily_brl_min": 150,
+      "daily_brl_max": 250
+    },
+    "medio": {
+      "daily_brl_min": 350,
+      "daily_brl_max": 600
+    },
+    "luxo": {
+      "daily_brl_min": 800,
+      "daily_brl_max": 1800
+    }
+  },
+  "map_settings": {
+    "default_center": {
+      "lat": -5.402,
+      "lng": -45.263
+    },
+    "default_zoom": 6
+  },
+  "official_sources": {
+    "tourism": [
+      "Secretaria de Turismo de Maranhão",
+      "Portal de São Luís"
+    ],
+    "news": [
+      "Notícias de Maranhão"
+    ],
+    "maps": [
+      "IBGE"
+    ],
+    "images": [
+      "Unsplash",
+      "Pexels"
+    ],
+    "notes": []
+  },
+  "maya_snippets": [
+    {
+      "intent": "o que fazer de graca",
+      "user_example": "o que fazer de graça em São Luís?",
+      "assistant_snippet": "Em São Luís, você pode conhecer parques públicos e passear pelas praças históricas sem pagar nada."
+    }
+  ],
+  "seo": {
+    "title": "Descubra Maranhão: turismo, o que fazer, mapa e roteiros",
+    "meta_description": "Guia de viagem para o estado de Maranhão com pontos turísticos gratuitos, gastronomia típica e roteiros no mapa.",
+    "keywords": [
+      "maranhão turismo",
+      "o que fazer em maranhao",
+      "roteiro maranhao"
+    ]
+  },
+  "last_verified": "2026-05-27"
+}

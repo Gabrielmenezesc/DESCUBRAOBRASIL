@@ -1,0 +1,195 @@
+{
+  "uf_code": "RJ",
+  "slug": "rio-de-janeiro",
+  "state_name": "Rio de Janeiro",
+  "capital": "Rio de Janeiro",
+  "region": "Sudeste",
+  "general_info": {
+    "climate": "tropical com variações regionais marcantes",
+    "best_time": "época seca para trilhas, época de chuvas para cachoeiras e rios",
+    "intro": "Conheça o estado do Rio de Janeiro. Repleto de pontos turísticos, cultura e gastronomia típica marcante.",
+    "biomes": [
+      "Mata Atlântica"
+    ]
+  },
+  "free_tourism": {
+    "public_beaches": [
+      {
+        "name": "Praia de Copacabana e Ipanema",
+        "city": "Rio de Janeiro",
+        "lat": -22.971,
+        "lng": -43.187,
+        "tags": [
+          "gratuito",
+          "praia",
+          "cidade"
+        ]
+      }
+    ],
+    "parks": [],
+    "trails": [],
+    "waterfalls": [],
+    "squares_historic_centers": [],
+    "viewpoints": [],
+    "free_events": [
+      {
+        "name": "Festividades Populares de Rio de Janeiro",
+        "period": "Calendário móvel anual",
+        "city": "Rio de Janeiro",
+        "paid": false
+      }
+    ]
+  },
+  "paid_tourism": {
+    "parks_and_tickets": [],
+    "guided_tours": [],
+    "boat_tours": [],
+    "museums": [],
+    "water_parks": [],
+    "adventure": []
+  },
+  "top_attractions": [
+    {
+      "name": "Cristo Redentor",
+      "short_description": "Uma das novas sete maravilhas do mundo moderno, no topo do Morro do Corcovado.",
+      "category": "cultura",
+      "is_free": false,
+      "city": "Rio de Janeiro",
+      "lat": -22.951,
+      "lng": -43.21,
+      "tags": [
+        "pago",
+        "monumento",
+        "vista"
+      ]
+    },
+    {
+      "name": "Pão de Açúcar",
+      "short_description": "Passeio de bondinho clássico conectando morros com vistas de Copacabana e Baía de Guanabara.",
+      "category": "natureza",
+      "is_free": false,
+      "city": "Rio de Janeiro",
+      "lat": -22.949,
+      "lng": -43.156,
+      "tags": [
+        "pago",
+        "bondinho",
+        "vista"
+      ]
+    },
+    {
+      "name": "Praia de Copacabana e Ipanema",
+      "short_description": "Orlas famosas do mundo inteiro com calçadões artísticos de ondas.",
+      "category": "natureza",
+      "is_free": true,
+      "city": "Rio de Janeiro",
+      "lat": -22.971,
+      "lng": -43.187,
+      "tags": [
+        "gratuito",
+        "praia",
+        "cidade"
+      ]
+    }
+  ],
+  "unique_experiences": [
+    "Explorar as belezas e gastronomia de Rio de Janeiro",
+    "Roteiros guiados por pontos turísticos de Rio de Janeiro"
+  ],
+  "gastronomy": {
+    "signature_dishes": [
+      "feijoada carioca",
+      "filé à oswaldo aranha",
+      "biscoito globo com mate"
+    ],
+    "street_food": [
+      "podrão (cachorro quente)",
+      "empada",
+      "espetinho de camarão"
+    ],
+    "budget_eats": [
+      "Beco das Garrafas",
+      "quiosques de Copacabana"
+    ]
+  },
+  "events_festivals": [
+    {
+      "name": "Festival Estadual de Rio de Janeiro",
+      "period": "Anual",
+      "city": "Rio de Janeiro",
+      "paid": false
+    }
+  ],
+  "itineraries": {
+    "one_day": [
+      "Manhã no centro de Rio de Janeiro",
+      "Almoço típico regional",
+      "Tarde nos parques ou praias locais"
+    ],
+    "three_days": [
+      "Dia 1: Passeio histórico por Rio de Janeiro",
+      "Dia 2: Aventura natural ou praias",
+      "Dia 3: Gastronomia e artesanato local"
+    ],
+    "seven_days": [
+      "Dias 1-2: Rio de Janeiro e arredores",
+      "Dias 3-5: Roteiro interiorano ou litoral distante",
+      "Dias 6-7: Ecoturismo nos parques estaduais"
+    ]
+  },
+  "budgets": {
+    "economico": {
+      "daily_brl_min": 150,
+      "daily_brl_max": 250
+    },
+    "medio": {
+      "daily_brl_min": 350,
+      "daily_brl_max": 600
+    },
+    "luxo": {
+      "daily_brl_min": 800,
+      "daily_brl_max": 1800
+    }
+  },
+  "map_settings": {
+    "default_center": {
+      "lat": -22.389,
+      "lng": -42.909
+    },
+    "default_zoom": 8
+  },
+  "official_sources": {
+    "tourism": [
+      "Secretaria de Turismo de Rio de Janeiro",
+      "Portal de Rio de Janeiro"
+    ],
+    "news": [
+      "Notícias de Rio de Janeiro"
+    ],
+    "maps": [
+      "IBGE"
+    ],
+    "images": [
+      "Unsplash",
+      "Pexels"
+    ],
+    "notes": []
+  },
+  "maya_snippets": [
+    {
+      "intent": "o que fazer de graca",
+      "user_example": "o que fazer de graça em Rio de Janeiro?",
+      "assistant_snippet": "Em Rio de Janeiro, você pode conhecer parques públicos e passear pelas praças históricas sem pagar nada."
+    }
+  ],
+  "seo": {
+    "title": "Descubra Rio de Janeiro: turismo, o que fazer, mapa e roteiros",
+    "meta_description": "Guia de viagem para o estado de Rio de Janeiro com pontos turísticos gratuitos, gastronomia típica e roteiros no mapa.",
+    "keywords": [
+      "rio de janeiro turismo",
+      "o que fazer em rio-de-janeiro",
+      "roteiro rio-de-janeiro"
+    ]
+  },
+  "last_verified": "2026-05-27"
+}

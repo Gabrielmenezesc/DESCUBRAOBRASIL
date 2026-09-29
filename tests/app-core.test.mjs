@@ -1,0 +1,8 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {dailyQuiz,cleanProgress,award,totalXP,checkVisit,offerPrice,offerIsActive,safeURL} from '../public/app/js/core.mjs';
+const states=[{code:'SP',name:'São Paulo',capital:'São Paulo'},{code:'RJ',name:'Rio de Janeiro',capital:'Rio de Janeiro'},{code:'BA',name:'Bahia',capital:'Salvador'},{code:'AM',name:'Amazonas',capital:'Manaus'},{code:'PE',name:'Pernambuco',capital:'Recife'},{code:'PR',name:'Paraná',capital:'Curitiba'}];
+test('daily quiz is stable and has four unique choices',()=>{const a=dailyQuiz(states,'2026-09-24'),b=dailyQuiz(states,'2026-09-24');assert.deepEqual(a,b);assert.equal(a.length,5);for(const q of a){assert.equal(new Set(q.choices).size,4);assert.ok(q.choices.includes(q.answer));}});
+test('progress is sanitized and awards cannot be repeated',()=>{const p=cleanProgress({awards:{'quiz:2026-09-24':40,bad:10000},favorites:['a','a','x'],itinerary:['a']},new Set(['a']));assert.deepEqual(p.favorites,['a']);assert.equal(totalXP(p),40);assert.equal(award(p,'quiz:2026-09-24',80),false);assert.equal(totalXP(p),40);});
+test('visit validates accuracy and distance',()=>{assert.equal(checkVisit({latitude:-23.55,longitude:-46.63,accuracy:15},{lat:-23.55,lng:-46.63}).ok,true);assert.equal(checkVisit({latitude:-23.55,longitude:-46.63,accuracy:250},{lat:-23.55,lng:-46.63}).ok,false);});
+test('offer pricing and eligibility require valid terms',()=>{assert.deepEqual(offerPrice(100,75),{base:10000,price:7500,percent:25});assert.throws(()=>offerPrice(100,110));assert.equal(offerIsActive({status:'approved',starts_at:'2026-01-01',ends_at:'2027-01-01',original_cents:10000,price_cents:7500},new Date('2026-06-01')),true);assert.equal(safeURL('javascript:alert(1)'),'');});

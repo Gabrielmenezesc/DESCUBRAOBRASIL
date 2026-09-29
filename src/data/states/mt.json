@@ -1,0 +1,184 @@
+{
+  "uf_code": "MT",
+  "slug": "mato-grosso",
+  "state_name": "Mato Grosso",
+  "capital": "Cuiabá",
+  "region": "Centro-Oeste",
+  "general_info": {
+    "climate": "tropical com variações regionais marcantes",
+    "best_time": "época seca para trilhas, época de chuvas para cachoeiras e rios",
+    "intro": "Conheça o estado do Mato Grosso. Repleto de pontos turísticos, cultura e gastronomia típica marcante.",
+    "biomes": [
+      "Cerrado",
+      "Pantanal",
+      "Amazônia"
+    ]
+  },
+  "free_tourism": {
+    "public_beaches": [],
+    "parks": [],
+    "trails": [],
+    "waterfalls": [],
+    "squares_historic_centers": [],
+    "viewpoints": [],
+    "free_events": [
+      {
+        "name": "Festividades Populares de Mato Grosso",
+        "period": "Calendário móvel anual",
+        "city": "Cuiabá",
+        "paid": false
+      }
+    ]
+  },
+  "paid_tourism": {
+    "parks_and_tickets": [],
+    "guided_tours": [],
+    "boat_tours": [],
+    "museums": [],
+    "water_parks": [],
+    "adventure": []
+  },
+  "top_attractions": [
+    {
+      "name": "Parque Nacional da Chapada dos Guimarães",
+      "short_description": "Cachoeiras, mirantes imponentes e formações de arenito vermelhas no cerrado.",
+      "category": "natureza",
+      "is_free": true,
+      "city": "Chapada dos Guimarães",
+      "lat": -15.461,
+      "lng": -55.75,
+      "tags": [
+        "gratuito",
+        "trilhas",
+        "natureza"
+      ]
+    },
+    {
+      "name": "Transpantaneira",
+      "short_description": "Estrada de terra com mais de 100 pontes de madeira ideal para safáris fotográficos no Pantanal.",
+      "category": "natureza",
+      "is_free": true,
+      "city": "Poconé",
+      "lat": -16.262,
+      "lng": -56.621,
+      "tags": [
+        "gratuito",
+        "vida selvagem",
+        "aventura"
+      ]
+    },
+    {
+      "name": "Nobres - Lagoa das Araras",
+      "short_description": "Local perfeito para flutuação em rios cristalinos e observação de araras no pôr do sol.",
+      "category": "natureza",
+      "is_free": false,
+      "city": "Nobres",
+      "lat": -14.423,
+      "lng": -55.852,
+      "tags": [
+        "pago",
+        "flutuação",
+        "aves"
+      ]
+    }
+  ],
+  "unique_experiences": [
+    "Explorar as belezas e gastronomia de Mato Grosso",
+    "Roteiros guiados por pontos turísticos de Cuiabá"
+  ],
+  "gastronomy": {
+    "signature_dishes": [
+      "maria isabel",
+      "peixe pacu assado",
+      "furrundu"
+    ],
+    "street_food": [
+      "espetinho de carne",
+      "pastel de pacu"
+    ],
+    "budget_eats": [
+      "Mercado do Porto de Cuiabá",
+      "Feira da Mandioca"
+    ]
+  },
+  "events_festivals": [
+    {
+      "name": "Festival Estadual de Mato Grosso",
+      "period": "Anual",
+      "city": "Cuiabá",
+      "paid": false
+    }
+  ],
+  "itineraries": {
+    "one_day": [
+      "Manhã no centro de Cuiabá",
+      "Almoço típico regional",
+      "Tarde nos parques ou praias locais"
+    ],
+    "three_days": [
+      "Dia 1: Passeio histórico por Cuiabá",
+      "Dia 2: Aventura natural ou praias",
+      "Dia 3: Gastronomia e artesanato local"
+    ],
+    "seven_days": [
+      "Dias 1-2: Cuiabá e arredores",
+      "Dias 3-5: Roteiro interiorano ou litoral distante",
+      "Dias 6-7: Ecoturismo nos parques estaduais"
+    ]
+  },
+  "budgets": {
+    "economico": {
+      "daily_brl_min": 150,
+      "daily_brl_max": 250
+    },
+    "medio": {
+      "daily_brl_min": 350,
+      "daily_brl_max": 600
+    },
+    "luxo": {
+      "daily_brl_min": 800,
+      "daily_brl_max": 1800
+    }
+  },
+  "map_settings": {
+    "default_center": {
+      "lat": -12.681,
+      "lng": -55.895
+    },
+    "default_zoom": 6
+  },
+  "official_sources": {
+    "tourism": [
+      "Secretaria de Turismo de Mato Grosso",
+      "Portal de Cuiabá"
+    ],
+    "news": [
+      "Notícias de Mato Grosso"
+    ],
+    "maps": [
+      "IBGE"
+    ],
+    "images": [
+      "Unsplash",
+      "Pexels"
+    ],
+    "notes": []
+  },
+  "maya_snippets": [
+    {
+      "intent": "o que fazer de graca",
+      "user_example": "o que fazer de graça em Cuiabá?",
+      "assistant_snippet": "Em Cuiabá, você pode conhecer parques públicos e passear pelas praças históricas sem pagar nada."
+    }
+  ],
+  "seo": {
+    "title": "Descubra Mato Grosso: turismo, o que fazer, mapa e roteiros",
+    "meta_description": "Guia de viagem para o estado de Mato Grosso com pontos turísticos gratuitos, gastronomia típica e roteiros no mapa.",
+    "keywords": [
+      "mato grosso turismo",
+      "o que fazer em mato-grosso",
+      "roteiro mato-grosso"
+    ]
+  },
+  "last_verified": "2026-05-27"
+}

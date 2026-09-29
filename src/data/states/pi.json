@@ -1,0 +1,229 @@
+{
+  "uf_code": "PI",
+  "slug": "piaui",
+  "state_name": "Piauí",
+  "capital": "Teresina",
+  "region": "Nordeste",
+  "general_info": {
+    "climate": "tropical com variações regionais marcantes",
+    "best_time": "época seca para trilhas, época de chuvas para cachoeiras e rios",
+    "intro": "Conheça o estado do Piauí. Repleto de pontos turísticos, cultura e gastronomia típica marcante.",
+    "biomes": [
+      "Caatinga",
+      "Cerrado"
+    ]
+  },
+  "free_tourism": {
+    "public_beaches": [],
+    "parks": [],
+    "trails": [],
+    "waterfalls": [],
+    "squares_historic_centers": [],
+    "viewpoints": [],
+    "free_events": [
+      {
+        "name": "Festividades Populares de Piauí",
+        "period": "Calendário móvel anual",
+        "city": "Teresina",
+        "paid": false
+      }
+    ]
+  },
+  "paid_tourism": {
+    "parks_and_tickets": [
+      {
+        "name": "Parque Nacional Serra da Capivara",
+        "city": "São Raimundo Nonato",
+        "lat": -8.835,
+        "lng": -42.551,
+        "tags": [
+          "pago",
+          "história",
+          "natureza"
+        ]
+      },
+      {
+        "name": "Delta do Parnaíba",
+        "city": "Parnaíba",
+        "lat": -2.909,
+        "lng": -41.775,
+        "tags": [
+          "pago",
+          "barco",
+          "natureza"
+        ]
+      },
+      {
+        "name": "Parque Nacional de Sete Cidades",
+        "city": "Piracuruca",
+        "lat": -4.099,
+        "lng": -41.708,
+        "tags": [
+          "pago",
+          "trilha",
+          "natureza"
+        ]
+      }
+    ],
+    "guided_tours": [],
+    "boat_tours": [
+      {
+        "name": "Delta do Parnaíba",
+        "city": "Parnaíba",
+        "lat": -2.909,
+        "lng": -41.775,
+        "tags": [
+          "pago",
+          "barco",
+          "natureza"
+        ]
+      }
+    ],
+    "museums": [],
+    "water_parks": [],
+    "adventure": []
+  },
+  "top_attractions": [
+    {
+      "name": "Parque Nacional Serra da Capivara",
+      "short_description": "A maior concentração de sítios arqueológicos com pinturas rupestres pré-históricas das Américas.",
+      "category": "cultura",
+      "is_free": false,
+      "city": "São Raimundo Nonato",
+      "lat": -8.835,
+      "lng": -42.551,
+      "tags": [
+        "pago",
+        "história",
+        "natureza"
+      ]
+    },
+    {
+      "name": "Delta do Parnaíba",
+      "short_description": "O único delta em mar aberto das Américas, formado por ilhas, dunas e manguezais no Rio Parnaíba.",
+      "category": "natureza",
+      "is_free": false,
+      "city": "Parnaíba",
+      "lat": -2.909,
+      "lng": -41.775,
+      "tags": [
+        "pago",
+        "barco",
+        "natureza"
+      ]
+    },
+    {
+      "name": "Parque Nacional de Sete Cidades",
+      "short_description": "Formações rochosas intrigantes que lembram monumentos urbanos do passado.",
+      "category": "natureza",
+      "is_free": false,
+      "city": "Piracuruca",
+      "lat": -4.099,
+      "lng": -41.708,
+      "tags": [
+        "pago",
+        "trilha",
+        "natureza"
+      ]
+    }
+  ],
+  "unique_experiences": [
+    "Explorar as belezas e gastronomia de Piauí",
+    "Roteiros guiados por pontos turísticos de Teresina"
+  ],
+  "gastronomy": {
+    "signature_dishes": [
+      "maria isabel",
+      "capote com arroz",
+      "paçoca de carne de sol"
+    ],
+    "street_food": [
+      "chicha",
+      "bolos de milho"
+    ],
+    "budget_eats": [
+      "Mercado Central de Teresina",
+      "quiosques da orla de Parnaíba"
+    ]
+  },
+  "events_festivals": [
+    {
+      "name": "Festival Estadual de Piauí",
+      "period": "Anual",
+      "city": "Teresina",
+      "paid": false
+    }
+  ],
+  "itineraries": {
+    "one_day": [
+      "Manhã no centro de Teresina",
+      "Almoço típico regional",
+      "Tarde nos parques ou praias locais"
+    ],
+    "three_days": [
+      "Dia 1: Passeio histórico por Teresina",
+      "Dia 2: Aventura natural ou praias",
+      "Dia 3: Gastronomia e artesanato local"
+    ],
+    "seven_days": [
+      "Dias 1-2: Teresina e arredores",
+      "Dias 3-5: Roteiro interiorano ou litoral distante",
+      "Dias 6-7: Ecoturismo nos parques estaduais"
+    ]
+  },
+  "budgets": {
+    "economico": {
+      "daily_brl_min": 150,
+      "daily_brl_max": 250
+    },
+    "medio": {
+      "daily_brl_min": 350,
+      "daily_brl_max": 600
+    },
+    "luxo": {
+      "daily_brl_min": 800,
+      "daily_brl_max": 1800
+    }
+  },
+  "map_settings": {
+    "default_center": {
+      "lat": -7.502,
+      "lng": -42.827
+    },
+    "default_zoom": 6
+  },
+  "official_sources": {
+    "tourism": [
+      "Secretaria de Turismo de Piauí",
+      "Portal de Teresina"
+    ],
+    "news": [
+      "Notícias de Piauí"
+    ],
+    "maps": [
+      "IBGE"
+    ],
+    "images": [
+      "Unsplash",
+      "Pexels"
+    ],
+    "notes": []
+  },
+  "maya_snippets": [
+    {
+      "intent": "o que fazer de graca",
+      "user_example": "o que fazer de graça em Teresina?",
+      "assistant_snippet": "Em Teresina, você pode conhecer parques públicos e passear pelas praças históricas sem pagar nada."
+    }
+  ],
+  "seo": {
+    "title": "Descubra Piauí: turismo, o que fazer, mapa e roteiros",
+    "meta_description": "Guia de viagem para o estado de Piauí com pontos turísticos gratuitos, gastronomia típica e roteiros no mapa.",
+    "keywords": [
+      "piauí turismo",
+      "o que fazer em piaui",
+      "roteiro piaui"
+    ]
+  },
+  "last_verified": "2026-05-27"
+}

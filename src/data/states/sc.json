@@ -1,0 +1,194 @@
+{
+  "uf_code": "SC",
+  "slug": "santa-catarina",
+  "state_name": "Santa Catarina",
+  "capital": "Florianópolis",
+  "region": "Sul",
+  "general_info": {
+    "climate": "tropical com variações regionais marcantes",
+    "best_time": "época seca para trilhas, época de chuvas para cachoeiras e rios",
+    "intro": "Conheça o estado do Santa Catarina. Repleto de pontos turísticos, cultura e gastronomia típica marcante.",
+    "biomes": [
+      "Mata Atlântica"
+    ]
+  },
+  "free_tourism": {
+    "public_beaches": [],
+    "parks": [],
+    "trails": [],
+    "waterfalls": [],
+    "squares_historic_centers": [],
+    "viewpoints": [
+      {
+        "name": "Serra do Rio do Rastro",
+        "city": "Lauro Müller",
+        "lat": -28.368,
+        "lng": -49.549,
+        "tags": [
+          "gratuito",
+          "estrada",
+          "vista"
+        ]
+      }
+    ],
+    "free_events": [
+      {
+        "name": "Festividades Populares de Santa Catarina",
+        "period": "Calendário móvel anual",
+        "city": "Florianópolis",
+        "paid": false
+      }
+    ]
+  },
+  "paid_tourism": {
+    "parks_and_tickets": [],
+    "guided_tours": [],
+    "boat_tours": [],
+    "museums": [],
+    "water_parks": [],
+    "adventure": []
+  },
+  "top_attractions": [
+    {
+      "name": "Beto Carrero World",
+      "short_description": "O maior parque temático da América Latina, com montanhas-russas e shows.",
+      "category": "lazer",
+      "is_free": false,
+      "city": "Penha",
+      "lat": -26.802,
+      "lng": -48.618,
+      "tags": [
+        "pago",
+        "parque de diversões",
+        "família"
+      ]
+    },
+    {
+      "name": "Praia da Joaquina",
+      "short_description": "Meca mundial do surfe, com dunas ideais para a prática de sandboard.",
+      "category": "natureza",
+      "is_free": true,
+      "city": "Florianópolis",
+      "lat": -27.629,
+      "lng": -48.448,
+      "tags": [
+        "gratuito",
+        "surfe",
+        "dunas"
+      ]
+    },
+    {
+      "name": "Serra do Rio do Rastro",
+      "short_description": "Estrada deslumbrante e sinuosa cortando montanhas imponentes e cânions frios.",
+      "category": "natureza",
+      "is_free": true,
+      "city": "Lauro Müller",
+      "lat": -28.368,
+      "lng": -49.549,
+      "tags": [
+        "gratuito",
+        "estrada",
+        "vista"
+      ]
+    }
+  ],
+  "unique_experiences": [
+    "Explorar as belezas e gastronomia de Santa Catarina",
+    "Roteiros guiados por pontos turísticos de Florianópolis"
+  ],
+  "gastronomy": {
+    "signature_dishes": [
+      "marreco com repolho roxo",
+      "tainha grelhada",
+      "sequilhos de pinhão"
+    ],
+    "street_food": [
+      "pastel de camarão",
+      "churros de doce de leite"
+    ],
+    "budget_eats": [
+      "Mercado Público de Florianópolis",
+      "quiosques da praia da Lagoa"
+    ]
+  },
+  "events_festivals": [
+    {
+      "name": "Festival Estadual de Santa Catarina",
+      "period": "Anual",
+      "city": "Florianópolis",
+      "paid": false
+    }
+  ],
+  "itineraries": {
+    "one_day": [
+      "Manhã no centro de Florianópolis",
+      "Almoço típico regional",
+      "Tarde nos parques ou praias locais"
+    ],
+    "three_days": [
+      "Dia 1: Passeio histórico por Florianópolis",
+      "Dia 2: Aventura natural ou praias",
+      "Dia 3: Gastronomia e artesanato local"
+    ],
+    "seven_days": [
+      "Dias 1-2: Florianópolis e arredores",
+      "Dias 3-5: Roteiro interiorano ou litoral distante",
+      "Dias 6-7: Ecoturismo nos parques estaduais"
+    ]
+  },
+  "budgets": {
+    "economico": {
+      "daily_brl_min": 150,
+      "daily_brl_max": 250
+    },
+    "medio": {
+      "daily_brl_min": 350,
+      "daily_brl_max": 600
+    },
+    "luxo": {
+      "daily_brl_min": 800,
+      "daily_brl_max": 1800
+    }
+  },
+  "map_settings": {
+    "default_center": {
+      "lat": -27.24,
+      "lng": -50.485
+    },
+    "default_zoom": 7
+  },
+  "official_sources": {
+    "tourism": [
+      "Secretaria de Turismo de Santa Catarina",
+      "Portal de Florianópolis"
+    ],
+    "news": [
+      "Notícias de Santa Catarina"
+    ],
+    "maps": [
+      "IBGE"
+    ],
+    "images": [
+      "Unsplash",
+      "Pexels"
+    ],
+    "notes": []
+  },
+  "maya_snippets": [
+    {
+      "intent": "o que fazer de graca",
+      "user_example": "o que fazer de graça em Florianópolis?",
+      "assistant_snippet": "Em Florianópolis, você pode conhecer parques públicos e passear pelas praças históricas sem pagar nada."
+    }
+  ],
+  "seo": {
+    "title": "Descubra Santa Catarina: turismo, o que fazer, mapa e roteiros",
+    "meta_description": "Guia de viagem para o estado de Santa Catarina com pontos turísticos gratuitos, gastronomia típica e roteiros no mapa.",
+    "keywords": [
+      "santa catarina turismo",
+      "o que fazer em santa-catarina",
+      "roteiro santa-catarina"
+    ]
+  },
+  "last_verified": "2026-05-27"
+}
