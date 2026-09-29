@@ -1,2 +1,84 @@
-:root{--surface:#f8fbff;--panel:#ffffff;--ink:#101b32;--muted:#465b78;--accent:#1755cf;--on-accent:#ffffff;--line:#dce6f5;--soft:#edf4ff;--input:#ffffff;--danger:#b42336;--shadow:rgba(26,65,120,.06);--green:#008565;--gold:#926000;color-scheme:light}
-:root.dark,:root[data-theme=dark]{--surface:#0d1626;--panel:#142238;--ink:#f1f6ff;--muted:#b5c6df;--accent:#8cbcff;--on-accent:#0b2248;--line:#344762;--soft:#1a304c;--input:#102038;--danger:#ffabb6;--shadow:rgba(0,0,0,.2);--green:#68e4bb;--gold:#ffd375;color-scheme:dark}
+/* ─────────────────────────────────────────────────────────────────────────────
+   DESCUBRA O BRASIL — Design Tokens Cinematográficos
+   Paleta: Verde Brasil · Ouro · Azul Cerúleo · Branco Perola
+   ───────────────────────────────────────────────────────────────────────────── */
+
+:root {
+  /* ── Cores de Superfície ── */
+  --surface: #f5f8f2;
+  --panel: #ffffff;
+  --ink: #0d1a0e;
+  --muted: #3d5240;
+  --accent: #0e7c3a;
+  --accent-2: #d4a017;
+  --accent-3: #004a99;
+  --on-accent: #ffffff;
+
+  /* ── Bordas e Linhas ── */
+  --line: #d8e6d2;
+  --soft: #eaf3e4;
+  --input: #ffffff;
+
+  /* ── Feedback ── */
+  --danger: #b91c1c;
+  --shadow: rgba(14, 60, 20, 0.08);
+  --shadow-deep: rgba(14, 60, 20, 0.18);
+
+  /* ── Cores Semânticas ── */
+  --green: #0e7c3a;
+  --gold: #d4a017;
+  --blue: #004a99;
+
+  /* ── Glassmorphism ── */
+  --glass-bg: rgba(255, 255, 255, 0.55);
+  --glass-border: rgba(255, 255, 255, 0.75);
+  --glass-dark: rgba(5, 22, 8, 0.72);
+  --glass-dark-border: rgba(255, 255, 255, 0.12);
+
+  /* ── Gradientes Brasil ── */
+  --grad-brasil: linear-gradient(135deg, #0e7c3a 0%, #d4a017 50%, #004a99 100%);
+  --grad-hero: linear-gradient(0deg, rgba(5,20,8,0.96) 0%, rgba(5,20,8,0.6) 45%, rgba(5,20,8,0.12) 100%);
+  --grad-card: linear-gradient(180deg, transparent 30%, rgba(5,18,8,0.92) 100%);
+
+  /* ── Tipografia ── */
+  --font-display: 'Geist', system-ui, sans-serif;
+  --font-body: 'Geist', system-ui, sans-serif;
+
+  /* ── Motion ── */
+  --ease-cinematic: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-out: cubic-bezier(0.0, 0.0, 0.2, 1);
+  --duration-fast: 220ms;
+  --duration-base: 420ms;
+  --duration-slow: 700ms;
+  --duration-cinematic: 1200ms;
+
+  color-scheme: light;
+}
+
+/* ── Dark Mode ── */
+:root.dark,
+:root[data-theme=dark] {
+  --surface: #07100a;
+  --panel: #0e1f12;
+  --ink: #e8f5e2;
+  --muted: #8daa90;
+  --accent: #30d673;
+  --accent-2: #ffd04a;
+  --accent-3: #60a5fa;
+  --on-accent: #031508;
+  --line: #1e3823;
+  --soft: #132018;
+  --input: #0e1f12;
+  --danger: #fca5a5;
+  --shadow: rgba(0, 0, 0, 0.35);
+  --shadow-deep: rgba(0, 0, 0, 0.55);
+  --green: #30d673;
+  --gold: #ffd04a;
+  --blue: #60a5fa;
+  --glass-bg: rgba(7, 16, 10, 0.72);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-dark: rgba(7, 16, 10, 0.88);
+  --glass-dark-border: rgba(255, 255, 255, 0.1);
+  color-scheme: dark;
+}
