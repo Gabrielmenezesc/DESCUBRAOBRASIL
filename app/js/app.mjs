@@ -1,13 +1,13 @@
 import {normalize,escapeHTML as e,safeURL,dayKey,shuffle,dailyQuiz,freshProgress,cleanProgress,award,totalXP,checkVisit,offerPrice,offerIsActive} from './core.mjs';
 
-import { mountMaya } from './maya.mjs?v=17';
+import { mountMaya } from './maya.mjs?v=18';
 
 const $=id=>document.getElementById(id), content=$('content');
-const paths={explorar:'<circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/>',jogos:'<path d="M8 6h8l4 5 1 7-3 1-4-4h-4l-4 4-3-1 1-7Z"/><path d="M6 10v4m-2-2h4m8-1h.1m2 2h.1"/>',ofertas:'<path d="M3 3h8l10 10-8 8L3 11Z"/><circle cx="7" cy="7" r="1"/>',noticias:'<path d="M4 3h16v18H4Z M8 7h8M8 11h8M8 15h8"/>',empresas:'<path d="M4 21V7l8-4 8 4v14M2 21h20M8 8v2m8-2v2M8 13v2m8-2v2M10 21v-4h4v4"/>',conta:'<circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/>',sun:'<circle cx="12" cy="12" r="4"/><path d="M12 1v3m0 16v3M1 12h3m16 0h3M4 4l2 2m12 12 2 2M4 20l2-2M18 6l2-2"/>',moon:'<path d="M21 13A9 9 0 0 1 11 3a9 9 0 1 0 10 10Z"/>',arrow:'<path d="M4 12h16m-6-6 6 6-6 6"/>',heart:'<path d="M20 4c-3-3-7-1-8 1-1-2-5-4-8-1-4 4 0 9 8 16 8-7 12-12 8-16Z"/>'};
+const paths={mapPin:'<path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.4"/>',sparkles:'<path d="m12 3 1.4 4.1L17.5 9l-4.1 1.4L12 14.5l-1.4-4.1L6.5 9l4.1-1.9Z"/><path d="m19 15 .8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8Z"/>',bot:'<rect x="5" y="7" width="14" height="11" rx="3"/><path d="M12 3v4M8 12h.1m7.9 0h.1M9 15h6"/>',beach:'<path d="M3 18h18M6 18c1-4 3-7 6-10 3 3 5 6 6 10M12 8V3"/>',leaf:'<path d="M20 4C11 4 5 8 5 15c0 3 2 5 5 5 7 0 10-7 10-16Z"/><path d="M5 20c3-4 7-7 12-10"/>',mountain:'<path d="m3 20 7-12 4 7 2-3 5 8Z"/>',landmark:'<path d="M3 10h18M5 10v8m4-8v8m6-8v8m4-8v8M2 21h20M12 3 3 8h18Z"/>',utensils:'<path d="M7 3v7m-2-7v4a2 2 0 0 0 4 0V3m-2 7v11M17 3v18M17 3c2 2 3 5 3 8h-3"/>',wallet:'<path d="M4 6h15a2 2 0 0 1 2 2v10H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h13"/><path d="M15 11h6"/>',trees:'<path d="m8 3-4 7h3l-4 7h10l-4-7h3ZM8 17v4M17 5l-3 6h2l-3 6h8l-3-6h2Z"/>',image:'<rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8" cy="9" r="2"/><path d="m21 15-5-5L5 20"/>',castle:'<path d="M5 21V8h14v13M4 8V4h4v4m4 0V4h4v4m4 0V4h-4M3 21h18M9 21v-6h6v6"/>',explorar:'<circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/>',jogos:'<path d="M8 6h8l4 5 1 7-3 1-4-4h-4l-4 4-3-1 1-7Z"/><path d="M6 10v4m-2-2h4m8-1h.1m2 2h.1"/>',ofertas:'<path d="M3 3h8l10 10-8 8L3 11Z"/><circle cx="7" cy="7" r="1"/>',noticias:'<path d="M4 3h16v18H4Z M8 7h8M8 11h8M8 15h8"/>',empresas:'<path d="M4 21V7l8-4 8 4v14M2 21h20M8 8v2m8-2v2M8 13v2m8-2v2M10 21v-4h4v4"/>',conta:'<circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/>',sun:'<circle cx="12" cy="12" r="4"/><path d="M12 1v3m0 16v3M1 12h3m16 0h3M4 4l2 2m12 12 2 2M4 20l2-2M18 6l2-2"/>',moon:'<path d="M21 13A9 9 0 0 1 11 3a9 9 0 1 0 10 10Z"/>',arrow:'<path d="M4 12h16m-6-6 6 6-6 6"/>',heart:'<path d="M20 4c-3-3-7-1-8 1-1-2-5-4-8-1-4 4 0 9 8 16 8-7 12-12 8-16Z"/>'};
 const icon=name=>`<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths[name]||paths.arrow}</svg>`;
 const labels={explorar:'Explorar',jogos:'Jogos',ofertas:'Ofertas',noticias:'Notícias',empresas:'Empresas',conta:'Conta'};
 let states=[],places=[],config={},client=null,user=null,progress=freshProgress(),epoch=0,toastTimer,gameTimer,localOnly=false;
-let search=new URLSearchParams(location.search).get('q')||'',region='',selectedState='',selectedCategory='',onlySaved=false;
+let search=new URLSearchParams(location.search).get('q')||'',region='',selectedState='',selectedCity='',selectedCategory='',onlySaved=false,nearbyIds=null;
 
 function setupMobileIntro(){
   const intro=$('mobile-intro');if(!intro)return;
@@ -76,15 +76,17 @@ function bindPlaces(){
 function renderPlaces(){
   const filtered=places.filter(p=>{
     const matchRegion = !region || p.region === region;
-    const matchState = !selectedState || p.state === selectedState;
+    const matchState = !selectedState || p.state === selectedState || p.code === selectedState;
+    const matchCity = !selectedCity || p.city === selectedCity;
     const matchCategory = !selectedCategory || (
       selectedCategory==='gratis' ? p.free :
-      normalize(`${p.name} ${p.description} ${p.city}`).includes(normalize(selectedCategory))
+      normalize(`${p.category||''} ${p.name} ${p.description} ${p.city}`).includes(normalize(selectedCategory))
     );
     const matchSaved = !onlySaved || progress.favorites.includes(p.id);
     const matchSearch = !search || normalize(`${p.name} ${p.state} ${p.city} ${p.region} ${p.description}`).includes(normalize(search));
-    return matchRegion && matchState && matchCategory && matchSaved && matchSearch;
-  });
+    const matchNearby = !nearbyIds || nearbyIds.includes(p.id);
+    return matchRegion && matchState && matchCity && matchCategory && matchSaved && matchSearch && matchNearby;
+  }).sort((a,b)=>nearbyIds ? nearbyIds.indexOf(a.id)-nearbyIds.indexOf(b.id) : 0);
 
   if ($('result-count')) $('result-count').textContent=`${filtered.length} locais encontrados`;
   if ($('place-results')) {
@@ -111,20 +113,21 @@ function download(name,text,type='text/plain'){
 }
 
 const categoriesList = [
-  { id: '', label: 'Todas' },
-  { id: 'praia', label: '🏖️ Praias' },
-  { id: 'natureza', label: '🌿 Natureza' },
-  { id: 'aventura', label: '🏔️ Aventura' },
-  { id: 'cultura', label: '🏛️ Cultura' },
-  { id: 'gastronomia', label: '🍽️ Gastronomia' },
-  { id: 'gratis', label: '💸 Grátis' },
-  { id: 'parque', label: '🌳 Parques' },
-  { id: 'museu', label: '🖼️ Museus' },
-  { id: 'historico', label: '🏰 Históricos' },
+  { id: '', label: 'Todas', icon: 'explorar' },
+  { id: 'praia', label: 'Praias', icon: 'beach' },
+  { id: 'natureza', label: 'Natureza', icon: 'leaf' },
+  { id: 'aventura', label: 'Aventura', icon: 'mountain' },
+  { id: 'cultura', label: 'Cultura', icon: 'landmark' },
+  { id: 'gastronomia', label: 'Gastronomia', icon: 'utensils' },
+  { id: 'gratis', label: 'Grátis', icon: 'wallet' },
+  { id: 'parque', label: 'Parques', icon: 'trees' },
+  { id: 'museu', label: 'Museus', icon: 'image' },
+  { id: 'historico', label: 'Históricos', icon: 'castle' },
 ];
 
 function explore(){
   const allStates = [...new Set(places.map(p=>p.state))].sort();
+  const availableCities = [...new Set(places.filter(p=>!selectedState||p.state===selectedState||p.code===selectedState).map(p=>p.city))].sort();
   const storiesMarkup = `
     <div style="margin: 20px 0 28px; overflow-x: auto; display: flex; gap: 14px; padding-bottom: 6px;">
       ${[
@@ -151,23 +154,24 @@ function explore(){
       <label>Destino, cidade ou atração<input id="search" type="search" placeholder="Pergunte qualquer coisa sobre sua próxima viagem..." value="${e(search)}"></label>
       <label>Região<select id="region"><option value="">Todas as regiões</option>${['Norte','Nordeste','Centro-Oeste','Sudeste','Sul'].map(x=>`<option ${region===x?'selected':''}>${x}</option>`).join('')}</select></label>
       <label>Estado<select id="state-select"><option value="">Todos os estados</option>${allStates.map(x=>`<option value="${x}" ${selectedState===x?'selected':''}>${x}</option>`).join('')}</select></label>
+      <label>Cidade<select id="city-select"><option value="">Todas as cidades</option>${availableCities.map(x=>`<option value="${x}" ${selectedCity===x?'selected':''}>${x}</option>`).join('')}</select></label>
     </div>
 
     <div style="margin: 16px 0; display:flex; gap:8px; overflow-x:auto; padding-bottom:4px;">
       ${categoriesList.map(c=>`
-        <button type="button" data-cat="${c.id}" class="${selectedCategory===c.id?'primary':''}" style="white-space:nowrap; border-radius:999px; padding:6px 14px; font-size:12px;">${c.label}</button>
+        <button type="button" data-cat="${c.id}" class="${selectedCategory===c.id?'primary':''}" style="white-space:nowrap; border-radius:999px; padding:6px 14px; font-size:12px;">${icon(c.icon)}<span>${c.label}</span></button>
       `).join('')}
     </div>
 
     <div class="actions" style="margin-top:16px;">
       <button id="saved-filter" aria-pressed="${onlySaved}">${onlySaved?'Mostrar todos':'Meus favoritos'}</button>
-      <button id="near-me-btn" class="subtle">📍 Perto de mim</button>
-      <button id="smart-itinerary-btn" class="subtle">✨ Monte sua viagem com IA</button>
+      <button id="near-me-btn" class="subtle">${icon('mapPin')}<span>Perto de mim</span></button>
+      <button id="smart-itinerary-btn" class="subtle">${icon('sparkles')}<span>Monte sua viagem com IA</span></button>
       <span class="source" id="result-count" role="status"></span>
     </div>
 
     <div id="smart-itinerary-box" style="display:none; margin:20px 0; padding:20px; border:1px solid var(--accent); border-radius:16px; background:var(--soft);">
-      <h3>🤖 Monte sua Viagem Inteligente</h3>
+      <h3>${icon('bot')} Monte sua Viagem Inteligente</h3>
       <p>A Maya cria um roteiro dia a dia para a sua viagem.</p>
       <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap:10px; margin-bottom:12px;">
         <label>Cidade/Estado <input id="it-city" placeholder="Ex: Brasília, RJ"></label>
@@ -186,7 +190,8 @@ function explore(){
 
   $('search').oninput=ev=>{search=ev.target.value;renderPlaces();};
   $('region').onchange=ev=>{region=ev.target.value;renderPlaces();};
-  $('state-select').onchange=ev=>{selectedState=ev.target.value;renderPlaces();};
+  $('state-select').onchange=ev=>{selectedState=ev.target.value;selectedCity='';nearbyIds=null;explore();};
+  $('city-select').onchange=ev=>{selectedCity=ev.target.value;nearbyIds=null;renderPlaces();};
   $('saved-filter').onclick=()=>{onlySaved=!onlySaved;explore();};
 
   content.querySelectorAll('[data-cat]').forEach(b=>{
@@ -199,6 +204,7 @@ function explore(){
   content.querySelectorAll('[data-story-uf]').forEach(b=>{
     b.onclick=()=>{
       selectedState=b.dataset.storyUF || b.getAttribute('data-story-uf');
+      selectedCity='';nearbyIds=null;
       explore();
     };
   });
@@ -211,7 +217,13 @@ function explore(){
     toast('Consultando GPS para encontrar atrações perto de você...');
     navigator.geolocation.getCurrentPosition(pos=>{
       const {latitude, longitude} = pos.coords;
-      toast(`Localização identificada (${latitude.toFixed(2)}, ${longitude.toFixed(2)}). Filtrando lugares próximos.`);
+      const rad=n=>n*Math.PI/180;
+      const distance=p=>{const dLat=rad(p.lat-latitude),dLon=rad(p.lng-longitude),a=Math.sin(dLat/2)**2+Math.cos(rad(latitude))*Math.cos(rad(p.lat))*Math.sin(dLon/2)**2;return 6371*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));};
+      const nearest=places.filter(p=>Number.isFinite(p.lat)&&Number.isFinite(p.lng)).map(p=>({p,d:distance(p)})).sort((a,b)=>a.d-b.d).slice(0,18);
+      nearbyIds=nearest.map(x=>x.p.id);region='';selectedState='';selectedCity='';selectedCategory='';search='';
+      renderPlaces();
+      $('result-count').textContent=`${nearest.length} lugares mais próximos · ${nearest[0]?.d.toFixed(1)||'0'} km a partir de você`;
+      $('place-results').scrollIntoView({behavior:'smooth',block:'start'});
     }, err=>{
       toast('Não foi possível obter a localização. Escolha uma cidade manualmente.');
     });
@@ -227,24 +239,23 @@ function explore(){
     const days = Number($('it-days').value) || 3;
     const profile = $('it-profile').value;
 
-    let html = `<div class="notice"><h4>Roteiro Gerado para ${e(city)} (${days} Dias · Perfil ${e(profile)})</h4>`;
-    for(let d=1; d<=days; d++){
-      html += `<p><strong>DIA ${d}</strong><br>• Manhã: Passeio cultural ou parque principal em ${e(city)}.<br>• Tarde: Almoço típico em restaurante regional e visita às atrações centrais.<br>• Noite: Jantar aconchegante e passeio ao ar livre.</p>`;
-    }
-    html += `<button type="button" class="button primary" id="add-smart-all">Adicionar locais ao meu roteiro</button></div>`;
+    const localPlaces=places.filter(p=>normalize(`${p.city} ${p.state} ${p.code}`).includes(normalize(city))).slice(0,days*3);
+    let html = `<div class="notice"><h4>Base para ${e(city)} · ${days} dias · ${e(profile)}</h4>`;
+    if(localPlaces.length){for(let d=1;d<=days;d++){const day=localPlaces.slice((d-1)*3,d*3);html+=`<div class="smart-day"><strong>DIA ${d}</strong>${day.map((p,i)=>`<p><span>${['Manhã','Tarde','Noite'][i]||'Parada'}</span> ${e(p.name)} · ${e(p.city)}</p>`).join('')}</div>`;}}else{html+='<p>Ainda não há atrações cadastradas para esse termo. A Maya pode pesquisar e montar uma sugestão mais ampla.</p>';}
+    html += `<div class="actions"><button type="button" class="button primary" id="add-smart-all" ${localPlaces.length?'':'disabled'}>Adicionar locais ao roteiro</button><button type="button" class="button" id="ask-maya-plan">Aprimorar com a Maya IA</button></div></div>`;
     $('it-output').innerHTML = html;
 
     if($('add-smart-all')){
       $('add-smart-all').onclick=()=>{
-        const cityPlaces = places.filter(p=>normalize(p.city).includes(normalize(city))).slice(0, days*2);
-        cityPlaces.forEach(p=>{
+        localPlaces.forEach(p=>{
           if(!progress.itinerary.includes(p.id)) progress.itinerary.push(p.id);
         });
         save();
         renderItinerary();
-        toast(`${cityPlaces.length} locais de ${city} foram adicionados ao seu roteiro!`);
+        toast(`${localPlaces.length} locais foram adicionados ao seu roteiro.`);
       };
     }
+    $('ask-maya-plan').onclick=()=>{sessionStorage.setItem('maya-prefill',`Monte um roteiro de ${days} dias para ${city}, perfil ${profile}. Organize manhã, tarde e noite, incluindo atrações, lugares gratuitos e dicas práticas.`);location.hash='noticias';};
   };
 
   $('export-trip').onclick=()=>download('meu-roteiro.txt','MEU ROTEIRO — DESCUBRA O BRASIL\n\n'+progress.itinerary.map((id,i)=>{const p=places.find(x=>x.id===id);return `${i+1}. ${p.name} — ${p.city}, ${p.state}\nhttps://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.name+' '+p.city)}`;}).join('\n\n'));
@@ -253,7 +264,7 @@ function explore(){
   renderItinerary();
 }
 
-function games(){const xp=totalXP(progress);content.innerHTML=head('Passaporte de descobertas','Conhecer também é jogar.','Teste seus conhecimentos, exercite a memória e registre visitas a lugares do Brasil.')+`<section class="hero-panel"><div class="stats"><div><strong>${xp}</strong><span>Pontos de experiência</span></div><div><strong>${1+Math.floor(xp/200)}</strong><span>Nível do explorador</span></div><div><strong>${Object.keys(progress.awards).filter(x=>x.startsWith('visit:')).length}</strong><span>Visitas registradas</span></div></div><p class="source">Progresso salvo neste navegador. Pontos recreativos, sem valor financeiro e sem troca por descontos.</p></section><div class="grid"><article class="card"><span class="eyebrow">01 / Conhecimento</span><h2>Brasil em cinco perguntas</h2><p>Um desafio de capitais por dia. Cada acerto vale 20 pontos na primeira partida concluída do dia.</p><button id="start-quiz" class="primary">Jogar quiz</button></article><article class="card"><span class="eyebrow">02 / Memória</span><h2>Pares do Brasil</h2><p>Encontre seis pares de estados. Termine em menos jogadas para melhorar seu recorde. 60 pontos por dia.</p><button id="start-memory" class="primary">Jogar memória</button></article><article class="card"><span class="eyebrow">03 / Exploração</span><h2>Passaporte de visitas</h2><p>Esteja a até 300 metros de um local e confirme sua presença pelo GPS. 80 pontos por local, uma vez.</p><button id="start-visit" class="primary">Explorar missões</button></article></div><div id="game-stage" class="game-stage" aria-live="polite"></div>`;
+function games(){const xp=totalXP(progress);content.innerHTML=head('Central de jogos','Explore, aprenda e desbloqueie o Brasil.','Cada experiência tem regras claras, progresso local e uma forma diferente de conhecer o país.')+`<section class="game-profile"><div class="stats"><div><strong>${xp}</strong><span>Pontos de experiência</span></div><div><strong>${1+Math.floor(xp/200)}</strong><span>Nível do explorador</span></div><div><strong>${Object.keys(progress.awards).filter(x=>x.startsWith('visit:')).length}</strong><span>Visitas registradas</span></div></div><p>Seu progresso fica salvo neste aparelho. Pontos são recreativos e não geram descontos.</p></section><div class="game-shelf"><article class="game-cover game-cover--quiz"><div class="game-cover-art"><span>CONHECIMENTO</span><strong>BRASIL<br>EM 5</strong></div><div class="game-cover-copy"><span class="eyebrow">Jogo em destaque</span><h2>Brasil em cinco perguntas</h2><p>Capitais, regiões e cultura em um desafio novo a cada dia.</p><button id="start-quiz" class="primary">Jogar agora</button></div></article><article class="game-cover game-cover--memory"><div class="game-cover-art"><span>MEMÓRIA</span><strong>PARES<br>DO BRASIL</strong></div><div class="game-cover-copy"><span class="eyebrow">Educativo</span><h2>Pares do Brasil</h2><p>Encontre estados correspondentes e melhore seu recorde.</p><button id="start-memory" class="primary">Jogar agora</button></div></article><article class="game-cover game-cover--passport"><div class="game-cover-art"><span>EXPLORAÇÃO</span><strong>PASSAPORTE<br>REAL</strong></div><div class="game-cover-copy"><span class="eyebrow">Mundo real</span><h2>Passaporte de visitas</h2><p>Use o GPS somente quando desejar e registre lugares visitados.</p><button id="start-visit" class="primary">Explorar missões</button></div></article></div><div id="game-stage" class="game-stage" aria-live="polite"></div>`;
   $('start-quiz').onclick=quiz;$('start-memory').onclick=memory;$('start-visit').onclick=visits;}
 function showGame(html){clearTimeout(gameTimer);$('game-stage').innerHTML=html;$('game-stage').scrollIntoView({behavior:'auto',block:'start'});}
 function quiz(){const questions=dailyQuiz(states),today=dayKey();let index=0,score=0,locked=false;
@@ -312,3 +323,4 @@ async function init(){try{const r=await fetch('./data/destinations.json');if(!r.
   if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js').catch(()=>{});
 }
 let deferredInstall=null;window.addEventListener('beforeinstallprompt',event=>{event.preventDefault();deferredInstall=event;$('install').hidden=false;});$('install').onclick=async()=>{if(!deferredInstall)return;await deferredInstall.prompt();await deferredInstall.userChoice;deferredInstall=null;$('install').hidden=true;};window.addEventListener('appinstalled',()=>{$('install').hidden=true;});init();
+
