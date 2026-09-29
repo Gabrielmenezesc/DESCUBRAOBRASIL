@@ -14,15 +14,27 @@ export async function requestMaya(config, question, history, context, fetcher=fe
   return data;
 }
 
+export async function requestMayaSpeech(config, text, fetcher=fetch) {
+  if (!config.mayaProxyUrl || !config.supabaseKey) throw new Error('A voz da Maya ainda não está configurada.');
+  const response = await fetcher(config.mayaProxyUrl, {
+    method:'POST', signal:AbortSignal.timeout(55000),
+    headers:{'content-type':'application/json',apikey:config.supabaseKey,authorization:`Bearer ${config.supabaseKey}`},
+    body:JSON.stringify({action:'speech',text:String(text).slice(0,3000)}),
+  });
+  if (!response.ok) throw new Error('Não foi possível reproduzir a voz da Maya agora.');
+  return response.blob();
+}
+
 export function renderMayaText(text) {
   return escape(text).replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>');
 }
 
 export function mountMaya(root,{config,getContext}) {
   const history=[];
-  let busy=false;
-  root.innerHTML=`<section class="panel maya-box"><div class="maya-heading"><span class="maya-avatar" aria-hidden="true">M</span><div><span class="eyebrow">Inteligência para sua viagem</span><h2>Olá, eu sou a Maya.</h2></div><span class="tag">Assistente de turismo</span></div><p>Da primeira ideia ao roteiro. Conte para onde quer ir, quantos dias tem e o que gosta de fazer.</p><div class="maya-suggestions"><button data-question="Monte um roteiro de dois dias em Brasília com crianças">Viajar em família</button><button data-question="Quais destinos de praia no Brasil combinam com uma viagem econômica?">Encontrar um destino</button><button data-question="Pesquise notícias recentes sobre turismo no Brasil e indique as fontes">Pesquisar notícias</button></div><div class="maya-messages" role="log" aria-live="polite" aria-label="Conversa com a Maya"></div><form class="maya-form"><label class="sr-only" for="maya-question">Sua pergunta para Maya</label><textarea id="maya-question" name="question" required minlength="3" maxlength="1500" rows="2" placeholder="Ex.: quero viajar em outubro, saindo de Brasília. O que você sugere?"></textarea><button class="primary" type="submit">Enviar pergunta</button></form><p class="maya-status" role="status"></p><p class="source">Respostas geradas por IA. Quando houver pesquisa online, as fontes aparecem abaixo da resposta. Confirme valores e disponibilidade antes de reservar.</p></section>`;
+  let busy=false, audio=null, audioUrl='';
+  root.innerHTML=`<section class="panel maya-box"><div class="maya-heading"><span class="maya-avatar" aria-hidden="true">M</span><div><span class="eyebrow">Inteligência para sua viagem</span><h2>Olá, eu sou a Maya.</h2></div><span class="tag maya-online">Disponível</span></div><p>Da primeira ideia ao roteiro. Conte para onde quer ir, quantos dias tem e o que gosta de fazer. Eu respondo por texto e também posso falar a resposta.</p><div class="maya-suggestions"><button data-question="Monte um roteiro de dois dias em Brasília com crianças">Viajar em família</button><button data-question="Quais destinos de praia no Brasil combinam com uma viagem econômica?">Encontrar um destino</button><button data-question="Pesquise notícias recentes sobre turismo no Brasil e indique as fontes">Pesquisar notícias</button></div><div class="maya-messages" role="log" aria-live="polite" aria-label="Conversa com a Maya"></div><form class="maya-form"><label class="sr-only" for="maya-question">Sua pergunta para Maya</label><textarea id="maya-question" name="question" required minlength="3" maxlength="1500" rows="2" placeholder="Ex.: quero viajar em outubro, saindo de Brasília. O que você sugere?"></textarea><button class="primary" type="submit">Enviar pergunta</button></form><label class="maya-voice-choice"><input type="checkbox" id="maya-auto-voice" checked> Ouvir automaticamente a resposta da Maya</label><p class="maya-status" role="status"></p><p class="source">Respostas geradas por IA. Quando houver pesquisa online, as fontes aparecem abaixo da resposta. Confirme valores e disponibilidade antes de reservar.</p></section>`;
   const form=root.querySelector('form'),input=root.querySelector('textarea'),messages=root.querySelector('.maya-messages'),status=root.querySelector('.maya-status');
+  const speak=async(text,button)=>{try{button.disabled=true;button.textContent='Preparando voz...';if(audio){audio.pause();audio=null;}if(audioUrl)URL.revokeObjectURL(audioUrl);const blob=await requestMayaSpeech(config,text);audioUrl=URL.createObjectURL(blob);audio=new Audio(audioUrl);audio.onended=()=>{button.textContent='Ouvir resposta';button.disabled=false;};audio.onerror=()=>{button.textContent='Ouvir resposta';button.disabled=false;status.textContent='Não foi possível reproduzir o áudio.';};await audio.play();button.textContent='Pausar voz';button.disabled=false;button.onclick=()=>{if(!audio)return;if(audio.paused){audio.play();button.textContent='Pausar voz';}else{audio.pause();button.textContent='Continuar voz';}};}catch(error){button.textContent='Ouvir resposta';button.disabled=false;status.textContent=error.message;}};
   const send=async question=>{
     question=String(question).trim();if(busy||question.length<3||question.length>1500)return;
     busy=true;
@@ -35,7 +47,8 @@ export function mountMaya(root,{config,getContext}) {
       if(!root.isConnected)return;
       history.push({role:'user',text:question},{role:'model',text:data.answer});
       const sources=Array.isArray(data.sources)?data.sources.filter(s=>safeURL(s.url)).slice(0,8):[];
-      messages.insertAdjacentHTML('beforeend',`<div class="maya-message"><span class="eyebrow">Maya</span><div>${renderMayaText(data.answer)}</div>${sources.length?`<div class="maya-sources"><strong>Fontes da pesquisa</strong>${sources.map(s=>`<a href="${escape(safeURL(s.url))}" target="_blank" rel="noopener noreferrer">${escape(s.title||'Consultar fonte')}</a>`).join('')}</div>`:''}</div>`);
+      messages.insertAdjacentHTML('beforeend',`<div class="maya-message"><span class="eyebrow">Maya</span><div>${renderMayaText(data.answer)}</div><button type="button" class="maya-speak">Ouvir resposta</button>${sources.length?`<div class="maya-sources"><strong>Fontes da pesquisa</strong>${sources.map(s=>`<a href="${escape(safeURL(s.url))}" target="_blank" rel="noopener noreferrer">${escape(s.title||'Consultar fonte')}</a>`).join('')}</div>`:''}</div>`);
+      const speakButton=messages.lastElementChild.querySelector('.maya-speak');speakButton.onclick=()=>speak(data.answer,speakButton);if(root.querySelector('#maya-auto-voice').checked)speak(data.answer,speakButton);
       if(data.searchSuggestions){const frame=document.createElement('iframe');frame.title='Sugestões da pesquisa Google';frame.setAttribute('sandbox','allow-popups allow-popups-to-escape-sandbox');frame.srcdoc=data.searchSuggestions;frame.className='maya-search-suggestions';messages.append(frame);}
       status.textContent=sources.length?'Resposta com pesquisa online. Consulte as fontes acima.':'Resposta gerada por IA, sem fontes online nesta consulta.';
       input.value='';
@@ -45,3 +58,4 @@ export function mountMaya(root,{config,getContext}) {
   form.onsubmit=event=>{event.preventDefault();send(input.value);};
   root.querySelectorAll('[data-question]').forEach(button=>button.onclick=()=>{input.value=button.dataset.question;send(input.value);});
 }
+
