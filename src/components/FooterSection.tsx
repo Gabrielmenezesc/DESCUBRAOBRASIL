@@ -27,6 +27,7 @@ const navCols = [
     title: 'Empresa',
     links: [
       { href: '/quem-somos', label: 'Quem Somos' },
+      { href: '/contato', label: 'Contato' },
       { href: '/empresas', label: 'Para Empresas' },
       { href: '/anuncie', label: 'Anuncie Aqui' },
       { href: '/termos', label: 'Termos de Uso' },
@@ -44,10 +45,9 @@ const socials = [
   },
   {
     label: 'Instagram',
-    href: '#',
+    href: 'https://www.instagram.com/descubrabrasiloficial/',
     iconUrl: 'https://cdn.simpleicons.org/instagram/FFFFFF',
     external: true,
-    disabled: true,
   },
   {
     label: 'YouTube',
@@ -149,9 +149,7 @@ export default function FooterSection() {
             <Link href="/termos" className="cine-footer-link">Termos de Uso</Link>
             <Link href="/privacidade" className="cine-footer-link">Privacidade</Link>
             <a
-              href="https://wa.me/5561985630128?text=Ol%C3%A1%2C%20vim%20pelo%20Descubra%20o%20Brasil"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="mailto:descubrabrasil@gmail.com"
               className="cine-footer-link"
             >
               Contato

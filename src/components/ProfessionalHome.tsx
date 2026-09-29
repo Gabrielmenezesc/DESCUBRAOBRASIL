@@ -966,7 +966,6 @@ export default function ProfessionalHome() {
         style={{ position: 'fixed', right: 20, bottom: 90, zIndex: 79 }}
       >
         <img src="https://cdn.simpleicons.org/whatsapp/FFFFFF" alt="" aria-hidden="true" width={22} height={22} />
-        <span className="cine-whatsapp-tooltip" aria-hidden="true">Fale conosco</span>
       </a>
     </>
   );

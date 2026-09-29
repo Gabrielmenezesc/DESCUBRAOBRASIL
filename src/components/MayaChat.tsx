@@ -218,7 +218,7 @@ export default function MayaChat() {
       addMayaMessage(aiResponse);
     } else {
       setIsTyping(false);
-      addMayaMessage("Não consegui concluir a consulta agora. Você pode tentar novamente ou [falar com nossos especialistas no WhatsApp](https://wa.me/5561985630128?text=Ol%C3%A1%2C%20falei%20com%20a%20Maya%20e%20deu%20erro).");
+      addMayaMessage("Não consegui concluir a consulta agora. Você pode tentar novamente ou [falar com nossa equipe](https://wa.me/5561985630128?text=Ol%C3%A1%2C%20falei%20com%20a%20Maya%20e%20deu%20erro).");
     }
   }
 
@@ -403,7 +403,7 @@ export default function MayaChat() {
                   className="w-full flex items-center justify-center gap-2 py-2 px-4 rounded-xl bg-green-600 hover:bg-green-700 text-white font-bold text-sm transition-all hover:scale-[1.02] active:scale-[0.98] shadow-md shadow-green-600/20"
                 >
                   <Phone className="w-4 h-4" />
-                  Falar com Humano via WhatsApp
+                  Falar com nossa equipe
                   <User className="w-4 h-4" />
                 </button>
                 <p className="text-[10px] text-center text-green-700/60 dark:text-green-400/40 mt-1 font-medium">
