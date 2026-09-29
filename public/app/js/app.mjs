@@ -24,15 +24,19 @@ function setupMobileIntro(){
     if(withSound)playSignature();
     intro.classList.add('is-leaving');
     sessionStorage.setItem('descubra-mobile-intro','seen');
-    setTimeout(()=>intro.remove(),850);
+    setTimeout(()=>{intro.remove();showOnboarding();},850);
   };
-  if(sessionStorage.getItem('descubra-mobile-intro')==='seen'){intro.remove();return;}
+  if(sessionStorage.getItem('descubra-mobile-intro')==='seen'){intro.remove();showOnboarding();return;}
   document.body.classList.add('intro-open');
   $('enter-app').onclick=()=>close(true);
   if($('enter-silent'))$('enter-silent').onclick=()=>close(false);
   intro.querySelectorAll('[data-enter-app]').forEach(link=>link.onclick=()=>{close();});
   intro.addEventListener('transitionend',()=>{if(intro.classList.contains('is-leaving'))document.body.classList.remove('intro-open');},{once:true});
 }
+function showOnboarding(){const overlay=$('app-onboarding');if(!overlay||sessionStorage.getItem('descubra-onboarding-complete')==='yes')return;overlay.hidden=false;document.body.classList.add('onboarding-open');}
+function finishOnboarding(){const overlay=$('app-onboarding');sessionStorage.setItem('descubra-onboarding-complete','yes');document.body.classList.remove('onboarding-open');overlay?.remove();}
+function setupOnboarding(){const overlay=$('app-onboarding');if(!overlay)return;$('continue-visitor').onclick=finishOnboarding;$('onboarding-form').onsubmit=async event=>{event.preventDefault();const status=$('onboarding-status'),form=event.currentTarget;if(!client){status.textContent='A conexão da conta ainda está sendo preparada. Tente novamente em instantes.';return;}const button=form.querySelector('button');button.disabled=true;status.textContent='Enviando seu link de acesso...';const redirect=new URL('./index.html',location.href).href;try{const{error}=await client.auth.signInWithOtp({email:new FormData(form).get('email').trim(),options:{emailRedirectTo:redirect,shouldCreateUser:true}});status.textContent=error?'Não foi possível enviar o link agora. Tente novamente.':'Confira seu e-mail para continuar. Você pode usar o app como visitante enquanto isso.';if(!error)setTimeout(finishOnboarding,900);}catch{status.textContent='Sem conexão. Tente novamente.';}finally{button.disabled=false;}};$('onboarding-google').onclick=async()=>{const status=$('onboarding-status');if(!config.googleEnabled||!client){status.textContent='O acesso com Google será ativado após a configuração oficial do provedor.';return;}const redirect=new URL('./index.html',location.href).href;const{error}=await client.auth.signInWithOAuth({provider:'google',options:{redirectTo:redirect}});if(error)status.textContent='Não foi possível iniciar o acesso com Google.';};}
+setupOnboarding();
 setupMobileIntro();
 
 const money=cents=>(cents/100).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
