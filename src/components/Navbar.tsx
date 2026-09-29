@@ -5,6 +5,7 @@ import { Sun, Moon, X, Sparkles, Users, Newspaper, Home, Heart, Star, Building2,
 import { useTheme } from 'next-themes';
 import { assetPath } from '@/lib/assetPath';
 import { motion, AnimatePresence } from 'framer-motion';
+import InstallAppButton from './InstallAppButton';
 
 const mainLinks = [
   { href: '/', label: 'Início' },
@@ -108,9 +109,9 @@ export default function Navbar() {
             )}
 
             {/* Abrir App */}
-            <a className="cine-app-btn" href={assetPath('/app/index.html')}>
+            <InstallAppButton className="cine-app-btn">
               Abrir App
-            </a>
+            </InstallAppButton>
 
             {/* Menu mobile */}
             <button
@@ -207,13 +208,12 @@ export default function Navbar() {
                   <Sparkles size={16} aria-hidden="true" />
                   Perguntar à Maya
                 </a>
-                <a
-                  href={assetPath('/app/index.html')}
+                <InstallAppButton
                   className="cine-mobile-quick-btn cine-mobile-quick-btn--primary"
                   onClick={() => setOpen(false)}
                 >
                   Abrir App
-                </a>
+                </InstallAppButton>
               </motion.div>
 
               {/* Rodapé */}

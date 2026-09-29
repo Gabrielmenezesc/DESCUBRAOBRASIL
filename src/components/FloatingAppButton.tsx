@@ -1,10 +1,11 @@
 "use client";
 
 import { Download } from "lucide-react";
-import { assetPath } from "@/lib/assetPath";
 import { useState, useEffect } from "react";
+import { usePWA } from "@/context/PWAProvider";
 
 export default function FloatingAppButton() {
+  const { showInstallPrompt } = usePWA();
 
   const [chatOpen, setChatOpen] = useState(false);
 
@@ -27,8 +28,9 @@ export default function FloatingAppButton() {
   if (chatOpen) return null;
 
   return (
-    <a
-      href={assetPath("/app/index.html")}
+    <button
+      type="button"
+      onClick={showInstallPrompt}
       id="floating-download-app"
       aria-label="Abrir app"
       className="fixed left-4 bottom-6 z-[9998] group"
@@ -63,6 +65,7 @@ export default function FloatingAppButton() {
           }
         }
       `}</style>
-    </a>
+    </button>
   );
 }
+

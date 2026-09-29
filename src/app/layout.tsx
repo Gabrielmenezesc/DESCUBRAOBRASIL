@@ -1,21 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import "./professional.css";
 import "../../public/editorial.css";
 import { PWAProvider } from "@/context/PWAProvider";
 
 import { ThemeProvider } from "@/context/ThemeProvider";
-
-const geistSans = Geist({
- variable: "--font-geist-sans",
- subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
- variable: "--font-geist-mono",
- subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
  title: "Descubra o Brasil | Turismo & Tecnologia 3D",
@@ -28,7 +17,7 @@ export default function RootLayout({
  children: React.ReactNode;
 }>) {
  return (
- <html lang="pt-BR" className={`${geistSans.variable} ${geistMono.variable}`} suppressHydrationWarning>
+ <html lang="pt-BR" suppressHydrationWarning>
  <head>
  <link rel="manifest" href={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/manifest.json`} />
  <link rel="apple-touch-icon" href={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/icon-192.png`} />
@@ -49,3 +38,4 @@ export default function RootLayout({
  </html>
  );
 }
+
