@@ -3,7 +3,7 @@ import FooterSection from '@/components/FooterSection';
 import MayaChat from '@/components/MayaChat';
 import Link from 'next/link';
 import { assetPath } from '@/lib/assetPath';
-import { ArrowUpRight, Megaphone, CheckCircle2, ShieldCheck, Sparkles } from 'lucide-react';
+import { ArrowUpRight, Megaphone, CheckCircle2, ShieldCheck, Sparkles, Image as ImageIcon, Video, MapPin, ClipboardList, Target, Bot } from 'lucide-react';
 
 export const metadata = {
   title: 'Anuncie no Descubra o Brasil | Oportunidades para Empresas',
@@ -12,32 +12,32 @@ export const metadata = {
 
 const adFormats = [
   {
-    icon: '🖼️',
+    icon: ImageIcon,
     title: 'Banner Premium',
     desc: 'Banners de alto impacto colocados estrategicamente na homepage e nas páginas de destinos mais acessadas.',
   },
   {
-    icon: '📹',
+    icon: Video,
     title: 'Vídeo Patrocinado',
     desc: 'Exibição cinematográfica na área "Brasil em Movimento" com link direto para sua oferta ou site.',
   },
   {
-    icon: '🗺️',
+    icon: MapPin,
     title: 'Destaque no Mapa 3D',
     desc: 'Sua atração ou estabelecimento destacado com marcador pulsante e card informativo no mapa interativo.',
   },
   {
-    icon: '📋',
+    icon: ClipboardList,
     title: 'Card de Oferta Verificada',
     desc: 'Publicação de ofertas promocionais com preço original, preço promocional, período e regras claras.',
   },
   {
-    icon: '🎯',
+    icon: Target,
     title: 'Destaque Regional por Estado',
     desc: 'Visibilidade para viajantes filtrando destinos na sua região, estado ou cidade específica.',
   },
   {
-    icon: '🤖',
+    icon: Bot,
     title: 'Recomendação Contextual Maya',
     desc: 'Indicação da sua empresa quando viajantes buscarem por opções na sua cidade ou categoria.',
   },
@@ -126,9 +126,9 @@ export default function AnunciePage() {
             </div>
 
             <div className="cine-advertise-grid" style={{ marginBottom: 64 }}>
-              {adFormats.map(({ icon, title, desc }) => (
+              {adFormats.map(({ icon: Icon, title, desc }) => (
                 <div key={title} className="cine-ad-format">
-                  <div className="cine-ad-format-icon">{icon}</div>
+                  <div className="cine-ad-format-icon" aria-hidden="true"><Icon size={24} /></div>
                   <h3 className="cine-ad-format-name">{title}</h3>
                   <p className="cine-ad-format-desc">{desc}</p>
                 </div>
@@ -154,7 +154,7 @@ export default function AnunciePage() {
 
               <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
                 <a
-                  href="https://wa.me/5561995659907?text=Ol%C3%A1%2C%20gostaria%20de%20anunciar%20minha%20empresa%20no%20Descubra%20o%20Brasil"
+                  href="https://wa.me/5561985630128?text=Ol%C3%A1%2C%20gostaria%20de%20anunciar%20minha%20empresa%20no%20Descubra%20o%20Brasil"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="cine-btn-explore"
@@ -174,3 +174,4 @@ export default function AnunciePage() {
     </>
   );
 }
+

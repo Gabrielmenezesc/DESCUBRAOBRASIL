@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
-import { ArrowRight, ArrowUpRight, Sparkles, Compass, MapPin, Play } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Sparkles, Compass, MapPin, Play, Umbrella, Leaf, Mountain, UtensilsCrossed, Landmark, Hotel, CalendarDays, BadgeDollarSign, UsersRound, Heart, Map, Bot, Newspaper, Building2, Gamepad2, Image as ImageIcon, Video, ClipboardList, Target, Smartphone, Lightbulb, Luggage } from 'lucide-react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import dynamic from 'next/dynamic';
 import Navbar from './Navbar';
@@ -66,27 +66,27 @@ const destinations = [
 ];
 
 const categories = [
-  { icon: '🏖️', label: 'Praias', img: 'photo-1559825481-12a05cc00344', href: '/aventura#praias' },
-  { icon: '🌿', label: 'Natureza', img: 'photo-1516026672322-bc52d61a55d5', href: '/aventura#natureza' },
-  { icon: '🏔️', label: 'Aventura', img: 'photo-1610741083757-34e0a0e0f4ec', href: '/aventura' },
-  { icon: '🍽️', label: 'Gastronomia', img: 'photo-1414235077428-338989a2e8c0', href: '/aventura#gastronomia' },
-  { icon: '🏛️', label: 'Cultura', img: 'photo-1598971457999-ca4ef48a9a71', href: '/aventura#cultura' },
-  { icon: '🏨', label: 'Hotéis', img: 'photo-1566073771259-6a8506099945', href: '/ofertas' },
-  { icon: '🎭', label: 'Eventos', img: 'photo-1549918864-48ac978761a4', href: '/aventura#eventos' },
-  { icon: '💸', label: 'Grátis', img: 'photo-1483729558449-99ef09a8c325', href: '/aventura#gratis' },
-  { icon: '👨‍👩‍👧‍👦', label: 'Família', img: 'photo-1530521954074-e64f6810b32d', href: '/aventura#familia' },
-  { icon: '💑', label: 'Romance', img: 'photo-1474314170901-f351b68f544f', href: '/aventura#romance' },
+  { icon: Umbrella, label: 'Praias', img: 'photo-1559825481-12a05cc00344', href: '/aventura#praias' },
+  { icon: Leaf, label: 'Natureza', img: 'photo-1516026672322-bc52d61a55d5', href: '/aventura#natureza' },
+  { icon: Mountain, label: 'Aventura', img: 'photo-1610741083757-34e0a0e0f4ec', href: '/aventura' },
+  { icon: UtensilsCrossed, label: 'Gastronomia', img: 'photo-1414235077428-338989a2e8c0', href: '/aventura#gastronomia' },
+  { icon: Landmark, label: 'Cultura', img: 'photo-1598971457999-ca4ef48a9a71', href: '/aventura#cultura' },
+  { icon: Hotel, label: 'Hotéis', img: 'photo-1566073771259-6a8506099945', href: '/ofertas' },
+  { icon: CalendarDays, label: 'Eventos', img: 'photo-1549918864-48ac978761a4', href: '/aventura#eventos' },
+  { icon: BadgeDollarSign, label: 'Grátis', img: 'photo-1483729558449-99ef09a8c325', href: '/aventura#gratis' },
+  { icon: UsersRound, label: 'Família', img: 'photo-1530521954074-e64f6810b32d', href: '/aventura#familia' },
+  { icon: Heart, label: 'Romance', img: 'photo-1474314170901-f351b68f544f', href: '/aventura#romance' },
 ];
 
 const whatWeDo = [
-  { icon: '🗺️', title: 'Descoberta de Destinos', desc: 'Explore lugares incríveis em todos os estados do Brasil, com informações atualizadas.' },
-  { icon: '🧭', title: 'Planejamento de Viagens', desc: 'Monte seu roteiro personalizado com datas, paradas e experiências que combinam com você.' },
-  { icon: '🤖', title: 'Assistente Maya IA', desc: 'Pergunte qualquer coisa sobre turismo no Brasil. A Maya entende e responde com inteligência.' },
-  { icon: '🗾', title: 'Mapa Interativo', desc: 'Explore o Brasil em 3D. Veja estados, cidades e pontos turísticos de uma forma imersiva.' },
-  { icon: '📰', title: 'Notícias de Turismo', desc: 'Fique por dentro das novidades do turismo brasileiro com fontes oficiais verificadas.' },
-  { icon: '🏢', title: 'Para Empresas', desc: 'Divulgue seu negócio turístico e alcance viajantes que estão planejando sua próxima viagem.' },
-  { icon: '🆓', title: 'Lugares Gratuitos', desc: 'Descubra atrações, parques e experiências sem custo em todo o território nacional.' },
-  { icon: '🎮', title: 'Jogos Culturais', desc: 'Aprenda sobre o Brasil de forma divertida com quizzes, memória e passaporte de visitas.' },
+  { icon: Map, title: 'Descoberta de Destinos', desc: 'Explore lugares incríveis em todos os estados do Brasil, com informações atualizadas.' },
+  { icon: Compass, title: 'Planejamento de Viagens', desc: 'Monte seu roteiro personalizado com datas, paradas e experiências que combinam com você.' },
+  { icon: Bot, title: 'Assistente Maya IA', desc: 'Pergunte qualquer coisa sobre turismo no Brasil. A Maya entende e responde com inteligência.' },
+  { icon: MapPin, title: 'Mapa Interativo', desc: 'Explore o Brasil em 3D. Veja estados, cidades e pontos turísticos de uma forma imersiva.' },
+  { icon: Newspaper, title: 'Notícias de Turismo', desc: 'Fique por dentro das novidades do turismo brasileiro com fontes oficiais verificadas.' },
+  { icon: Building2, title: 'Para Empresas', desc: 'Divulgue seu negócio turístico e alcance viajantes que estão planejando sua próxima viagem.' },
+  { icon: BadgeDollarSign, title: 'Lugares Gratuitos', desc: 'Descubra atrações, parques e experiências sem custo em todo o território nacional.' },
+  { icon: Gamepad2, title: 'Jogos Culturais', desc: 'Aprenda sobre o Brasil de forma divertida com quizzes, memória e passaporte de visitas.' },
 ];
 
 const stories = [
@@ -633,7 +633,7 @@ export default function ProfessionalHome() {
             </div>
 
             <div className="cine-categories">
-              {categories.map(({ icon, label, img, href }) => (
+              {categories.map(({ icon: Icon, label, img, href }) => (
                 <Link
                   key={label}
                   href={href}
@@ -648,7 +648,7 @@ export default function ProfessionalHome() {
                   />
                   <div className="cine-category-overlay" aria-hidden="true" />
                   <div className="cine-category-info">
-                    <span className="cine-category-icon" aria-hidden="true">{icon}</span>
+                    <span className="cine-category-icon" aria-hidden="true"><Icon size={22} /></span>
                     <span className="cine-category-label">{label}</span>
                   </div>
                 </Link>
@@ -706,14 +706,14 @@ export default function ProfessionalHome() {
               {/* Balão da Maya */}
               <div>
                 <div className="cine-maya-bubble" aria-live="polite">
-                  <strong>🌿 Olá! Eu sou a Maya.</strong>
+                  <strong>Olá! Eu sou a Maya.</strong>
                   <p style={{ marginTop: 12, marginBottom: 0 }}>
                     Sua especialista em turismo no Brasil. Para onde vamos hoje?<br />
                     Posso ajudar com destinos, roteiros, gastronomia e muito mais.
                   </p>
                 </div>
                 <div className="cine-maya-bubble" aria-hidden="true">
-                  <strong>💡 Exemplo de pergunta:</strong>
+                  <strong>Exemplo de pergunta:</strong>
                   <p style={{ marginTop: 8, marginBottom: 0, color: 'rgba(255,255,255,0.7)', fontStyle: 'italic' }}>
                     "Quero viajar para Brasília com minha família durante 3 dias."
                   </p>
@@ -743,9 +743,9 @@ export default function ProfessionalHome() {
             </div>
 
             <div className="cine-what-grid">
-              {whatWeDo.map(({ icon, title, desc }) => (
+              {whatWeDo.map(({ icon: Icon, title, desc }) => (
                 <div key={title} className="cine-what-card">
-                  <span className="cine-what-icon" aria-hidden="true">{icon}</span>
+                  <span className="cine-what-icon" aria-hidden="true"><Icon size={26} /></span>
                   <h3 className="cine-what-title">{title}</h3>
                   <p className="cine-what-desc">{desc}</p>
                 </div>
@@ -802,7 +802,7 @@ export default function ProfessionalHome() {
 
                 <div className="cine-about-subsections">
                   <div className="cine-about-sub">
-                    <h4>🎯 Nossa Missão</h4>
+                    <h4>Nossa Missão</h4>
                     <p>Fazer o Brasil ser descoberto em toda a sua diversidade, com informação confiável e experiências reais.</p>
                   </div>
                   <div className="cine-about-sub">
@@ -810,11 +810,11 @@ export default function ProfessionalHome() {
                     <p>Ser a principal plataforma digital de turismo brasileiro, integrando IA, 3D e conteúdo humano.</p>
                   </div>
                   <div className="cine-about-sub">
-                    <h4>🤖 Tecnologia</h4>
+                    <h4>Tecnologia</h4>
                     <p>Maya IA, mapa 3D, roteiros inteligentes e PWA para acesso em qualquer dispositivo.</p>
                   </div>
                   <div className="cine-about-sub">
-                    <h4>🧳 Para Viajantes</h4>
+                    <h4>Para Viajantes</h4>
                     <p>Destinos organizados, categorias claras, roteiros personalizados e muito mais.</p>
                   </div>
                 </div>
@@ -916,7 +916,7 @@ export default function ProfessionalHome() {
                 </h2>
               </div>
               <a
-                href="https://wa.me/5561995659907?text=Ol%C3%A1%2C%20quero%20anunciar%20no%20Descubra%20o%20Brasil"
+                href="https://wa.me/5561985630128?text=Ol%C3%A1%2C%20quero%20anunciar%20no%20Descubra%20o%20Brasil"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="cine-link"
@@ -927,15 +927,15 @@ export default function ProfessionalHome() {
 
             <div className="cine-advertise-grid">
               {[
-                { icon: '🖼️', name: 'Banner Premium', desc: 'Grande visibilidade na homepage e nas páginas de destino.' },
-                { icon: '📹', name: 'Vídeo Patrocinado', desc: 'Seu vídeo integrado na seção "Brasil em Movimento".' },
-                { icon: '🗺️', name: 'Destino Patrocinado', desc: 'Destaque no mapa interativo e nas listagens de estados.' },
-                { icon: '📋', name: 'Card Patrocinado', desc: 'Card integrado nas categorias e listagens de lugares.' },
-                { icon: '🎯', name: 'Campanha Regional', desc: 'Segmentação por estado, região, cidade ou categoria.' },
-                { icon: '📱', name: 'Publicidade no App', desc: 'Visibilidade dentro do aplicativo para usuários ativos.' },
-              ].map(({ icon, name, desc }) => (
+                { icon: ImageIcon, name: 'Banner Premium', desc: 'Grande visibilidade na homepage e nas páginas de destino.' },
+                { icon: Video, name: 'Vídeo Patrocinado', desc: 'Seu vídeo integrado na seção "Brasil em Movimento".' },
+                { icon: MapPin, name: 'Destino Patrocinado', desc: 'Destaque no mapa interativo e nas listagens de estados.' },
+                { icon: ClipboardList, name: 'Card Patrocinado', desc: 'Card integrado nas categorias e listagens de lugares.' },
+                { icon: Target, name: 'Campanha Regional', desc: 'Segmentação por estado, região, cidade ou categoria.' },
+                { icon: Smartphone, name: 'Publicidade no App', desc: 'Visibilidade dentro do aplicativo para usuários ativos.' },
+              ].map(({ icon: Icon, name, desc }) => (
                 <div key={name} className="cine-ad-format">
-                  <div className="cine-ad-format-icon" aria-hidden="true">{icon}</div>
+                  <div className="cine-ad-format-icon" aria-hidden="true"><Icon size={24} /></div>
                   <h3 className="cine-ad-format-name">{name}</h3>
                   <p className="cine-ad-format-desc">{desc}</p>
                 </div>
@@ -958,16 +958,17 @@ export default function ProfessionalHome() {
 
       {/* ── WhatsApp Flutuante ── */}
       <a
-        href="https://wa.me/5561995659907?text=Ol%C3%A1%2C%20vim%20pelo%20Descubra%20o%20Brasil"
+        href="https://wa.me/5561985630128?text=Ol%C3%A1%2C%20vim%20pelo%20Descubra%20o%20Brasil"
         target="_blank"
         rel="noopener noreferrer"
         className="cine-whatsapp-float"
         aria-label="Falar conosco pelo WhatsApp"
         style={{ position: 'fixed', right: 20, bottom: 90, zIndex: 79 }}
       >
-        <span aria-hidden="true">💬</span>
+        <img src="https://cdn.simpleicons.org/whatsapp/FFFFFF" alt="" aria-hidden="true" width={22} height={22} />
         <span className="cine-whatsapp-tooltip" aria-hidden="true">Fale conosco</span>
       </a>
     </>
   );
 }
+

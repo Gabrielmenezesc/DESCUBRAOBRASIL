@@ -57,4 +57,7 @@ export function mountMaya(root,{config,getContext}) {
   };
   form.onsubmit=event=>{event.preventDefault();send(input.value);};
   root.querySelectorAll('[data-question]').forEach(button=>button.onclick=()=>{input.value=button.dataset.question;send(input.value);});
+  const prefill=sessionStorage.getItem('maya-prefill');
+  if(prefill){sessionStorage.removeItem('maya-prefill');input.value=prefill;setTimeout(()=>send(prefill),250);}
 }
+

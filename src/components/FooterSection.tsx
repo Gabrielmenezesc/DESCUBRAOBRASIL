@@ -38,28 +38,28 @@ const navCols = [
 const socials = [
   {
     label: 'WhatsApp',
-    href: 'https://wa.me/5561995659907',
-    icon: '💬',
+    href: 'https://wa.me/5561985630128',
+    iconUrl: 'https://cdn.simpleicons.org/whatsapp/FFFFFF',
     external: true,
   },
   {
     label: 'Instagram',
     href: '#',
-    icon: '📸',
+    iconUrl: 'https://cdn.simpleicons.org/instagram/FFFFFF',
     external: true,
     disabled: true,
   },
   {
     label: 'YouTube',
     href: '#',
-    icon: '▶️',
+    iconUrl: 'https://cdn.simpleicons.org/youtube/FFFFFF',
     external: true,
     disabled: true,
   },
   {
     label: 'TikTok',
     href: '#',
-    icon: '🎵',
+    iconUrl: 'https://cdn.simpleicons.org/tiktok/FFFFFF',
     external: true,
     disabled: true,
   },
@@ -85,7 +85,7 @@ export default function FooterSection() {
 
             {/* Redes sociais */}
             <div className="cine-footer-socials" aria-label="Redes sociais">
-              {socials.map(({ label, href, icon, external, disabled }) => (
+              {socials.map(({ label, href, iconUrl, external, disabled }) => (
                 disabled ? (
                   <span
                     key={label}
@@ -94,7 +94,7 @@ export default function FooterSection() {
                     title={`${label} — em breve`}
                     style={{ cursor: 'default', opacity: 0.4 }}
                   >
-                    {icon}
+                    <img src={iconUrl} alt="" aria-hidden="true" width={20} height={20} />
                   </span>
                 ) : (
                   <a
@@ -105,7 +105,7 @@ export default function FooterSection() {
                     target={external ? '_blank' : undefined}
                     rel={external ? 'noopener noreferrer' : undefined}
                   >
-                    {icon}
+                    <img src={iconUrl} alt="" aria-hidden="true" width={20} height={20} />
                   </a>
                 )
               ))}
@@ -149,7 +149,7 @@ export default function FooterSection() {
             <Link href="/termos" className="cine-footer-link">Termos de Uso</Link>
             <Link href="/privacidade" className="cine-footer-link">Privacidade</Link>
             <a
-              href="https://wa.me/5561995659907?text=Ol%C3%A1%2C%20vim%20pelo%20Descubra%20o%20Brasil"
+              href="https://wa.me/5561985630128?text=Ol%C3%A1%2C%20vim%20pelo%20Descubra%20o%20Brasil"
               target="_blank"
               rel="noopener noreferrer"
               className="cine-footer-link"
@@ -162,3 +162,4 @@ export default function FooterSection() {
     </footer>
   );
 }
+

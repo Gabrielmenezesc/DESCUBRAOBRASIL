@@ -66,7 +66,7 @@ export default function FinalCTASection() {
             </a>
             
             <a 
-              href="https://wa.me/5561995659907" 
+              href="https://wa.me/5561985630128" 
               target="_blank"
               rel="noopener noreferrer"
               className="w-full sm:w-auto flex items-center justify-center gap-3 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-slate-950 px-8 py-4 rounded-full font-black text-lg transition-all shadow-xl shadow-emerald-500/20 hover:scale-105 hover:shadow-2xl"
@@ -101,3 +101,4 @@ export default function FinalCTASection() {
     </section>
   );
 }
+
