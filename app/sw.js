@@ -1,5 +1,5 @@
-const CACHE_NAME='descubra-app-v16';
-const ASSETS=['./','./index.html','./manifest.json','./config.json','./css/professional.css','../design-tokens.css','./js/theme.js','./js/app.mjs','./js/core.mjs','./js/maya.mjs','./data/destinations.json','./data/news.json','./vendor/supabase.js','../icon-192.png','../icon-512.png'];
+const CACHE_NAME='descubra-app-v17';
+const ASSETS=['./','./index.html','./manifest.json','./config.json','./css/professional.css','../design-tokens.css','./js/theme.js','./js/app.mjs','./js/core.mjs','./js/maya.mjs','./data/destinations.json','./data/news.json','./vendor/supabase.js','./maya-avatar.webp','../media/bandeira-brasil.mp4','../icon-192.png','../icon-512.png'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE_NAME).then(cache=>cache.addAll(ASSETS)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key.startsWith('descubra-app-')&&key!==CACHE_NAME).map(key=>caches.delete(key)))).then(()=>self.clients.claim())));
 self.addEventListener('fetch',event=>{
@@ -10,7 +10,3 @@ self.addEventListener('fetch',event=>{
  if(event.request.mode==='navigate'){event.respondWith(fetch(event.request).catch(()=>caches.match('./index.html')));return;}
  event.respondWith(caches.match(event.request).then(cached=>cached||fetch(event.request).then(response=>{if(response.ok)caches.open(CACHE_NAME).then(cache=>cache.put(event.request,response.clone()));return response;})));
 });
-
-
-
-
