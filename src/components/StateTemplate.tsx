@@ -302,3 +302,4 @@ export default function StateTemplate({ data }: { data: any }) {
     </article>
   );
 }
+

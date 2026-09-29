@@ -806,7 +806,7 @@ export default function ProfessionalHome() {
                     <p>Fazer o Brasil ser descoberto em toda a sua diversidade, com informação confiável e experiências reais.</p>
                   </div>
                   <div className="cine-about-sub">
-                    <h4>👁️ Nossa Visão</h4>
+                    <h4>Nossa Visão</h4>
                     <p>Ser a principal plataforma digital de turismo brasileiro, integrando IA, 3D e conteúdo humano.</p>
                   </div>
                   <div className="cine-about-sub">
@@ -970,4 +970,5 @@ export default function ProfessionalHome() {
     </>
   );
 }
+
 

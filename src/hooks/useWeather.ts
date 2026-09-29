@@ -112,3 +112,4 @@ export function useWeather() {
 
   return { weather, loading };
 }
+

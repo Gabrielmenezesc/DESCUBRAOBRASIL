@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
-import { Sun, Moon, X, Sparkles, MapPin, Compass, Users, Megaphone, Newspaper, ChevronDown, Home, Waves, Heart, Star, Building2, ClipboardList, Lock, Map } from 'lucide-react';
+import { Sun, Moon, X, Sparkles, Users, Newspaper, Home, Heart, Star, Building2, ClipboardList, Lock, Map } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { assetPath } from '@/lib/assetPath';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -9,18 +9,16 @@ import { motion, AnimatePresence } from 'framer-motion';
 const mainLinks = [
   { href: '/', label: 'Início' },
   { href: '/turismo', label: 'Destinos' },
-  { href: '/aventura', label: 'Experiências' },
-  { href: '/turismo', label: 'Mapa 3D', suffix: '#mapa' },
-  { href: '/quem-somos', label: 'Quem Somos' },
+  { href: '/noticias', label: 'Notícias' },
+  { href: '/quem-somos', label: 'Sobre' },
   { href: '/contato', label: 'Contato' },
-  { href: '/anuncie', label: 'Patrocinadores' },
 ];
 
 const mobileLinks = [
   { href: '/', label: 'Início', icon: Home },
   { href: '/turismo', label: 'Destinos', icon: Map },
-  { href: '/aventura', label: 'Experiências', icon: Waves },
-  { href: '/quem-somos', label: 'Quem Somos', icon: Heart },
+  { href: '/noticias', label: 'Notícias', icon: Newspaper },
+  { href: '/quem-somos', label: 'Sobre', icon: Heart },
   { href: '/contato', label: 'Contato', icon: Users },
   { href: '/anuncie', label: 'Patrocinadores', icon: Star },
   { href: '/empresas', label: 'Para Empresas', icon: Building2 },
