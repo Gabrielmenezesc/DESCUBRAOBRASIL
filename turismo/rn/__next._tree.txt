@@ -7,4 +7,4 @@
 :HL["https://cdn.simpleicons.org/instagram/FFFFFF","image"]
 :HL["https://cdn.simpleicons.org/youtube/FFFFFF","image"]
 :HL["https://cdn.simpleicons.org/tiktok/FFFFFF","image"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"turismo","param":null,"prefetchHints":0,"slots":{"children":{"name":"uf","param":{"type":"d","key":"rn","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"RtABb8R-Ggz4jZZHWDuGg"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"turismo","param":null,"prefetchHints":0,"slots":{"children":{"name":"uf","param":{"type":"d","key":"rn","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"pcLx19eI4n2RVEFaeLjRL"}
