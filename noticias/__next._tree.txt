@@ -4,4 +4,4 @@
 :HL["https://cdn.simpleicons.org/instagram/FFFFFF","image"]
 :HL["https://cdn.simpleicons.org/youtube/FFFFFF","image"]
 :HL["https://cdn.simpleicons.org/tiktok/FFFFFF","image"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"noticias","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"krHi0U9Gr8z3bpSa2_p1N"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"noticias","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"sGc1K9mRwYx5kyIA-qEJI"}
