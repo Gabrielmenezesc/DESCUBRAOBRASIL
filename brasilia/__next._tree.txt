@@ -1,3 +1,3 @@
-:HL["/DESCUBRAOBRASIL/_next/static/chunks/0trvyi_t.8vxg.css","style"]
-:HL["/DESCUBRAOBRASIL/_next/static/chunks/116u4oeoi_h3s.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"brasilia","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"W07JvIeDjYk5nvuqIut0F"}
+:HL["/_next/static/chunks/0trvyi_t.8vxg.css","style"]
+:HL["/_next/static/chunks/116u4oeoi_h3s.css","style"]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"brasilia","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"I6Ay1AoG8rO_JYR8peBDQ"}
