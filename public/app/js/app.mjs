@@ -11,35 +11,10 @@ const mediaLoops=['../media/litoral-brasil.mp4','../media/cidade-noturna.mp4','.
 let states=[],places=[],config={},client=null,user=null,progress=freshProgress(),epoch=0,toastTimer,gameTimer,localOnly=false;
 let search=new URLSearchParams(location.search).get('q')||'',region='',selectedState='',selectedCity='',selectedCategory='',onlySaved=false,nearbyIds=null;
 
-function setupMobileIntro(){
-  const intro=$('mobile-intro');if(!intro)return;
-  const reduced=matchMedia('(prefers-reduced-motion:reduce)').matches;
-  const connection=navigator.connection||navigator.mozConnection||navigator.webkitConnection;
-  const capable=!reduced&&!connection?.saveData&&(navigator.deviceMemory||4)>=4&&(navigator.hardwareConcurrency||4)>=4;
-  document.documentElement.classList.add(capable?'enhanced-motion':'standard-motion');
-  const jingle=$('intro-jingle');
-  const video=intro.querySelector('video');
-  const close=()=>{
-    jingle?.pause();
-    intro.classList.add('is-leaving');
-    sessionStorage.setItem('descubra-mobile-intro','seen');
-    setTimeout(()=>{intro.remove();showOnboarding();},850);
-  };
-  if(sessionStorage.getItem('descubra-mobile-intro')==='seen'){intro.remove();showOnboarding();return;}
-  document.body.classList.add('intro-open');
-  const start=()=>{if(video){video.currentTime=0;video.play().catch(()=>{});}if(jingle){jingle.currentTime=0;jingle.play().catch(()=>{});}};
-  start();
-  // Em celulares, o navegador só libera som após o primeiro toque.
-  intro.addEventListener('pointerdown',start,{once:true});
-  jingle?.addEventListener('ended',close,{once:true});
-  setTimeout(close,reduced?0:10000);
-  intro.addEventListener('transitionend',()=>{if(intro.classList.contains('is-leaving'))document.body.classList.remove('intro-open');},{once:true});
-}
 function showOnboarding(){const overlay=$('app-onboarding');if(!overlay||sessionStorage.getItem('descubra-onboarding-complete')==='yes')return;overlay.hidden=false;document.body.classList.add('onboarding-open');}
 function finishOnboarding(){const overlay=$('app-onboarding');sessionStorage.setItem('descubra-onboarding-complete','yes');document.body.classList.remove('onboarding-open');overlay?.remove();}
 function setupOnboarding(){const overlay=$('app-onboarding');if(!overlay)return;$('continue-visitor').onclick=finishOnboarding;$('onboarding-form').onsubmit=async event=>{event.preventDefault();const status=$('onboarding-status'),form=event.currentTarget;if(!client){status.textContent='A conexão da conta ainda está sendo preparada. Tente novamente em instantes.';return;}const button=form.querySelector('button');button.disabled=true;status.textContent='Enviando seu link de acesso...';const redirect=new URL('./index.html',location.href).href;try{const{error}=await client.auth.signInWithOtp({email:new FormData(form).get('email').trim(),options:{emailRedirectTo:redirect,shouldCreateUser:true}});status.textContent=error?'Não foi possível enviar o link agora. Tente novamente.':'Confira seu e-mail para continuar. Você pode usar o app como visitante enquanto isso.';if(!error)setTimeout(finishOnboarding,900);}catch{status.textContent='Sem conexão. Tente novamente.';}finally{button.disabled=false;}};$('onboarding-google').onclick=async()=>{const status=$('onboarding-status');if(!config.googleEnabled||!client){status.textContent='O acesso com Google será ativado após a configuração oficial do provedor.';return;}const redirect=new URL('./index.html',location.href).href;const{error}=await client.auth.signInWithOAuth({provider:'google',options:{redirectTo:redirect}});if(error)status.textContent='Não foi possível iniciar o acesso com Google.';};}
 setupOnboarding();
-setupMobileIntro();
 
 const money=cents=>(cents/100).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
 const dateText=value=>new Date(value).toLocaleDateString('pt-BR',{timeZone:'America/Sao_Paulo'});
