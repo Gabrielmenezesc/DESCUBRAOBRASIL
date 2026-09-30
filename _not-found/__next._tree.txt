@@ -1,3 +1,3 @@
 :HL["/DESCUBRAOBRASIL/_next/static/chunks/0trvyi_t.8vxg.css","style"]
 :HL["/DESCUBRAOBRASIL/_next/static/chunks/116u4oeoi_h3s.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"/_not-found","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"Dd6x2ak4sFJ9fozTFewR0"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"/_not-found","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"tzsvik3i8t2EzFph4Hgc0"}

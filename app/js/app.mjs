@@ -9,9 +9,7 @@ const icon=name=>`<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="curr
 const labels={inicio:'Início',descobrir:'Descobrir',mapa:'Mapa',viagens:'Viagens',perfil:'Perfil'};
 const mediaLoops=['../media/litoral-brasil.mp4','../media/cidade-noturna.mp4','../media/rotas-brasil.mp4','../media/brasil-menu-loop.mp4'];
 let states=[],places=[],config={},client=null,user=null,progress=freshProgress(),epoch=0,toastTimer,gameTimer,localOnly=false;
-let search=new URLSearchParams(location.search).get('q')||'',region='',selectedState='',selectedCity='',selectedCategory='',onlySaved=false,nearbyIds=null;
-
-function setupMobileIntro(){
+let search=new URLSearchParams(location.search).get('q')||'',region='',selectedState='',selectedCity='',selectedCategory='',onlySaved=false,nearbyIds=null;function setupMobileIntroLegacy(){
   const intro=$('mobile-intro');if(!intro)return;
   const mobile=matchMedia('(max-width:700px)').matches;
   if(!mobile){intro.remove();return;}
