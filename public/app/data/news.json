@@ -1,7 +1,17 @@
 {
   "source": "https://www.gov.br/turismo/pt-br/assuntos/noticias",
-  "fetchedAt": "2026-09-29T16:32:12.397Z",
+  "fetchedAt": "2026-09-30T16:25:41.966Z",
   "items": [
+    {
+      "title": "Trilha Brigadeiro Caparaó conecta parques e revela paisagens da Mata Atlântica em Minas Gerais",
+      "url": "https://www.gov.br/turismo/pt-br/assuntos/noticias/trilha-brigadeiro-caparao-conecta-parques-e-revela-paisagens-da-mata-atlantica-em-minas-gerais",
+      "date": "2026-09-29T12:00:00-03:00"
+    },
+    {
+      "title": "Diamantina: cidade entre montanhas preserva um Patrimônio Mundial em Minas Gerais",
+      "url": "https://www.gov.br/turismo/pt-br/assuntos/noticias/diamantina-cidade-entre-montanhas-preserva-um-patrimonio-mundial-em-minas-gerais",
+      "date": "2026-09-29T12:00:00-03:00"
+    },
     {
       "title": "Ministro do Turismo participa da entrega de moradias do Minha Casa, Minha Vida em João Pessoa e Campina Grande",
       "url": "https://www.gov.br/turismo/pt-br/assuntos/noticias/ministro-do-turismo-participa-da-entrega-de-moradias-do-minha-casa-minha-vida-em-joao-pessoa-e-campina-grande",
@@ -51,16 +61,6 @@
       "title": "Mata Atlântica: Patrimônio Mundial reúne florestas, cavernas e ilhas entre São Paulo e Paraná",
       "url": "https://www.gov.br/turismo/pt-br/assuntos/noticias/mata-atlantica-patrimonio-mundial-reune-florestas-cavernas-e-ilhas-entre-sao-paulo-e-parana",
       "date": "2026-09-17T12:00:00-03:00"
-    },
-    {
-      "title": "São Luís: azulejos e casarões contam a história de um Patrimônio Mundial",
-      "url": "https://www.gov.br/turismo/pt-br/assuntos/noticias/sao-luis-azulejos-e-casaroes-contam-a-historia-de-um-patrimonio-mundial",
-      "date": "2026-09-17T12:00:00-03:00"
-    },
-    {
-      "title": "Trilha Verde da Maria Fumaça valoriza patrimônio histórico, natureza e turismo de experiência em Minas Gerais",
-      "url": "https://www.gov.br/turismo/pt-br/assuntos/noticias/trilha-verde-da-maria-fumaca-valoriza-patrimonio-historico-natureza-e-turismo-de-experiencia-em-minas-gerais",
-      "date": "2026-09-16T12:00:00-03:00"
     }
   ]
 }
