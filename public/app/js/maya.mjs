@@ -9,7 +9,7 @@ export async function requestMaya(config, question, history, context, fetcher=fe
   const response = await fetcher(config.mayaProxyUrl, {
     method:'POST', signal:AbortSignal.timeout(55000),
     headers:{'content-type':'application/json',apikey:config.supabaseKey,authorization:`Bearer ${config.supabaseKey}`},
-    body:JSON.stringify({question,history:history.slice(-8),context,search:true,systemInstruction:MAYA_MAP_SYSTEM}),
+    body:JSON.stringify({question,history:history.slice(-8),context,search:true,systemInstruction:MAYA_MAP_SYSTEM,mapMode:true}),
   });
   const data=await response.json();
   if (!response.ok || typeof data.answer!=='string' || !data.answer.trim()) {
