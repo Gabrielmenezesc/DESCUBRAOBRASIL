@@ -2,14 +2,14 @@ import {escapeHTML as escape, safeURL} from './core.mjs';
 
 // Contrato da Maya para respostas que podem controlar o Guia Brasil 3D.
 const MAYA_MAP_SYSTEM=`Você é Maya, guia turística virtual do Descubra o Brasil. Responda em no máximo 3 frases curtas, em pt-BR, guiando o usuário para o mapa. Quando o pedido envolver lugar, cidade, clima ou filtro, responda somente JSON válido com voz_texto, avatar_animacao (idle|pointing|happy|thinking|greeting), mapa_comando (acao, coordenadas, zoom_level, aplicar_filtro), ui_painel_clima e ui_card_sugestao. Nunca invente preço, clima ou coordenada; quando faltar dado, mantenha o mapa.`;
-function parseMapAnswer(answer){try{const v=JSON.parse(answer);if(v&&typeof v.voz_texto==='string')return v;}catch{}return null;}
+function parseMapAnswer(answer){const text=String(answer||'');const start=text.indexOf('{');const end=text.indexOf('\n\nNão consegui',start);const candidate=start<0?'':text.slice(start,end<0?text.lastIndexOf('}')+1:end);try{const v=JSON.parse(candidate);if(v&&typeof v.voz_texto==='string')return v;}catch{}return null;}
 
 export async function requestMaya(config, question, history, context, fetcher=fetch) {
   if (!config.mayaProxyUrl || !config.supabaseKey) throw new Error('A conexão da Maya ainda não está configurada.');
   const response = await fetcher(config.mayaProxyUrl, {
     method:'POST', signal:AbortSignal.timeout(55000),
     headers:{'content-type':'application/json',apikey:config.supabaseKey,authorization:`Bearer ${config.supabaseKey}`},
-    body:JSON.stringify({question,history:history.slice(-8),context,search:true,systemInstruction:MAYA_MAP_SYSTEM,mapMode:true}),
+    body:JSON.stringify({question:context?.page==='mapa'?'Responda EXCLUSIVAMENTE JSON válido, sem markdown, com voz_texto, avatar_animacao, mapa_comando (acao, coordenadas, zoom_level, aplicar_filtro), ui_painel_clima e ui_card_sugestao. Não acrescente texto depois do JSON. Pedido do usuário: '+question:question,history:history.slice(-8),context,search:true,systemInstruction:MAYA_MAP_SYSTEM,mapMode:true}),
   });
   const data=await response.json();
   if (!response.ok || typeof data.answer!=='string' || !data.answer.trim()) {
