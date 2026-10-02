@@ -49,7 +49,10 @@ export function mountMaya(root,{config,getContext}) {
     try{
       const data=await requestMaya(config,question,previous,getContext());
       if(!root.isConnected)return;
-      const mapAnswer=parseMapAnswer(data.answer);\n      const spoken=mapAnswer?.voz_texto||data.answer;\n      if(mapAnswer)window.dispatchEvent(new CustomEvent('maya-map-command',{detail:mapAnswer}));\n      history.push({role:'user',text:question},{role:'model',text:spoken});
+      const mapAnswer=parseMapAnswer(data.answer);
+      const spoken=mapAnswer?.voz_texto||data.answer;
+      if(mapAnswer)window.dispatchEvent(new CustomEvent('maya-map-command',{detail:mapAnswer}));
+      history.push({role:'user',text:question},{role:'model',text:spoken});
       const sources=Array.isArray(data.sources)?data.sources.filter(s=>safeURL(s.url)).slice(0,8):[];
       messages.insertAdjacentHTML('beforeend',`<div class="maya-message"><span class="eyebrow">Maya</span><div>${renderMayaText(spoken)}</div><button type="button" class="maya-speak">Ouvir resposta</button>${sources.length?`<div class="maya-sources"><strong>Fontes da pesquisa</strong>${sources.map(s=>`<a href="${escape(safeURL(s.url))}" target="_blank" rel="noopener noreferrer">${escape(s.title||'Consultar fonte')}</a>`).join('')}</div>`:''}</div>`);
       const speakButton=messages.lastElementChild.querySelector('.maya-speak');speakButton.onclick=()=>speak(spoken,speakButton);if(root.querySelector('#maya-auto-voice').checked)speak(spoken,speakButton);
