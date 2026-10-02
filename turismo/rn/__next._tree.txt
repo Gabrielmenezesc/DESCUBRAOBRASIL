@@ -1,7 +1,7 @@
 :HL["/_next/static/chunks/0trvyi_t.8vxg.css","style"]
-:HL["/_next/static/chunks/0atw6tjsdkwio.css","style"]
+:HL["/_next/static/chunks/06wh6zpre1z.3.css","style"]
 :HL["https://cdn.simpleicons.org/whatsapp/FFFFFF","image"]
 :HL["https://cdn.simpleicons.org/instagram/FFFFFF","image"]
 :HL["https://cdn.simpleicons.org/youtube/FFFFFF","image"]
 :HL["https://cdn.simpleicons.org/tiktok/FFFFFF","image"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"turismo","param":null,"prefetchHints":0,"slots":{"children":{"name":"uf","param":{"type":"d","key":"rn","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"VYzzIZyvVztaflWh--yaN"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"turismo","param":null,"prefetchHints":0,"slots":{"children":{"name":"uf","param":{"type":"d","key":"rn","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"rPtiupXdd4YvPxmSI2Oye"}
