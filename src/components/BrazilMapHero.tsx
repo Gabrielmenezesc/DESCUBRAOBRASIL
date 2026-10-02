@@ -38,7 +38,7 @@ export default function BrazilMapHero() {
   const [municipalities, setMunicipalities] = useState<Municipality[]>([]);
   const [query, setQuery] = useState("");
   const [target, setTarget] = useState<Target | null>(null);
-  const [status, setStatus] = useState("27 estados e DF sinalizados");
+  const [status, setStatus] = useState("26 estados e Distrito Federal sinalizados");
   const matches = useMemo(() => {
     const normalized = query.trim().toLocaleLowerCase("pt-BR");
     if (normalized.length < 3) return [];
