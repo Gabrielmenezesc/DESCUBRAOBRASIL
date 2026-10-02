@@ -7,7 +7,6 @@ import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import dynamic from 'next/dynamic';
 import Navbar from './Navbar';
 import FooterSection from './FooterSection';
-import MayaChat from './MayaChat';
 import AppAccess from './AppAccess';
 import { assetPath } from '@/lib/assetPath';
 
