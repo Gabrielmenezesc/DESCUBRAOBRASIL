@@ -7,7 +7,7 @@
   "general_info": {
     "climate": "tropical com variações regionais marcantes",
     "best_time": "época seca para trilhas, época de chuvas para cachoeiras e rios",
-    "intro": "Conheça o estado do Distrito Federal. Repleto de pontos turísticos, cultura e gastronomia típica marcante.",
+    "intro": "Conheça o Distrito Federal, unidade federativa onde está Brasília, com arquitetura moderna, cultura e áreas de cerrado.",
     "biomes": [
       "Cerrado"
     ]
@@ -105,7 +105,7 @@
     }
   ],
   "unique_experiences": [
-    "Explorar as belezas e gastronomia de Distrito Federal",
+    "Explorar a arquitetura, a cultura e a gastronomia de Brasília",
     "Roteiros guiados por pontos turísticos de Brasília"
   ],
   "gastronomy": {
@@ -125,7 +125,7 @@
   },
   "events_festivals": [
     {
-      "name": "Festival Estadual de Distrito Federal",
+      "name": "Festival de Cinema de Brasília",
       "period": "Anual",
       "city": "Brasília",
       "paid": false
@@ -135,16 +135,16 @@
     "one_day": [
       "Manhã no centro de Brasília",
       "Almoço típico regional",
-      "Tarde nos parques ou praias locais"
+      "Tarde no Eixo Monumental, Parque da Cidade ou Lago Paranoá"
     ],
     "three_days": [
       "Dia 1: Passeio histórico por Brasília",
-      "Dia 2: Aventura natural ou praias",
+      "Dia 2: Museus, Parque da Cidade e Lago Paranoá",
       "Dia 3: Gastronomia e artesanato local"
     ],
     "seven_days": [
       "Dias 1-2: Brasília e arredores",
-      "Dias 3-5: Roteiro interiorano ou litoral distante",
+      "Dias 3-5: Museus, feiras, parques e arredores de Brasília",
       "Dias 6-7: Ecoturismo nos parques estaduais"
     ]
   },
