@@ -2251,3 +2251,32 @@
   .br-map-toolbar { max-width: none; }
   .br-map-footer { font-size: 9px; }
 }
+
+
+/* Imagens de destinos só entram após validação de origem e autorização */
+.cine-official-visual {
+  position: absolute; inset: 0; z-index: 0; display: grid; place-content: center;
+  gap: 8px; padding: 24px; text-align: center; color: rgba(255,255,255,.92);
+  background: radial-gradient(circle at 50% 35%, rgba(20,139,72,.7), transparent 38%), linear-gradient(145deg,#062c18,#0b4e2a 58%,#072114);
+}
+.cine-official-visual svg { margin: auto; color: #f4c542; }
+.cine-official-visual span { font-size: 21px; font-weight: 800; letter-spacing: -.03em; }
+.cine-official-visual small { max-width: 170px; color: rgba(255,255,255,.7); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
+.cine-story-inner--official { display:grid; place-items:center; background:linear-gradient(145deg,#0a6b38,#123c29); color:#f4c542; }
+
+.app-access {
+  width: min(1120px, calc(100% - 40px)); margin: 0 auto 88px; padding: clamp(28px,5vw,58px);
+  display: grid; grid-template-columns: 1.2fr .8fr; align-items: center; gap: 32px;
+  color: #f5f8f2; background: linear-gradient(135deg,#06351c,#0b1f12); border:1px solid rgba(244,197,66,.35); border-radius:24px;
+}
+.app-access h2 { max-width: 630px; margin: 0 0 14px; font-size:clamp(28px,4vw,48px); line-height:1.06; letter-spacing:-.055em; }
+.app-access p { max-width: 610px; margin:0 0 22px; color:rgba(255,255,255,.72); font-size:15px; line-height:1.7; }
+.app-access small { display:block; margin-top:14px; color:rgba(255,255,255,.55); font-size:11px; }
+.app-access-qr { justify-self:end; padding:18px; display:grid; gap:9px; place-items:center; text-align:center; color:#eff6ef; background:#fff; border-radius:18px; }
+.app-access-qr img { width:190px; height:190px; display:block; }
+.app-access-qr strong { color:#102418; font-size:14px; }
+.app-access-qr span { color:#466050; font-size:11px; }
+@media (max-width: 767px) {
+ .app-access { width:calc(100% - 32px); margin-bottom:64px; grid-template-columns:1fr; border-radius:18px; }
+ .app-access .cine-btn-explore { width:100%; box-sizing:border-box; }
+}
