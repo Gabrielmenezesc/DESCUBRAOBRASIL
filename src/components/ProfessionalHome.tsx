@@ -380,7 +380,7 @@ export default function ProfessionalHome() {
               >
                 <div className="cine-hero-stat">
                   <strong>27</strong>
-                  <span>Estados + DF</span>
+                  <span>Estados e DF</span>
                 </div>
                 <div className="cine-hero-stat">
                   <strong>5</strong>
