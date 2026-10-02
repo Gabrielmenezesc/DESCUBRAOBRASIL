@@ -10,7 +10,7 @@ import FooterSection from './FooterSection';
 import MayaChat from './MayaChat';
 import { assetPath } from '@/lib/assetPath';
 
-const Globe = dynamic(() => import('./Globe'), { ssr: false });
+const BrazilMapHero = dynamic(() => import('./BrazilMapHero'), { ssr: false });
 
 /* ── Dados ─────────────────────────────────────────────────────────────────── */
 
@@ -393,35 +393,9 @@ export default function ProfessionalHome() {
               </motion.div>
             </div>
 
-            {/* Globe 3D */}
-            <div className="cine-hero-globe" aria-label="Globo 3D interativo do Brasil">
-              <Globe />
-              <div style={{
-                position: 'absolute',
-                top: 18,
-                left: 18,
-                fontSize: 9,
-                letterSpacing: '0.2em',
-                color: 'rgba(255,255,255,0.4)',
-                display: 'flex',
-                alignItems: 'center',
-                gap: 8,
-              }}>
-                <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#0e7c3a', display: 'block' }} />
-                EXPLORAÇÃO 3D
-              </div>
-              <div style={{
-                position: 'absolute',
-                bottom: 18,
-                left: 0,
-                right: 0,
-                textAlign: 'center',
-                fontSize: 10,
-                color: 'rgba(255,255,255,0.35)',
-                letterSpacing: '0.12em',
-              }}>
-                Arraste para girar · Clique para explorar
-              </div>
+            {/* Mapa real do Brasil: estados, capitais e busca oficial de municípios */}
+            <div className="cine-hero-map" aria-label="Mapa interativo do Brasil">
+              <BrazilMapHero />
             </div>
           </motion.div>
 
