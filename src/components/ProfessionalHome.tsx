@@ -8,6 +8,7 @@ import dynamic from 'next/dynamic';
 import Navbar from './Navbar';
 import FooterSection from './FooterSection';
 import MayaChat from './MayaChat';
+import AppAccess from './AppAccess';
 import { assetPath } from '@/lib/assetPath';
 
 const BrazilMapHero = dynamic(() => import('./BrazilMapHero'), { ssr: false });
@@ -20,7 +21,7 @@ const destinations = [
     uf: 'rj',
     region: 'SUDESTE',
     tagline: 'Entre a cidade e o mar',
-    image: 'photo-1483729558449-99ef09a8c325',
+    image: null,
     color: '#1a3a6e',
   },
   {
@@ -28,7 +29,7 @@ const destinations = [
     uf: 'ba',
     region: 'NORDESTE',
     tagline: 'Histórias em cada encontro',
-    image: 'photo-1549918864-48ac978761a4',
+    image: null,
     color: '#3a1a0e',
   },
   {
@@ -36,7 +37,7 @@ const destinations = [
     uf: 'am',
     region: 'NORTE',
     tagline: 'Outro tempo. Outra natureza.',
-    image: 'photo-1516026672322-bc52d61a55d5',
+    image: null,
     color: '#0d2e18',
   },
   {
@@ -44,7 +45,7 @@ const destinations = [
     uf: 'pe',
     region: 'NORDESTE',
     tagline: 'O paraíso no meio do oceano',
-    image: 'photo-1559825481-12a05cc00344',
+    image: null,
     color: '#0a2535',
   },
   {
@@ -52,7 +53,7 @@ const destinations = [
     uf: 'pr',
     region: 'SUL',
     tagline: 'A maior força da natureza',
-    image: 'photo-1610741083757-34e0a0e0f4ec',
+    image: null,
     color: '#0e2a14',
   },
   {
@@ -60,22 +61,22 @@ const destinations = [
     uf: 'df',
     region: 'CENTRO-OESTE',
     tagline: 'Arquitetura que define o futuro',
-    image: 'photo-1598971457999-ca4ef48a9a71',
+    image: null,
     color: '#1a2232',
   },
 ];
 
 const categories = [
-  { icon: Umbrella, label: 'Praias', img: 'photo-1559825481-12a05cc00344', href: '/aventura#praias' },
-  { icon: Leaf, label: 'Natureza', img: 'photo-1516026672322-bc52d61a55d5', href: '/aventura#natureza' },
-  { icon: Mountain, label: 'Aventura', img: 'photo-1610741083757-34e0a0e0f4ec', href: '/aventura' },
-  { icon: UtensilsCrossed, label: 'Gastronomia', img: 'photo-1414235077428-338989a2e8c0', href: '/aventura#gastronomia' },
-  { icon: Landmark, label: 'Cultura', img: 'photo-1598971457999-ca4ef48a9a71', href: '/aventura#cultura' },
-  { icon: Hotel, label: 'Hotéis', img: 'photo-1566073771259-6a8506099945', href: '/ofertas' },
-  { icon: CalendarDays, label: 'Eventos', img: 'photo-1549918864-48ac978761a4', href: '/aventura#eventos' },
-  { icon: BadgeDollarSign, label: 'Grátis', img: 'photo-1483729558449-99ef09a8c325', href: '/aventura#gratis' },
-  { icon: UsersRound, label: 'Família', img: 'photo-1530521954074-e64f6810b32d', href: '/aventura#familia' },
-  { icon: Heart, label: 'Romance', img: 'photo-1474314170901-f351b68f544f', href: '/aventura#romance' },
+  { icon: Umbrella, label: 'Praias', img: null, href: '/aventura#praias' },
+  { icon: Leaf, label: 'Natureza', img: null, href: '/aventura#natureza' },
+  { icon: Mountain, label: 'Aventura', img: null, href: '/aventura' },
+  { icon: UtensilsCrossed, label: 'Gastronomia', img: null, href: '/aventura#gastronomia' },
+  { icon: Landmark, label: 'Cultura', img: null, href: '/aventura#cultura' },
+  { icon: Hotel, label: 'Hotéis', img: null, href: '/ofertas' },
+  { icon: CalendarDays, label: 'Eventos', img: null, href: '/aventura#eventos' },
+  { icon: BadgeDollarSign, label: 'Grátis', img: null, href: '/aventura#gratis' },
+  { icon: UsersRound, label: 'Família', img: null, href: '/aventura#familia' },
+  { icon: Heart, label: 'Romance', img: null, href: '/aventura#romance' },
 ];
 
 const whatWeDo = [
@@ -90,14 +91,14 @@ const whatWeDo = [
 ];
 
 const stories = [
-  { label: 'Rio', img: 'photo-1483729558449-99ef09a8c325', href: '/turismo/rj' },
-  { label: 'Salvador', img: 'photo-1549918864-48ac978761a4', href: '/turismo/ba' },
-  { label: 'Amazônia', img: 'photo-1516026672322-bc52d61a55d5', href: '/turismo/am' },
-  { label: 'Noronha', img: 'photo-1559825481-12a05cc00344', href: '/turismo/pe' },
-  { label: 'Iguaçu', img: 'photo-1610741083757-34e0a0e0f4ec', href: '/turismo/pr' },
-  { label: 'Brasília', img: 'photo-1598971457999-ca4ef48a9a71', href: '/turismo/df' },
-  { label: 'Bonito', img: 'photo-1503756234508-e50e498b26c8', href: '/turismo/ms' },
-  { label: 'Ceará', img: 'photo-1595965340046-bd3f8cd01024', href: '/turismo/ce' },
+  { label: 'Rio', img: null, href: '/turismo/rj' },
+  { label: 'Salvador', img: null, href: '/turismo/ba' },
+  { label: 'Amazônia', img: null, href: '/turismo/am' },
+  { label: 'Noronha', img: null, href: '/turismo/pe' },
+  { label: 'Iguaçu', img: null, href: '/turismo/pr' },
+  { label: 'Brasília', img: null, href: '/turismo/df' },
+  { label: 'Bonito', img: null, href: '/turismo/ms' },
+  { label: 'Ceará', img: null, href: '/turismo/ce' },
 ];
 
 const ribbonItems = [
@@ -109,8 +110,8 @@ const ribbonItems = [
 
 const UNSPLASH = 'https://images.unsplash.com';
 
-function unsplash(id: string, w = 900) {
-  return `${UNSPLASH}/${id}?auto=format&fit=crop&w=${w}&q=80`;
+function officialVisual(label: string) {
+  return <div className="cine-official-visual" aria-hidden="true"><MapPin size={28} /><span>{label}</span><small>Imagem oficial em validação</small></div>;
 }
 
 /* ── Componente Principal ───────────────────────────────────────────────────── */
@@ -440,15 +441,7 @@ export default function ProfessionalHome() {
                   aria-label={`Explorar ${label}`}
                 >
                   <div className="cine-story-ring">
-                    <div className="cine-story-inner">
-                      <img
-                        src={unsplash(img, 200)}
-                        alt={label}
-                        loading="lazy"
-                        width={82}
-                        height={82}
-                      />
-                    </div>
+                    <div className="cine-story-inner cine-story-inner--official"><MapPin size={24} aria-hidden="true" /></div>
                   </div>
                   <span className="cine-story-label">{label}</span>
                 </Link>
@@ -542,11 +535,7 @@ export default function ProfessionalHome() {
                   className="cine-destination"
                   aria-label={`Explorar ${d.name}`}
                 >
-                  <img
-                    src={unsplash(d.image)}
-                    alt={`Paisagem de ${d.name}`}
-                    loading="lazy"
-                  />
+                  {d.image ? <img src={d.image} alt={`Imagem oficial de ${d.name}`} loading="lazy" /> : officialVisual(d.name)}
                   <div className="cine-destination-overlay" aria-hidden="true" />
                   <span className="cine-destination-num" aria-hidden="true">
                     0{i + 1}
@@ -570,11 +559,7 @@ export default function ProfessionalHome() {
                   style={{ height: 300 }}
                   aria-label={`Explorar ${d.name}`}
                 >
-                  <img
-                    src={unsplash(d.image)}
-                    alt={`Paisagem de ${d.name}`}
-                    loading="lazy"
-                  />
+                  {d.image ? <img src={d.image} alt={`Imagem oficial de ${d.name}`} loading="lazy" /> : officialVisual(d.name)}
                   <div className="cine-destination-overlay" aria-hidden="true" />
                   <span className="cine-destination-num" aria-hidden="true">
                     0{i + 4}
@@ -614,12 +599,7 @@ export default function ProfessionalHome() {
                   className="cine-category"
                   aria-label={label}
                 >
-                  <img
-                    src={unsplash(img, 400)}
-                    alt=""
-                    loading="lazy"
-                    aria-hidden="true"
-                  />
+                  {img ? <img src={img} alt="" loading="lazy" aria-hidden="true" /> : officialVisual(label)}
                   <div className="cine-category-overlay" aria-hidden="true" />
                   <div className="cine-category-info">
                     <span className="cine-category-icon" aria-hidden="true"><Icon size={22} /></span>
@@ -923,6 +903,7 @@ export default function ProfessionalHome() {
           </div>
         </section>
 
+        <AppAccess />
       </main>
 
       <FooterSection />
