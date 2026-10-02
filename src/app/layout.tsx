@@ -3,39 +3,38 @@ import "./globals.css";
 import "./professional.css";
 import "../../public/editorial.css";
 import { PWAProvider } from "@/context/PWAProvider";
-
 import { ThemeProvider } from "@/context/ThemeProvider";
+import CookiePreferences from "@/components/CookiePreferences";
 
 export const metadata: Metadata = {
- title: "Descubra o Brasil | Turismo & Tecnologia 3D",
- description: "Descubra o Brasil como você nunca viu. Tecnologia, turismo e divulgação em um só ecossistema inovador.",
+  title: "Descubra o Brasil | Turismo & Tecnologia 3D",
+  description: "Descubra o Brasil como você nunca viu. Tecnologia, turismo e divulgação em um só ecossistema inovador.",
 };
 
 export default function RootLayout({
- children,
+  children,
 }: Readonly<{
- children: React.ReactNode;
+  children: React.ReactNode;
 }>) {
- return (
- <html lang="pt-BR" suppressHydrationWarning>
- <head>
- <link rel="manifest" href={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/manifest.json`} />
- <link rel="apple-touch-icon" href={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/icon-192.png`} />
- <meta name="apple-mobile-web-app-capable" content="yes" />
- <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
- <meta name="apple-mobile-web-app-title" content="Descubra BR" />
- <meta name="theme-color" content="#10b981" />
- <meta name="mobile-web-app-capable" content="yes" />
- </head>
- <body className="min-h-screen antialiased bg-background text-foreground flex flex-col">
- <ThemeProvider>
- <PWAProvider>
- {children}
-
- </PWAProvider>
- </ThemeProvider>
- </body>
- </html>
- );
+  return (
+    <html lang="pt-BR" suppressHydrationWarning>
+      <head>
+        <link rel="manifest" href={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/manifest.json`} />
+        <link rel="apple-touch-icon" href={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/icon-192.png`} />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="apple-mobile-web-app-title" content="Descubra BR" />
+        <meta name="theme-color" content="#10b981" />
+        <meta name="mobile-web-app-capable" content="yes" />
+      </head>
+      <body className="min-h-screen antialiased bg-background text-foreground flex flex-col">
+        <ThemeProvider>
+          <PWAProvider>
+            {children}
+            <CookiePreferences />
+          </PWAProvider>
+        </ThemeProvider>
+      </body>
+    </html>
+  );
 }
-
