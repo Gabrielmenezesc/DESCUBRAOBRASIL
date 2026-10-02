@@ -907,9 +907,6 @@ export default function ProfessionalHome() {
 
       <FooterSection />
 
-      {/* ── Maya Chat Flutuante ── */}
-      <MayaChat />
-
       {/* ── WhatsApp Flutuante ── */}
       <a
         href="https://wa.me/5561985630128?text=Ol%C3%A1%2C%20vim%20pelo%20Descubra%20o%20Brasil"
