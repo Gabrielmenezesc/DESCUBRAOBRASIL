@@ -1,11 +1,15 @@
 import {escapeHTML as escape, safeURL} from './core.mjs';
 
+// Contrato da Maya para respostas que podem controlar o Guia Brasil 3D.
+const MAYA_MAP_SYSTEM=`Você é Maya, guia turística virtual do Descubra o Brasil. Responda em no máximo 3 frases curtas, em pt-BR, guiando o usuário para o mapa. Quando o pedido envolver lugar, cidade, clima ou filtro, responda somente JSON válido com voz_texto, avatar_animacao (idle|pointing|happy|thinking|greeting), mapa_comando (acao, coordenadas, zoom_level, aplicar_filtro), ui_painel_clima e ui_card_sugestao. Nunca invente preço, clima ou coordenada; quando faltar dado, mantenha o mapa.`;
+function parseMapAnswer(answer){const text=String(answer||'');const start=text.indexOf('{');const end=text.indexOf('\n\nNão consegui',start);const candidate=start<0?'':text.slice(start,end<0?text.lastIndexOf('}')+1:end);try{const v=JSON.parse(candidate);if(v&&typeof v.voz_texto==='string')return v;}catch{}return null;}
+
 export async function requestMaya(config, question, history, context, fetcher=fetch) {
   if (!config.mayaProxyUrl || !config.supabaseKey) throw new Error('A conexão da Maya ainda não está configurada.');
   const response = await fetcher(config.mayaProxyUrl, {
     method:'POST', signal:AbortSignal.timeout(55000),
     headers:{'content-type':'application/json',apikey:config.supabaseKey,authorization:`Bearer ${config.supabaseKey}`},
-    body:JSON.stringify({question,history:history.slice(-8),context,search:true}),
+    body:JSON.stringify({question:context?.page==='mapa'?'Responda EXCLUSIVAMENTE JSON válido, sem markdown, com voz_texto, avatar_animacao, mapa_comando (acao, coordenadas, zoom_level, aplicar_filtro), ui_painel_clima e ui_card_sugestao. Não acrescente texto depois do JSON. Pedido do usuário: '+question:question,history:history.slice(-8),context,search:true,systemInstruction:MAYA_MAP_SYSTEM,mapMode:true}),
   });
   const data=await response.json();
   if (!response.ok || typeof data.answer!=='string' || !data.answer.trim()) {
@@ -45,10 +49,13 @@ export function mountMaya(root,{config,getContext}) {
     try{
       const data=await requestMaya(config,question,previous,getContext());
       if(!root.isConnected)return;
-      history.push({role:'user',text:question},{role:'model',text:data.answer});
+      const mapAnswer=parseMapAnswer(data.answer);
+      const spoken=mapAnswer?.voz_texto||data.answer;
+      if(mapAnswer)window.dispatchEvent(new CustomEvent('maya-map-command',{detail:mapAnswer}));
+      history.push({role:'user',text:question},{role:'model',text:spoken});
       const sources=Array.isArray(data.sources)?data.sources.filter(s=>safeURL(s.url)).slice(0,8):[];
-      messages.insertAdjacentHTML('beforeend',`<div class="maya-message"><span class="eyebrow">Maya</span><div>${renderMayaText(data.answer)}</div><button type="button" class="maya-speak">Ouvir resposta</button>${sources.length?`<div class="maya-sources"><strong>Fontes da pesquisa</strong>${sources.map(s=>`<a href="${escape(safeURL(s.url))}" target="_blank" rel="noopener noreferrer">${escape(s.title||'Consultar fonte')}</a>`).join('')}</div>`:''}</div>`);
-      const speakButton=messages.lastElementChild.querySelector('.maya-speak');speakButton.onclick=()=>speak(data.answer,speakButton);if(root.querySelector('#maya-auto-voice').checked)speak(data.answer,speakButton);
+      messages.insertAdjacentHTML('beforeend',`<div class="maya-message"><span class="eyebrow">Maya</span><div>${renderMayaText(spoken)}</div><button type="button" class="maya-speak">Ouvir resposta</button>${sources.length?`<div class="maya-sources"><strong>Fontes da pesquisa</strong>${sources.map(s=>`<a href="${escape(safeURL(s.url))}" target="_blank" rel="noopener noreferrer">${escape(s.title||'Consultar fonte')}</a>`).join('')}</div>`:''}</div>`);
+      const speakButton=messages.lastElementChild.querySelector('.maya-speak');speakButton.onclick=()=>speak(spoken,speakButton);if(root.querySelector('#maya-auto-voice').checked)speak(spoken,speakButton);
       if(data.searchSuggestions){const frame=document.createElement('iframe');frame.title='Sugestões da pesquisa Google';frame.setAttribute('sandbox','allow-popups allow-popups-to-escape-sandbox');frame.srcdoc=data.searchSuggestions;frame.className='maya-search-suggestions';messages.append(frame);}
       status.textContent=sources.length?'Resposta com pesquisa online. Consulte as fontes acima.':'Resposta gerada por IA, sem fontes online nesta consulta.';
       input.value='';
