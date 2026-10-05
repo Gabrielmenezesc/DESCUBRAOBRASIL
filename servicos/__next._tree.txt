@@ -1,7 +1,7 @@
 :HL["/_next/static/chunks/0trvyi_t.8vxg.css","style"]
-:HL["/_next/static/chunks/06wh6zpre1z.3.css","style"]
+:HL["/_next/static/chunks/0_d5pmrfhbc-8.css","style"]
 :HL["https://cdn.simpleicons.org/whatsapp/FFFFFF","image"]
 :HL["https://cdn.simpleicons.org/instagram/FFFFFF","image"]
 :HL["https://cdn.simpleicons.org/youtube/FFFFFF","image"]
 :HL["https://cdn.simpleicons.org/tiktok/FFFFFF","image"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"servicos","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"k-NGqfeKgn1vc20IPr68G"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"servicos","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"0YyGVwyX-ZQ_6Xm2qmHA9"}
