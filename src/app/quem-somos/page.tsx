@@ -3,7 +3,7 @@ import FooterSection from '@/components/FooterSection';
 import MayaChat from '@/components/MayaChat';
 import Link from 'next/link';
 import { assetPath } from '@/lib/assetPath';
-import { ArrowUpRight, Compass, Sparkles, MapPin, ShieldCheck, Globe, Target, Eye, Cpu, HeartHandshake, Map, Smartphone, Gamepad2, Briefcase } from 'lucide-react';
+import { ArrowUpRight, Compass, Sparkles, MapPin, ShieldCheck, Globe } from 'lucide-react';
 
 export const metadata = {
   title: 'Quem Somos | Descubra o Brasil',
@@ -103,27 +103,19 @@ export default function QuemSomos() {
 
               <div className="cine-about-subsections" style={{ marginTop: 0 }}>
                 <div className="cine-about-sub">
-                  <h4 style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                    <Target size={18} style={{ color: 'var(--accent)' }} /> Nossa Missão
-                  </h4>
+                  <h4>🎯 Nossa Missão</h4>
                   <p>Promover a descoberta turística inclusiva, sustentável e acessível em todo o território nacional.</p>
                 </div>
                 <div className="cine-about-sub">
-                  <h4 style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                    <Eye size={18} style={{ color: 'var(--accent)' }} /> Nossa Visão
-                  </h4>
+                  <h4>👁️ Nossa Visão</h4>
                   <p>Tornar-se a referência nacional em inovação tecnológica voltada para o turismo brasileiro.</p>
                 </div>
                 <div className="cine-about-sub">
-                  <h4 style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                    <Cpu size={18} style={{ color: 'var(--accent)' }} /> Inteligência Artificial
-                  </h4>
+                  <h4>🤖 Inteligência Artificial</h4>
                   <p>Integração com a Maya IA para roteiros adaptados ao perfil, orçamento e preferências de cada viajante.</p>
                 </div>
                 <div className="cine-about-sub">
-                  <h4 style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                    <HeartHandshake size={18} style={{ color: 'var(--accent)' }} /> Para Empresas
-                  </h4>
+                  <h4>💚 Para Empresas</h4>
                   <p>Canal direto para promover pousadas, hotéis, restaurantes e atrações parceiras sem complicação.</p>
                 </div>
               </div>
@@ -138,17 +130,15 @@ export default function QuemSomos() {
 
               <div className="cine-what-grid">
                 {[
-                  { icon: MapPin, title: 'Guia de Destinos', desc: 'Informações detalhadas sobre estados, praias, parques, cultura e patrimônio histórico.' },
-                  { icon: Sparkles, title: 'Maya IA Assistente', desc: 'Respostas em tempo real para dúvidas de viagem, roteiros por dias e dicas locais.' },
-                  { icon: Globe, title: 'Exploração 3D', desc: 'Visualização do mapa brasileiro em 3D com estados e atrações interativas.' },
-                  { icon: Compass, title: 'Aplicativo PWA', desc: 'Acesso completo no celular, instalável sem necessidade de loja de aplicativos.' },
-                  { icon: ShieldCheck, title: 'Passaporte & Games', desc: 'Desafios recreativos diários para testar e expandir seus conhecimentos sobre o Brasil.' },
-                  { icon: Briefcase, title: 'Portal de Ofertas', desc: 'Espaço para empresas apresentarem suas ofertas e pacotes turísticos com transparência.' },
-                ].map(({ icon: Icon, title, desc }) => (
+                  { icon: '🗺️', title: 'Guia de Destinos', desc: 'Informações detalhadas sobre estados, praias, parques, cultura e patrimônio histórico.' },
+                  { icon: '🤖', title: 'Maya IA Assistente', desc: 'Respostas em tempo real para dúvidas de viagem, roteiros por dias e dicas locais.' },
+                  { icon: '🌐', title: 'Exploração 3D', desc: 'Visualização do mapa brasileiro em 3D com estados e atrações interativas.' },
+                  { icon: '📱', title: 'Aplicativo PWA', desc: 'Acesso completo no celular, instalável sem necessidade de loja de aplicativos.' },
+                  { icon: '🎮', title: 'Passaporte & Jogos', desc: 'Desafios recreativos diários para testar e expandir seus conhecimentos sobre o Brasil.' },
+                  { icon: '💼', title: 'Portal de Ofertas', desc: 'Espaço para empresas apresentarem suas ofertas e pacotes turísticos com transparência.' },
+                ].map(({ icon, title, desc }) => (
                   <div key={title} className="cine-what-card">
-                    <span className="cine-what-icon" style={{ color: 'var(--accent)' }}>
-                      <Icon size={26} />
-                    </span>
+                    <span className="cine-what-icon">{icon}</span>
                     <h3 className="cine-what-title">{title}</h3>
                     <p className="cine-what-desc">{desc}</p>
                   </div>

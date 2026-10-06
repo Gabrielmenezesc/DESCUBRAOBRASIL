@@ -1,45 +1,37 @@
 "use client";
 import { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
-import { Sun, Moon, X, Sparkles, MapPin, Compass, Users, Megaphone, ChevronDown, Info, Building2, ShieldCheck, Home, Map, Waves, Award } from 'lucide-react';
+import { Sun, Moon, X, Sparkles, MapPin, Compass, Users, Megaphone, Newspaper, ChevronDown } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { assetPath } from '@/lib/assetPath';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const mainNav = [
+const mainLinks = [
   { href: '/', label: 'Início' },
   { href: '/turismo', label: 'Destinos' },
   { href: '/aventura', label: 'Experiências' },
-  { href: '/turismo', label: 'Mapa 3D' },
-  {
-    label: 'Saiba Mais',
-    submenu: [
-      { href: '/quem-somos', label: 'Quem Somos' },
-      { href: '/anuncie', label: 'Anuncie Aqui' },
-      { href: '/empresas', label: 'Para Empresas' },
-      { href: '/termos', label: 'Termos de Uso' },
-      { href: '/privacidade', label: 'Privacidade' },
-    ]
-  },
-  { href: '/anuncie', label: 'Parceiros' },
+  { href: '/turismo', label: 'Mapa 3D', suffix: '#mapa' },
+  { href: '/quem-somos', label: 'Quem Somos' },
+  { href: '/anuncie', label: 'Patrocinadores' },
 ];
 
-const mobileNav = [
-  { href: '/', label: 'Início', icon: Home },
-  { href: '/turismo', label: 'Destinos & Cidades', icon: Map },
-  { href: '/aventura', label: 'Experiências', icon: Waves },
-  { href: '/quem-somos', label: 'Quem Somos', icon: Info },
-  { href: '/anuncie', label: 'Parceiros & Anuncie', icon: Megaphone },
-  { href: '/empresas', label: 'Para Empresas', icon: Building2 },
-  { href: '/termos', label: 'Termos de Uso', icon: ShieldCheck },
+const mobileLinks = [
+  { href: '/', label: 'Início', icon: '🏠' },
+  { href: '/turismo', label: 'Destinos', icon: '🗺️' },
+  { href: '/aventura', label: 'Experiências', icon: '🌊' },
+  { href: '/quem-somos', label: 'Quem Somos', icon: '💚' },
+  { href: '/anuncie', label: 'Patrocinadores', icon: '⭐' },
+  { href: '/empresas', label: 'Para Empresas', icon: '🏢' },
+  { href: '/termos', label: 'Termos de Uso', icon: '📋' },
+  { href: '/privacidade', label: 'Privacidade', icon: '🔒' },
 ];
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [saibaMaisOpen, setSaibaMaisOpen] = useState(false);
   const { resolvedTheme, setTheme } = useTheme();
+  const navRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -48,12 +40,14 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  // Fechar menu ao apertar Escape
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') { setOpen(false); setSaibaMaisOpen(false); } };
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setOpen(false); };
     document.addEventListener('keydown', onKey);
     return () => document.removeEventListener('keydown', onKey);
   }, []);
 
+  // Bloquear scroll quando mobile menu aberto
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
@@ -62,6 +56,7 @@ export default function Navbar() {
   return (
     <>
       <nav
+        ref={navRef}
         className={`cine-nav ${scrolled ? 'cine-nav--scrolled' : 'cine-nav--top'}`}
         aria-label="Navegação principal"
       >
@@ -77,75 +72,21 @@ export default function Navbar() {
 
           {/* Links desktop */}
           <div className="cine-nav-links" role="list">
-            {mainNav.map((item) => (
-              item.submenu ? (
-                <div
-                  key={item.label}
-                  style={{ position: 'relative' }}
-                  onMouseEnter={() => setSaibaMaisOpen(true)}
-                  onMouseLeave={() => setSaibaMaisOpen(false)}
-                >
-                  <button
-                    className="cine-nav-link"
-                    style={{ display: 'flex', alignItems: 'center', gap: 4, background: 'none', border: 'none', cursor: 'pointer' }}
-                    onClick={() => setSaibaMaisOpen(!saibaMaisOpen)}
-                    aria-expanded={saibaMaisOpen}
-                  >
-                    {item.label}
-                    <ChevronDown size={14} style={{ transform: saibaMaisOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s' }} />
-                  </button>
-
-                  <AnimatePresence>
-                    {saibaMaisOpen && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 10 }}
-                        transition={{ duration: 0.2 }}
-                        style={{
-                          position: 'absolute',
-                          top: '100%',
-                          left: 0,
-                          minWidth: 180,
-                          background: 'rgba(5, 20, 8, 0.95)',
-                          backdropFilter: 'blur(20px)',
-                          border: '1px solid rgba(255, 255, 255, 0.12)',
-                          borderRadius: 14,
-                          padding: '8px',
-                          boxShadow: '0 12px 30px rgba(0,0,0,0.3)',
-                          zIndex: 10,
-                        }}
-                      >
-                        {item.submenu.map((sub) => (
-                          <Link
-                            key={sub.label}
-                            href={sub.href}
-                            className="cine-nav-link"
-                            style={{ display: 'block', width: '100%', textAlign: 'left', padding: '10px 14px' }}
-                            onClick={() => setSaibaMaisOpen(false)}
-                          >
-                            {sub.label}
-                          </Link>
-                        ))}
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              ) : (
-                <Link
-                  href={item.href}
-                  key={item.label}
-                  className="cine-nav-link"
-                  role="listitem"
-                >
-                  {item.label}
-                </Link>
-              )
+            {mainLinks.map(({ href, label }) => (
+              <Link
+                href={href}
+                key={label}
+                className="cine-nav-link"
+                role="listitem"
+              >
+                {label}
+              </Link>
             ))}
           </div>
 
           {/* Ações */}
           <div className="cine-nav-actions">
+            {/* Maya */}
             <a
               className="cine-maya-btn"
               href={assetPath('/app/index.html#noticias')}
@@ -155,6 +96,7 @@ export default function Navbar() {
               <span>Maya IA</span>
             </a>
 
+            {/* Tema */}
             {mounted && (
               <button
                 onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
@@ -165,10 +107,12 @@ export default function Navbar() {
               </button>
             )}
 
+            {/* Abrir App */}
             <a className="cine-app-btn" href={assetPath('/app/index.html')}>
               Abrir App
             </a>
 
+            {/* Menu mobile */}
             <button
               className="cine-menu-toggle"
               aria-label={open ? 'Fechar menu' : 'Abrir menu'}
@@ -198,6 +142,7 @@ export default function Navbar() {
             transition={{ duration: 0.3 }}
             className="cine-mobile-overlay"
           >
+            {/* Fundo com vídeo */}
             <video
               className="cine-mobile-bg-video"
               autoPlay muted loop playsInline
@@ -207,7 +152,9 @@ export default function Navbar() {
             </video>
             <div className="cine-mobile-overlay-shade" aria-hidden="true" />
 
+            {/* Conteúdo */}
             <div className="cine-mobile-content">
+              {/* Header do menu */}
               <div className="cine-mobile-header">
                 <Link href="/" className="cine-brand cine-brand--white" onClick={() => setOpen(false)}>
                   <span className="cine-brand-logo" aria-hidden="true">◆</span>
@@ -224,33 +171,33 @@ export default function Navbar() {
                 </button>
               </div>
 
+              {/* Links */}
               <nav className="cine-mobile-links" aria-label="Menu móvel">
-                {mobileNav.map(({ href, label, icon: Icon }, i) => (
+                {mobileLinks.map(({ href, label, icon }, i) => (
                   <motion.div
                     key={label}
                     initial={{ opacity: 0, x: -30 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.05, duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                    transition={{ delay: i * 0.06, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                   >
                     <Link
                       href={href}
                       className="cine-mobile-link"
                       onClick={() => setOpen(false)}
                     >
-                      <span className="cine-mobile-link-icon" aria-hidden="true">
-                        <Icon size={20} />
-                      </span>
+                      <span className="cine-mobile-link-icon" aria-hidden="true">{icon}</span>
                       {label}
                     </Link>
                   </motion.div>
                 ))}
               </nav>
 
+              {/* Ações rápidas */}
               <motion.div
                 className="cine-mobile-quick"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.4 }}
+                transition={{ delay: 0.5, duration: 0.5 }}
               >
                 <a
                   href={assetPath('/app/index.html#noticias')}
@@ -269,6 +216,7 @@ export default function Navbar() {
                 </a>
               </motion.div>
 
+              {/* Rodapé */}
               <p className="cine-mobile-footer-text">
                 Um país. Infinitas possibilidades.
               </p>
