@@ -1,35 +1,17 @@
 import {escapeHTML as escape, safeURL} from './core.mjs';
 
 export async function requestMaya(config, question, history, context, fetcher=fetch) {
-  // Primeiro tenta a função avançada do Supabase. Se ela estiver indisponível
-  // ou com CORS pendente, usa o serviço já publicado, sem expor chaves no app.
-  if (config.mayaProxyUrl && config.supabaseKey) {
-    try {
-      const response = await fetcher(config.mayaProxyUrl, {
-        method:'POST', signal:AbortSignal.timeout(55000),
-        headers:{'content-type':'application/json',apikey:config.supabaseKey,authorization:`Bearer ${config.supabaseKey}`},
-        body:JSON.stringify({question,history:history.slice(-8),context,search:true}),
-      });
-      const data=await response.json();
-      if (response.ok && typeof data.answer==='string' && data.answer.trim()) return data;
-      if (response.status===429) throw new Error('A Maya recebeu muitas perguntas. Aguarde um minuto e tente novamente.');
-    } catch (error) {
-      if (error?.message?.includes('muitas perguntas')) throw error;
-    }
-  }
-  const endpoint=config.mayaChatApiUrl||'https://descubraobrasil-api.onrender.com/api/chat';
-  const response=await fetcher(endpoint,{
-    method:'POST',signal:AbortSignal.timeout(55000),
-    headers:{'content-type':'application/json'},
-    body:JSON.stringify({pergunta:question}),
+  if (!config.mayaProxyUrl || !config.supabaseKey) throw new Error('A conexão da Maya ainda não está configurada.');
+  const response = await fetcher(config.mayaProxyUrl, {
+    method:'POST', signal:AbortSignal.timeout(55000),
+    headers:{'content-type':'application/json',apikey:config.supabaseKey,authorization:`Bearer ${config.supabaseKey}`},
+    body:JSON.stringify({question,history:history.slice(-8),context,search:true}),
   });
   const data=await response.json();
-  const answer=typeof data.answer==='string'?data.answer:data.resposta;
-  if(!response.ok||typeof answer!=='string'||!answer.trim()){
+  if (!response.ok || typeof data.answer!=='string' || !data.answer.trim()) {
     throw new Error(response.status===429?'A Maya recebeu muitas perguntas. Aguarde um minuto e tente novamente.':'A Maya está temporariamente indisponível. Tente novamente em alguns instantes.');
   }
-  const rawSources=Array.isArray(data.sources)?data.sources:(Array.isArray(data.fontes)?data.fontes:[]);
-  return {answer:answer.trim(),sources:rawSources.map(source=>typeof source==='string'?{url:source,title:'Consultar fonte'}:source)};
+  return data;
 }
 
 export async function requestMayaSpeech(config, text, fetcher=fetch) {
