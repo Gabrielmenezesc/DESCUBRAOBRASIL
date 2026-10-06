@@ -5,17 +5,20 @@ const MAYA_MAP_SYSTEM=`Você é Maya, guia turística virtual do Descubra o Bras
 function parseMapAnswer(answer){const text=String(answer||'');const start=text.indexOf('{');const end=text.indexOf('\n\nNão consegui',start);const candidate=start<0?'':text.slice(start,end<0?text.lastIndexOf('}')+1:end);try{const v=JSON.parse(candidate);if(v&&typeof v.voz_texto==='string')return v;}catch{}return null;}
 
 export async function requestMaya(config, question, history, context, fetcher=fetch) {
-  if (!config.mayaProxyUrl || !config.supabaseKey) throw new Error('A conexão da Maya ainda não está configurada.');
-  const response = await fetcher(config.mayaProxyUrl, {
+  // A chave do provedor fica no servidor: o app chama somente a API pública segura.
+  const endpoint=config.mayaChatApiUrl||'https://descubraobrasil-api.onrender.com/api/chat';
+  const response = await fetcher(endpoint, {
     method:'POST', signal:AbortSignal.timeout(55000),
-    headers:{'content-type':'application/json',apikey:config.supabaseKey,authorization:`Bearer ${config.supabaseKey}`},
-    body:JSON.stringify({question:context?.page==='mapa'?'Responda EXCLUSIVAMENTE JSON válido, sem markdown, com voz_texto, avatar_animacao, mapa_comando (acao, coordenadas, zoom_level, aplicar_filtro), ui_painel_clima e ui_card_sugestao. Não acrescente texto depois do JSON. Pedido do usuário: '+question:question,history:history.slice(-8),context,search:true,systemInstruction:MAYA_MAP_SYSTEM,mapMode:true}),
+    headers:{'content-type':'application/json'},
+    body:JSON.stringify({pergunta:question}),
   });
   const data=await response.json();
-  if (!response.ok || typeof data.answer!=='string' || !data.answer.trim()) {
+  const answer=typeof data.answer==='string'?data.answer:data.resposta;
+  if (!response.ok || typeof answer!=='string' || !answer.trim()) {
     throw new Error(response.status===429?'A Maya recebeu muitas perguntas. Aguarde um minuto e tente novamente.':'A Maya está temporariamente indisponível. Tente novamente em alguns instantes.');
   }
-  return data;
+  const rawSources=Array.isArray(data.sources)?data.sources:(Array.isArray(data.fontes)?data.fontes:[]);
+  return {answer:answer.trim(),sources:rawSources.map(source=>typeof source==='string'?{url:source,title:'Consultar fonte'}:source)};
 }
 
 export async function requestMayaSpeech(config, text, fetcher=fetch) {
