@@ -1,3 +1,3 @@
 :HL["/_next/static/chunks/0trvyi_t.8vxg.css","style"]
 :HL["/_next/static/chunks/0_d5pmrfhbc-8.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"rio-de-janeiro","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"kEOjJqVUp8N1lr_LklMhn"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"rio-de-janeiro","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"TWPj4IMYvoPxfSK8EJsBk"}
