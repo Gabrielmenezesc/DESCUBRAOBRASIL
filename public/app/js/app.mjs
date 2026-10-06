@@ -3,9 +3,22 @@ import {normalize,escapeHTML as e,safeURL,dayKey,shuffle,dailyQuiz,freshProgress
 import { mountMaya } from './maya.mjs?v=17';
 
 const $=id=>document.getElementById(id), content=$('content');
-const paths={explorar:'<circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/>',jogos:'<path d="M8 6h8l4 5 1 7-3 1-4-4h-4l-4 4-3-1 1-7Z"/><path d="M6 10v4m-2-2h4m8-1h.1m2 2h.1"/>',ofertas:'<path d="M3 3h8l10 10-8 8L3 11Z"/><circle cx="7" cy="7" r="1"/>',noticias:'<path d="M4 3h16v18H4Z M8 7h8M8 11h8M8 15h8"/>',empresas:'<path d="M4 21V7l8-4 8 4v14M2 21h20M8 8v2m8-2v2M8 13v2m8-2v2M10 21v-4h4v4"/>',conta:'<circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/>',sun:'<circle cx="12" cy="12" r="4"/><path d="M12 1v3m0 16v3M1 12h3m16 0h3M4 4l2 2m12 12 2 2M4 20l2-2M18 6l2-2"/>',moon:'<path d="M21 13A9 9 0 0 1 11 3a9 9 0 1 0 10 10Z"/>',arrow:'<path d="M4 12h16m-6-6 6 6-6 6"/>',heart:'<path d="M20 4c-3-3-7-1-8 1-1-2-5-4-8-1-4 4 0 9 8 16 8-7 12-12 8-16Z"/>'};
+const paths={
+  explorar:'<circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/>',
+  jogos:'<rect width="20" height="14" x="2" y="5" rx="2"/><line x1="6" x2="10" y1="12" y2="12"/><line x1="8" x2="8" y1="10" y2="14"/><circle cx="15" cy="11" r="1"/><circle cx="18" cy="13" r="1"/>',
+  ofertas:'<path d="M3 3h8l10 10-8 8L3 11Z"/><circle cx="7" cy="7" r="1"/>',
+  noticias:'<path d="M4 3h16v18H4Z M8 7h8M8 11h8M8 15h8"/>',
+  empresas:'<path d="M4 21V7l8-4 8 4v14M2 21h20M8 8v2m8-2v2M8 13v2m8-2v2M10 21v-4h4v4"/>',
+  conta:'<circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/>',
+  sun:'<circle cx="12" cy="12" r="4"/><path d="M12 1v3m0 16v3M1 12h3m16 0h3M4 4l2 2m12 12 2 2M4 20l2-2M18 6l2-2"/>',
+  moon:'<path d="M21 13A9 9 0 0 1 11 3a9 9 0 1 0 10 10Z"/>',
+  arrow:'<path d="M4 12h16m-6-6 6 6-6 6"/>',
+  heart:'<path d="M20 4c-3-3-7-1-8 1-1-2-5-4-8-1-4 4 0 9 8 16 8-7 12-12 8-16Z"/>',
+  pin:'<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>',
+  star:'<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>'
+};
 const icon=name=>`<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths[name]||paths.arrow}</svg>`;
-const labels={explorar:'Explorar',jogos:'Jogos',ofertas:'Ofertas',noticias:'Notícias',empresas:'Empresas',conta:'Conta'};
+const labels={explorar:'Explorar',jogos:'Games 3D',ofertas:'Ofertas',noticias:'Notícias',empresas:'Empresas',conta:'Conta'};
 let states=[],places=[],config={},client=null,user=null,progress=freshProgress(),epoch=0,toastTimer,gameTimer,localOnly=false;
 let search=new URLSearchParams(location.search).get('q')||'',region='',selectedState='',selectedCategory='',onlySaved=false;
 
@@ -47,7 +60,7 @@ function placeCard(p){
     <span class="tag">${e(p.state)} · ${e(p.region)}</span>
     <h3>${e(p.name)}</h3>
     <p>${e(p.description)}</p>
-    <span class="source">${e(p.city)} · ${p.free?'Acesso indicado como gratuito; confirme condições locais.':'Consulte preços e horários com o responsável.'}</span>
+    <span class="source">${e(p.city)} · ${p.free?'Acesso indicado como gratuito.':'Consulte horários e condições com o responsável.'}</span>
     <div class="actions">
       <a class="button primary" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.name+' '+p.city)}" target="_blank" rel="noopener noreferrer">Ver no mapa</a>
       <button data-save="${e(p.id)}" aria-label="${saved?'Remover dos':'Adicionar aos'} favoritos: ${e(p.name)}" aria-pressed="${saved}">${icon('heart')}</button>
@@ -112,15 +125,15 @@ function download(name,text,type='text/plain'){
 
 const categoriesList = [
   { id: '', label: 'Todas' },
-  { id: 'praia', label: '🏖️ Praias' },
-  { id: 'natureza', label: '🌿 Natureza' },
-  { id: 'aventura', label: '🏔️ Aventura' },
-  { id: 'cultura', label: '🏛️ Cultura' },
-  { id: 'gastronomia', label: '🍽️ Gastronomia' },
-  { id: 'gratis', label: '💸 Grátis' },
-  { id: 'parque', label: '🌳 Parques' },
-  { id: 'museu', label: '🖼️ Museus' },
-  { id: 'historico', label: '🏰 Históricos' },
+  { id: 'praia', label: 'Praias' },
+  { id: 'natureza', label: 'Natureza' },
+  { id: 'aventura', label: 'Aventura' },
+  { id: 'cultura', label: 'Cultura' },
+  { id: 'gastronomia', label: 'Gastronomia' },
+  { id: 'gratis', label: 'Grátis' },
+  { id: 'parque', label: 'Parques' },
+  { id: 'museu', label: 'Museus' },
+  { id: 'historico', label: 'Históricos' },
 ];
 
 function explore(){
@@ -161,13 +174,13 @@ function explore(){
 
     <div class="actions" style="margin-top:16px;">
       <button id="saved-filter" aria-pressed="${onlySaved}">${onlySaved?'Mostrar todos':'Meus favoritos'}</button>
-      <button id="near-me-btn" class="subtle">📍 Perto de mim</button>
-      <button id="smart-itinerary-btn" class="subtle">✨ Monte sua viagem com IA</button>
+      <button id="near-me-btn" class="subtle">Perto de mim</button>
+      <button id="smart-itinerary-btn" class="subtle">Monte sua viagem com IA</button>
       <span class="source" id="result-count" role="status"></span>
     </div>
 
     <div id="smart-itinerary-box" style="display:none; margin:20px 0; padding:20px; border:1px solid var(--accent); border-radius:16px; background:var(--soft);">
-      <h3>🤖 Monte sua Viagem Inteligente</h3>
+      <h3>Monte sua Viagem Inteligente</h3>
       <p>A Maya cria um roteiro dia a dia para a sua viagem.</p>
       <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap:10px; margin-bottom:12px;">
         <label>Cidade/Estado <input id="it-city" placeholder="Ex: Brasília, RJ"></label>
@@ -253,8 +266,90 @@ function explore(){
   renderItinerary();
 }
 
-function games(){const xp=totalXP(progress);content.innerHTML=head('Passaporte de descobertas','Conhecer também é jogar.','Teste seus conhecimentos, exercite a memória e registre visitas a lugares do Brasil.')+`<section class="hero-panel"><div class="stats"><div><strong>${xp}</strong><span>Pontos de experiência</span></div><div><strong>${1+Math.floor(xp/200)}</strong><span>Nível do explorador</span></div><div><strong>${Object.keys(progress.awards).filter(x=>x.startsWith('visit:')).length}</strong><span>Visitas registradas</span></div></div><p class="source">Progresso salvo neste navegador. Pontos recreativos, sem valor financeiro e sem troca por descontos.</p></section><div class="grid"><article class="card"><span class="eyebrow">01 / Conhecimento</span><h2>Brasil em cinco perguntas</h2><p>Um desafio de capitais por dia. Cada acerto vale 20 pontos na primeira partida concluída do dia.</p><button id="start-quiz" class="primary">Jogar quiz</button></article><article class="card"><span class="eyebrow">02 / Memória</span><h2>Pares do Brasil</h2><p>Encontre seis pares de estados. Termine em menos jogadas para melhorar seu recorde. 60 pontos por dia.</p><button id="start-memory" class="primary">Jogar memória</button></article><article class="card"><span class="eyebrow">03 / Exploração</span><h2>Passaporte de visitas</h2><p>Esteja a até 300 metros de um local e confirme sua presença pelo GPS. 80 pontos por local, uma vez.</p><button id="start-visit" class="primary">Explorar missões</button></article></div><div id="game-stage" class="game-stage" aria-live="polite"></div>`;
-  $('start-quiz').onclick=quiz;$('start-memory').onclick=memory;$('start-visit').onclick=visits;}
+/* ── ÁREA DE GAMES ESTILO PLAY STORE 3D ── */
+const gameCatalog = [
+  {
+    id: 'quiz',
+    title: 'Brasil em 5 Perguntas',
+    cat: 'Educativos',
+    badge: 'Destaque',
+    rating: '4.9 ★',
+    desc: 'Desafio diário de conhecimentos sobre capitais, história e geografia do Brasil. Ganhe até 100 XP por dia.',
+    img: 'https://images.unsplash.com/photo-1598971457999-ca4ef48a9a71?auto=format&fit=crop&w=600&q=80',
+    action: 'start-quiz',
+    actionText: 'Jogar Quiz'
+  },
+  {
+    id: 'memory',
+    title: 'Pares do Brasil',
+    cat: 'Turismo',
+    badge: 'Popular',
+    rating: '4.8 ★',
+    desc: 'Jogo da memória interativo para encontrar pares de estados e bandeiras no menor número de jogadas.',
+    img: 'https://images.unsplash.com/photo-1549918864-48ac978761a4?auto=format&fit=crop&w=600&q=80',
+    action: 'start-memory',
+    actionText: 'Jogar Memória'
+  },
+  {
+    id: 'visit',
+    title: 'Passaporte de Visitas',
+    cat: 'Exploração GPS',
+    badge: 'Mundo Real',
+    rating: '5.0 ★',
+    desc: 'Confirme sua presença física em pontos turísticos do Brasil usando o GPS do celular e cole o selo no passaporte.',
+    img: 'https://images.unsplash.com/photo-1483729558449-99ef09a8c325?auto=format&fit=crop&w=600&q=80',
+    action: 'start-visit',
+    actionText: 'Explorar Missões'
+  }
+];
+
+function games(){
+  const xp=totalXP(progress);
+  content.innerHTML=head('Loja de Games 3D & Passaporte','Conhecer também é jogar','Explore desafios interativos, teste sua memória e cole no seu passaporte digital de viagens.')
+    + `<section class="hero-panel" style="background:linear-gradient(135deg, #0e7c3a 0%, #071c18 100%); color:#fff; border:none; border-radius:24px; box-shadow:0 20px 40px rgba(14,124,58,0.25);">
+        <div class="stats" style="color:#fff;">
+          <div><strong style="color:#d4a017; font-size:36px;">${xp}</strong><span style="color:rgba(255,255,255,0.7);">Pontos de Experiência</span></div>
+          <div><strong style="color:#d4a017; font-size:36px;">Nível ${1+Math.floor(xp/200)}</strong><span style="color:rgba(255,255,255,0.7);">Explorador Brasil</span></div>
+          <div><strong style="color:#d4a017; font-size:36px;">${Object.keys(progress.awards).filter(x=>x.startsWith('visit:')).length}</strong><span style="color:rgba(255,255,255,0.7);">Selos no Passaporte</span></div>
+        </div>
+        <p class="source" style="color:rgba(255,255,255,0.5); margin-top:16px;">Progresso salvo neste navegador. Pontos recreativos de exploração.</p>
+      </section>
+
+      <div class="section-head">
+        <h2>Vitrine de Games 3D</h2>
+      </div>
+
+      <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:24px;">
+        ${gameCatalog.map(g => `
+          <article className="card" style="border-radius:20px; overflow:hidden; border:1px solid var(--line); background:var(--panel); display:flex; flex-direction:column; box-shadow:0 12px 30px var(--shadow); transition:transform 0.3s ease;">
+            <div style="position:relative; height:180px; overflow:hidden;">
+              <img src="${g.img}" alt="${g.title}" style="width:100%; height:100%; object-fit:cover;">
+              <span style="position:absolute; top:12px; left:12px; background:rgba(3,13,5,0.75); backdrop-filter:blur(8px); color:#d4a017; font-size:10px; font-weight:800; letter-spacing:0.12em; padding:4px 10px; border-radius:999px; border:1px solid rgba(255,255,255,0.15); text-transform:uppercase;">
+                ${g.badge}
+              </span>
+              <span style="position:absolute; bottom:12px; right:12px; background:rgba(0,0,0,0.65); color:#fff; font-size:11px; font-weight:700; padding:3px 8px; border-radius:6px;">
+                ${g.rating}
+              </span>
+            </div>
+            <div style="padding:20px; display:flex; flex-direction:column; flex:1;">
+              <span class="tag" style="margin-bottom:8px; align-self:flex-start;">${g.cat}</span>
+              <h3 style="font-size:20px; font-weight:700; letter-spacing:-0.03em; margin-bottom:8px;">${g.title}</h3>
+              <p style="font-size:13px; color:var(--muted); line-height:1.6; margin-bottom:20px; flex:1;">${g.desc}</p>
+              <div class="actions">
+                <button id="${g.action}" class="button primary" style="width:100%; border-radius:12px; font-weight:750;">${g.actionText}</button>
+              </div>
+            </div>
+          </article>
+        `).join('')}
+      </div>
+
+      <div id="game-stage" class="game-stage" aria-live="polite" style="margin-top:32px;"></div>`;
+
+  $('start-quiz').onclick=quiz;
+  $('start-memory').onclick=memory;
+  $('start-visit').onclick=visits;
+}
+
 function showGame(html){clearTimeout(gameTimer);$('game-stage').innerHTML=html;$('game-stage').scrollIntoView({behavior:'auto',block:'start'});}
 function quiz(){const questions=dailyQuiz(states),today=dayKey();let index=0,score=0,locked=false;
   function draw(){const q=questions[index];showGame(`<section class="panel"><p class="eyebrow">Quiz diário / ${index+1} de 5</p><h2>${e(q.prompt)}</h2><div class="progress"><div style="width:${index*20}%"></div></div><div class="answer-grid">${q.choices.map((c,i)=>`<button data-answer="${i}">${e(c)}</button>`).join('')}</div><p id="quiz-feedback" class="feedback" role="status"></p><button id="quiz-next" hidden class="primary">${index===4?'Ver resultado':'Próxima pergunta'}</button></section>`);locked=false;content.querySelectorAll('[data-answer]').forEach(b=>b.onclick=()=>{if(locked)return;locked=true;const selected=q.choices[Number(b.dataset.answer)],correct=selected===q.answer;if(correct)score+=20;content.querySelectorAll('[data-answer]').forEach(x=>{x.disabled=true;x.classList.toggle('correct',q.choices[Number(x.dataset.answer)]===q.answer);});if(!correct)b.classList.add('wrong');$('quiz-feedback').textContent=correct?'Resposta correta.':`A resposta correta é ${q.answer}.`;$('quiz-next').hidden=false;});$('quiz-next').onclick=()=>{index++;if(index<5)draw();else{const added=award(progress,`quiz:${today}`,score);save();showGame(`<section class="panel"><p class="eyebrow">Partida concluída</p><h2>${score/20} de 5 respostas corretas.</h2><p>${added?`${score} pontos adicionados ao seu passaporte.`:'Você já concluiu o desafio de hoje. Esta partida foi um treino, sem novos pontos.'}</p><p>Amanhã você encontra outra seleção de perguntas.</p><button id="back-games">Voltar aos jogos</button></section>`);$('back-games').onclick=games;}};}

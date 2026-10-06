@@ -3,7 +3,7 @@ import FooterSection from '@/components/FooterSection';
 import MayaChat from '@/components/MayaChat';
 import Link from 'next/link';
 import { assetPath } from '@/lib/assetPath';
-import { ArrowUpRight, Megaphone, CheckCircle2, ShieldCheck, Sparkles } from 'lucide-react';
+import { ArrowUpRight, Megaphone, CheckCircle2, ShieldCheck, Sparkles, Image, Video, MapPin, Tag, Globe, Bot } from 'lucide-react';
 
 export const metadata = {
   title: 'Anuncie no Descubra o Brasil | Oportunidades para Empresas',
@@ -12,32 +12,32 @@ export const metadata = {
 
 const adFormats = [
   {
-    icon: '🖼️',
+    icon: Image,
     title: 'Banner Premium',
     desc: 'Banners de alto impacto colocados estrategicamente na homepage e nas páginas de destinos mais acessadas.',
   },
   {
-    icon: '📹',
+    icon: Video,
     title: 'Vídeo Patrocinado',
     desc: 'Exibição cinematográfica na área "Brasil em Movimento" com link direto para sua oferta ou site.',
   },
   {
-    icon: '🗺️',
+    icon: MapPin,
     title: 'Destaque no Mapa 3D',
     desc: 'Sua atração ou estabelecimento destacado com marcador pulsante e card informativo no mapa interativo.',
   },
   {
-    icon: '📋',
+    icon: Tag,
     title: 'Card de Oferta Verificada',
     desc: 'Publicação de ofertas promocionais com preço original, preço promocional, período e regras claras.',
   },
   {
-    icon: '🎯',
+    icon: Globe,
     title: 'Destaque Regional por Estado',
     desc: 'Visibilidade para viajantes filtrando destinos na sua região, estado ou cidade específica.',
   },
   {
-    icon: '🤖',
+    icon: Bot,
     title: 'Recomendação Contextual Maya',
     desc: 'Indicação da sua empresa quando viajantes buscarem por opções na sua cidade ou categoria.',
   },
@@ -126,9 +126,11 @@ export default function AnunciePage() {
             </div>
 
             <div className="cine-advertise-grid" style={{ marginBottom: 64 }}>
-              {adFormats.map(({ icon, title, desc }) => (
+              {adFormats.map(({ icon: Icon, title, desc }) => (
                 <div key={title} className="cine-ad-format">
-                  <div className="cine-ad-format-icon">{icon}</div>
+                  <div className="cine-ad-format-icon" style={{ color: 'var(--accent)' }}>
+                    <Icon size={28} />
+                  </div>
                   <h3 className="cine-ad-format-name">{title}</h3>
                   <p className="cine-ad-format-desc">{desc}</p>
                 </div>

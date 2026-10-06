@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Map, Layers, Award, Sparkles } from "lucide-react";
+import { Map as MapIcon, Layers, Award, Sparkles } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
 
 const STATS = [
@@ -11,7 +11,7 @@ const STATS = [
     suffix: "",
     label: "Estados & DF",
     description: "Cada unidade federativa representada com dados locais detalhados.",
-    icon: Map,
+    icon: MapIcon,
     color: "text-emerald-500 bg-emerald-500/10"
   },
   {

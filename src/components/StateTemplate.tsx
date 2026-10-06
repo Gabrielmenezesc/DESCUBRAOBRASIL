@@ -141,7 +141,7 @@ export default function StateTemplate({ data }: { data: any }) {
                      {item.city}
                   </span>
                   <span className="px-2 py-1 rounded-md bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs text-slate-500 font-medium">
-                    ️ {item.category}
+                    {item.category}
                   </span>
                 </div>
               </div>

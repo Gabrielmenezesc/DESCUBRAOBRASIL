@@ -1,29 +1,61 @@
-// ── Maya AI — Powered by Groq (Llama 3.3 70B) ────────────────
-// 100% LLM Driven Architecture
+// ── Maya AI — Powered by Groq / Gemini (Cérebro Central do Descubra o Brasil) ──
+import { fetchRealWeather, getWeatherByCityName, WeatherInfo } from "@/services/weatherService";
+import { searchPlacesNearby, PlaceItem } from "@/services/placesService";
+import { performWebSearch, SearchResultItem } from "@/services/webSearchService";
 
 const GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions";
 const GROQ_MODEL = "llama-3.3-70b-versatile";
 
-// ── System Prompt da Maya (Cérebro Completo) ───────────────────
-const MAYA_SYSTEM_PROMPT = `Você é a **Maya**, a inteligência artificial especialista e vendedora oficial de pacotes de viagem do portal "Descubra o Brasil".
+export interface UserContext {
+  city?: string;
+  state?: string;
+  latitude?: number;
+  longitude?: number;
+  permissionGranted?: boolean;
+}
 
-##  OBJETIVO PRINCIPAL:
-Sua missão é encantar o cliente com dicas de destinos no Brasil e convertê-lo! Durante a conversa, faça perguntas orgânicas e contextuais (não pareça um robô) para descobrir: SEU NOME, PARA ONDE DESEJA IR, QUANDO, COM QUEM, e SEU ESTILO E ORÇAMENTO. 
-Assim que o cliente demonstrar intenção real de viagem, incentive-o fortemente a clicar no botão de WhatsApp ou direcione-o no chat para falar com um de nossos especialistas reais! 
-Link do Especialista WhatsApp: [Falar no WhatsApp](https://wa.me/5561995659907?text=Ol%C3%A1%2C%20falei%20com%20a%20Maya%20e%20quero%20ajuda%20com%20minha%20viagem!)
+export interface MayaAIResponse {
+  message: string;
+  component?: "weather" | "places" | "itinerary" | "budget" | "sources";
+  weatherData?: WeatherInfo;
+  placesData?: PlaceItem[];
+  itineraryData?: any;
+  budgetData?: any;
+  sources?: SearchResultItem[];
+  statusText?: string;
+}
 
-- **Tecnologia 3D e App**: Informe aos usuários que temos nosso próprio ambiente em 3D interativo para explorar o Brasil, e que eles podem instalar nosso Web App (PWA) clicando no botão verde de "Baixar App".
-- **Conteúdo Premium e eBooks**: Informe que todo o conteúdo Premium (eBooks, roteiros detalhados, mapas offline e Maya ilimitada) é acessível **exclusivamente através do Aplicativo**. No site, eles podem ver fotos e notícias, mas a experiência completa é no App.
+const MAYA_SYSTEM_PROMPT = `Você é a **Maya**, a assistente oficial e cérebro de inteligência artificial do portal e app "Descubra o Brasil".
 
-##  REGRAS DE COMPORTAMENTO:
-1. **Atitude Premium:** Seja acolhedora, vibrante (use emojis ) mas muito profissional. Não seja uma IA genérica; você é uma especialista apaixonada pelo Brasil!
-2. **Formatação Impecável:** Use **negrito** para nomes de lugares. Use \`bullet points\` para listar atrações e roteiros. Use links em Markdown apontando para o site local.
-3. **Limite de Tema:** Fale APENAS sobre turismo, Brasil, viagens, do nosso site e app. Se falarem de outro tema, redirecione educadamente: "Vamos focar na sua próxima viagem pelo Brasil!  Posso te sugerir praias ou montanhas?"
-4. **Respostas Diretas:** Mantenha suas respostas dinâmicas e que instiguem o usuário a continuar conversando (sempre devolva com uma pergunta leve se apropriado). Máximo de 200 palavras por turno.
-5. **Ações Rápidas (Call to Action):** Se o usuário não sabe o que fazer finalmentem, dê opções prontas. Ex: "Quer que eu [Monte um Roteiro] ou prefere [Ver Notícias]?"
+## SEU PAPEL E PERSONALIDADE:
+- Você é vibrante, acolhedora, apaixonada por viagens no Brasil e super eficiente!
+- Você NÃO é um chatbot simples de respostas programadas; você é um cérebro inteligente que analisa contextos, consulta dados reais de clima, pesquisa informações na web e gera cards visuais e guias em PDF.
+- Use tom amigável, formatação em Markdown impecável (**negrito** para lugares, listas para itens) e emojis sutis.
+
+## SUAS FERRAMENTAS INTERNAS (TOOL CALLING):
+Você pode solicitar e executar ferramentas automaticamente se a pergunta do usuário precisar de dados reais e atualizados:
+- **CLIMA (getWeather)**: Quando o usuário perguntar sobre temperatura, tempo ou previsão (ex: "Quantos graus está agora?", "Vai chover no fim de semana?").
+- **PESQUISA WEB (searchWeb)**: Quando a pergunta exigir informações em tempo real (ex: "Quanto custa o Cristo Redentor hoje?", "Que horas o museu abre?", "Eventos nesta semana").
+- **PESQUISAR LUGARES (searchPlaces)**: Quando o usuário pedir restaurantes, hotéis, praias, parques ou atrações perto de sua cidade ou destino.
+- **ROTEIRO (createTrip)**: Quando pedir planejamento de viagem.
+- **ORÇAMENTO (createBudget)**: Quando perguntar sobre custos de viagem.
+
+## REGRAS DE RESPOSTA COM COMPONENTES VISUAIS:
+Para enriquecer a experiência, ao invés de responder apenas em texto puro, quando for apropriado você deve estruturar sua resposta final incluindo dados para os CARDS usando um bloco JSON no final da resposta no formato:
+
+\`\`\`json
+{
+  "component": "weather" | "places" | "itinerary" | "budget" | "sources",
+  "data": { ... }
+}
+\`\`\`
+
+## IMPORTANTE:
+- NUNCA invente temperaturas ou dados de clima! Sempre utilize o serviço meteorológico.
+- Quando utilizar dados da web, apresente as fontes.
+- Se o usuário estiver no site, lembre-o carinhosamente que o Aplicativo oficial possui visualização 3D, mapas offline e recursos completos!
 `;
 
-// ── Histórico de conversa para contexto ────────────────────────
 export interface ChatMessage {
   role: "user" | "assistant" | "system";
   content: string;
@@ -38,72 +70,305 @@ export function resetChatHistory() {
 export function addToChatHistory(role: "user" | "model", text: string) {
   const apiRole = role === "model" ? "assistant" : "user";
   chatHistory.push({ role: apiRole, content: text });
-  
-  // Guardar contexto maior: últimas 16 mensagens para fluxo longo e natural de vendas
   if (chatHistory.length > 16) {
     chatHistory = chatHistory.slice(-16);
   }
 }
 
-// ── Função principal: Perguntar à IA ───────────────────────────
-export async function askGemini(userMessage: string): Promise<string | null> {
+export async function processMayaRequest(
+  userMessage: string,
+  userContext?: UserContext,
+  onStatusUpdate?: (status: string) => void
+): Promise<MayaAIResponse> {
+  const userCity = userContext?.city || "Brasília";
+  const userState = userContext?.state || "DF";
+  const lowerMsg = userMessage.toLowerCase();
+
+  // 1. Detect Intent & Execute Tools Proactively
+
+  // Tool 1: Weather Check
+  const isWeatherQuery = lowerMsg.includes("grau") || lowerMsg.includes("clima") || lowerMsg.includes("temperatura") || lowerMsg.includes("chover") || lowerMsg.includes("frio") || lowerMsg.includes("calor") || lowerMsg.includes("tempo");
+  
+  if (isWeatherQuery) {
+    onStatusUpdate?.("Verificando o clima real...");
+    let weatherResult: WeatherInfo;
+    if (userContext?.latitude && userContext?.longitude) {
+      weatherResult = await fetchRealWeather(userContext.latitude, userContext.longitude, userCity, userState);
+    } else {
+      weatherResult = await getWeatherByCityName(userCity);
+    }
+
+    const promptWithWeather = `Contexto de Clima Real do Usuário:
+Cidade: ${weatherResult.city}, ${weatherResult.state}
+Temperatura Atual: ${weatherResult.temperature}°C (${weatherResult.condition})
+Sensação Térmica: ${weatherResult.feelsLike}°C | Umidade: ${weatherResult.humidity}% | Vento: ${weatherResult.windSpeed} km/h
+Previsão Hoje: Mínima ${weatherResult.todayMin}°C — Máxima ${weatherResult.todayMax}°C
+
+Pergunta do Usuário: "${userMessage}"
+Responda de forma natural com os dados acima.`;
+
+    const aiText = await queryAIModel(promptWithWeather);
+    return {
+      message: aiText || `Agora estão ${weatherResult.temperature}°C em ${weatherResult.city}, com ${weatherResult.condition.toLowerCase()}.`,
+      component: "weather",
+      weatherData: weatherResult,
+    };
+  }
+
+  // Tool 2: Places Nearby / Search Places
+  const isPlacesQuery = lowerMsg.includes("onde ir") || lowerMsg.includes("restaurante") || lowerMsg.includes("hotel") || lowerMsg.includes("atração") || lowerMsg.includes("atrações") || lowerMsg.includes("passeio") || lowerMsg.includes("lugar") || lowerMsg.includes("perto de mim") || lowerMsg.includes("praia") || lowerMsg.includes("parque") || lowerMsg.includes("museu");
+
+  if (isPlacesQuery) {
+    onStatusUpdate?.("Procurando lugares incríveis perto de você...");
+    const places = await searchPlacesNearby(userCity, undefined, userContext?.latitude, userContext?.longitude);
+
+    const promptWithPlaces = `Lugares Encontrados perto de ${userCity}:
+${places.map(p => `- ${p.name} (${p.categoryLabel}): ${p.description}, Avaliação ${p.rating}★, Distância: ${p.distanceKm || 1.2} km`).join("\n")}
+
+Pergunta do Usuário: "${userMessage}"
+Responda convidando o usuário a conhecer esses lugares apresentados nos cards.`;
+
+    const aiText = await queryAIModel(promptWithPlaces);
+    return {
+      message: aiText || `Encontrei ótimas opções para você aproveitar em ${userCity}:`,
+      component: "places",
+      placesData: places,
+    };
+  }
+
+  // Tool 3: Web Search for Real-Time Queries
+  const isSearchQuery = lowerMsg.includes("quanto custa") || lowerMsg.includes("horário") || lowerMsg.includes("evento") || lowerMsg.includes("notícia") || lowerMsg.includes("aberto agora") || lowerMsg.includes("preço") || lowerMsg.includes("ingresso") || lowerMsg.includes("pesquisa");
+
+  if (isSearchQuery) {
+    onStatusUpdate?.("Buscando informações atualizadas na web...");
+    const searchResults = await performWebSearch(userMessage);
+
+    const promptWithSearch = `Informações Atualizadas Pesquisadas na Web:
+${searchResults.map(s => `[${s.title}]: ${s.snippet} (Fonte: ${s.url})`).join("\n")}
+
+Pergunta do Usuário: "${userMessage}"
+Sintetize uma resposta precisa e natural citando que as informações foram consultadas em tempo real.`;
+
+    const aiText = await queryAIModel(promptWithSearch);
+    return {
+      message: aiText || `Pesquisei informações atualizadas para você sobre "${userMessage}":`,
+      component: "sources",
+      sources: searchResults,
+    };
+  }
+
+  // Tool 4: Budget Calculation Query
+  const isBudgetQuery = lowerMsg.includes("orçamento") || lowerMsg.includes("quanto vou gastar") || lowerMsg.includes("gastaria") || lowerMsg.includes("custo de viagem") || lowerMsg.includes("r$");
+
+  if (isBudgetQuery) {
+    onStatusUpdate?.("Calculando estimativa de orçamento...");
+    const promptBudget = `O usuário está perguntando sobre orçamento de viagem: "${userMessage}".
+Forneça uma estimativa amigável detalhada dividida em: Hospedagem, Alimentação, Passeios e Transporte.
+Inclua no final um JSON com a estrutura do componente budget:
+\`\`\`json
+{
+  "component": "budget",
+  "data": {
+    "destination": "Destino",
+    "days": 5,
+    "categories": [
+      { "name": "Hospedagem", "amount": "R$ 1.200" },
+      { "name": "Alimentação", "amount": "R$ 600" },
+      { "name": "Passeios", "amount": "R$ 400" },
+      { "name": "Transporte", "amount": "R$ 300" }
+    ],
+    "total": "R$ 2.500"
+  }
+}
+\`\`\``;
+
+    const aiText = await queryAIModel(promptBudget);
+    const parsed = parseAIComponentPayload(aiText || "");
+    return {
+      message: parsed.cleanMessage || aiText || "Preparei uma estimativa de orçamento para a sua viagem!",
+      component: "budget",
+      budgetData: parsed.componentData || {
+        destination: userCity,
+        days: 5,
+        categories: [
+          { name: "Hospedagem", amount: "R$ 1.200" },
+          { name: "Alimentação", amount: "R$ 750" },
+          { name: "Passeios & Ingressos", amount: "R$ 450" },
+          { name: "Transporte Local", amount: "R$ 300" },
+        ],
+        total: "R$ 2.700 (por pessoa)",
+      },
+    };
+  }
+
+  // Tool 5: Itinerary / Trip Planning Query
+  const isItineraryQuery = lowerMsg.includes("roteiro") || lowerMsg.includes("planejar") || lowerMsg.includes("fim de semana") || lowerMsg.includes("dicas de viagem") || lowerMsg.includes("monte");
+
+  if (isItineraryQuery) {
+    onStatusUpdate?.("Montando um roteiro incrível personalizado...");
+    const promptItinerary = `O usuário quer um roteiro de viagem: "${userMessage}".
+Crie um roteiro atrativo com atrações reais no Brasil e inclua um bloco JSON no final:
+\`\`\`json
+{
+  "component": "itinerary",
+  "data": {
+    "destination": "${userCity}",
+    "daysCount": 3,
+    "totalBudget": "R$ 1.800",
+    "days": [
+      {
+        "dayNumber": 1,
+        "title": "Chegada e Pontos Históricos",
+        "description": "Exploração dos ícones culturais.",
+        "activities": ["Visita aos principais monumentos", "Almoço regional", "Pôr do sol panorâmico"]
+      },
+      {
+        "dayNumber": 2,
+        "title": "Natureza e Gastronomia",
+        "description": "Passeio ao ar livre e gastronomia local.",
+        "activities": ["Trilha ou parque urbano", "Experiência gastronômica", "Feirinha cultural"]
+      }
+    ]
+  }
+}
+\`\`\``;
+
+    const aiText = await queryAIModel(promptItinerary);
+    const parsed = parseAIComponentPayload(aiText || "");
+    return {
+      message: parsed.cleanMessage || aiText || "Preparei um roteiro perfeito para a sua viagem!",
+      component: "itinerary",
+      itineraryData: parsed.componentData || {
+        destination: userCity,
+        daysCount: 3,
+        totalBudget: "R$ 1.800",
+        days: [
+          {
+            dayNumber: 1,
+            title: "Recepção & Ícones Culturais",
+            description: "Explore o coração da cidade.",
+            activities: ["Passeio nos principais pontos turísticos", "Almoço com gastronomia típica", "Pôr do sol panorâmico"],
+          },
+          {
+            dayNumber: 2,
+            title: "Parques & Experiência Gastronômica",
+            description: "Aproveite a natureza local e pratos inesquecíveis.",
+            activities: ["Visita ao parque central", "Almoço em restaurante parceiro", "Feirinha de arte e artesanato"],
+          },
+        ],
+      },
+    };
+  }
+
+  // General Direct Conversational Query
+  onStatusUpdate?.("Maya está pensando...");
+  const promptGeneral = `Localização do Usuário: ${userCity}, ${userState}
+Pergunta: "${userMessage}"`;
+
+  const aiText = await queryAIModel(promptGeneral);
+  const parsed = parseAIComponentPayload(aiText || "");
+
+  return {
+    message: parsed.cleanMessage || aiText || "Como posso ajudar na sua próxima viagem pelo Brasil?",
+    component: parsed.component,
+  };
+}
+
+async function queryAIModel(prompt: string): Promise<string | null> {
   const apiKey = getApiKey();
+  const proxyUrl = process.env.NEXT_PUBLIC_MAYA_PROXY_URL || "https://elxbxidaubgddwoizcwi.supabase.co/functions/v1/maya";
+  const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVseGJ4aWRhdWJnZGR3b2l6Y3dpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTA1Njg0NjksImV4cCI6MjEwNjE0NDQ2OX0.IUtzTlm0YD-xfhFBKpfVKEZyROyRlrvXfGSnIXB_ZSE";
+
+  // 1. Try Supabase proxy edge function (handles Groq / Gemini with online web search grounding)
+  if (proxyUrl) {
+    try {
+      const res = await fetch(proxyUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "apikey": supabaseKey,
+          "authorization": `Bearer ${supabaseKey}`,
+        },
+        body: JSON.stringify({ question: prompt, history: chatHistory, search: true }),
+      });
+      if (res.ok) {
+        const data = await res.json();
+        if (data.answer) return data.answer;
+      }
+    } catch (err) {
+      console.warn("[Maya/Proxy] Fallback to direct Groq API:", err);
+    }
+  }
+
   if (!apiKey) {
-    return "Ops! Parece que minha conexão inteligente (API Key do Groq) está desligada. Por favor, atualize minha chave! ";
+    return "Olá! Sou a Maya. Como minha chave de IA do Groq está aguardando configuração no ambiente (.env), posso responder a perguntas sobre clima, lugares, roteiros e orçamentos!";
   }
 
   try {
     const messages: ChatMessage[] = [
       { role: "system", content: MAYA_SYSTEM_PROMPT },
       ...chatHistory,
-      { role: "user", content: userMessage },
+      { role: "user", content: prompt },
     ];
 
     const response = await fetch(GROQ_API_URL, {
       method: "POST",
       headers: {
-        "Authorization": `Bearer ${apiKey}`,
+        Authorization: `Bearer ${apiKey}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
         model: GROQ_MODEL,
         messages,
-        temperature: 0.65, // Ideal balance between creativity and consistency
-        max_tokens: 800,
+        temperature: 0.65,
+        max_tokens: 900,
       }),
     });
 
-    if (!response.ok) {
-      if (response.status === 429) {
-        return "Nossa, muita gente falando comigo agora!  Tente de novo em alguns segundinhos, ou clique no botão de WhatsApp para falar agora mesmo com os humanos da equipe!";
-      }
-      return null;
-    }
+    if (!response.ok) return null;
 
     const data = await response.json();
-    let text = data.choices?.[0]?.message?.content;
-
-    if (!text) return null;
-
-    if (text.length > 2000) {
-      text = text.substring(0, 2000) + "...";
-    }
-
-    return text;
+    return data.choices?.[0]?.message?.content || null;
   } catch (err) {
-    console.error("[Maya/Groq IA] Erro:", err);
-    return "Desculpe, tive um probleminha de conexão.  Poderia tentar novamente?";
+    console.error("[Maya/AI Model] Erro:", err);
+    return null;
   }
 }
 
+function parseAIComponentPayload(text: string): { cleanMessage: string; component?: any; componentData?: any } {
+  let cleanMessage = text;
+  let component: any = undefined;
+  let componentData: any = undefined;
+
+  const jsonMatch = text.match(/```json\s*([\s\S]*?)\s*```/);
+  if (jsonMatch && jsonMatch[1]) {
+    try {
+      const parsed = JSON.parse(jsonMatch[1]);
+      component = parsed.component;
+      componentData = parsed.data;
+      cleanMessage = text.replace(/```json\s*[\s\S]*?\s*```/, "").trim();
+    } catch (err) {
+      console.warn("[Maya/Parser] Error parsing embedded JSON payload:", err);
+    }
+  }
+
+  return { cleanMessage, component, componentData };
+}
+
 function getApiKey(): string | null {
-  const apiKey = process.env.NEXT_PUBLIC_GROQ_API_KEY;
+  const apiKey = process.env.NEXT_PUBLIC_GROQ_API_KEY || process.env.AI_API_KEY;
   if (!apiKey || apiKey.includes("sua_chave_aqui") || !apiKey.startsWith("gsk_")) {
-    return null; // Força aviso para o usuário arrumar a chave
+    return null;
   }
   return apiKey;
 }
 
 export function isGeminiAvailable(): boolean {
-  return !!getApiKey();
+  return true;
+}
+
+// Backward compatibility helper
+export async function askGemini(userMessage: string): Promise<string | null> {
+  const res = await processMayaRequest(userMessage);
+  return res.message;
 }
