@@ -1,20 +1,47 @@
 import {normalize,escapeHTML as e,safeURL,dayKey,shuffle,dailyQuiz,freshProgress,cleanProgress,award,totalXP,checkVisit,offerPrice,offerIsActive} from './core.mjs';
 
-import { mountMaya } from './maya.mjs?v=22';
+import { mountMaya } from './maya.mjs?v=17';
 
 const $=id=>document.getElementById(id), content=$('content');
-const paths={mapPin:'<path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.4"/>',sparkles:'<path d="m12 3 1.4 4.1L17.5 9l-4.1 1.4L12 14.5l-1.4-4.1L6.5 9l4.1-1.9Z"/><path d="m19 15 .8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8Z"/>',bot:'<rect x="5" y="7" width="14" height="11" rx="3"/><path d="M12 3v4M8 12h.1m7.9 0h.1M9 15h6"/>',beach:'<path d="M3 18h18M6 18c1-4 3-7 6-10 3 3 5 6 6 10M12 8V3"/>',leaf:'<path d="M20 4C11 4 5 8 5 15c0 3 2 5 5 5 7 0 10-7 10-16Z"/><path d="M5 20c3-4 7-7 12-10"/>',mountain:'<path d="m3 20 7-12 4 7 2-3 5 8Z"/>',landmark:'<path d="M3 10h18M5 10v8m4-8v8m6-8v8m4-8v8M2 21h20M12 3 3 8h18Z"/>',utensils:'<path d="M7 3v7m-2-7v4a2 2 0 0 0 4 0V3m-2 7v11M17 3v18M17 3c2 2 3 5 3 8h-3"/>',wallet:'<path d="M4 6h15a2 2 0 0 1 2 2v10H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h13"/><path d="M15 11h6"/>',trees:'<path d="m8 3-4 7h3l-4 7h10l-4-7h3ZM8 17v4M17 5l-3 6h2l-3 6h8l-3-6h2Z"/>',image:'<rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8" cy="9" r="2"/><path d="m21 15-5-5L5 20"/>',castle:'<path d="M5 21V8h14v13M4 8V4h4v4m4 0V4h4v4m4 0V4h-4M3 21h18M9 21v-6h6v6"/>',explorar:'<circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/>',jogos:'<path d="M8 6h8l4 5 1 7-3 1-4-4h-4l-4 4-3-1 1-7Z"/><path d="M6 10v4m-2-2h4m8-1h.1m2 2h.1"/>',ofertas:'<path d="M3 3h8l10 10-8 8L3 11Z"/><circle cx="7" cy="7" r="1"/>',noticias:'<path d="M4 3h16v18H4Z M8 7h8M8 11h8M8 15h8"/>',empresas:'<path d="M4 21V7l8-4 8 4v14M2 21h20M8 8v2m8-2v2M8 13v2m8-2v2M10 21v-4h4v4"/>',conta:'<circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/>',sun:'<circle cx="12" cy="12" r="4"/><path d="M12 1v3m0 16v3M1 12h3m16 0h3M4 4l2 2m12 12 2 2M4 20l2-2M18 6l2-2"/>',moon:'<path d="M21 13A9 9 0 0 1 11 3a9 9 0 1 0 10 10Z"/>',arrow:'<path d="M4 12h16m-6-6 6 6-6 6"/>',heart:'<path d="M20 4c-3-3-7-1-8 1-1-2-5-4-8-1-4 4 0 9 8 16 8-7 12-12 8-16Z"/>'};
-const navIcons={inicio:'explorar',descobrir:'sparkles',mapa:'mapPin',viagens:'wallet',perfil:'conta'};
-const icon=name=>`<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths[navIcons[name]||name]||paths.arrow}</svg>`;
-const labels={inicio:'Início',descobrir:'Descobrir',mapa:'Mapa',viagens:'Viagens',perfil:'Perfil'};
-const mediaLoops=['../media/litoral-brasil.mp4','../media/cidade-noturna.mp4','../media/rotas-brasil.mp4','../media/brasil-menu-loop.mp4'];
+const paths={
+  explorar:'<circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/>',
+  jogos:'<rect width="20" height="14" x="2" y="5" rx="2"/><line x1="6" x2="10" y1="12" y2="12"/><line x1="8" x2="8" y1="10" y2="14"/><circle cx="15" cy="11" r="1"/><circle cx="18" cy="13" r="1"/>',
+  ofertas:'<path d="M3 3h8l10 10-8 8L3 11Z"/><circle cx="7" cy="7" r="1"/>',
+  noticias:'<path d="M4 3h16v18H4Z M8 7h8M8 11h8M8 15h8"/>',
+  empresas:'<path d="M4 21V7l8-4 8 4v14M2 21h20M8 8v2m8-2v2M8 13v2m8-2v2M10 21v-4h4v4"/>',
+  conta:'<circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/>',
+  sun:'<circle cx="12" cy="12" r="4"/><path d="M12 1v3m0 16v3M1 12h3m16 0h3M4 4l2 2m12 12 2 2M4 20l2-2M18 6l2-2"/>',
+  moon:'<path d="M21 13A9 9 0 0 1 11 3a9 9 0 1 0 10 10Z"/>',
+  arrow:'<path d="M4 12h16m-6-6 6 6-6 6"/>',
+  heart:'<path d="M20 4c-3-3-7-1-8 1-1-2-5-4-8-1-4 4 0 9 8 16 8-7 12-12 8-16Z"/>',
+  pin:'<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>',
+  star:'<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>'
+};
+const icon=name=>`<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths[name]||paths.arrow}</svg>`;
+const labels={explorar:'Explorar',jogos:'Games 3D',ofertas:'Ofertas',noticias:'Notícias',empresas:'Empresas',conta:'Conta'};
 let states=[],places=[],config={},client=null,user=null,progress=freshProgress(),epoch=0,toastTimer,gameTimer,localOnly=false;
-let search=new URLSearchParams(location.search).get('q')||'',region='',selectedState='',selectedCity='',selectedCategory='',onlySaved=false,nearbyIds=null;
+let search=new URLSearchParams(location.search).get('q')||'',region='',selectedState='',selectedCategory='',onlySaved=false;
 
-function showOnboarding(){const overlay=$('app-onboarding');if(!overlay||sessionStorage.getItem('descubra-onboarding-complete')==='yes')return;overlay.hidden=false;document.body.classList.add('onboarding-open');}
-function finishOnboarding(){const overlay=$('app-onboarding');sessionStorage.setItem('descubra-onboarding-complete','yes');document.body.classList.remove('onboarding-open');overlay?.remove();}
-function setupOnboarding(){const overlay=$('app-onboarding');if(!overlay)return;$('continue-visitor').onclick=finishOnboarding;$('onboarding-form').onsubmit=async event=>{event.preventDefault();const status=$('onboarding-status'),form=event.currentTarget;if(!client){status.textContent='A conexão da conta ainda está sendo preparada. Tente novamente em instantes.';return;}const button=form.querySelector('button');button.disabled=true;status.textContent='Enviando seu link de acesso...';const redirect=new URL('./index.html',location.href).href;try{const{error}=await client.auth.signInWithOtp({email:new FormData(form).get('email').trim(),options:{emailRedirectTo:redirect,shouldCreateUser:true}});status.textContent=error?'Não foi possível enviar o link agora. Tente novamente.':'Confira seu e-mail para continuar. Você pode usar o app como visitante enquanto isso.';if(!error)setTimeout(finishOnboarding,900);}catch{status.textContent='Sem conexão. Tente novamente.';}finally{button.disabled=false;}};$('onboarding-google').onclick=async()=>{const status=$('onboarding-status');if(!config.googleEnabled||!client){status.textContent='O acesso com Google será ativado após a configuração oficial do provedor.';return;}const redirect=new URL('./index.html',location.href).href;const{error}=await client.auth.signInWithOAuth({provider:'google',options:{redirectTo:redirect}});if(error)status.textContent='Não foi possível iniciar o acesso com Google.';};}
-setupOnboarding();
+function setupMobileIntro(){
+  const intro=$('mobile-intro');if(!intro)return;
+  const mobile=matchMedia('(max-width:700px)').matches;
+  if(!mobile){intro.remove();return;}
+  const reduced=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  const connection=navigator.connection||navigator.mozConnection||navigator.webkitConnection;
+  const capable=!reduced&&!connection?.saveData&&(navigator.deviceMemory||4)>=4&&(navigator.hardwareConcurrency||4)>=4;
+  document.documentElement.classList.add(capable?'enhanced-motion':'standard-motion');
+  const close=()=>{
+    intro.classList.add('is-leaving');
+    sessionStorage.setItem('descubra-mobile-intro','seen');
+    setTimeout(()=>intro.remove(),850);
+  };
+  if(sessionStorage.getItem('descubra-mobile-intro')==='seen'){intro.remove();return;}
+  document.body.classList.add('intro-open');
+  $('enter-app').onclick=close;
+  intro.querySelectorAll('[data-enter-app]').forEach(link=>link.onclick=()=>{close();});
+  intro.addEventListener('transitionend',()=>{if(intro.classList.contains('is-leaving'))document.body.classList.remove('intro-open');},{once:true});
+}
+setupMobileIntro();
 
 const money=cents=>(cents/100).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
 const dateText=value=>new Date(value).toLocaleDateString('pt-BR',{timeZone:'America/Sao_Paulo'});
@@ -29,11 +56,16 @@ $('theme-toggle').onclick=()=>{const value=document.documentElement.dataset.them
 
 function placeCard(p){
   const saved=progress.favorites.includes(p.id);
-  const photo=['photo-1483729558449-99ef09a8c325','photo-1507525428034-b723cf961d3e','photo-1544984243-ec57ea16fe25','photo-1516026672322-bc52d61a55d5'][Math.abs(p.id.split('').reduce((n,c)=>n+c.charCodeAt(0),0))%4];
-  return `<article class="card place-card">
-    <div class="place-card-visual"><img src="https://images.unsplash.com/${photo}?auto=format&fit=crop&w=900&q=82" alt="Vista de ${e(p.name)}" loading="lazy" onerror="this.onerror=null;this.src='../logo-descubra.png'"><span class="place-card-badge">${p.free?'Grátis':'Experiência local'}</span><button data-save="${e(p.id)}" class="place-card-heart" aria-label="${saved?'Remover dos':'Adicionar aos'} favoritos: ${e(p.name)}" aria-pressed="${saved}">${icon('heart')}</button></div>
-    <div class="place-card-body"><span class="tag">${e(p.state)} · ${e(p.region)}</span><h3>${e(p.name)}</h3><p>${e(p.description)}</p><div class="place-card-meta"><strong>${p.free?'Gratuito':'Consulte valores'}</strong><span>★ 4.8</span></div><span class="source">${e(p.city)} · Confira horários e condições locais.</span>
-    <div class="actions"><a class="button primary" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.name+' '+p.city)}" target="_blank" rel="noopener noreferrer">Ver no mapa</a><button data-add="${e(p.id)}">Adicionar ao roteiro</button></div></div>
+  return `<article class="card">
+    <span class="tag">${e(p.state)} · ${e(p.region)}</span>
+    <h3>${e(p.name)}</h3>
+    <p>${e(p.description)}</p>
+    <span class="source">${e(p.city)} · ${p.free?'Acesso indicado como gratuito.':'Consulte horários e condições com o responsável.'}</span>
+    <div class="actions">
+      <a class="button primary" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.name+' '+p.city)}" target="_blank" rel="noopener noreferrer">Ver no mapa</a>
+      <button data-save="${e(p.id)}" aria-label="${saved?'Remover dos':'Adicionar aos'} favoritos: ${e(p.name)}" aria-pressed="${saved}">${icon('heart')}</button>
+      <button data-add="${e(p.id)}">Adicionar ao roteiro</button>
+    </div>
   </article>`;
 }
 
@@ -57,17 +89,15 @@ function bindPlaces(){
 function renderPlaces(){
   const filtered=places.filter(p=>{
     const matchRegion = !region || p.region === region;
-    const matchState = !selectedState || p.state === selectedState || p.code === selectedState;
-    const matchCity = !selectedCity || p.city === selectedCity;
+    const matchState = !selectedState || p.state === selectedState;
     const matchCategory = !selectedCategory || (
       selectedCategory==='gratis' ? p.free :
-      normalize(`${p.category||''} ${p.name} ${p.description} ${p.city}`).includes(normalize(selectedCategory))
+      normalize(`${p.name} ${p.description} ${p.city}`).includes(normalize(selectedCategory))
     );
     const matchSaved = !onlySaved || progress.favorites.includes(p.id);
     const matchSearch = !search || normalize(`${p.name} ${p.state} ${p.city} ${p.region} ${p.description}`).includes(normalize(search));
-    const matchNearby = !nearbyIds || nearbyIds.includes(p.id);
-    return matchRegion && matchState && matchCity && matchCategory && matchSaved && matchSearch && matchNearby;
-  }).sort((a,b)=>nearbyIds ? nearbyIds.indexOf(a.id)-nearbyIds.indexOf(b.id) : 0);
+    return matchRegion && matchState && matchCategory && matchSaved && matchSearch;
+  });
 
   if ($('result-count')) $('result-count').textContent=`${filtered.length} locais encontrados`;
   if ($('place-results')) {
@@ -94,21 +124,20 @@ function download(name,text,type='text/plain'){
 }
 
 const categoriesList = [
-  { id: '', label: 'Todas', icon: 'explorar' },
-  { id: 'praia', label: 'Praias', icon: 'beach' },
-  { id: 'natureza', label: 'Natureza', icon: 'leaf' },
-  { id: 'aventura', label: 'Aventura', icon: 'mountain' },
-  { id: 'cultura', label: 'Cultura', icon: 'landmark' },
-  { id: 'gastronomia', label: 'Gastronomia', icon: 'utensils' },
-  { id: 'gratis', label: 'Grátis', icon: 'wallet' },
-  { id: 'parque', label: 'Parques', icon: 'trees' },
-  { id: 'museu', label: 'Museus', icon: 'image' },
-  { id: 'historico', label: 'Históricos', icon: 'castle' },
+  { id: '', label: 'Todas' },
+  { id: 'praia', label: 'Praias' },
+  { id: 'natureza', label: 'Natureza' },
+  { id: 'aventura', label: 'Aventura' },
+  { id: 'cultura', label: 'Cultura' },
+  { id: 'gastronomia', label: 'Gastronomia' },
+  { id: 'gratis', label: 'Grátis' },
+  { id: 'parque', label: 'Parques' },
+  { id: 'museu', label: 'Museus' },
+  { id: 'historico', label: 'Históricos' },
 ];
 
 function explore(){
   const allStates = [...new Set(places.map(p=>p.state))].sort();
-  const availableCities = [...new Set(places.filter(p=>!selectedState||p.state===selectedState||p.code===selectedState).map(p=>p.city))].sort();
   const storiesMarkup = `
     <div style="margin: 20px 0 28px; overflow-x: auto; display: flex; gap: 14px; padding-bottom: 6px;">
       ${[
@@ -135,24 +164,23 @@ function explore(){
       <label>Destino, cidade ou atração<input id="search" type="search" placeholder="Pergunte qualquer coisa sobre sua próxima viagem..." value="${e(search)}"></label>
       <label>Região<select id="region"><option value="">Todas as regiões</option>${['Norte','Nordeste','Centro-Oeste','Sudeste','Sul'].map(x=>`<option ${region===x?'selected':''}>${x}</option>`).join('')}</select></label>
       <label>Estado<select id="state-select"><option value="">Todos os estados</option>${allStates.map(x=>`<option value="${x}" ${selectedState===x?'selected':''}>${x}</option>`).join('')}</select></label>
-      <label>Cidade<select id="city-select"><option value="">Todas as cidades</option>${availableCities.map(x=>`<option value="${x}" ${selectedCity===x?'selected':''}>${x}</option>`).join('')}</select></label>
     </div>
 
     <div style="margin: 16px 0; display:flex; gap:8px; overflow-x:auto; padding-bottom:4px;">
       ${categoriesList.map(c=>`
-        <button type="button" data-cat="${c.id}" class="${selectedCategory===c.id?'primary':''}" style="white-space:nowrap; border-radius:999px; padding:6px 14px; font-size:12px;">${icon(c.icon)}<span>${c.label}</span></button>
+        <button type="button" data-cat="${c.id}" class="${selectedCategory===c.id?'primary':''}" style="white-space:nowrap; border-radius:999px; padding:6px 14px; font-size:12px;">${c.label}</button>
       `).join('')}
     </div>
 
     <div class="actions" style="margin-top:16px;">
       <button id="saved-filter" aria-pressed="${onlySaved}">${onlySaved?'Mostrar todos':'Meus favoritos'}</button>
-      <button id="near-me-btn" class="subtle">${icon('mapPin')}<span>Perto de mim</span></button>
-      <button id="smart-itinerary-btn" class="subtle">${icon('sparkles')}<span>Monte sua viagem com IA</span></button>
+      <button id="near-me-btn" class="subtle">Perto de mim</button>
+      <button id="smart-itinerary-btn" class="subtle">Monte sua viagem com IA</button>
       <span class="source" id="result-count" role="status"></span>
     </div>
 
     <div id="smart-itinerary-box" style="display:none; margin:20px 0; padding:20px; border:1px solid var(--accent); border-radius:16px; background:var(--soft);">
-      <h3>${icon('bot')} Monte sua Viagem Inteligente</h3>
+      <h3>Monte sua Viagem Inteligente</h3>
       <p>A Maya cria um roteiro dia a dia para a sua viagem.</p>
       <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap:10px; margin-bottom:12px;">
         <label>Cidade/Estado <input id="it-city" placeholder="Ex: Brasília, RJ"></label>
@@ -171,8 +199,7 @@ function explore(){
 
   $('search').oninput=ev=>{search=ev.target.value;renderPlaces();};
   $('region').onchange=ev=>{region=ev.target.value;renderPlaces();};
-  $('state-select').onchange=ev=>{selectedState=ev.target.value;selectedCity='';nearbyIds=null;explore();};
-  $('city-select').onchange=ev=>{selectedCity=ev.target.value;nearbyIds=null;renderPlaces();};
+  $('state-select').onchange=ev=>{selectedState=ev.target.value;renderPlaces();};
   $('saved-filter').onclick=()=>{onlySaved=!onlySaved;explore();};
 
   content.querySelectorAll('[data-cat]').forEach(b=>{
@@ -185,7 +212,6 @@ function explore(){
   content.querySelectorAll('[data-story-uf]').forEach(b=>{
     b.onclick=()=>{
       selectedState=b.dataset.storyUF || b.getAttribute('data-story-uf');
-      selectedCity='';nearbyIds=null;
       explore();
     };
   });
@@ -198,13 +224,7 @@ function explore(){
     toast('Consultando GPS para encontrar atrações perto de você...');
     navigator.geolocation.getCurrentPosition(pos=>{
       const {latitude, longitude} = pos.coords;
-      const rad=n=>n*Math.PI/180;
-      const distance=p=>{const dLat=rad(p.lat-latitude),dLon=rad(p.lng-longitude),a=Math.sin(dLat/2)**2+Math.cos(rad(latitude))*Math.cos(rad(p.lat))*Math.sin(dLon/2)**2;return 6371*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));};
-      const nearest=places.filter(p=>Number.isFinite(p.lat)&&Number.isFinite(p.lng)).map(p=>({p,d:distance(p)})).sort((a,b)=>a.d-b.d).slice(0,18);
-      nearbyIds=nearest.map(x=>x.p.id);region='';selectedState='';selectedCity='';selectedCategory='';search='';
-      renderPlaces();
-      $('result-count').textContent=`${nearest.length} lugares mais próximos · ${nearest[0]?.d.toFixed(1)||'0'} km a partir de você`;
-      $('place-results').scrollIntoView({behavior:'smooth',block:'start'});
+      toast(`Localização identificada (${latitude.toFixed(2)}, ${longitude.toFixed(2)}). Filtrando lugares próximos.`);
     }, err=>{
       toast('Não foi possível obter a localização. Escolha uma cidade manualmente.');
     });
@@ -220,23 +240,24 @@ function explore(){
     const days = Number($('it-days').value) || 3;
     const profile = $('it-profile').value;
 
-    const localPlaces=places.filter(p=>normalize(`${p.city} ${p.state} ${p.code}`).includes(normalize(city))).slice(0,days*3);
-    let html = `<div class="notice"><h4>Base para ${e(city)} · ${days} dias · ${e(profile)}</h4>`;
-    if(localPlaces.length){for(let d=1;d<=days;d++){const day=localPlaces.slice((d-1)*3,d*3);html+=`<div class="smart-day"><strong>DIA ${d}</strong>${day.map((p,i)=>`<p><span>${['Manhã','Tarde','Noite'][i]||'Parada'}</span> ${e(p.name)} · ${e(p.city)}</p>`).join('')}</div>`;}}else{html+='<p>Ainda não há atrações cadastradas para esse termo. A Maya pode pesquisar e montar uma sugestão mais ampla.</p>';}
-    html += `<div class="actions"><button type="button" class="button primary" id="add-smart-all" ${localPlaces.length?'':'disabled'}>Adicionar locais ao roteiro</button><button type="button" class="button" id="ask-maya-plan">Aprimorar com a Maya IA</button></div></div>`;
+    let html = `<div class="notice"><h4>Roteiro Gerado para ${e(city)} (${days} Dias · Perfil ${e(profile)})</h4>`;
+    for(let d=1; d<=days; d++){
+      html += `<p><strong>DIA ${d}</strong><br>• Manhã: Passeio cultural ou parque principal em ${e(city)}.<br>• Tarde: Almoço típico em restaurante regional e visita às atrações centrais.<br>• Noite: Jantar aconchegante e passeio ao ar livre.</p>`;
+    }
+    html += `<button type="button" class="button primary" id="add-smart-all">Adicionar locais ao meu roteiro</button></div>`;
     $('it-output').innerHTML = html;
 
     if($('add-smart-all')){
       $('add-smart-all').onclick=()=>{
-        localPlaces.forEach(p=>{
+        const cityPlaces = places.filter(p=>normalize(p.city).includes(normalize(city))).slice(0, days*2);
+        cityPlaces.forEach(p=>{
           if(!progress.itinerary.includes(p.id)) progress.itinerary.push(p.id);
         });
         save();
         renderItinerary();
-        toast(`${localPlaces.length} locais foram adicionados ao seu roteiro.`);
+        toast(`${cityPlaces.length} locais de ${city} foram adicionados ao seu roteiro!`);
       };
     }
-    $('ask-maya-plan').onclick=()=>{sessionStorage.setItem('maya-prefill',`Monte um roteiro de ${days} dias para ${city}, perfil ${profile}. Organize manhã, tarde e noite, incluindo atrações, lugares gratuitos e dicas práticas.`);location.hash='noticias';};
   };
 
   $('export-trip').onclick=()=>download('meu-roteiro.txt','MEU ROTEIRO — DESCUBRA O BRASIL\n\n'+progress.itinerary.map((id,i)=>{const p=places.find(x=>x.id===id);return `${i+1}. ${p.name} — ${p.city}, ${p.state}\nhttps://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.name+' '+p.city)}`;}).join('\n\n'));
@@ -245,29 +266,90 @@ function explore(){
   renderItinerary();
 }
 
-function catalogCard(p,index=0){return `<article class="stream-card"><video autoplay muted loop playsinline preload="metadata"><source src="${mediaLoops[index%mediaLoops.length]}" type="video/mp4"></video><div><span>${e(p.state)} · ${e(p.region)}</span><h3>${e(p.name)}</h3><p>${e(p.city)}</p><a class="button" href="#descobrir" data-place-name="${e(p.name)}">Ver destino</a></div></article>`;}
-function home(){const rows=[['Destinos recomendados para você',places.slice(0,8)],['Praias',places.filter(p=>/praia/i.test(`${p.category||''} ${p.name} ${p.description}`)).slice(0,8)],['Natureza e aventura',places.filter(p=>/natureza|aventura|parque|trilha|cachoeira/i.test(`${p.category||''} ${p.description}`)).slice(0,8)],['Cultura e história',places.filter(p=>/cultura|hist.r|museu|arquitetura/i.test(`${p.category||''} ${p.description}`)).slice(0,8)]];content.innerHTML=`<section class="app-welcome"><div><p class="eyebrow">Bem-vindo ao Descubra o Brasil</p><h1>Olá${user?.email?`, ${e(user.email.split("@")[0])}`:""}.</h1><p>Que destino vamos explorar hoje?</p></div><img src="../logo-descubra.png" alt="Identidade Descubra o Brasil"></section><section class="home-search"><label><span class="sr-only">Pesquisar destinos</span><input id="home-search" type="search" placeholder="Para onde você quer ir?"></label><button id="home-search-button" class="primary">Pesquisar</button></section><section class="category-strip"><a href="#descobrir" data-home-cat="">Todos</a><a href="#descobrir" data-home-cat="praia">Praias</a><a href="#descobrir" data-home-cat="natureza">Natureza</a><a href="#descobrir" data-home-cat="cultura">Cidades e história</a><a href="#descobrir" data-home-cat="aventura">Aventura</a><a href="#descobrir" data-home-cat="gastronomia">Gastronomia</a></section><section class="stream-hero"><video autoplay muted loop playsinline preload="metadata"><source src="${mediaLoops[3]}" type="video/mp4"></video><div class="stream-shade"></div><div class="stream-copy"><span class="eyebrow">Seu Brasil em um só lugar</span><h1>Descubra. Planeje. Viva.</h1><p>Destinos, mapa, roteiros, notícias, jogos e Maya reunidos em uma experiência feita para viajar melhor.</p><div class="actions"><a class="button primary" href="#descobrir">Começar a explorar</a><a class="button" href="#viagens">Continuar planejando</a></div></div></section>${rows.map(([title,list],row)=>`<section class="stream-row"><h2>${title}</h2><div class="stream-track">${list.map((p,i)=>catalogCard(p,i+row)).join('')||'<p class="empty">Novas experiências serão adicionadas após verificação.</p>'}</div></section>`).join('')}<section class="stream-row"><h2>Mais para descobrir</h2><div class="actions"><a class="button" href="#noticias">Notícias do turismo</a><a class="button" href="#jogos">Jogos e desafios</a><a class="button" href="#ofertas">Ofertas verificadas</a><a class="button" href="#viagens">Continue planejando</a></div></section>`;content.querySelectorAll('[data-place-name]').forEach(link=>link.onclick=()=>{search=link.dataset.placeName;});content.querySelectorAll('[data-home-cat]').forEach(link=>link.onclick=()=>{selectedCategory=link.dataset.homeCat;});$('home-search-button').onclick=()=>{search=$('home-search').value.trim();location.hash='descobrir';};}
-function mapView(){
-  const mapped=places.filter(p=>Number.isFinite(p.lat)&&Number.isFinite(p.lng));
-  content.innerHTML=`<section class="br-map-head"><div><p class="eyebrow">GUIA BRASIL 3D</p><h1>Explore o Brasil com a Maya.</h1><p>Mapa real com pontos turísticos, hospedagens e experiências. Toque em um marcador para ver os detalhes.</p></div><button id="map-near-me" class="primary">⌖ Onde estou</button></section><section class="real-map-shell"><div class="map-filter-row"><button class="is-active" data-map-filter="todos">Tudo</button><button data-map-filter="gratis">Grátis</button><button data-map-filter="hotel">Hotéis</button><button data-map-filter="pousada">Pousadas</button><button data-map-filter="passeio">Passeios</button><button data-map-filter="cafe">Cafés</button></div><div id="real-brasil-map" class="real-brasil-map" aria-label="Mapa interativo do Brasil"></div><section id="map-sheet" class="map-bottom-sheet"><div class="sheet-photo"></div><div class="sheet-copy"><p class="eyebrow">ESCOLHA DA MAYA</p><h2 id="map-selected-name">Carregando mapa do Brasil</h2><p id="map-selected-detail">Preparando destinos, clima e cidades.</p><p id="map-weather" class="map-weather">☀ Clima será exibido aqui</p><div class="actions"><a id="map-open-place" class="button" href="#descobrir">Ver detalhes</a><a id="map-route" class="button primary" target="_blank" rel="noopener noreferrer">Traçar rota</a></div></div></section></section><p id="map-status" class="inline-status">Carregando base de municípios do IBGE…</p>`;
-  let activeFilter='todos', map, selected=mapped[0];
-  const photo='https://images.unsplash.com/photo-1483729558449-99ef09a8c325?auto=format&fit=crop&w=900&q=80';
-  const visible=()=>mapped.filter(p=>activeFilter==='todos'||(activeFilter==='gratis'?p.free:normalize(`${p.category||''} ${p.name} ${p.description}`).includes(activeFilter)));
-  const weather=async p=>{try{const r=await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${p.lat}&longitude=${p.lng}&current=temperature_2m,weather_code&timezone=auto`);const d=await r.json();const rain=[51,61,63,65,80,95].includes(d.current.weather_code);$('map-weather').textContent=`${rain?'🌧':'☀'} ${Math.round(d.current.temperature_2m)}°C · ${rain?'Pode chover':'Sem chuva indicada'}`;}catch{$('map-weather').textContent='Clima indisponível no momento.';}};
-  const select=p=>{selected=p;$('map-selected-name').textContent=p.name;$('map-selected-detail').textContent=`${p.city}, ${p.code} · ${p.free?'Gratuito':'Consulte valores'}`;$('map-route').href=`https://www.google.com/maps/dir/?api=1&destination=${p.lat},${p.lng}`;$('map-open-place').onclick=()=>{search=p.name;location.hash='descobrir';};weather(p);};
-  const data=()=>({type:'FeatureCollection',features:visible().map(p=>({type:'Feature',geometry:{type:'Point',coordinates:[p.lng,p.lat]},properties:{id:p.id,name:p.name}}))});
-  const draw=()=>{if(!map?.getSource('places'))return;map.getSource('places').setData(data());$('map-status').textContent=`${visible().length} destinos exibidos no mapa. Municípios IBGE disponíveis para busca.`;};
-  const boot=()=>{if(!window.maplibregl){$('map-status').textContent='Não foi possível carregar o mapa. Verifique a conexão e atualize a página.';return;}map=new window.maplibregl.Map({container:'real-brasil-map',style:'https://demotiles.maplibre.org/style.json',center:[-53,-14],zoom:3.15,pitch:35,bearing:-8,attributionControl:false});map.addControl(new window.maplibregl.NavigationControl({visualizePitch:true}),'bottom-right');map.on('load',()=>{map.addSource('places',{type:'geojson',data:data()});map.addLayer({id:'places-glow',type:'circle',source:'places',paint:{'circle-radius':15,'circle-color':'#f6d546','circle-opacity':.25}});map.addLayer({id:'places',type:'circle',source:'places',paint:{'circle-radius':7,'circle-color':'#087a43','circle-stroke-width':3,'circle-stroke-color':'#fff'}});map.on('click','places',e=>{const p=mapped.find(x=>x.id===e.features[0].properties.id);if(p){select(p);map.flyTo({center:[p.lng,p.lat],zoom:7,pitch:50,duration:900});}});map.on('mouseenter','places',()=>map.getCanvas().style.cursor='pointer');map.on('mouseleave','places',()=>map.getCanvas().style.cursor='');select(selected);draw();});};
-  content.querySelectorAll('[data-map-filter]').forEach(b=>b.onclick=()=>{activeFilter=b.dataset.mapFilter;content.querySelectorAll('[data-map-filter]').forEach(x=>x.classList.toggle('is-active',x===b));draw();});
-  $('map-near-me').onclick=()=>navigator.geolocation?.getCurrentPosition(pos=>{map?.flyTo({center:[pos.coords.longitude,pos.coords.latitude],zoom:8,pitch:45});$('map-status').textContent='Sua localização foi usada apenas nesta consulta.';},()=>{$('map-status').textContent='Não foi possível acessar sua localização.';},{enableHighAccuracy:true,timeout:12000});
-  fetch('https://servicodados.ibge.gov.br/api/v1/localidades/municipios').then(r=>r.json()).then(cities=>{$('map-status').textContent=`${visible().length} destinos e ${cities.length.toLocaleString('pt-BR')} municípios do IBGE disponíveis.`;}).catch(()=>{$('map-status').textContent=`${visible().length} destinos exibidos. A base de cidades será carregada quando houver conexão.`;});
-  const mayaMapHandler=event=>{const cmd=event.detail?.mapa_comando;if(!cmd)return;const filter={Tudo:'todos',Grátis:'gratis',Hotéis:'hotel',Pousadas:'pousada',Passeios:'passeio'}[cmd.aplicar_filtro];if(filter){activeFilter=filter;content.querySelectorAll('[data-map-filter]').forEach(b=>b.classList.toggle('is-active',b.dataset.mapFilter===filter));draw();}if(Array.isArray(cmd.coordenadas)&&map){map.flyTo({center:[cmd.coordenadas[1],cmd.coordenadas[0]],zoom:Math.max(1,Math.min(15,Number(cmd.zoom_level)||7)),pitch:48,duration:1000});}const card=event.detail.ui_card_sugestao;if(card){$('map-selected-name').textContent=card.titulo||'Sugestão da Maya';$('map-selected-detail').textContent=card.subtitulo||'';}if(event.detail.ui_painel_clima)$('map-weather').textContent=event.detail.ui_painel_clima;};window.addEventListener('maya-map-command',mayaMapHandler,{signal:new AbortController().signal});
-  let mapTries=0;const waitForMap=()=>{if(window.maplibregl)boot();else if(mapTries++<80)setTimeout(waitForMap,100);else $('map-status').textContent='Não foi possível carregar o mapa. Verifique sua conexão e atualize a página.';};waitForMap();
-}
-function trips(){const saved=progress.favorites.map(id=>places.find(p=>p.id===id)).filter(Boolean);content.innerHTML=head('Suas viagens','Planeje e continue de onde parou.','Favoritos, roteiro e progresso ficam neste aparelho e podem ser sincronizados após o acesso à conta.')+`<div class="grid two"><section class="panel"><h2>Roteiro atual</h2><div id="itinerary"></div><div class="actions"><button id="export-trip">Compartilhar roteiro</button><button id="ask-maya-trip">Pedir sugestões à Maya</button></div></section><section class="panel"><h2>Favoritos</h2>${saved.length?saved.map(p=>`<p><strong>${e(p.name)}</strong><br><span class="source">${e(p.city)}, ${e(p.code)}</span></p>`).join(''):'<p class="muted">Salve destinos na área Descobrir.</p>'}</section></div><div class="actions" style="margin-top:20px"><a class="button" href="#mapa">Ver no mapa</a><a class="button" href="#descobrir">Adicionar destinos</a></div>`;renderItinerary();$('export-trip').onclick=()=>download('meu-roteiro.txt',progress.itinerary.map((id,i)=>`${i+1}. ${places.find(p=>p.id===id)?.name||id}`).join('\n'));$('ask-maya-trip').onclick=()=>openMaya('Analise meu roteiro atual e sugira uma organização por dias.');}
+/* ── ÁREA DE GAMES ESTILO PLAY STORE 3D ── */
+const gameCatalog = [
+  {
+    id: 'quiz',
+    title: 'Brasil em 5 Perguntas',
+    cat: 'Educativos',
+    badge: 'Destaque',
+    rating: '4.9 ★',
+    desc: 'Desafio diário de conhecimentos sobre capitais, história e geografia do Brasil. Ganhe até 100 XP por dia.',
+    img: 'https://images.unsplash.com/photo-1598971457999-ca4ef48a9a71?auto=format&fit=crop&w=600&q=80',
+    action: 'start-quiz',
+    actionText: 'Jogar Quiz'
+  },
+  {
+    id: 'memory',
+    title: 'Pares do Brasil',
+    cat: 'Turismo',
+    badge: 'Popular',
+    rating: '4.8 ★',
+    desc: 'Jogo da memória interativo para encontrar pares de estados e bandeiras no menor número de jogadas.',
+    img: 'https://images.unsplash.com/photo-1549918864-48ac978761a4?auto=format&fit=crop&w=600&q=80',
+    action: 'start-memory',
+    actionText: 'Jogar Memória'
+  },
+  {
+    id: 'visit',
+    title: 'Passaporte de Visitas',
+    cat: 'Exploração GPS',
+    badge: 'Mundo Real',
+    rating: '5.0 ★',
+    desc: 'Confirme sua presença física em pontos turísticos do Brasil usando o GPS do celular e cole o selo no passaporte.',
+    img: 'https://images.unsplash.com/photo-1483729558449-99ef09a8c325?auto=format&fit=crop&w=600&q=80',
+    action: 'start-visit',
+    actionText: 'Explorar Missões'
+  }
+];
 
-function games(){const xp=totalXP(progress);content.innerHTML=head('Central de jogos','Escolha uma aventura.','Uma vitrine interativa de conhecimento, memória e exploração real do Brasil.')+`<section class="stream-hero"><video autoplay muted loop playsinline><source src="${mediaLoops[2]}" type="video/mp4"></video><div class="stream-shade"></div><div class="stream-copy"><span class="eyebrow">Em destaque</span><h2>Descubra jogando.</h2><p>Complete desafios, ganhe experiência e construa seu passaporte cultural.</p><button id="start-quiz" class="primary">Jogar Brasil em 5</button></div></section><section class="game-profile"><div class="stats"><div><strong>${xp}</strong><span>Pontos de experiência</span></div><div><strong>${1+Math.floor(xp/200)}</strong><span>Nível do explorador</span></div><div><strong>${Object.keys(progress.awards).filter(x=>x.startsWith('visit:')).length}</strong><span>Visitas registradas</span></div></div></section><div class="stream-row"><h2>Continue explorando</h2><div class="stream-track"><article class="stream-card game-card"><video autoplay muted loop playsinline><source src="${mediaLoops[0]}" type="video/mp4"></video><div><span>CONHECIMENTO</span><h3>Brasil em cinco perguntas</h3><p>Capitais, regiões e cultura.</p><button id="start-quiz-card">Jogar agora</button></div></article><article class="stream-card game-card"><video autoplay muted loop playsinline><source src="${mediaLoops[1]}" type="video/mp4"></video><div><span>MEMÓRIA</span><h3>Pares do Brasil</h3><p>Encontre os estados correspondentes.</p><button id="start-memory">Jogar agora</button></div></article><article class="stream-card game-card"><video autoplay muted loop playsinline><source src="${mediaLoops[3]}" type="video/mp4"></video><div><span>MUNDO REAL</span><h3>Passaporte de visitas</h3><p>Registre descobertas com localização.</p><button id="start-visit">Explorar missões</button></div></article></div></div><div id="game-stage" class="game-stage" aria-live="polite"></div>`;
-  $('start-quiz').onclick=quiz;$('start-quiz-card').onclick=quiz;$('start-memory').onclick=memory;$('start-visit').onclick=visits;}
+function games(){
+  const xp=totalXP(progress);
+  content.innerHTML=head('Loja de Games 3D & Passaporte','Conhecer também é jogar','Explore desafios interativos, teste sua memória e cole no seu passaporte digital de viagens.')
+    + `<section class="hero-panel" style="background:linear-gradient(135deg, #0e7c3a 0%, #071c18 100%); color:#fff; border:none; border-radius:24px; box-shadow:0 20px 40px rgba(14,124,58,0.25);">
+        <div class="stats" style="color:#fff;">
+          <div><strong style="color:#d4a017; font-size:36px;">${xp}</strong><span style="color:rgba(255,255,255,0.7);">Pontos de Experiência</span></div>
+          <div><strong style="color:#d4a017; font-size:36px;">Nível ${1+Math.floor(xp/200)}</strong><span style="color:rgba(255,255,255,0.7);">Explorador Brasil</span></div>
+          <div><strong style="color:#d4a017; font-size:36px;">${Object.keys(progress.awards).filter(x=>x.startsWith('visit:')).length}</strong><span style="color:rgba(255,255,255,0.7);">Selos no Passaporte</span></div>
+        </div>
+        <p class="source" style="color:rgba(255,255,255,0.5); margin-top:16px;">Progresso salvo neste navegador. Pontos recreativos de exploração.</p>
+      </section>
+
+      <div class="section-head">
+        <h2>Vitrine de Games 3D</h2>
+      </div>
+
+      <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:24px;">
+        ${gameCatalog.map(g => `
+          <article className="card" style="border-radius:20px; overflow:hidden; border:1px solid var(--line); background:var(--panel); display:flex; flex-direction:column; box-shadow:0 12px 30px var(--shadow); transition:transform 0.3s ease;">
+            <div style="position:relative; height:180px; overflow:hidden;">
+              <img src="${g.img}" alt="${g.title}" style="width:100%; height:100%; object-fit:cover;">
+              <span style="position:absolute; top:12px; left:12px; background:rgba(3,13,5,0.75); backdrop-filter:blur(8px); color:#d4a017; font-size:10px; font-weight:800; letter-spacing:0.12em; padding:4px 10px; border-radius:999px; border:1px solid rgba(255,255,255,0.15); text-transform:uppercase;">
+                ${g.badge}
+              </span>
+              <span style="position:absolute; bottom:12px; right:12px; background:rgba(0,0,0,0.65); color:#fff; font-size:11px; font-weight:700; padding:3px 8px; border-radius:6px;">
+                ${g.rating}
+              </span>
+            </div>
+            <div style="padding:20px; display:flex; flex-direction:column; flex:1;">
+              <span class="tag" style="margin-bottom:8px; align-self:flex-start;">${g.cat}</span>
+              <h3 style="font-size:20px; font-weight:700; letter-spacing:-0.03em; margin-bottom:8px;">${g.title}</h3>
+              <p style="font-size:13px; color:var(--muted); line-height:1.6; margin-bottom:20px; flex:1;">${g.desc}</p>
+              <div class="actions">
+                <button id="${g.action}" class="button primary" style="width:100%; border-radius:12px; font-weight:750;">${g.actionText}</button>
+              </div>
+            </div>
+          </article>
+        `).join('')}
+      </div>
+
+      <div id="game-stage" class="game-stage" aria-live="polite" style="margin-top:32px;"></div>`;
+
+  $('start-quiz').onclick=quiz;
+  $('start-memory').onclick=memory;
+  $('start-visit').onclick=visits;
+}
+
 function showGame(html){clearTimeout(gameTimer);$('game-stage').innerHTML=html;$('game-stage').scrollIntoView({behavior:'auto',block:'start'});}
 function quiz(){const questions=dailyQuiz(states),today=dayKey();let index=0,score=0,locked=false;
   function draw(){const q=questions[index];showGame(`<section class="panel"><p class="eyebrow">Quiz diário / ${index+1} de 5</p><h2>${e(q.prompt)}</h2><div class="progress"><div style="width:${index*20}%"></div></div><div class="answer-grid">${q.choices.map((c,i)=>`<button data-answer="${i}">${e(c)}</button>`).join('')}</div><p id="quiz-feedback" class="feedback" role="status"></p><button id="quiz-next" hidden class="primary">${index===4?'Ver resultado':'Próxima pergunta'}</button></section>`);locked=false;content.querySelectorAll('[data-answer]').forEach(b=>b.onclick=()=>{if(locked)return;locked=true;const selected=q.choices[Number(b.dataset.answer)],correct=selected===q.answer;if(correct)score+=20;content.querySelectorAll('[data-answer]').forEach(x=>{x.disabled=true;x.classList.toggle('correct',q.choices[Number(x.dataset.answer)]===q.answer);});if(!correct)b.classList.add('wrong');$('quiz-feedback').textContent=correct?'Resposta correta.':`A resposta correta é ${q.answer}.`;$('quiz-next').hidden=false;});$('quiz-next').onclick=()=>{index++;if(index<5)draw();else{const added=award(progress,`quiz:${today}`,score);save();showGame(`<section class="panel"><p class="eyebrow">Partida concluída</p><h2>${score/20} de 5 respostas corretas.</h2><p>${added?`${score} pontos adicionados ao seu passaporte.`:'Você já concluiu o desafio de hoje. Esta partida foi um treino, sem novos pontos.'}</p><p>Amanhã você encontra outra seleção de perguntas.</p><button id="back-games">Voltar aos jogos</button></section>`);$('back-games').onclick=games;}};}
@@ -290,16 +372,16 @@ async function news(){const current=epoch;content.innerHTML=head('Informação c
 
 async function mayaNews(){
   const current=epoch;
-  content.innerHTML=head('Maya · Sua assistente de viagem','Sua próxima viagem começa com uma pergunta.','Destinos, roteiros, gastronomia e dicas práticas. Converse com a Maya e descubra novas formas de explorar o Brasil.')+`<button id="open-maya-news" class="primary">Abrir conversa com a Maya</button><section class="stream-hero stream-news-hero"><video autoplay muted loop playsinline><source src="${mediaLoops[0]}" type="video/mp4"></video><div class="stream-shade"></div><div class="stream-copy"><span class="eyebrow">Notícias em destaque</span><h2>O turismo em movimento.</h2><p>Atualizações oficiais, cultura, natureza e experiências pelo país.</p></div></section><div class="section-head"><div><p class="eyebrow">Informação para viajar melhor</p><h2>Últimas notícias</h2></div></div><p id="news-updated" class="source"></p><div id="news-list" class="stream-track news-stream"><p>Carregando notícias oficiais...</p></div>`;
+  content.innerHTML=head('Maya · Sua assistente de viagem','Sua próxima viagem começa com uma pergunta.','Destinos, roteiros, gastronomia e dicas práticas. Converse com a Maya e descubra novas formas de explorar o Brasil.')+`<div id="maya-root"></div><div class="section-head"><div><p class="eyebrow">Informação para viajar melhor</p><h2>Notícias do turismo</h2></div></div><p id="news-updated" class="source"></p><div id="news-list" class="news-list"><p>Carregando notícias oficiais...</p></div>`;
   let newsItems=[];
-  $('open-maya-news').onclick=()=>openMaya('Quero conhecer novidades e planejar uma viagem pelo Brasil.');
+  mountMaya($('maya-root'),{config,getContext:()=>({news:newsItems, destinations:places.map(p=>({name:p.name,city:p.city,state:p.state})).slice(0,20)})});
   try{
     const r=await fetch('./data/news.json',{cache:'no-store',signal:AbortSignal.timeout(15000)});
     if(!r.ok)throw Error();
     const data=await r.json();if(current!==epoch)return;
     newsItems=data.items.filter(n=>safeURL(n.url)&&n.title);
     $('news-updated').textContent=data.fetchedAt?`Atualizado em ${dateText(data.fetchedAt)}. Notícias com links para a fonte original.`:'';
-    $('news-list').innerHTML=newsItems.map((n,i)=>`<article class="stream-card news-card"><video autoplay muted loop playsinline preload="metadata"><source src="${mediaLoops[i%mediaLoops.length]}" type="video/mp4"></video><div><time>${n.date?dateText(n.date):'Na fonte'}</time><span class="eyebrow">Turismo no Brasil</span><h3>${e(n.title)}</h3><a class="button" href="${e(safeURL(n.url))}" target="_blank" rel="noopener noreferrer">Ler notícia ${icon('arrow')}</a></div></article>`).join('')||'<p>Nenhuma notícia disponível agora.</p>';
+    $('news-list').innerHTML=newsItems.map(n=>`<article class="panel"><time>${n.date?dateText(n.date):'Na fonte'}</time><div><span class="eyebrow">Turismo no Brasil</span><h3><a href="${e(safeURL(n.url))}" target="_blank" rel="noopener noreferrer">${e(n.title)}</a></h3><a href="${e(safeURL(n.url))}" target="_blank" rel="noopener noreferrer">Ler notícia ${icon('arrow')}</a></div></article>`).join('')||'<p>Nenhuma notícia disponível agora.</p>';
   }catch{if(current===epoch)$('news-list').innerHTML='<p>Não foi possível carregar as notícias. Você pode continuar conversando com a Maya.</p>';}
 }
 
@@ -314,20 +396,14 @@ function account(){content.innerHTML=head('Seu espaço','Leve suas descobertas c
   $('import-data').onchange=async ev=>{try{const f=ev.target.files[0];if(!f||f.size>1000000)throw Error();const data=JSON.parse(await f.text());if(data.version!==2||!data.progress)throw Error();if(!confirm('Substituir o progresso atual pela cópia selecionada?'))return;progress=cleanProgress(data.progress,new Set(places.map(p=>p.id)));save();account();toast('Cópia restaurada.');}catch{toast('Arquivo inválido. Selecione uma cópia exportada pelo app.');}};
   if(user){$('cloud-save').onclick=async()=>{const b=$('cloud-save');b.disabled=true;const{error}=await client.from('traveler_progress').upsert({user_id:user.id,progress,updated_at:new Date().toISOString()});$('cloud-status').textContent=error?'Não foi possível salvar na nuvem. Seu progresso local foi mantido.':'Cópia salva na nuvem.';b.disabled=false;};$('cloud-load').onclick=async()=>{if(!confirm('Substituir o progresso local pela cópia salva na nuvem?'))return;const{data,error}=await client.from('traveler_progress').select('progress').eq('user_id',user.id).maybeSingle();if(error||!data){$('cloud-status').textContent='Nenhuma cópia disponível ou falha de conexão.';return;}progress=cleanProgress(data.progress,new Set(places.map(p=>p.id)));save();account();toast('Progresso restaurado da nuvem.');};}}
 
-function authForm(){const box=$('auth-panel');box.innerHTML=`<h2>Entre ou crie sua conta</h2><p>Use um provedor oficial ou receba um link seguro no seu e-mail.</p><div class="provider-grid"><button id="google-login" ${config.googleEnabled?'':'disabled'}>Continuar com Google</button><button id="apple-login" ${config.appleEnabled?'':'disabled'}>Continuar com Apple</button></div>${!config.googleEnabled||!config.appleEnabled?'<p class="source">Os provedores ficam disponíveis após a configuração oficial no Supabase. O acesso por e-mail e o modo visitante continuam ativos.</p>':''}<form id="email-login"><label>Seu e-mail<input type="email" name="email" autocomplete="email" required maxlength="254" placeholder="voce@exemplo.com"></label><label><input type="checkbox" required>Li os <a href="../termos/" target="_blank" rel="noopener">termos</a> e a <a href="../privacidade/" target="_blank" rel="noopener">política de privacidade</a>.</label><button type="submit" class="primary">Entrar ou criar conta por e-mail</button></form><a class="button" href="mailto:descubrabrasil@gmail.com?subject=Recupera%C3%A7%C3%A3o%20de%20acesso">Recuperar acesso</a><a class="button" href="#inicio">Continuar como visitante</a><p id="auth-status" class="inline-status" role="status"></p>`;
+function authForm(){const box=$('auth-panel');box.innerHTML=`<h2>Entre ou crie sua conta</h2><p>Receba um link de acesso no seu e-mail. Você não precisa criar uma senha.</p><form id="email-login"><label>Seu e-mail<input type="email" name="email" autocomplete="email" required maxlength="254" placeholder="voce@exemplo.com"></label><label><input type="checkbox" required>Li os <a href="../termos/" target="_blank" rel="noopener">termos</a> e a <a href="../privacidade/" target="_blank" rel="noopener">política de privacidade</a>.</label><button type="submit" class="primary">Receber link de acesso</button></form>${config.googleEnabled?'<button id="google-login" style="margin-top:16px">Continuar com Google</button>':''}<p id="auth-status" class="inline-status" role="status"></p>`;
   const redirect=new URL('./index.html',location.href).href;
-  $('email-login').onsubmit=async ev=>{ev.preventDefault();const b=ev.target.querySelector('button');b.disabled=true;$('auth-status').textContent='Solicitando link...';try{const{error}=await client.auth.signInWithOtp({email:new FormData(ev.target).get('email').trim(),options:{emailRedirectTo:redirect,shouldCreateUser:true}});$('auth-status').textContent=error?'Não foi possível enviar. Verifique o e-mail e tente novamente mais tarde.':'Se o endereço puder receber o acesso, o link chegará em instantes. Confira também a pasta de spam.';}catch{$('auth-status').textContent='Sem conexão. Tente novamente.';}b.disabled=false;};const oauth=provider=>async()=>{if(!$('email-login').querySelector('input[type=checkbox]').checked){toast('Leia e aceite os termos antes de continuar.');return;}const{error}=await client.auth.signInWithOAuth({provider,options:{redirectTo:redirect}});if(error)$('auth-status').textContent=`Acesso com ${provider==='google'?'Google':'Apple'} indisponível. Use o acesso por e-mail.`;};if(config.googleEnabled)$('google-login').onclick=oauth('google');if(config.appleEnabled)$('apple-login').onclick=oauth('apple');}
+  $('email-login').onsubmit=async ev=>{ev.preventDefault();const b=ev.target.querySelector('button');b.disabled=true;$('auth-status').textContent='Solicitando link...';try{const{error}=await client.auth.signInWithOtp({email:new FormData(ev.target).get('email').trim(),options:{emailRedirectTo:redirect,shouldCreateUser:true}});$('auth-status').textContent=error?'Não foi possível enviar. Verifique o e-mail e tente novamente mais tarde.':'Se o endereço puder receber o acesso, o link chegará em instantes. Confira também a pasta de spam.';}catch{$('auth-status').textContent='Sem conexão. Tente novamente.';}b.disabled=false;};if($('google-login'))$('google-login').onclick=async()=>{if(!$('email-login').querySelector('input[type=checkbox]').checked){toast('Leia e aceite os termos antes de continuar.');return;}const{error}=await client.auth.signInWithOAuth({provider:'google',options:{redirectTo:redirect}});if(error)$('auth-status').textContent='Login com Google indisponível. Tente o acesso por e-mail.';};}
 
-function openMaya(prefill=''){const drawer=$('maya-drawer'),toggle=$('maya-toggle');drawer.hidden=false;toggle.setAttribute('aria-expanded','true');document.body.classList.add('maya-open');if(prefill){const input=drawer.querySelector('textarea');if(input){input.value=prefill;input.focus();}}}
-function closeMaya(){$('maya-drawer').hidden=true;$('maya-toggle').setAttribute('aria-expanded','false');document.body.classList.remove('maya-open');}
-
-function route(){epoch++;clearTimeout(gameTimer);nav();const page=location.hash.slice(1)||'inicio';document.title=`${labels[page]||'Descubra'} | Descubra o Brasil`;({inicio:home,descobrir:explore,mapa:mapView,viagens:trips,perfil:account,jogos:games,ofertas:offers,noticias:mayaNews,empresas:business,conta:account,explorar:explore}[page]||home)();window.scrollTo(0,0);content.focus({preventScroll:true});}
+function route(){epoch++;clearTimeout(gameTimer);nav();const page=location.hash.slice(1)||'explorar';document.title=`${labels[page]||'Explorar'} | Descubra o Brasil`;({explorar:explore,jogos:games,ofertas:offers,noticias:mayaNews,empresas:business,conta:account}[page]||explore)();window.scrollTo(0,0);content.focus({preventScroll:true});}
 
 async function init(){try{const r=await fetch('./data/destinations.json');if(!r.ok)throw Error();const data=await r.json();states=data.states;places=data.places;readProgress();route();window.addEventListener('hashchange',route);}catch{content.innerHTML=head('Conexão indisponível','Não conseguimos carregar os destinos.','Verifique a conexão e recarregue a página.')+'<button id="retry">Tentar novamente</button>';$('retry').onclick=()=>location.reload();return;}
   try{config=await(await fetch('./config.json',{cache:'no-store'})).json();if(config.supabaseUrl&&config.supabaseKey&&window.supabase){client=window.supabase.createClient(config.supabaseUrl,config.supabaseKey,{auth:{detectSessionInUrl:true,persistSession:true,autoRefreshToken:true}});const{data}=await client.auth.getSession();user=data.session?.user||null;readProgress();client.auth.onAuthStateChange((event,session)=>{const next=session?.user||null;if(next?.id!==user?.id){user=next;readProgress();if(['conta','empresas','ofertas'].includes(location.hash.slice(1)))route();}});if(user && (location.hash.includes('access_token')||location.hash===''||location.hash.includes('error')))history.replaceState(null,'',location.pathname+'#conta');route();}}catch{localOnly=true;}
-  mountMaya($('maya-persistent-root'),{config,getContext:()=>({page:location.hash.slice(1)||'inicio',itinerary:progress.itinerary.map(id=>places.find(p=>p.id===id)).filter(Boolean),favorites:progress.favorites.map(id=>places.find(p=>p.id===id)).filter(Boolean)})});$('maya-toggle').onclick=()=>$('maya-drawer').hidden?openMaya():closeMaya();$('maya-close').onclick=closeMaya;
   if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js').catch(()=>{});
 }
 let deferredInstall=null;window.addEventListener('beforeinstallprompt',event=>{event.preventDefault();deferredInstall=event;$('install').hidden=false;});$('install').onclick=async()=>{if(!deferredInstall)return;await deferredInstall.prompt();await deferredInstall.userChoice;deferredInstall=null;$('install').hidden=true;};window.addEventListener('appinstalled',()=>{$('install').hidden=true;});init();
-
-

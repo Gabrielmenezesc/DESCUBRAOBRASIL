@@ -1,3 +1,6 @@
-:HL["/_next/static/chunks/0trvyi_t.8vxg.css","style"]
-:HL["/_next/static/chunks/0_d5pmrfhbc-8.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"salvador","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"hVOgGiRxxldR_f1us08Eo"}
+:HL["/DESCUBRAOBRASIL/_next/static/chunks/13wtj8qk4k5l3.css","style"]
+:HL["/DESCUBRAOBRASIL/_next/static/chunks/0cse1.wyo5vyo.css","style"]
+:HL["/DESCUBRAOBRASIL/_next/static/chunks/116u4oeoi_h3s.css","style"]
+:HL["/DESCUBRAOBRASIL/_next/static/media/797e433ab948586e-s.p.08e28id.o-okb.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/DESCUBRAOBRASIL/_next/static/media/caa3a2e1cccd8315-s.p.09~u27dqhyhd6.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"salvador","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"MLu2sNXGFLOnrM7Ld_bS_"}

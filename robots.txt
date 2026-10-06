@@ -3,4 +3,4 @@ Allow: /
 Disallow: /api/
 Disallow: /admin/
 
-Sitemap: https://www.descubraobrasil.com/sitemap.xml
+Sitemap: https://gabrielmenezesc.github.io/DESCUBRAOBRASIL/sitemap.xml
