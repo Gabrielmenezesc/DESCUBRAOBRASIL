@@ -5,7 +5,18 @@ import { mountMaya } from './maya.mjs?v=17';
 const $=id=>document.getElementById(id), content=$('content');
 const paths={explorar:'<circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/>',jogos:'<path d="M8 6h8l4 5 1 7-3 1-4-4h-4l-4 4-3-1 1-7Z"/><path d="M6 10v4m-2-2h4m8-1h.1m2 2h.1"/>',ofertas:'<path d="M3 3h8l10 10-8 8L3 11Z"/><circle cx="7" cy="7" r="1"/>',noticias:'<path d="M4 3h16v18H4Z M8 7h8M8 11h8M8 15h8"/>',empresas:'<path d="M4 21V7l8-4 8 4v14M2 21h20M8 8v2m8-2v2M8 13v2m8-2v2M10 21v-4h4v4"/>',conta:'<circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/>',sun:'<circle cx="12" cy="12" r="4"/><path d="M12 1v3m0 16v3M1 12h3m16 0h3M4 4l2 2m12 12 2 2M4 20l2-2M18 6l2-2"/>',moon:'<path d="M21 13A9 9 0 0 1 11 3a9 9 0 1 0 10 10Z"/>',arrow:'<path d="M4 12h16m-6-6 6 6-6 6"/>',heart:'<path d="M20 4c-3-3-7-1-8 1-1-2-5-4-8-1-4 4 0 9 8 16 8-7 12-12 8-16Z"/>'};
 const icon=name=>`<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths[name]||paths.arrow}</svg>`;
-const labels={explorar:'Explorar',jogos:'Jogos',ofertas:'Ofertas',noticias:'Notícias',empresas:'Empresas',conta:'Conta'};
+const visualPhotos={
+  'rio de janeiro':'photo-1483729558449-99ef09a8c325',
+  'salvador':'photo-1549918864-48ac978761a4',
+  'foz do iguacu':'photo-1610741083757-34e0a0e0f4ec',
+  'fernando de noronha':'photo-1559825481-12a05cc00344',
+  'brasilia':'photo-1598971457999-ca4ef48a9a71',
+  'manaus':'photo-1516026672322-bc52d61a55d5'
+};
+const categoryPhotos={praia:'photo-1559825481-12a05cc00344',natureza:'photo-1516026672322-bc52d61a55d5',aventura:'photo-1610741083757-34e0a0e0f4ec',cultura:'photo-1549918864-48ac978761a4',gastronomia:'photo-1414235077428-338989a2e8c0'};
+function photoFor(place){const city=normalize(place.city||'');const photo=visualPhotos[city]||categoryPhotos[place.category]||'photo-1500530855697-b586d89ba3ee';return 'https://images.unsplash.com/'+photo+'?auto=format&fit=crop&w=900&q=82';}
+
+const labels={explorar:'Início',jogos:'Jogos',ofertas:'Ofertas',noticias:'Notícias',conta:'Conta'};
 let states=[],places=[],config={},client=null,user=null,progress=freshProgress(),epoch=0,toastTimer,gameTimer,localOnly=false,mayaDrawerMounted=false;
 let search=new URLSearchParams(location.search).get('q')||'',region='',selectedState='',selectedCategory='',onlySaved=false;
 
@@ -22,8 +33,9 @@ function setupMobileIntro(){
     setTimeout(()=>intro.remove(),850);
   };
   document.body.classList.add('intro-open');
-  $('enter-app').onclick=close;
-  intro.querySelectorAll('[data-enter-app]').forEach(link=>link.onclick=()=>{close();});
+  const introTimer=setTimeout(()=>intro.classList.add('is-ready'),6000);
+  $('enter-app').onclick=()=>{clearTimeout(introTimer);close();};
+  intro.querySelectorAll('[data-enter-app]').forEach(link=>link.onclick=()=>{clearTimeout(introTimer);close();});
   intro.addEventListener('transitionend',()=>{if(intro.classList.contains('is-leaving'))document.body.classList.remove('intro-open');},{once:true});
 }
 setupMobileIntro();
@@ -56,7 +68,7 @@ $('theme-toggle').onclick=()=>{const value=document.documentElement.dataset.them
 
 function placeCard(p){
   const saved=progress.favorites.includes(p.id);
-  return `<article class="card">
+  return `<article class="card card--visual"><img class="card-image" src="${photoFor(p)}" alt="Foto de apoio para ${e(p.city)}, ${e(p.state)}" loading="lazy" decoding="async">
     <span class="tag">${e(p.state)} · ${e(p.region)}</span>
     <h3>${e(p.name)}</h3>
     <p>${e(p.description)}</p>
@@ -158,7 +170,12 @@ function explore(){
     </div>
   `;
 
-  content.innerHTML=head('Para onde você quer ir?','Explore o Brasil ao seu estilo','Navegue por hierarquia regional, estados, cidades ou categorias específicas. Monte seu roteiro e descubra novos destinos.')
+  const homeHero=`<section class="travel-hero" aria-label="Destaque de viagem">
+    <img src="https://images.unsplash.com/photo-1483729558449-99ef09a8c325?auto=format&fit=crop&w=1400&q=84" alt="Vista do Rio de Janeiro" loading="eager">
+    <div class="travel-hero-shade"></div>
+    <div class="travel-hero-copy"><p>VIAGENS COM MAIS SENTIDO</p><h2>Explore o Brasil<br><em>ao seu estilo</em></h2><span>Destinos, experiências e roteiros para planejar com calma.</span><div><button type="button" id="hero-destinations">Ver destinos em destaque</button><button type="button" class="ghost" id="hero-maya">Criar roteiro com a Maya</button><button type="button" class="ghost" id="hero-business">Sou empresa? Anuncie aqui</button></div></div>
+  </section>`;
+  content.innerHTML=homeHero+head('Para onde você quer ir?','Encontre seu próximo destino','Busque por cidade, estado, atração ou categoria. Seus filtros e favoritos ficam salvos neste aparelho.')
     + storiesMarkup
     + `<div class="filters" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap:12px;">
       <label>Destino, cidade ou atração<input id="search" type="search" placeholder="Pergunte qualquer coisa sobre sua próxima viagem..." value="${e(search)}"></label>
@@ -264,6 +281,9 @@ function explore(){
 
   renderPlaces();
   renderItinerary();
+  $('hero-destinations')?.addEventListener('click',()=>$('place-results')?.scrollIntoView({behavior:'smooth',block:'start'}));
+  $('hero-maya')?.addEventListener('click',()=>$('maya-toggle')?.click());
+  $('hero-business')?.addEventListener('click',()=>{location.hash='empresas';});
 }
 
 function games(){const xp=totalXP(progress);content.innerHTML=head('Passaporte de descobertas','Conhecer também é jogar.','Teste seus conhecimentos, exercite a memória e registre visitas a lugares do Brasil.')+`<section class="hero-panel"><div class="stats"><div><strong>${xp}</strong><span>Pontos de experiência</span></div><div><strong>${1+Math.floor(xp/200)}</strong><span>Nível do explorador</span></div><div><strong>${Object.keys(progress.awards).filter(x=>x.startsWith('visit:')).length}</strong><span>Visitas registradas</span></div></div><p class="source">Progresso salvo neste navegador. Pontos recreativos, sem valor financeiro e sem troca por descontos.</p></section><div class="grid"><article class="card"><span class="eyebrow">01 / Conhecimento</span><h2>Brasil em cinco perguntas</h2><p>Um desafio de capitais por dia. Cada acerto vale 20 pontos na primeira partida concluída do dia.</p><button id="start-quiz" class="primary">Jogar quiz</button></article><article class="card"><span class="eyebrow">02 / Memória</span><h2>Pares do Brasil</h2><p>Encontre seis pares de estados. Termine em menos jogadas para melhorar seu recorde. 60 pontos por dia.</p><button id="start-memory" class="primary">Jogar memória</button></article><article class="card"><span class="eyebrow">03 / Exploração</span><h2>Passaporte de visitas</h2><p>Esteja a até 300 metros de um local e confirme sua presença pelo GPS. 80 pontos por local, uma vez.</p><button id="start-visit" class="primary">Explorar missões</button></article></div><div id="game-stage" class="game-stage" aria-live="polite"></div>`;
