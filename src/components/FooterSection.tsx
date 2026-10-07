@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { MessageCircle, Instagram, Youtube, Music2 } from 'lucide-react';
+import { MessageCircle, Camera, Play, Music } from 'lucide-react';
 import { assetPath } from '@/lib/assetPath';
 
 const navCols = [
@@ -38,9 +38,9 @@ const navCols = [
 
 const socials = [
   { label: 'WhatsApp', href: 'https://wa.me/5561995659907', Icon: MessageCircle, external: true },
-  { label: 'Instagram', href: '#', Icon: Instagram, external: true, disabled: true },
-  { label: 'YouTube', href: '#', Icon: Youtube, external: true, disabled: true },
-  { label: 'TikTok', href: '#', Icon: Music2, external: true, disabled: true },
+  { label: 'Instagram', href: '#', Icon: Camera, external: true, disabled: true },
+  { label: 'YouTube', href: '#', Icon: Play, external: true, disabled: true },
+  { label: 'TikTok', href: '#', Icon: Music, external: true, disabled: true },
 ];
 
 export default function FooterSection() {
