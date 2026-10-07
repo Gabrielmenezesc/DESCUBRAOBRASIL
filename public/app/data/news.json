@@ -1,7 +1,42 @@
 {
   "source": "https://www.gov.br/turismo/pt-br/assuntos/noticias",
-  "fetchedAt": "2026-09-28T18:11:04.505Z",
+  "fetchedAt": "2026-10-07T17:26:45.492Z",
   "items": [
+    {
+      "title": "Caminho de Santana: entre serras e cachoeiras, os encantos de Cavalcante",
+      "url": "https://www.gov.br/turismo/pt-br/assuntos/noticias/caminho-de-santana-entre-serras-e-cachoeiras-os-encantos-de-cavalcante",
+      "date": "2026-10-05T12:00:00-03:00"
+    },
+    {
+      "title": "Parque Nacional Cavernas do Peruaçu: um convite à pré-história no norte de MG",
+      "url": "https://www.gov.br/turismo/pt-br/assuntos/noticias/parque-nacional-cavernas-do-peruacu-um-convite-a-pre-historia-no-norte-de-mg",
+      "date": "2026-10-02T12:00:00-03:00"
+    },
+    {
+      "title": "Caminho Saint-Hilaire une fé, natureza e história na única cordilheira do Brasil",
+      "url": "https://www.gov.br/turismo/pt-br/assuntos/noticias/caminho-saint-hilaire-une-fe-natureza-e-historia-na-unica-cordilheira-do-brasil",
+      "date": "2026-10-01T12:00:00-03:00"
+    },
+    {
+      "title": "Trilha Brigadeiro Caparaó conecta parques e revela paisagens da Mata Atlântica em Minas Gerais",
+      "url": "https://www.gov.br/turismo/pt-br/assuntos/noticias/trilha-brigadeiro-caparao-conecta-parques-e-revela-paisagens-da-mata-atlantica-em-minas-gerais",
+      "date": "2026-09-29T12:00:00-03:00"
+    },
+    {
+      "title": "Diamantina: cidade entre montanhas preserva um Patrimônio Mundial em Minas Gerais",
+      "url": "https://www.gov.br/turismo/pt-br/assuntos/noticias/diamantina-cidade-entre-montanhas-preserva-um-patrimonio-mundial-em-minas-gerais",
+      "date": "2026-09-29T12:00:00-03:00"
+    },
+    {
+      "title": "Ministro do Turismo participa da entrega de moradias do Minha Casa, Minha Vida em João Pessoa e Campina Grande",
+      "url": "https://www.gov.br/turismo/pt-br/assuntos/noticias/ministro-do-turismo-participa-da-entrega-de-moradias-do-minha-casa-minha-vida-em-joao-pessoa-e-campina-grande",
+      "date": "2026-09-29T12:00:00-03:00"
+    },
+    {
+      "title": "Ministério do Turismo participa da abertura da ABAV Expo 2026, em São Paulo",
+      "url": "https://www.gov.br/turismo/pt-br/assuntos/noticias/ministerio-do-turismo-participa-da-abertura-da-abav-expo-2026-em-sao-paulo-1",
+      "date": "2026-09-29T12:00:00-03:00"
+    },
     {
       "title": "Ministério do Turismo e BID abrem seleção para consultoria voltada ao financiamento do setor no Brasil",
       "url": "https://www.gov.br/turismo/pt-br/assuntos/noticias/ministerio-do-turismo-e-bid-abrem-selecao-para-consultoria-voltada-ao-financiamento-do-setor-no-brasil",
@@ -18,7 +53,7 @@
       "date": "2026-09-22T12:00:00-03:00"
     },
     {
-      "title": "Conheça o Sítio Burle Marx, primeiro jardim tropical modernista reconhecido pela Unesco",
+      "title": "Sítio Burle Marx: primeiro jardim tropical modernista reconhecido pela UNESCO",
       "url": "https://www.gov.br/turismo/pt-br/assuntos/noticias/conheca-o-sitio-burle-marx-primeiro-jardim-tropical-modernista-reconhecido-pela-unesco",
       "date": "2026-09-18T12:00:00-03:00"
     },
@@ -26,41 +61,6 @@
       "title": "Caminhos de Trajano de Moraes: a trilha fluminense que une a herança colonial aos encantos da Mata Atlântica",
       "url": "https://www.gov.br/turismo/pt-br/assuntos/noticias/caminhos-de-trajano-de-moraes-a-trilha-fluminense-que-une-a-heranca-colonial-aos-encantos-da-mata-atlantica",
       "date": "2026-09-18T12:00:00-03:00"
-    },
-    {
-      "title": "Riquezas naturais e culturais levaram Paraty e Ilha Grande a reconhecimento inédito pela Unesco",
-      "url": "https://www.gov.br/turismo/pt-br/assuntos/noticias/riquezas-naturais-e-culturais-levaram-paraty-e-ilha-grande-a-reconhecimento-inedito-pela-unesco",
-      "date": "2026-09-18T12:00:00-03:00"
-    },
-    {
-      "title": "Turismo brasileiro terá pesquisa inédita para mapear perfil e hábitos de turistas em 50 destinos",
-      "url": "https://www.gov.br/turismo/pt-br/assuntos/noticias/turismo-brasileiro-tera-pesquisa-inedita-para-mapear-perfil-e-habitos-de-turistas-em-50-destinos",
-      "date": "2026-09-17T12:00:00-03:00"
-    },
-    {
-      "title": "Mata Atlântica: Patrimônio Mundial reúne florestas, cavernas e ilhas entre São Paulo e Paraná",
-      "url": "https://www.gov.br/turismo/pt-br/assuntos/noticias/mata-atlantica-patrimonio-mundial-reune-florestas-cavernas-e-ilhas-entre-sao-paulo-e-parana",
-      "date": "2026-09-17T12:00:00-03:00"
-    },
-    {
-      "title": "São Luís: azulejos e casarões contam a história de um Patrimônio Mundial",
-      "url": "https://www.gov.br/turismo/pt-br/assuntos/noticias/sao-luis-azulejos-e-casaroes-contam-a-historia-de-um-patrimonio-mundial",
-      "date": "2026-09-17T12:00:00-03:00"
-    },
-    {
-      "title": "Trilha Verde da Maria Fumaça valoriza patrimônio histórico, natureza e turismo de experiência em Minas Gerais",
-      "url": "https://www.gov.br/turismo/pt-br/assuntos/noticias/trilha-verde-da-maria-fumaca-valoriza-patrimonio-historico-natureza-e-turismo-de-experiencia-em-minas-gerais",
-      "date": "2026-09-16T12:00:00-03:00"
-    },
-    {
-      "title": "Ministro do Turismo prestigia a 63ª Equipotel e a 9ª edição do Congresso Nacional de Hotéis",
-      "url": "https://www.gov.br/turismo/pt-br/assuntos/noticias/ministro-do-turismo-prestigia-a-63a-equipotel-e-a-9a-edicao-do-congresso-nacional-de-hoteis",
-      "date": "2026-09-15T12:00:00-03:00"
-    },
-    {
-      "title": "Parque Nacional de Ubajara: santuário de grutas, biodiversidade e paisagens deslumbrantes no Ceará",
-      "url": "https://www.gov.br/turismo/pt-br/assuntos/noticias/parque-nacional-de-ubajara-santuario-de-grutas-biodiversidade-e-paisagens-deslumbrantes-no-ceara",
-      "date": "2026-09-11T12:00:00-03:00"
     }
   ]
 }
