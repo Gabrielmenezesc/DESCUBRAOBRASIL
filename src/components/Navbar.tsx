@@ -1,30 +1,18 @@
 "use client";
 import { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
-import { Sun, Moon, X, Sparkles, MapPin, Compass, Users, Megaphone, Newspaper, ChevronDown } from 'lucide-react';
+import { Sun, Moon, X, Sparkles, Home, Users, Mail } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { assetPath } from '@/lib/assetPath';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const mainLinks = [
-  { href: '/', label: 'Início' },
-  { href: '/turismo', label: 'Destinos' },
-  { href: '/aventura', label: 'Experiências' },
-  { href: '/turismo', label: 'Mapa 3D', suffix: '#mapa' },
-  { href: '/quem-somos', label: 'Quem Somos' },
-  { href: '/anuncie', label: 'Patrocinadores' },
+  { href: '/', label: 'Início', icon: Home },
+  { href: '/quem-somos', label: 'Quem Somos', icon: Users },
+  { href: '/anuncie', label: 'Contato', icon: Mail },
 ];
 
-const mobileLinks = [
-  { href: '/', label: 'Início', icon: '🏠' },
-  { href: '/turismo', label: 'Destinos', icon: '🗺️' },
-  { href: '/aventura', label: 'Experiências', icon: '🌊' },
-  { href: '/quem-somos', label: 'Quem Somos', icon: '💚' },
-  { href: '/anuncie', label: 'Patrocinadores', icon: '⭐' },
-  { href: '/empresas', label: 'Para Empresas', icon: '🏢' },
-  { href: '/termos', label: 'Termos de Uso', icon: '📋' },
-  { href: '/privacidade', label: 'Privacidade', icon: '🔒' },
-];
+const mobileLinks = mainLinks;
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -173,7 +161,7 @@ export default function Navbar() {
 
               {/* Links */}
               <nav className="cine-mobile-links" aria-label="Menu móvel">
-                {mobileLinks.map(({ href, label, icon }, i) => (
+                {mobileLinks.map(({ href, label, icon: Icon }, i) => (
                   <motion.div
                     key={label}
                     initial={{ opacity: 0, x: -30 }}
@@ -185,7 +173,7 @@ export default function Navbar() {
                       className="cine-mobile-link"
                       onClick={() => setOpen(false)}
                     >
-                      <span className="cine-mobile-link-icon" aria-hidden="true">{icon}</span>
+                      <span className="cine-mobile-link-icon" aria-hidden="true"><Icon size={18} /></span>
                       {label}
                     </Link>
                   </motion.div>

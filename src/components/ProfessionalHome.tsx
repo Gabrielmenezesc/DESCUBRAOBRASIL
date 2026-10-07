@@ -399,6 +399,7 @@ export default function ProfessionalHome() {
             {/* Mapa real do Brasil */}
             <div className="cine-hero-globe" aria-label="Mapa interativo do Brasil">
               <BrazilMap onSelectState={() => undefined} />
+              <div className="cine-map-sponsors" aria-label="Patrocinadores"><a href="https://diroma.com.br/" target="_blank" rel="noopener noreferrer" className="cine-sponsor cine-sponsor--diroma"><span>diRoma</span><small>Hotéis &amp; Parques</small></a><a href="/anuncie" className="cine-sponsor"><span>Rede Brasília News</span><small>Patrocinador</small></a></div>
               <div style={{
                 position: 'absolute',
                 top: 18,
