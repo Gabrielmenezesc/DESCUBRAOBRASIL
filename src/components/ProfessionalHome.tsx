@@ -62,8 +62,8 @@ const destinations = [
     name: 'Brasília',
     uf: 'df',
     region: 'CENTRO-OESTE',
-    tagline: 'Arquitetura que define o futuro',
-    image: 'photo-1598971457999-ca4ef48a9a71',
+    tagline: 'Catedral Metropolitana e arquitetura modernista',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/d/d7/Catedral_Metropolitana_de_Bras%C3%ADlia_%281%29.jpg',
     color: '#1a2232',
   },
 ];
@@ -113,7 +113,7 @@ const ribbonItems = [
 const UNSPLASH = 'https://images.unsplash.com';
 
 function unsplash(id: string, w = 900) {
-  return `${UNSPLASH}/${id}?auto=format&fit=crop&w=${w}&q=80`;
+  return id.startsWith("http") ? id : `${UNSPLASH}/${id}?auto=format&fit=crop&w=${w}&q=80`;
 }
 
 /* ── Componente Principal ───────────────────────────────────────────────────── */
@@ -710,14 +710,14 @@ export default function ProfessionalHome() {
               {/* Balão da Maya */}
               <div>
                 <div className="cine-maya-bubble" aria-live="polite">
-                  <strong>🌿 Olá! Eu sou a Maya.</strong>
+                  <strong>Olá! Eu sou a Maya.</strong>
                   <p style={{ marginTop: 12, marginBottom: 0 }}>
                     Sua especialista em turismo no Brasil. Para onde vamos hoje?<br />
                     Posso ajudar com destinos, roteiros, gastronomia e muito mais.
                   </p>
                 </div>
                 <div className="cine-maya-bubble" aria-hidden="true">
-                  <strong>💡 Exemplo de pergunta:</strong>
+                  <strong>Exemplo de pergunta:</strong>
                   <p style={{ marginTop: 8, marginBottom: 0, color: 'rgba(255,255,255,0.7)', fontStyle: 'italic' }}>
                     "Quero viajar para Brasília com minha família durante 3 dias."
                   </p>
@@ -806,19 +806,19 @@ export default function ProfessionalHome() {
 
                 <div className="cine-about-subsections">
                   <div className="cine-about-sub">
-                    <h4>🎯 Nossa Missão</h4>
+                    <h4>Nossa Missão</h4>
                     <p>Fazer o Brasil ser descoberto em toda a sua diversidade, com informação confiável e experiências reais.</p>
                   </div>
                   <div className="cine-about-sub">
-                    <h4>👁️ Nossa Visão</h4>
+                    <h4>Nossa Visão</h4>
                     <p>Ser a principal plataforma digital de turismo brasileiro, integrando IA, 3D e conteúdo humano.</p>
                   </div>
                   <div className="cine-about-sub">
-                    <h4>🤖 Tecnologia</h4>
+                    <h4>Tecnologia</h4>
                     <p>Maya IA, mapa 3D, roteiros inteligentes e PWA para acesso em qualquer dispositivo.</p>
                   </div>
                   <div className="cine-about-sub">
-                    <h4>🧳 Para Viajantes</h4>
+                    <h4>Para Viajantes</h4>
                     <p>Destinos organizados, categorias claras, roteiros personalizados e muito mais.</p>
                   </div>
                 </div>
@@ -931,12 +931,12 @@ export default function ProfessionalHome() {
 
             <div className="cine-advertise-grid">
               {[
-                { icon: '🖼️', name: 'Banner Premium', desc: 'Grande visibilidade na homepage e nas páginas de destino.' },
-                { icon: '📹', name: 'Vídeo Patrocinado', desc: 'Seu vídeo integrado na seção "Brasil em Movimento".' },
+                { icon: '', name: 'Banner Premium', desc: 'Grande visibilidade na homepage e nas páginas de destino.' },
+                { icon: '', name: 'Vídeo Patrocinado', desc: 'Seu vídeo integrado na seção "Brasil em Movimento".' },
                 { icon: '', name: 'Destino Patrocinado', desc: 'Destaque no mapa interativo e nas listagens de estados.' },
-                { icon: '📋', name: 'Card Patrocinado', desc: 'Card integrado nas categorias e listagens de lugares.' },
-                { icon: '🎯', name: 'Campanha Regional', desc: 'Segmentação por estado, região, cidade ou categoria.' },
-                { icon: '📱', name: 'Publicidade no App', desc: 'Visibilidade dentro do aplicativo para usuários ativos.' },
+                { icon: '', name: 'Card Patrocinado', desc: 'Card integrado nas categorias e listagens de lugares.' },
+                { icon: '', name: 'Campanha Regional', desc: 'Segmentação por estado, região, cidade ou categoria.' },
+                { icon: '', name: 'Publicidade no App', desc: 'Visibilidade dentro do aplicativo para usuários ativos.' },
               ].map(({ icon, name, desc }) => (
                 <div key={name} className="cine-ad-format">
                   <div className="cine-ad-format-icon" aria-hidden="true">{icon}</div>
@@ -969,7 +969,7 @@ export default function ProfessionalHome() {
         aria-label="Falar conosco pelo WhatsApp"
         style={{ position: 'fixed', right: 20, bottom: 90, zIndex: 79 }}
       >
-        <span aria-hidden="true">💬</span>
+        <span className="cine-contact-symbol" aria-hidden="true"></span>
         <span className="cine-whatsapp-tooltip" aria-hidden="true">Fale conosco</span>
       </a>
     </>

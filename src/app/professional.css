@@ -2065,3 +2065,42 @@
 .cine-hero-globe .leaflet-container{width:100%;height:100%;border-radius:20px;background:#d9edf2;isolation:isolate}.cine-hero-globe .leaflet-control-zoom a{color:#073a2a}.cine-map-loading{height:100%;display:grid;place-items:center;color:rgba(255,255,255,.8);font-size:13px;letter-spacing:.08em;background:rgba(3,13,5,.78)}
 
 .cine-nav{position:sticky!important;top:0;isolation:isolate;background:color-mix(in srgb,var(--background) 96%,transparent)!important;border-bottom:1px solid var(--line);backdrop-filter:blur(18px);box-shadow:0 8px 26px rgba(3,13,5,.08)}.cine-nav--top,.cine-nav--scrolled{background:color-mix(in srgb,var(--background) 96%,transparent)!important}.cine-nav-link{display:inline-flex;align-items:center;min-height:42px}.cine-site{isolation:isolate}.cine-hero-stage{z-index:0}.brazil-live-map{position:relative;width:100%;height:100%;overflow:hidden;border-radius:20px;background:#d9edf2}.brazil-live-map .leaflet-container{height:100%;width:100%;border-radius:20px}.brazil-map-search{position:absolute;z-index:700;top:52px;left:18px;right:18px}.brazil-map-search label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}.brazil-map-search input{width:100%;margin:0;padding:12px 14px;border:2px solid #d4a017;border-radius:12px;background:rgba(255,255,255,.97);color:#102119;box-shadow:0 10px 24px rgba(3,13,5,.2)}.brazil-map-results{max-height:210px;overflow:auto;margin-top:6px;border-radius:12px;background:#fff;box-shadow:0 14px 34px rgba(3,13,5,.25)}.brazil-map-results button{display:flex;width:100%;justify-content:space-between;border:0;border-radius:0;background:#fff;padding:10px 13px;color:#102119;text-align:left}.brazil-map-results button:hover{background:#edf6ee}.brazil-map-results small{color:#0e7c3a;font-weight:800}.brazil-map-results span{display:block;padding:12px;color:#405048}.brazil-map-credit{position:absolute;z-index:650;bottom:8px;left:8px;padding:4px 8px;border-radius:7px;background:rgba(3,13,5,.78);color:#fff;font-size:10px}.cine-map-sponsors{position:absolute;z-index:650;bottom:36px;left:12px;right:12px;display:flex;gap:8px}.cine-sponsor{display:flex;flex:1;min-width:0;flex-direction:column;padding:8px 10px;border-radius:10px;background:rgba(255,255,255,.92);color:#102119;text-decoration:none;box-shadow:0 8px 20px rgba(3,13,5,.18);font-size:12px;font-weight:850}.cine-sponsor small{font-size:9px;font-weight:700;color:#41604d}.cine-sponsor--diroma span{color:#d3372b}@media(max-width:900px){.cine-nav{position:sticky!important}.brazil-map-search{top:48px}.cine-map-sponsors{bottom:34px}}
+
+
+/* Contraste e legibilidade: o cabeçalho nunca herda texto claro do hero. */
+.cine-nav .cine-brand,
+.cine-nav .cine-brand-text,
+.cine-nav .cine-brand-text strong,
+.cine-nav .cine-nav-link { color: #102b1d !important; text-shadow: none !important; }
+.cine-nav .cine-brand-text small { color: #446050 !important; }
+.cine-nav .cine-nav-link { font-weight: 750; }
+.cine-nav .cine-nav-link:hover,
+.cine-nav .cine-nav-link:focus-visible { color: #08783f !important; }
+.cine-nav .cine-theme-btn { color: #102b1d !important; }
+.cine-nav .cine-social-nav { display:inline-grid; place-items:center; width:38px; height:38px; color:#08783f; border:1px solid #bed4c5; border-radius:12px; background:#fff; }
+.cine-nav .cine-social-nav svg { width:18px; height:18px; }
+.dark .cine-nav .cine-brand,
+.dark .cine-nav .cine-brand-text,
+.dark .cine-nav .cine-brand-text strong,
+.dark .cine-nav .cine-nav-link,
+.dark .cine-nav .cine-theme-btn { color:#effaf2 !important; }
+.dark .cine-nav .cine-brand-text small { color:#b6d8c0 !important; }
+.dark .cine-nav .cine-social-nav { color:#7ee0a7; border-color:#315945; background:#142d20; }
+
+/* Entrada suave de textos ao entrar na área visível. */
+@keyframes cine-copy-reveal {
+  from { opacity:0; transform:translateY(26px); filter:blur(7px); }
+  to { opacity:1; transform:translateY(0); filter:blur(0); }
+}
+.cine-hero-copy > *, .cine-section-heading, .cine-section-title {
+  animation: cine-copy-reveal .72s cubic-bezier(.16,1,.3,1) both;
+}
+@supports (animation-timeline: view()) {
+  .cine-section-heading, .cine-section-title {
+    animation-timeline:view();
+    animation-range:entry 8% cover 32%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cine-hero-copy > *, .cine-section-heading, .cine-section-title { animation:none !important; }
+}

@@ -101,7 +101,7 @@ export default function Navbar() {
               </button>
             )}
 
-            {/* Abrir App */}
+            {/* Baixar para smartphone */}
             <a className="cine-app-btn" href="#baixar-app">
               Baixar para smartphone
             </a>

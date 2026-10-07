@@ -125,15 +125,15 @@ function download(name,text,type='text/plain'){
 
 const categoriesList = [
   { id: '', label: 'Todas' },
-  { id: 'praia', label: '🏖️ Praias' },
-  { id: 'natureza', label: '🌿 Natureza' },
-  { id: 'aventura', label: '🏔️ Aventura' },
-  { id: 'cultura', label: '🏛️ Cultura' },
-  { id: 'gastronomia', label: '🍽️ Gastronomia' },
-  { id: 'gratis', label: '💸 Grátis' },
-  { id: 'parque', label: '🌳 Parques' },
-  { id: 'museu', label: '🖼️ Museus' },
-  { id: 'historico', label: '🏰 Históricos' },
+  { id: 'praia', label: 'Praias' },
+  { id: 'natureza', label: 'Natureza' },
+  { id: 'aventura', label: 'Aventura' },
+  { id: 'cultura', label: 'Cultura' },
+  { id: 'gastronomia', label: 'Gastronomia' },
+  { id: 'gratis', label: 'Grátis' },
+  { id: 'parque', label: 'Parques' },
+  { id: 'museu', label: 'Museus' },
+  { id: 'historico', label: 'Históricos' },
 ];
 
 function explore(){
@@ -174,13 +174,13 @@ function explore(){
 
     <div class="actions" style="margin-top:16px;">
       <button id="saved-filter" aria-pressed="${onlySaved}">${onlySaved?'Mostrar todos':'Meus favoritos'}</button>
-      <button id="near-me-btn" class="subtle">📍 Perto de mim</button>
-      <button id="smart-itinerary-btn" class="subtle">✨ Monte sua viagem com IA</button>
+      <button id="near-me-btn" class="subtle">Perto de mim</button>
+      <button id="smart-itinerary-btn" class="subtle">Monte sua viagem com IA</button>
       <span class="source" id="result-count" role="status"></span>
     </div>
 
     <div id="smart-itinerary-box" style="display:none; margin:20px 0; padding:20px; border:1px solid var(--accent); border-radius:16px; background:var(--soft);">
-      <h3>🤖 Monte sua Viagem Inteligente</h3>
+      <h3>Monte sua Viagem Inteligente</h3>
       <p>A Maya cria um roteiro dia a dia para a sua viagem.</p>
       <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap:10px; margin-bottom:12px;">
         <label>Cidade/Estado <input id="it-city" placeholder="Ex: Brasília, RJ"></label>
