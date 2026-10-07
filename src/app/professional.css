@@ -2104,3 +2104,20 @@
 @media (prefers-reduced-motion: reduce) {
   .cine-hero-copy > *, .cine-section-heading, .cine-section-title { animation:none !important; }
 }
+
+
+/* Regra final do menu: no tema claro, Início/Quem Somos/Contato permanecem pretos. */
+:root:not(.dark) .cine-nav,
+:root:not(.dark) .cine-nav.cine-nav--top,
+:root:not(.dark) .cine-nav.cine-nav--scrolled { background:rgba(249,252,248,.98)!important; }
+:root:not(.dark) .cine-nav .cine-nav-link,
+:root:not(.dark) .cine-nav.cine-nav--top .cine-nav-link,
+:root:not(.dark) .cine-nav.cine-nav--scrolled .cine-nav-link {
+  color:#102b1d!important;
+  opacity:1!important;
+  text-shadow:none!important;
+}
+:root:not(.dark) .cine-nav .cine-nav-link:hover,
+:root:not(.dark) .cine-nav .cine-nav-link:focus-visible { color:#006b37!important; }
+.cine-nav .cine-nav-link { transition:color .2s ease,transform .2s ease; }
+.cine-nav .cine-nav-link:hover { transform:translateY(-1px); }

@@ -19,3 +19,25 @@
 /* O aplicativo é exclusivo para smartphone. */
 .desktop-app-notice{display:none}.maya-instagram{width:38px;height:38px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;color:var(--accent);background:var(--panel)}.maya-contact-icons svg{width:19px;height:19px}
 @media(min-width:701px){body>.skip,body>.app-header,body>.app-main,body>.maya-float,body>.whatsapp-float,body>.bottom-nav,body>.toast,body>.mobile-intro{display:none!important}.desktop-app-notice{min-height:100vh;display:grid;place-items:center;padding:48px;background:radial-gradient(circle at 25% 20%,#1b8a4b 0,transparent 30%),#06190f;color:#fff}.desktop-app-notice>div{width:min(540px,100%);padding:42px;border:1px solid rgba(255,255,255,.2);border-radius:28px;background:rgba(255,255,255,.08);box-shadow:0 26px 70px rgba(0,0,0,.32);text-align:center}.desktop-app-notice p{color:rgba(255,255,255,.78)}.desktop-app-code{margin-top:24px;padding:18px;border-radius:14px;background:#fff;color:#06381f;font-size:18px;font-weight:800;word-break:break-all}}
+
+
+/* Abertura do app: exclusiva de celular, com vídeo de bandeira e leitura segura. */
+@media(max-width:700px){
+  .mobile-intro video{filter:blur(7px) saturate(1.18) contrast(1.05);transform:scale(1.1)}
+  .mobile-intro-shade{background:linear-gradient(180deg,rgba(0,39,28,.34),rgba(4,27,30,.28) 38%,rgba(2,20,27,.92) 100%)}
+  .mobile-intro-content{bottom:0;padding:0 30px calc(36px + env(safe-area-inset-bottom,0px));text-align:center}
+  .mobile-intro-kicker{margin:0 0 14px;color:rgba(255,255,255,.92);font-size:14px;letter-spacing:.02em;font-weight:400}
+  .mobile-intro h1{font-size:clamp(39px,11vw,56px);line-height:1.03;letter-spacing:-.052em;text-align:center}
+  .mobile-intro h1 span{font-weight:350;color:#fff}
+  .mobile-intro h1 strong{margin:6px 0 0;color:#fff;font-weight:850}
+  .mobile-intro-lead{max-width:none;margin:13px 0 32px;color:rgba(255,255,255,.68);font-size:15px;line-height:1.4}
+  .mobile-intro-actions{display:grid;gap:12px}
+  .mobile-intro-actions a,.mobile-intro-actions button{display:flex;align-items:center;justify-content:center;min-height:57px;padding:0 18px;border-radius:16px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.62);color:#fff;text-decoration:none;font-size:17px;font-weight:800;letter-spacing:0;backdrop-filter:blur(12px)}
+  .mobile-intro-actions a{background:#fff;color:#102b1d;border-color:#fff}
+  .mobile-intro button{min-height:57px;padding:0 18px;letter-spacing:0}
+  .mobile-intro small{margin-top:18px;color:rgba(255,255,255,.62);font-size:10px}
+  .mobile-intro nav,.mobile-map-lines{display:none}
+  .enhanced-motion .mobile-intro h1 span{animation:word-left .85s .14s both cubic-bezier(.2,.8,.2,1)}
+  .enhanced-motion .mobile-intro h1 strong{animation:word-right .85s .28s both cubic-bezier(.2,.8,.2,1)}
+  .enhanced-motion .mobile-intro-actions{animation:rise-in .85s .55s both}
+}
