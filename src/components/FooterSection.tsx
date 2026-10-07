@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { MessageCircle, Instagram, Youtube, Music2 } from 'lucide-react';
 import { assetPath } from '@/lib/assetPath';
 
 const navCols = [
@@ -36,33 +37,10 @@ const navCols = [
 ];
 
 const socials = [
-  {
-    label: 'WhatsApp',
-    href: 'https://wa.me/5561995659907',
-    icon: '💬',
-    external: true,
-  },
-  {
-    label: 'Instagram',
-    href: '#',
-    icon: '📸',
-    external: true,
-    disabled: true,
-  },
-  {
-    label: 'YouTube',
-    href: '#',
-    icon: '▶️',
-    external: true,
-    disabled: true,
-  },
-  {
-    label: 'TikTok',
-    href: '#',
-    icon: '🎵',
-    external: true,
-    disabled: true,
-  },
+  { label: 'WhatsApp', href: 'https://wa.me/5561995659907', Icon: MessageCircle, external: true },
+  { label: 'Instagram', href: '#', Icon: Instagram, external: true, disabled: true },
+  { label: 'YouTube', href: '#', Icon: Youtube, external: true, disabled: true },
+  { label: 'TikTok', href: '#', Icon: Music2, external: true, disabled: true },
 ];
 
 export default function FooterSection() {
@@ -85,7 +63,7 @@ export default function FooterSection() {
 
             {/* Redes sociais */}
             <div className="cine-footer-socials" aria-label="Redes sociais">
-              {socials.map(({ label, href, icon, external, disabled }) => (
+              {socials.map(({ label, href, Icon, external, disabled }) => (
                 disabled ? (
                   <span
                     key={label}
@@ -94,7 +72,7 @@ export default function FooterSection() {
                     title={`${label} — em breve`}
                     style={{ cursor: 'default', opacity: 0.4 }}
                   >
-                    {icon}
+                    <Icon size={18} aria-hidden="true" />
                   </span>
                 ) : (
                   <a
@@ -105,7 +83,7 @@ export default function FooterSection() {
                     target={external ? '_blank' : undefined}
                     rel={external ? 'noopener noreferrer' : undefined}
                   >
-                    {icon}
+                    <Icon size={18} aria-hidden="true" />
                   </a>
                 )
               ))}
