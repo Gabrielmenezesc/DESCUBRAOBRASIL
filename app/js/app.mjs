@@ -18,7 +18,7 @@ function photoFor(place){const city=normalize(place.city||'');const photo=visual
 
 const labels={explorar:'Início',jogos:'Jogos',ofertas:'Ofertas',noticias:'Notícias',conta:'Conta'};
 let states=[],places=[],config={},client=null,user=null,progress=freshProgress(),epoch=0,toastTimer,gameTimer,localOnly=false,mayaDrawerMounted=false;
-let search=new URLSearchParams(location.search).get('q')||'',region='',selectedState='',selectedCategory='',onlySaved=false;
+let search=new URLSearchParams(location.search).get('q')||'',region='',selectedState='',selectedCategory='',onlySaved=false,nearbyCoordinates=null;
 
 function setupMobileIntro(){
   const intro=$('mobile-intro');if(!intro)return;
@@ -108,7 +108,9 @@ function renderPlaces(){
     );
     const matchSaved = !onlySaved || progress.favorites.includes(p.id);
     const matchSearch = !search || normalize(`${p.name} ${p.state} ${p.city} ${p.region} ${p.description}`).includes(normalize(search));
-    return matchRegion && matchState && matchCategory && matchSaved && matchSearch;
+    const kilometers = nearbyCoordinates ? 6371 * 2 * Math.asin(Math.sqrt(Math.sin((p.lat-nearbyCoordinates.lat)*Math.PI/360)**2 + Math.cos(nearbyCoordinates.lat*Math.PI/180)*Math.cos(p.lat*Math.PI/180)*Math.sin((p.lng-nearbyCoordinates.lng)*Math.PI/360)**2)) : 0;
+    const matchNearby = !nearbyCoordinates || kilometers <= 160;
+    return matchRegion && matchState && matchCategory && matchSaved && matchSearch && matchNearby;
   });
 
   if ($('result-count')) $('result-count').textContent=`${filtered.length} locais encontrados`;
@@ -177,8 +179,8 @@ function explore(){
   </section>`;
   content.innerHTML=homeHero+head('Para onde você quer ir?','Encontre seu próximo destino','Busque por cidade, estado, atração ou categoria. Seus filtros e favoritos ficam salvos neste aparelho.')
     + storiesMarkup
-    + `<div class="filters" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap:12px;">
-      <label>Destino, cidade ou atração<input id="search" type="search" placeholder="Pergunte qualquer coisa sobre sua próxima viagem..." value="${e(search)}"></label>
+    + `<section class="booking-panel"><div class="booking-tabs" role="tablist" aria-label="Como deseja planejar"><button type="button" id="mode-search" role="tab" aria-selected="true">Buscar viagem</button><button type="button" id="mode-map" role="tab" aria-selected="false">Explorar no mapa</button><button type="button" id="mode-itinerary" role="tab" aria-selected="false">Roteiros com IA</button></div><div class="filters" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap:12px;">
+      <label>Destino, cidade ou atração<input id="search" type="search" list="destination-suggestions" placeholder="Para onde você quer ir?" value="${e(search)}"><datalist id="destination-suggestions">${[...new Set(places.flatMap(p=>[p.name,p.city,p.state]))].sort().slice(0,250).map(item=>`<option value="${e(item)}"></option>`).join('')}</datalist></label>
       <label>Região<select id="region"><option value="">Todas as regiões</option>${['Norte','Nordeste','Centro-Oeste','Sudeste','Sul'].map(x=>`<option ${region===x?'selected':''}>${x}</option>`).join('')}</select></label>
       <label>Estado<select id="state-select"><option value="">Todos os estados</option>${allStates.map(x=>`<option value="${x}" ${selectedState===x?'selected':''}>${x}</option>`).join('')}</select></label>
     </div>
@@ -194,7 +196,7 @@ function explore(){
       <button id="near-me-btn" class="subtle">Perto de mim</button>
       <button id="smart-itinerary-btn" class="subtle">Monte sua viagem com IA</button>
       <span class="source" id="result-count" role="status"></span>
-    </div>
+    </div></section>
 
     <div id="smart-itinerary-box" style="display:none; margin:20px 0; padding:20px; border:1px solid var(--accent); border-radius:16px; background:var(--soft);">
       <h3>Monte sua Viagem Inteligente</h3>
@@ -208,14 +210,26 @@ function explore(){
       <div id="it-output" style="margin-top:14px;"></div>
     </div>
 
-    <div class="section-head"><h2>Destinos encontrados</h2></div>
-    <div class="grid" id="place-results"></div>
+    <div class="section-head"><div><p class="eyebrow">PARA COMEÇAR</p><h2>Destinos em alta</h2></div><button type="button" class="subtle" id="show-all-destinations">Ver todos</button></div>
+    <div class="grid destination-rail" id="place-results"></div>
+    <section class="home-category-section"><div class="section-head"><div><p class="eyebrow">ESCOLHA SEU ESTILO</p><h2>Explore por categoria</h2></div></div><div class="category-rail">
+      <button type="button" class="category-card" data-cat="praia"><img src="https://images.unsplash.com/photo-1559825481-12a05cc00344?auto=format&fit=crop&w=500&q=80" alt="Praia brasileira" loading="lazy"><span>Praias</span></button>
+      <button type="button" class="category-card" data-cat="natureza"><img src="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&w=500&q=80" alt="Natureza brasileira" loading="lazy"><span>Natureza</span></button>
+      <button type="button" class="category-card" data-cat="aventura"><img src="https://images.unsplash.com/photo-1610741083757-34e0a0e0f4ec?auto=format&fit=crop&w=500&q=80" alt="Cachoeira brasileira" loading="lazy"><span>Aventura</span></button>
+      <button type="button" class="category-card" data-cat="cultura"><img src="https://images.unsplash.com/photo-1549918864-48ac978761a4?auto=format&fit=crop&w=500&q=80" alt="Cultura brasileira" loading="lazy"><span>Cultura</span></button>
+      <button type="button" class="category-card" data-cat="gastronomia"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=500&q=80" alt="Gastronomia brasileira" loading="lazy"><span>Gastronomia</span></button>
+    </div></section>
+    <section class="maya-cta"><img src="maya-avatar.webp" alt="Maya, assistente de viagens"><div><p class="eyebrow">ROTEIROS PERSONALIZADOS</p><h2>Monte sua viagem com a Maya</h2><p>Conte seus interesses e receba sugestões ajustáveis ao seu plano.</p></div><button type="button" id="open-maya-cta">Criar meu roteiro</button></section>
+    <a class="business-cta" href="#empresas"><span>PARA EMPRESAS</span><strong>Sou empresa? Anuncie aqui</strong><small>Divulgue seu serviço para viajantes em todo o Brasil.</small></a>
     <div class="section-head"><h2>Seu roteiro</h2><button id="export-trip">Baixar roteiro</button></div>
     <section class="panel" id="itinerary"></section>
     <p class="source">Seleção editorial do projeto Descubra o Brasil. Consulte informações locais antes de viajar.</p>`;
 
   $('search').oninput=ev=>{search=ev.target.value;renderPlaces();};
   $('region').onchange=ev=>{region=ev.target.value;renderPlaces();};
+  $('mode-search').onclick=()=>$('search').focus();
+  $('mode-map').onclick=()=>window.open('https://www.google.com/maps/search/?api=1&query=Brasil','_blank','noopener');
+  $('mode-itinerary').onclick=()=>{const box=$('smart-itinerary-box');box.style.display='block';box.scrollIntoView({behavior:'smooth',block:'center'});};
   $('state-select').onchange=ev=>{selectedState=ev.target.value;renderPlaces();};
   $('saved-filter').onclick=()=>{onlySaved=!onlySaved;explore();};
 
@@ -228,7 +242,8 @@ function explore(){
 
   content.querySelectorAll('[data-story-uf]').forEach(b=>{
     b.onclick=()=>{
-      selectedState=b.dataset.storyUF || b.getAttribute('data-story-uf');
+      const code=b.dataset.storyUf || b.getAttribute('data-story-uf');
+      selectedState=places.find(place=>place.code===code)?.state||'';
       explore();
     };
   });
@@ -241,11 +256,14 @@ function explore(){
     toast('Consultando GPS para encontrar atrações perto de você...');
     navigator.geolocation.getCurrentPosition(pos=>{
       const {latitude, longitude} = pos.coords;
-      toast(`Localização identificada (${latitude.toFixed(2)}, ${longitude.toFixed(2)}). Filtrando lugares próximos.`);
+      nearbyCoordinates={lat:latitude,lng:longitude};renderPlaces();toast(`Mostrando locais em um raio aproximado de 160 km da sua posição.`);
     }, err=>{
       toast('Não foi possível obter a localização. Escolha uma cidade manualmente.');
     });
   };
+
+  $('show-all-destinations').onclick=()=>{nearbyCoordinates=null;onlySaved=false;selectedCategory='';renderPlaces();$('place-results').scrollIntoView({behavior:'smooth',block:'start'});};
+  $('open-maya-cta').onclick=()=>$('maya-toggle').click();
 
   $('smart-itinerary-btn').onclick=()=>{
     const box = $('smart-itinerary-box');
