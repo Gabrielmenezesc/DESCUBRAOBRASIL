@@ -6,7 +6,7 @@ const $=id=>document.getElementById(id), content=$('content');
 const paths={explorar:'<circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/>',jogos:'<path d="M8 6h8l4 5 1 7-3 1-4-4h-4l-4 4-3-1 1-7Z"/><path d="M6 10v4m-2-2h4m8-1h.1m2 2h.1"/>',ofertas:'<path d="M3 3h8l10 10-8 8L3 11Z"/><circle cx="7" cy="7" r="1"/>',noticias:'<path d="M4 3h16v18H4Z M8 7h8M8 11h8M8 15h8"/>',empresas:'<path d="M4 21V7l8-4 8 4v14M2 21h20M8 8v2m8-2v2M8 13v2m8-2v2M10 21v-4h4v4"/>',conta:'<circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/>',sun:'<circle cx="12" cy="12" r="4"/><path d="M12 1v3m0 16v3M1 12h3m16 0h3M4 4l2 2m12 12 2 2M4 20l2-2M18 6l2-2"/>',moon:'<path d="M21 13A9 9 0 0 1 11 3a9 9 0 1 0 10 10Z"/>',arrow:'<path d="M4 12h16m-6-6 6 6-6 6"/>',heart:'<path d="M20 4c-3-3-7-1-8 1-1-2-5-4-8-1-4 4 0 9 8 16 8-7 12-12 8-16Z"/>'};
 const icon=name=>`<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths[name]||paths.arrow}</svg>`;
 const labels={explorar:'Explorar',jogos:'Jogos',ofertas:'Ofertas',noticias:'Notícias',empresas:'Empresas',conta:'Conta'};
-let states=[],places=[],config={},client=null,user=null,progress=freshProgress(),epoch=0,toastTimer,gameTimer,localOnly=false;
+let states=[],places=[],config={},client=null,user=null,progress=freshProgress(),epoch=0,toastTimer,gameTimer,localOnly=false,mayaDrawerMounted=false;
 let search=new URLSearchParams(location.search).get('q')||'',region='',selectedState='',selectedCategory='',onlySaved=false;
 
 function setupMobileIntro(){
@@ -19,10 +19,8 @@ function setupMobileIntro(){
   document.documentElement.classList.add(capable?'enhanced-motion':'standard-motion');
   const close=()=>{
     intro.classList.add('is-leaving');
-    sessionStorage.setItem('descubra-mobile-intro','seen');
     setTimeout(()=>intro.remove(),850);
   };
-  if(sessionStorage.getItem('descubra-mobile-intro')==='seen'){intro.remove();return;}
   document.body.classList.add('intro-open');
   $('enter-app').onclick=close;
   intro.querySelectorAll('[data-enter-app]').forEach(link=>link.onclick=()=>{close();});
@@ -30,6 +28,21 @@ function setupMobileIntro(){
 }
 setupMobileIntro();
 
+function setupMayaDrawer(){
+  const toggle=$('maya-toggle'),drawer=$('maya-drawer'),close=$('maya-close'),root=$('maya-drawer-root');
+  if(!toggle||!drawer||!close||!root)return;
+  const open=()=>{
+    drawer.hidden=false;
+    toggle.setAttribute('aria-expanded','true');
+    if(!mayaDrawerMounted){
+      mayaDrawerMounted=true;
+      mountMaya(root,{config,getContext:()=>({places:places.slice(0,12),activePage:location.hash.slice(1)||'explorar'})});
+    }
+  };
+  const hide=()=>{drawer.hidden=true;toggle.setAttribute('aria-expanded','false');toggle.focus();};
+  toggle.onclick=open;
+  close.onclick=hide;
+}
 const money=cents=>(cents/100).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
 const dateText=value=>new Date(value).toLocaleDateString('pt-BR',{timeZone:'America/Sao_Paulo'});
 const key=()=>`descubra-progress-v2:${user?.id||'guest'}`;
@@ -305,10 +318,11 @@ function authForm(){const box=$('auth-panel');box.innerHTML=`<h2>Entre ou crie s
   const redirect=new URL('./index.html',location.href).href;
   $('email-login').onsubmit=async ev=>{ev.preventDefault();const b=ev.target.querySelector('button');b.disabled=true;$('auth-status').textContent='Solicitando link...';try{const{error}=await client.auth.signInWithOtp({email:new FormData(ev.target).get('email').trim(),options:{emailRedirectTo:redirect,shouldCreateUser:true}});$('auth-status').textContent=error?'Não foi possível enviar. Verifique o e-mail e tente novamente mais tarde.':'Se o endereço puder receber o acesso, o link chegará em instantes. Confira também a pasta de spam.';}catch{$('auth-status').textContent='Sem conexão. Tente novamente.';}b.disabled=false;};if($('google-login'))$('google-login').onclick=async()=>{if(!$('email-login').querySelector('input[type=checkbox]').checked){toast('Leia e aceite os termos antes de continuar.');return;}const{error}=await client.auth.signInWithOAuth({provider:'google',options:{redirectTo:redirect}});if(error)$('auth-status').textContent='Login com Google indisponível. Tente o acesso por e-mail.';};}
 
-function route(){epoch++;clearTimeout(gameTimer);nav();const page=location.hash.slice(1)||'explorar';document.title=`${labels[page]||'Explorar'} | Descubra o Brasil`;({explorar:explore,jogos:games,ofertas:offers,noticias:mayaNews,empresas:business,conta:account}[page]||explore)();window.scrollTo(0,0);content.focus({preventScroll:true});}
+function route(){epoch++;clearTimeout(gameTimer);nav();const page=location.hash.slice(1)||'explorar';document.title=`${labels[page]||'Explorar'} | Descubra o Brasil`;({explorar:explore,jogos:games,ofertas:offers,noticias:news,empresas:business,conta:account}[page]||explore)();window.scrollTo(0,0);content.focus({preventScroll:true});}
 
 async function init(){try{const r=await fetch('./data/destinations.json');if(!r.ok)throw Error();const data=await r.json();states=data.states;places=data.places;readProgress();route();window.addEventListener('hashchange',route);}catch{content.innerHTML=head('Conexão indisponível','Não conseguimos carregar os destinos.','Verifique a conexão e recarregue a página.')+'<button id="retry">Tentar novamente</button>';$('retry').onclick=()=>location.reload();return;}
   try{config=await(await fetch('./config.json',{cache:'no-store'})).json();if(config.supabaseUrl&&config.supabaseKey&&window.supabase){client=window.supabase.createClient(config.supabaseUrl,config.supabaseKey,{auth:{detectSessionInUrl:true,persistSession:true,autoRefreshToken:true}});const{data}=await client.auth.getSession();user=data.session?.user||null;readProgress();client.auth.onAuthStateChange((event,session)=>{const next=session?.user||null;if(next?.id!==user?.id){user=next;readProgress();if(['conta','empresas','ofertas'].includes(location.hash.slice(1)))route();}});if(user && (location.hash.includes('access_token')||location.hash===''||location.hash.includes('error')))history.replaceState(null,'',location.pathname+'#conta');route();}}catch{localOnly=true;}
   if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js').catch(()=>{});
 }
-let deferredInstall=null;window.addEventListener('beforeinstallprompt',event=>{event.preventDefault();deferredInstall=event;$('install').hidden=false;});$('install').onclick=async()=>{if(!deferredInstall)return;await deferredInstall.prompt();await deferredInstall.userChoice;deferredInstall=null;$('install').hidden=true;};window.addEventListener('appinstalled',()=>{$('install').hidden=true;});init();
+let deferredInstall=null;window.addEventListener('beforeinstallprompt',event=>{event.preventDefault();deferredInstall=event;$('install').hidden=false;});$('install').onclick=async()=>{if(!deferredInstall)return;await deferredInstall.prompt();await deferredInstall.userChoice;deferredInstall=null;$('install').hidden=true;};window.addEventListener('appinstalled',()=>{$('install').hidden=true;});setupMayaDrawer();
+init();

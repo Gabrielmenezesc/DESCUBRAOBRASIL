@@ -10,7 +10,10 @@ import FooterSection from './FooterSection';
 import MayaChat from './MayaChat';
 import { assetPath } from '@/lib/assetPath';
 
-const Globe = dynamic(() => import('./Globe'), { ssr: false });
+const BrazilMap = dynamic(() => import('./MapExplorerComponent'), {
+  ssr: false,
+  loading: () => <div className="cine-map-loading">Carregando o mapa do Brasil…</div>,
+});
 
 /* ── Dados ─────────────────────────────────────────────────────────────────── */
 
@@ -393,9 +396,9 @@ export default function ProfessionalHome() {
               </motion.div>
             </div>
 
-            {/* Globe 3D */}
-            <div className="cine-hero-globe" aria-label="Globo 3D interativo do Brasil">
-              <Globe />
+            {/* Mapa real do Brasil */}
+            <div className="cine-hero-globe" aria-label="Mapa interativo do Brasil">
+              <BrazilMap onSelectState={() => undefined} />
               <div style={{
                 position: 'absolute',
                 top: 18,
@@ -408,7 +411,7 @@ export default function ProfessionalHome() {
                 gap: 8,
               }}>
                 <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#0e7c3a', display: 'block' }} />
-                EXPLORAÇÃO 3D
+                MAPA VIVO DO BRASIL
               </div>
               <div style={{
                 position: 'absolute',
@@ -420,7 +423,7 @@ export default function ProfessionalHome() {
                 color: 'rgba(255,255,255,0.35)',
                 letterSpacing: '0.12em',
               }}>
-                Arraste para girar · Clique para explorar
+                Use os controles para aproximar e explorar
               </div>
             </div>
           </motion.div>

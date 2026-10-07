@@ -32,7 +32,7 @@ export default function MapExplorerComponent({ onSelectState }: MapExplorerCompo
     <MapContainer
       center={[-14.235, -51.925]} // Centered on Brazil
       zoom={4}
-      scrollWheelZoom={false}
+      scrollWheelZoom={true}
       className="w-full h-full"
       style={{ zIndex: 0 }}
     >

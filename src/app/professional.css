@@ -2059,3 +2059,7 @@
   .cine-story-ring { transition: none; }
   * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
+
+
+/* Mapa real no destaque do portal. */
+.cine-hero-globe .leaflet-container{width:100%;height:100%;border-radius:20px;background:#d9edf2;isolation:isolate}.cine-hero-globe .leaflet-control-zoom a{color:#073a2a}.cine-map-loading{height:100%;display:grid;place-items:center;color:rgba(255,255,255,.8);font-size:13px;letter-spacing:.08em;background:rgba(3,13,5,.78)}
