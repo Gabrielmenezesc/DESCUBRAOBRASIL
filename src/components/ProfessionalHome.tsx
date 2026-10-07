@@ -69,27 +69,27 @@ const destinations = [
 ];
 
 const categories = [
-  { icon: '🏖️', label: 'Praias', img: 'photo-1559825481-12a05cc00344', href: '/aventura#praias' },
-  { icon: '🌿', label: 'Natureza', img: 'photo-1516026672322-bc52d61a55d5', href: '/aventura#natureza' },
-  { icon: '🏔️', label: 'Aventura', img: 'photo-1610741083757-34e0a0e0f4ec', href: '/aventura' },
-  { icon: '🍽️', label: 'Gastronomia', img: 'photo-1414235077428-338989a2e8c0', href: '/aventura#gastronomia' },
-  { icon: '🏛️', label: 'Cultura', img: 'photo-1598971457999-ca4ef48a9a71', href: '/aventura#cultura' },
-  { icon: '🏨', label: 'Hotéis', img: 'photo-1566073771259-6a8506099945', href: '/ofertas' },
-  { icon: '🎭', label: 'Eventos', img: 'photo-1549918864-48ac978761a4', href: '/aventura#eventos' },
-  { icon: '💸', label: 'Grátis', img: 'photo-1483729558449-99ef09a8c325', href: '/aventura#gratis' },
-  { icon: '👨‍👩‍👧‍👦', label: 'Família', img: 'photo-1530521954074-e64f6810b32d', href: '/aventura#familia' },
-  { icon: '💑', label: 'Romance', img: 'photo-1474314170901-f351b68f544f', href: '/aventura#romance' },
+  { icon: '', label: 'Praias', img: 'photo-1559825481-12a05cc00344', href: '/aventura#praias' },
+  { icon: '', label: 'Natureza', img: 'photo-1516026672322-bc52d61a55d5', href: '/aventura#natureza' },
+  { icon: '', label: 'Aventura', img: 'photo-1610741083757-34e0a0e0f4ec', href: '/aventura' },
+  { icon: '', label: 'Gastronomia', img: 'photo-1414235077428-338989a2e8c0', href: '/aventura#gastronomia' },
+  { icon: '', label: 'Cultura', img: 'photo-1598971457999-ca4ef48a9a71', href: '/aventura#cultura' },
+  { icon: '', label: 'Hotéis', img: 'photo-1566073771259-6a8506099945', href: '/ofertas' },
+  { icon: '', label: 'Eventos', img: 'photo-1549918864-48ac978761a4', href: '/aventura#eventos' },
+  { icon: '', label: 'Grátis', img: 'photo-1483729558449-99ef09a8c325', href: '/aventura#gratis' },
+  { icon: '', label: 'Família', img: 'photo-1530521954074-e64f6810b32d', href: '/aventura#familia' },
+  { icon: '', label: 'Romance', img: 'photo-1474314170901-f351b68f544f', href: '/aventura#romance' },
 ];
 
 const whatWeDo = [
-  { icon: '🗺️', title: 'Descoberta de Destinos', desc: 'Explore lugares incríveis em todos os estados do Brasil, com informações atualizadas.' },
-  { icon: '🧭', title: 'Planejamento de Viagens', desc: 'Monte seu roteiro personalizado com datas, paradas e experiências que combinam com você.' },
-  { icon: '🤖', title: 'Assistente Maya IA', desc: 'Pergunte qualquer coisa sobre turismo no Brasil. A Maya entende e responde com inteligência.' },
-  { icon: '🗾', title: 'Mapa Interativo', desc: 'Explore o Brasil em 3D. Veja estados, cidades e pontos turísticos de uma forma imersiva.' },
-  { icon: '📰', title: 'Notícias de Turismo', desc: 'Fique por dentro das novidades do turismo brasileiro com fontes oficiais verificadas.' },
-  { icon: '🏢', title: 'Para Empresas', desc: 'Divulgue seu negócio turístico e alcance viajantes que estão planejando sua próxima viagem.' },
-  { icon: '🆓', title: 'Lugares Gratuitos', desc: 'Descubra atrações, parques e experiências sem custo em todo o território nacional.' },
-  { icon: '🎮', title: 'Jogos Culturais', desc: 'Aprenda sobre o Brasil de forma divertida com quizzes, memória e passaporte de visitas.' },
+  { icon: '', title: 'Descoberta de Destinos', desc: 'Explore lugares incríveis em todos os estados do Brasil, com informações atualizadas.' },
+  { icon: '', title: 'Planejamento de Viagens', desc: 'Monte seu roteiro personalizado com datas, paradas e experiências que combinam com você.' },
+  { icon: '', title: 'Assistente Maya IA', desc: 'Pergunte qualquer coisa sobre turismo no Brasil. A Maya entende e responde com inteligência.' },
+  { icon: '', title: 'Mapa Interativo', desc: 'Explore o Brasil em 3D. Veja estados, cidades e pontos turísticos de uma forma imersiva.' },
+  { icon: '', title: 'Notícias de Turismo', desc: 'Fique por dentro das novidades do turismo brasileiro com fontes oficiais verificadas.' },
+  { icon: '', title: 'Para Empresas', desc: 'Divulgue seu negócio turístico e alcance viajantes que estão planejando sua próxima viagem.' },
+  { icon: '', title: 'Lugares Gratuitos', desc: 'Descubra atrações, parques e experiências sem custo em todo o território nacional.' },
+  { icon: '', title: 'Jogos Culturais', desc: 'Aprenda sobre o Brasil de forma divertida com quizzes, memória e passaporte de visitas.' },
 ];
 
 const stories = [
@@ -933,7 +933,7 @@ export default function ProfessionalHome() {
               {[
                 { icon: '🖼️', name: 'Banner Premium', desc: 'Grande visibilidade na homepage e nas páginas de destino.' },
                 { icon: '📹', name: 'Vídeo Patrocinado', desc: 'Seu vídeo integrado na seção "Brasil em Movimento".' },
-                { icon: '🗺️', name: 'Destino Patrocinado', desc: 'Destaque no mapa interativo e nas listagens de estados.' },
+                { icon: '', name: 'Destino Patrocinado', desc: 'Destaque no mapa interativo e nas listagens de estados.' },
                 { icon: '📋', name: 'Card Patrocinado', desc: 'Card integrado nas categorias e listagens de lugares.' },
                 { icon: '🎯', name: 'Campanha Regional', desc: 'Segmentação por estado, região, cidade ou categoria.' },
                 { icon: '📱', name: 'Publicidade no App', desc: 'Visibilidade dentro do aplicativo para usuários ativos.' },

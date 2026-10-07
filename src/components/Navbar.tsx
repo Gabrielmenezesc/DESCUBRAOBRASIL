@@ -74,6 +74,12 @@ export default function Navbar() {
 
           {/* Ações */}
           <div className="cine-nav-actions">
+            <a className="cine-social-nav" href="https://wa.me/5561995659907" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+              <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 3a13 13 0 0 0-11.1 19.8L3 29l6.4-1.7A13 13 0 1 0 16 3Zm0 23.7a10.7 10.7 0 0 1-5.5-1.5l-.4-.2-3.8 1 1-3.7-.2-.4A10.7 10.7 0 1 1 16 26.7Z"/></svg>
+            </a>
+            <span className="cine-social-nav" aria-label="Instagram em configuração" title="Instagram em configuração">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg>
+            </span>
             {/* Maya */}
             <a
               className="cine-maya-btn"
@@ -96,8 +102,8 @@ export default function Navbar() {
             )}
 
             {/* Abrir App */}
-            <a className="cine-app-btn" href={assetPath('/app/index.html')}>
-              Abrir App
+            <a className="cine-app-btn" href="#baixar-app">
+              Baixar para smartphone
             </a>
 
             {/* Menu mobile */}
