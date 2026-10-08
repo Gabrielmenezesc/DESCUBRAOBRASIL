@@ -2,11 +2,19 @@ import {escapeHTML as escape, safeURL} from './core.mjs';
 
 export async function requestMaya(config, question, history, context, fetcher=fetch) {
   if (!config.mayaProxyUrl || !config.supabaseKey) throw new Error('A conexão da Maya ainda não está configurada.');
-  const response = await fetcher(config.mayaProxyUrl, {
+  const requestOptions={
     method:'POST', signal:AbortSignal.timeout(55000),
     headers:{'content-type':'application/json',apikey:config.supabaseKey,authorization:`Bearer ${config.supabaseKey}`},
     body:JSON.stringify({question,history:history.slice(-8),context,search:true}),
-  });
+  };
+  let response;
+  try{
+    response=await fetcher(config.mayaProxyUrl,requestOptions);
+  }catch{
+    await new Promise(resolve=>setTimeout(resolve,700));
+    try{response=await fetcher(config.mayaProxyUrl,requestOptions);}
+    catch{throw new Error('Não foi possível conectar à Maya agora. Verifique sua internet e tente novamente.');}
+  }
   const data=await response.json();
   if (!response.ok || typeof data.answer!=='string' || !data.answer.trim()) {
     throw new Error(response.status===429?'A Maya recebeu muitas perguntas. Aguarde um minuto e tente novamente.':'A Maya está temporariamente indisponível. Tente novamente em alguns instantes.');
