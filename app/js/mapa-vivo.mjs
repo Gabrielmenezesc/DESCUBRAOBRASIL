@@ -33,7 +33,7 @@ function loadMapLibre(){
 }
 function insertStyles(){
   if(document.getElementById('mapa-vivo-styles'))return;
-  const style=document.createElement('style');style.id='mapa-vivo-styles';style.textContent=\`
+  const style=document.createElement('style');style.id='mapa-vivo-styles';style.textContent=`
   .map-live{position:relative;min-height:calc(100dvh - 72px);margin:-18px -14px 0;background:#082b23;color:#10221b;overflow:hidden}
   .map-live-canvas{position:absolute;inset:0;background:linear-gradient(145deg,#b9dff0,#dff2e4)}
   .map-live-canvas .maplibregl-ctrl-bottom-right,.map-live-canvas .maplibregl-ctrl-bottom-left{display:none}
@@ -63,7 +63,7 @@ function insertStyles(){
   .map-live-marker{width:34px;height:34px;border:3px solid #fff;border-radius:50% 50% 50% 6px;transform:rotate(-45deg);box-shadow:0 8px 18px rgba(2,26,18,.34);display:grid;place-items:center}.map-live-marker b{transform:rotate(45deg);font-size:10px;color:#fff;line-height:1}.map-live-marker--free{background:#087447}.map-live-marker--culture{background:#a14777}.map-live-marker--nature{background:#158c74}.map-live-marker--partner{background:#d18a13}.map-live-marker--hotel{background:#226ba2}
   @media(max-width:700px){.map-live{margin:-12px -12px 0;min-height:calc(100dvh - 66px)}.map-live-top{padding:14px 10px 0}.map-live-search{grid-template-columns:1fr auto;gap:7px;padding:7px;border-radius:21px}.map-live-search label{grid-column:1/-1}.map-live-search input{height:46px;font-size:14px}.map-live-search button{min-height:44px;font-size:12px}.map-live-filters{padding-left:4px}.map-live-pill{padding:9px 12px;font-size:12px}.map-live-weather{top:151px;right:10px;width:206px;padding:11px}.map-live-weather h2{font-size:12px}.map-live-weather .map-temp{font-size:29px}.map-live-weather-stats{gap:4px;margin-top:8px}.map-live-weather-stats div{padding:6px 3px}.map-live-weather-stats strong{font-size:11px}.map-live-tools{right:10px;top:298px}.map-live-tools button{width:43px;height:43px}.map-live-region-legend{display:none}.map-live-sheet{bottom:max(12px,env(safe-area-inset-bottom));grid-template-columns:auto 1fr;gap:10px;border-radius:22px;padding:10px}.map-live-sheet img{width:62px;height:62px}.map-live-sheet h2{font-size:15px}.map-live-sheet p{font-size:11px}.map-live-sheet .map-live-action{grid-column:1/-1;width:100%;padding:11px}.map-live-status{bottom:140px;font-size:11px}.map-live-canvas .maplibregl-ctrl-top-right{top:0}.map-live-canvas .maplibregl-ctrl-group{border-radius:12px;overflow:hidden}}
   @media(prefers-reduced-motion:reduce){.map-live *{transition:none!important;animation:none!important}}
-  \`;document.head.append(style);
+  `;document.head.append(style);
 }
 function pinElement(type='nature'){
   const el=document.createElement('button');el.type='button';el.className='map-live-marker map-live-marker--'+type;el.setAttribute('aria-label','Ver detalhes no mapa');el.innerHTML='<b>●</b>';return el;
@@ -87,7 +87,7 @@ async function locatePlace(query){
 }
 export async function mountBrazilMap(root,{places=[],askMaya,toast=()=>{}}={}){
   insertStyles();
-  root.innerHTML=\`<section class="map-live" aria-label="Mapa vivo do Brasil">
+  root.innerHTML=`<section class="map-live" aria-label="Mapa vivo do Brasil">
     <div class="map-live-canvas" id="brazil-live-map" role="application" aria-label="Mapa interativo 3D do Brasil"></div>
     <div class="map-live-top">
       <form class="map-live-search" id="map-live-search">
@@ -104,7 +104,7 @@ export async function mountBrazilMap(root,{places=[],askMaya,toast=()=>{}}={}){
     <div class="map-live-region-legend" aria-label="Cores por região"><span><i style="background:#168f70"></i>Norte</span><span><i style="background:#e6a31d"></i>Nordeste</span><span><i style="background:#0d719d"></i>Centro-Oeste</span><span><i style="background:#b54978"></i>Sudeste</span><span><i style="background:#6849b7"></i>Sul</span></div>
     <div class="map-live-sheet" id="map-live-sheet" hidden><img id="map-sheet-image" alt="" /><div><h2 id="map-sheet-title">Explore o Brasil</h2><p id="map-sheet-meta">Selecione um marcador para ver detalhes.</p></div><button type="button" class="map-live-action" id="map-sheet-action">Perguntar à Maya</button></div>
     <p class="map-live-status" id="map-live-status" role="status"></p>
-  </section>\`;
+  </section>`;
   const $=id=>root.querySelector('#'+id);
   const setStatus=message=>{const status=$('map-live-status');status.textContent=message;clearTimeout(setStatus.timer);setStatus.timer=setTimeout(()=>{if(status)status.textContent='';},4200);};
   const query=$('map-live-query'),suggestions=$('map-live-suggestions'),sheet=$('map-live-sheet');
@@ -145,7 +145,7 @@ export async function mountBrazilMap(root,{places=[],askMaya,toast=()=>{}}={}){
     activeFilter=filter;
     root.querySelectorAll('[data-map-filter]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.mapFilter===filter)));
     if(filter==='diroma'){query.value='diRoma Caldas Novas';runSearch(query.value);return;}
-    renderMarkers();setStatus(filter==='all'?'Mostrando os pontos do catálogo.':\`Filtro \${filter} aplicado.\`);
+    renderMarkers();setStatus(filter==='all'?'Mostrando os pontos do catálogo.':`Filtro ${filter} aplicado.`);
   };
   const moveToCity=async(city)=>{
     const cacheKey=city.nome+' '+city.uf;
@@ -158,20 +158,20 @@ export async function mountBrazilMap(root,{places=[],askMaya,toast=()=>{}}={}){
   const renderSuggestions=value=>{
     const term=normalize(value);if(term.length<2){suggestions.hidden=true;suggestions.innerHTML='';return;}
     const selected=cities.filter(city=>normalize(city.nome+' '+city.uf).includes(term)).slice(0,8);
-    suggestions.innerHTML=selected.map((city,index)=>\`<button type="button" data-city-index="\${index}">\${escapeHTML(city.nome)}<small>\${escapeHTML(city.uf)} · \${escapeHTML(city.region)}</small></button>\`).join('');
+    suggestions.innerHTML=selected.map((city,index)=>`<button type="button" data-city-index="${index}">${escapeHTML(city.nome)}<small>${escapeHTML(city.uf)} · ${escapeHTML(city.region)}</small></button>`).join('');
     suggestions.hidden=!selected.length;
     suggestions.querySelectorAll('[data-city-index]').forEach(button=>button.onclick=()=>{const city=selected[Number(button.dataset.cityIndex)];suggestions.hidden=true;query.value=city.nome+' · '+city.uf;moveToCity(city);});
   };
   const runSearch=async raw=>{
     const value=String(raw||'').trim();if(!value)return;
     const local=places.find(place=>normalize([place.name,place.city,place.state].join(' ')).includes(normalize(value)));
-    if(local){showPlace(local);askMaya?.(\`No mapa, mostre \${local.name} em \${local.city}. Conte o que é importante para planejar a visita.\`);return;}
+    if(local){showPlace(local);askMaya?.(`No mapa, mostre ${local.name} em ${local.city}. Conte o que é importante para planejar a visita.`);return;}
     const exact=cities.find(city=>normalize(city.nome+' '+city.uf)===normalize(value)||normalize(city.nome)===normalize(value));
-    if(exact){await moveToCity(exact);askMaya?.(\`Quero conhecer \${exact.nome}, \${exact.uf}. Sugira um roteiro e pontos de interesse.\`);return;}
+    if(exact){await moveToCity(exact);askMaya?.(`Quero conhecer ${exact.nome}, ${exact.uf}. Sugira um roteiro e pontos de interesse.`);return;}
     const results=await locatePlace(value);const result=results.find(item=>item.country_code==='BR')||results[0];
     if(!result){setStatus('Não encontrei esse local. Tente cidade e estado.');return;}
     const place={name:result.name||value,city:result.name||value,state:result.admin1||'Brasil',lat:result.latitude,lng:result.longitude,zoom:result.feature_code==='PPL'?11:13};
-    showPlace(place);askMaya?.(\`No mapa, pesquise \${value} e me ajude a encontrar atrações, hospedagem, cultura e opções gratuitas.\`);
+    showPlace(place);askMaya?.(`No mapa, pesquise ${value} e me ajude a encontrar atrações, hospedagem, cultura e opções gratuitas.`);
   };
   $('map-live-search').onsubmit=event=>{event.preventDefault();suggestions.hidden=true;runSearch(query.value).catch(()=>setStatus('Pesquisa indisponível agora.'))};
   query.oninput=()=>renderSuggestions(query.value);
@@ -179,7 +179,7 @@ export async function mountBrazilMap(root,{places=[],askMaya,toast=()=>{}}={}){
     const Recognition=window.SpeechRecognition||window.webkitSpeechRecognition;
     if(!Recognition){setStatus('A busca por voz não é suportada neste navegador.');return;}
     const recognition=new Recognition();recognition.lang='pt-BR';recognition.interimResults=false;recognition.maxAlternatives=1;setStatus('Estou ouvindo. Diga uma cidade ou destino.');
-    recognition.onresult=event=>{const text=event.results[0][0].transcript;query.value=text;runSearch(text).catch(()=>setStatus('Não consegui pesquisar por voz agora.'));askMaya?.(\`O usuário falou: "\${text}". Ajude no planejamento pelo mapa.\`);};
+    recognition.onresult=event=>{const text=event.results[0][0].transcript;query.value=text;runSearch(text).catch(()=>setStatus('Não consegui pesquisar por voz agora.'));askMaya?.(`O usuário falou: "${text}". Ajude no planejamento pelo mapa.`);};
     recognition.onerror=()=>setStatus('Não foi possível usar o microfone. Confira a permissão.');
     recognition.start();
   };
@@ -189,7 +189,7 @@ export async function mountBrazilMap(root,{places=[],askMaya,toast=()=>{}}={}){
   };
   $('map-recenter').onclick=()=>{sheet.hidden=true;map.flyTo({center:BRAZIL,zoom:3.4,pitch:43,bearing:-8,essential:true});setStatus('Voltamos para a visão geral do Brasil.');};
   $('map-rotate').onclick=()=>{const next=map.getPitch()>5?0:55;map.easeTo({pitch:next,bearing:next?map.getBearing()+26:0,duration:750});setStatus(next?'Visualização 3D ativada.':'Visualização plana ativada.');};
-  $('map-sheet-action').onclick=()=>{if(!activePlace)return;askMaya?.(\`Estou vendo \${activePlace.name||activePlace.city} no mapa. Monte um roteiro com locais gratuitos, culturais, hospedagem e cuidados para a visita.\`);toast('A Maya recebeu o destino selecionado.');};
+  $('map-sheet-action').onclick=()=>{if(!activePlace)return;askMaya?.(`Estou vendo ${activePlace.name||activePlace.city} no mapa. Monte um roteiro com locais gratuitos, culturais, hospedagem e cuidados para a visita.`);toast('A Maya recebeu o destino selecionado.');};
   root.querySelectorAll('[data-map-filter]').forEach(button=>button.onclick=()=>setFilter(button.dataset.mapFilter));
   map.on('load',async()=>{
     renderMarkers();setWeather(BRAZIL[0],BRAZIL[1],'Brasil');
@@ -204,6 +204,6 @@ export async function mountBrazilMap(root,{places=[],askMaya,toast=()=>{}}={}){
       }
     }catch{setStatus('Limites estaduais não puderam ser carregados agora. O mapa continua disponível.');}
     try{
-      const response=await fetch(IBGE_MUNICIPIOS);if(!response.ok)throw new Error();const rows=await response.json();cities=rows.map(row=>{const uf=row.microrregiao?.mesorregiao?.UF||row.regiaoImediata?.regiaoIntermediaria?.UF||{};return{nome:row.nome,uf:uf.sigla||'',region:uf.regiao?.nome||REGION_BY_UF[uf.sigla]||'Brasil'};}).filter(city=>city.nome&&city.uf);setStatus(\`\${cities.length.toLocaleString('pt-BR')} municípios carregados para pesquisa.\`);}catch{setStatus('A lista oficial de municípios não está disponível agora. Você ainda pode pesquisar destinos.');}
+      const response=await fetch(IBGE_MUNICIPIOS);if(!response.ok)throw new Error();const rows=await response.json();cities=rows.map(row=>{const uf=row.microrregiao?.mesorregiao?.UF||row.regiaoImediata?.regiaoIntermediaria?.UF||{};return{nome:row.nome,uf:uf.sigla||'',region:uf.regiao?.nome||REGION_BY_UF[uf.sigla]||'Brasil'};}).filter(city=>city.nome&&city.uf);setStatus(`${cities.length.toLocaleString('pt-BR')} municípios carregados para pesquisa.`);}catch{setStatus('A lista oficial de municípios não está disponível agora. Você ainda pode pesquisar destinos.');}
   });
 }
