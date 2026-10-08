@@ -56,5 +56,9 @@ export function mountMaya(root,{config,getContext}) {
     finally{busy=false;if(root.isConnected){input.disabled=false;root.querySelectorAll('button').forEach(b=>b.disabled=false);messages.scrollTop=messages.scrollHeight;input.focus();}}
   };
   form.onsubmit=event=>{event.preventDefault();send(input.value);};
+  root.addEventListener('descubra:maya-question',event=>{
+    const question=String(event.detail?.question||'').trim();
+    if(question){input.value=question;send(question);}
+  });
   root.querySelectorAll('[data-question]').forEach(button=>button.onclick=()=>{input.value=button.dataset.question;send(input.value);});
 }
