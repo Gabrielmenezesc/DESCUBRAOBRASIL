@@ -30,6 +30,7 @@ export default function RootLayout({
  return (
  <html lang="pt-BR" className={`${geistSans.variable} ${geistMono.variable}`} suppressHydrationWarning>
  <head>
+ <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
  <link rel="manifest" href={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/manifest.json`} />
  <link rel="apple-touch-icon" href={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/icon-192.png`} />
  <meta name="apple-mobile-web-app-capable" content="yes" />
