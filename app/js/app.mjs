@@ -21,6 +21,8 @@ function photoFor(place){const city=normalize(place.city||'');const photo=visual
 const labels={explorar:'Início',jogos:'Jogos',ofertas:'Ofertas',noticias:'Notícias',conta:'Conta'};
 let states=[],places=[],config={},client=null,user=null,progress=freshProgress(),epoch=0,toastTimer,gameTimer,localOnly=false,mayaDrawerMounted=false;
 let search=new URLSearchParams(location.search).get('q')||'',region='',selectedState='',selectedCategory='',onlySaved=false,nearbyCoordinates=null;
+function accountPlan(){return normalize(user?.user_metadata?.plan||'')==='premium'?'premium':'basic';}
+function isPremium(){return accountPlan()==='premium';}
 
 function setupMobileIntro(){
   const intro=$('mobile-intro');if(!intro)return;
@@ -124,7 +126,7 @@ function save(){
   if(user&&client)void syncProgressToCloud();
 }
 function head(kicker,title,description){return `<p class="eyebrow">${kicker}</p><h1>${title}</h1><p class="page-lead">${description}</p>`;}
-function nav(){const page=location.hash.slice(1)||'explorar';$('navigation').innerHTML=Object.entries(labels).map(([id,label])=>`<a href="#${id}" ${page===id?'aria-current="page"':''}>${icon(id)}<span>${label}</span></a>`).join('');}
+function nav(){const page=location.hash.slice(1)||'explorar';const items=Object.entries(labels).filter(([id])=>id!=='jogos'||isPremium());const navigation=$('navigation');navigation.style.setProperty('--nav-items',String(items.length));navigation.innerHTML=items.map(([id,label])=>`<a href="#${id}" ${page===id?'aria-current="page"':''}>${icon(id)}<span>${label}</span></a>`).join('');}
 function updateThemeButton(){const dark=document.documentElement.dataset.theme==='dark';$('theme-toggle').innerHTML=icon(dark?'sun':'moon');$('theme-toggle').setAttribute('aria-label',dark?'Ativar tema claro':'Ativar tema escuro');}
 $('theme-toggle').onclick=()=>{const value=document.documentElement.dataset.theme==='dark'?'light':'dark';document.documentElement.dataset.theme=value;document.documentElement.style.colorScheme=value;try{localStorage.setItem('theme',value);}catch{}updateThemeButton();};updateThemeButton();
 
@@ -435,6 +437,11 @@ function explore(){
   $('hero-business')?.addEventListener('click',()=>{location.hash='empresas';});
 }
 
+function gamesLocked(){
+  content.innerHTML=`<section class='page-hero games-hero'><img src='https://images.unsplash.com/photo-1483729558449-99ef09a8c325?auto=format&fit=crop&w=1400&q=84' alt='Vista do Rio de Janeiro' loading='eager'><div class='page-hero-shade'></div><div class='page-hero-copy'><p>CONTA PREMIUM</p><h1>Jogos e desafios<br><em>para assinantes</em></h1><span>Esta área fica disponível para contas Premium verificadas.</span></div></section><section class='panel games-locked'><p class='eyebrow'>SEU PLANO ATUAL</p><h2>Plano Básico</h2><p>Continue explorando destinos, notícias, mapa, roteiros e ofertas. Os jogos culturais são um benefício do plano Premium.</p><button class='primary' id='premium-info'>Falar com a Maya sobre Premium</button></section>`;
+  $('premium-info').onclick=()=>window.dispatchEvent(new CustomEvent('descubra:maya-question',{detail:{question:'Quero saber como funciona o plano Premium e o acesso aos jogos do Descubra o Brasil.'}}));
+}
+
 function games(){
   const xp=totalXP(progress), level=1+Math.floor(xp/200), visitCount=Object.keys(progress.awards).filter(x=>x.startsWith('visit:')).length;
   content.innerHTML=`<section class='page-hero games-hero'>
@@ -519,9 +526,10 @@ function business(){content.innerHTML=head('Para negócios locais','Sua empresa 
 async function loadMyOffers(){const box=$('my-offers');if(!client||!user){box.innerHTML='<p>Entre em uma conta para enviar e acompanhar propostas. O simulador acima pode ser usado sem cadastro.</p>';return;}box.textContent='Consultando propostas...';const {data,error}=await client.from('tourism_offers').select('*').eq('owner_id',user.id).order('created_at',{ascending:false});if(!box.isConnected)return;box.innerHTML=error?'<p>Não foi possível consultar suas propostas.</p>':data?.length?data.map(o=>`<div class="itinerary-row"><strong>${e(o.title)}</strong><span class="tag">${{pending:'Em análise',approved:'Aprovada',rejected:'Não aprovada'}[o.status]||'Em análise'}</span>${o.status!=='approved'?`<button data-delete-offer="${e(o.id)}">Excluir proposta</button>`:''}</div>`).join(''):'<p>Você ainda não enviou propostas.</p>';box.querySelectorAll('[data-delete-offer]').forEach(b=>b.onclick=async()=>{if(!confirm('Excluir esta proposta?'))return;const{error}=await client.from('tourism_offers').delete().eq('id',b.dataset.deleteOffer);if(error)toast('Não foi possível excluir.');else loadMyOffers();});}
 
 function account(){
-  const xp=totalXP(progress), level=1+Math.floor(xp/200), displayName=user?.user_metadata?.full_name||user?.email?.split('@')[0]||'Viajante';
+  const xp=totalXP(progress), level=1+Math.floor(xp/200), displayName=user?.user_metadata?.full_name||user?.email?.split('@')[0]||'Viajante',plan=accountPlan(),premium=plan==='premium';
   content.innerHTML=`<section class='profile-hero'><img src='https://images.unsplash.com/photo-1483729558449-99ef09a8c325?auto=format&fit=crop&w=1200&q=82' alt='' loading='eager'><div class='profile-hero-shade'></div><div class='profile-summary'><div class='profile-avatar' aria-hidden='true'>${icon('conta')}</div><div><p>${user?'CONTA CONECTADA':'MODO VISITANTE'}</p><h1>${e(displayName)}</h1><span>${user?'Seus favoritos, roteiros e progresso são sincronizados com sua conta.':'Entre para manter seu progresso na nuvem e continuar em outro aparelho.'}</span></div></div></section>
   <section class='profile-stats' aria-label='Seu progresso'><div><strong>${progress.favorites.length}</strong><span>Favoritos</span></div><div><strong>${progress.itinerary.length}</strong><span>Roteiros</span></div><div><strong>${xp}</strong><span>Pontos</span></div><div><strong>${level}</strong><span>Nível</span></div></section>
+  <section class='plan-card ${premium?'plan-card--premium':'plan-card--basic'}'><div><p>SEU PLANO</p><h2>${premium?'Premium':'Básico'}</h2><span>${premium?'Sua conta tem acesso aos jogos e desafios culturais.':'Mapa, destinos, notícias, roteiro e ofertas estão disponíveis. Jogos são exclusivos para Premium.'}</span></div><button type='button' id='plan-help'>${premium?'Ver benefícios':'Conhecer Premium'}</button></section>
   <section class='progress-card profile-progress'><div><p>SEU NÍVEL NO DESCOBRA O BRASIL</p><h2>Nível ${level} — ${level<2?'Viajante':level<3?'Explorador':level<4?'Aventureiro':level<5?'Explorador Brasil':'Mestre do Brasil'}</h2><span>Continue explorando para registrar novas conquistas.</span></div><div class='progress-bar'><i style='width:${Math.min(100,Math.round((xp/(level*200))*100))}%'></i></div></section>
   <section id='auth-panel' class='account-auth'></section>
   <section class='account-actions' aria-label='Ações da conta'><button type='button' data-account-action='favorites'>Meus favoritos</button><button type='button' data-account-action='itinerary'>Meu roteiro</button><button type='button' data-account-action='preferences'>Preferências</button><button type='button' id='maya-support'>Falar com o suporte pela Maya</button></section>
@@ -531,17 +539,30 @@ function account(){
   else authForm();
   content.querySelectorAll('[data-account-action]').forEach(button=>button.onclick=()=>{const action=button.dataset.accountAction;if(action==='favorites'){onlySaved=true;location.hash='explorar';}if(action==='itinerary'){location.hash='explorar';setTimeout(()=>$('itinerary')?.scrollIntoView({behavior:'smooth'}),150);}if(action==='preferences'){$('theme-toggle').click();toast('Tema atualizado.');}});
   $('maya-support').onclick=()=>window.dispatchEvent(new CustomEvent('descubra:maya-question',{detail:{question:'Preciso de suporte com minha conta, favoritos, roteiro ou navegação no aplicativo. Pode me ajudar?'}}));
+  $('plan-help').onclick=()=>window.dispatchEvent(new CustomEvent('descubra:maya-question',{detail:{question:`Quero informações sobre o plano ${premium?'Premium':'Premium'} e acesso aos jogos no Descubra o Brasil.`}}));
   if(user&&$('cloud-sync'))$('cloud-sync').onclick=async()=>{const button=$('cloud-sync');button.disabled=true;$('cloud-status').textContent='Sincronizando sua conta...';const ok=await syncProgressToCloud();$('cloud-status').textContent=ok?'Dados sincronizados com a sua conta.':'A sincronização não está disponível agora. Tente novamente mais tarde.';button.disabled=false;};
 }
 function authForm(){const box=$('auth-panel');box.innerHTML=`<h2>Entre ou crie sua conta</h2><p>Receba um link de acesso no seu e-mail. Você não precisa criar uma senha.</p><form id="email-login"><label>Seu e-mail<input type="email" name="email" autocomplete="email" required maxlength="254" placeholder="voce@exemplo.com"></label><label><input type="checkbox" required>Li os <a href="../termos/" target="_blank" rel="noopener">termos</a> e a <a href="../privacidade/" target="_blank" rel="noopener">política de privacidade</a>.</label><button type="submit" class="primary">Receber link de acesso</button></form>${config.googleEnabled?'<button id="google-login" style="margin-top:16px">Continuar com Google</button>':''}<p id="auth-status" class="inline-status" role="status"></p>`;
   const redirect=new URL('./index.html',location.href).href;
   $('email-login').onsubmit=async ev=>{ev.preventDefault();const b=ev.target.querySelector('button');b.disabled=true;$('auth-status').textContent='Solicitando link...';try{const{error}=await client.auth.signInWithOtp({email:new FormData(ev.target).get('email').trim(),options:{emailRedirectTo:redirect,shouldCreateUser:true}});$('auth-status').textContent=error?'Não foi possível enviar. Verifique o e-mail e tente novamente mais tarde.':'Se o endereço puder receber o acesso, o link chegará em instantes. Confira também a pasta de spam.';}catch{$('auth-status').textContent='Sem conexão. Tente novamente.';}b.disabled=false;};if($('google-login'))$('google-login').onclick=async()=>{if(!$('email-login').querySelector('input[type=checkbox]').checked){toast('Leia e aceite os termos antes de continuar.');return;}const{error}=await client.auth.signInWithOAuth({provider:'google',options:{redirectTo:redirect}});if(error)$('auth-status').textContent='Login com Google indisponível. Tente o acesso por e-mail.';};}
 
-function route(){epoch++;clearTimeout(gameTimer);content._mapDestroy?.();content.querySelectorAll('[data-map-root]').forEach(node=>node._mapDestroy?.());nav();const page=location.hash.slice(1)||'explorar';document.title=`${labels[page]||'Explorar'} | Descubra o Brasil`;({explorar:explore,mapa,ofertas:offers,noticias:news,empresas:business,conta:account,jogos:games}[page]||explore)();window.scrollTo(0,0);content.focus({preventScroll:true});}
+function route(){epoch++;clearTimeout(gameTimer);content._mapDestroy?.();content.querySelectorAll('[data-map-root]').forEach(node=>node._mapDestroy?.());nav();const page=location.hash.slice(1)||'explorar';document.title=`${labels[page]||'Explorar'} | Descubra o Brasil`;({explorar:explore,mapa,ofertas:offers,noticias:news,empresas:business,conta:account,jogos:isPremium()?games:gamesLocked}[page]||explore)();window.scrollTo(0,0);content.focus({preventScroll:true});}
 
 async function init(){try{const r=await fetch('./data/destinations.json');if(!r.ok)throw Error();const data=await r.json();states=data.states;places=data.places;readProgress();route();window.addEventListener('hashchange',route);}catch{content.innerHTML=head('Conexão indisponível','Não conseguimos carregar os destinos.','Verifique a conexão e recarregue a página.')+'<button id="retry">Tentar novamente</button>';$('retry').onclick=()=>location.reload();return;}
-  try{config=await(await fetch('./config.json',{cache:'no-store'})).json();if(config.supabaseUrl&&config.supabaseKey&&window.supabase){client=window.supabase.createClient(config.supabaseUrl,config.supabaseKey,{auth:{detectSessionInUrl:true,persistSession:true,autoRefreshToken:true}});const{data}=await client.auth.getSession();user=data.session?.user||null;readProgress();client.auth.onAuthStateChange((event,session)=>{const next=session?.user||null;if(next?.id!==user?.id){user=next;readProgress();if(['conta','empresas','ofertas'].includes(location.hash.slice(1)))route();}});if(user){await loadProgressFromCloud();if(location.hash.includes('access_token')||location.hash===''||location.hash.includes('error'))history.replaceState(null,'',location.pathname+'#conta');}route();}}catch{localOnly=true;}
+  try{config=await(await fetch('./config.json',{cache:'no-store'})).json();if(config.supabaseUrl&&config.supabaseKey&&window.supabase){client=window.supabase.createClient(config.supabaseUrl,config.supabaseKey,{auth:{detectSessionInUrl:true,persistSession:true,autoRefreshToken:true}});const{data}=await client.auth.getSession();user=data.session?.user||null;readProgress();client.auth.onAuthStateChange((event,session)=>{const next=session?.user||null;if(next?.id!==user?.id){user=next;readProgress();route();}});if(user){await loadProgressFromCloud();if(location.hash.includes('access_token')||location.hash===''||location.hash.includes('error'))history.replaceState(null,'',location.pathname+'#conta');}route();}}catch{localOnly=true;}
   if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js').catch(()=>{});
 }
+function preventPullToRefresh(){
+  let startY=null;
+  window.addEventListener('touchstart',event=>{if(event.touches.length===1)startY=event.touches[0].clientY;},{passive:true});
+  window.addEventListener('touchmove',event=>{
+    if(startY===null||document.body.classList.contains('intro-open'))return;
+    const delta=event.touches[0]?.clientY-startY;
+    if(window.scrollY<=0&&delta>12)event.preventDefault();
+  },{passive:false});
+  window.addEventListener('touchend',()=>{startY=null;},{passive:true});
+  window.addEventListener('touchcancel',()=>{startY=null;},{passive:true});
+}
+preventPullToRefresh();
 let deferredInstall=null;window.addEventListener('beforeinstallprompt',event=>{event.preventDefault();deferredInstall=event;$('install').hidden=false;});$('install').onclick=async()=>{if(!deferredInstall)return;await deferredInstall.prompt();await deferredInstall.userChoice;deferredInstall=null;$('install').hidden=true;};window.addEventListener('appinstalled',()=>{$('install').hidden=true;});setupMayaDrawer();
 init();
