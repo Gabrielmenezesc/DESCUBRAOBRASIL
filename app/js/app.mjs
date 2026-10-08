@@ -28,6 +28,8 @@ function setupMobileIntro(){
   const connection=navigator.connection||navigator.mozConnection||navigator.webkitConnection;
   const capable=!reduced&&!connection?.saveData&&(navigator.deviceMemory||4)>=4&&(navigator.hardwareConcurrency||4)>=4;
   document.documentElement.classList.add(capable?'enhanced-motion':'standard-motion');
+  const video=intro.querySelector('video');
+  video?.addEventListener('error',()=>intro.classList.add('video-unavailable'),{once:true});
   let closed=false;
   const releaseScroll=()=>{
     document.body.classList.remove('intro-open');
