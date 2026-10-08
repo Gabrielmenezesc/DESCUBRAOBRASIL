@@ -180,3 +180,23 @@ html,body{min-height:100%;overscroll-behavior-y:auto}
 .account-cloud{margin-top:18px}.account-cloud h2{margin:6px 0}.account-actions button#maya-support{background:var(--accent);border-color:var(--accent);color:#fff}
 @media(max-width:700px){.offers-hero{margin-inline:-1px;padding:29px 22px;border-radius:24px}.offers-layout,.offers-grid{grid-template-columns:1fr}.offer-feature{grid-template-columns:1fr}.offer-feature>img{min-height:190px;height:190px}.offer-feature>div{padding:20px}.offers-aside{position:static}.offer-card{min-height:0}}
 @media(prefers-reduced-motion:reduce){.card--visual .card-image,.category-card img,.travel-hero>img,.page-hero>img,.offer-feature img{transition:none!important}}
+
+
+/* Home: mapa e catálogo dos estados. */
+.home-state-map-section{margin:34px 0;display:grid;gap:16px}
+.home-state-map-section .section-head{margin:0}
+.home-state-select-label{display:grid;gap:6px;max-width:360px;color:var(--ink);font-size:13px;font-weight:800}
+.home-state-select-label select{min-height:48px;border:1px solid var(--line);border-radius:14px;padding:0 13px;background:var(--panel);color:var(--ink)}
+.home-state-themes{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.home-state-theme{display:grid;gap:5px;min-height:88px;padding:13px;text-align:left;border:1px solid var(--line);border-radius:16px;background:var(--panel);color:var(--ink);box-shadow:0 10px 24px var(--shadow);transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease}
+.home-state-theme span{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);font-weight:850}
+.home-state-theme strong{font-size:13px;line-height:1.28}
+.home-state-theme:hover{transform:translateY(-3px);border-color:var(--accent);box-shadow:0 16px 30px var(--shadow)}
+@media(max-width:700px){
+  .home-state-map-section{margin:28px 0}
+  .home-state-map-section .section-head{align-items:flex-start}
+  .home-state-map-section .section-head .subtle{font-size:12px;white-space:nowrap}
+  .home-state-themes{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .home-state-theme{min-height:82px;padding:11px}
+  .home-state-theme strong{font-size:12px}
+}
