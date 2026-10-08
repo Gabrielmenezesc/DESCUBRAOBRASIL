@@ -1,4 +1,4 @@
-const CACHE_NAME='descubra-app-v19';
+const CACHE_NAME='descubra-app-v20';
 const ASSETS=['./','./index.html','./manifest.json','./config.json','./css/professional.css','../design-tokens.css','./js/theme.js','./js/app.mjs','./js/core.mjs','./js/maya.mjs','./js/mapa-vivo.mjs','./js/intro-audio.mjs','./data/destinations.json','./data/news.json','./data/turismo-cultura-estados.json','./vendor/supabase.js','./maya-avatar.webp','../media/bandeira-brasil.mp4','../icon-192.png','../icon-512.png'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE_NAME).then(cache=>cache.addAll(ASSETS)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key.startsWith('descubra-app-')&&key!==CACHE_NAME).map(key=>caches.delete(key)))).then(()=>self.clients.claim())));
