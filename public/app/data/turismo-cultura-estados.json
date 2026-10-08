@@ -1,0 +1,650 @@
+[
+  {
+    "estado": "AC Acre",
+    "categoria": "01_Pontos_Turisticos",
+    "busca": "Rio Branco Palácio Rio Branco",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Rio%20Branco%20Pal%C3%A1cio%20Rio%20Branco&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "AC Acre",
+    "categoria": "02_Cultura_e_Festas",
+    "busca": "Festa do Santo Daime Acre artesanato",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Festa%20do%20Santo%20Daime%20Acre%20artesanato&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "AC Acre",
+    "categoria": "03_Natureza_Praias_Rios_Cachoeiras",
+    "busca": "Parque Nacional Serra do Divisor",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Parque%20Nacional%20Serra%20do%20Divisor&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "AC Acre",
+    "categoria": "04_Gastronomia",
+    "busca": "baixaria acre prato típico",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=baixaria%20acre%20prato%20t%C3%ADpico&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "AL Alagoas",
+    "categoria": "01_Pontos_Turisticos",
+    "busca": "Maragogi piscinas naturais",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Maragogi%20piscinas%20naturais&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "AL Alagoas",
+    "categoria": "02_Cultura_e_Festas",
+    "busca": "Guerreiro alagoano folguedo",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Guerreiro%20alagoano%20folguedo&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "AL Alagoas",
+    "categoria": "03_Natureza_Praias_Rios_Cachoeiras",
+    "busca": "Praia do Gunga",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Praia%20do%20Gunga&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "AL Alagoas",
+    "categoria": "04_Gastronomia",
+    "busca": "sururu Alagoas gastronomia",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=sururu%20Alagoas%20gastronomia&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "AP Amapá",
+    "categoria": "01_Pontos_Turisticos",
+    "busca": "Fortaleza de São José de Macapá",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Fortaleza%20de%20S%C3%A3o%20Jos%C3%A9%20de%20Macap%C3%A1&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "AP Amapá",
+    "categoria": "02_Cultura_e_Festas",
+    "busca": "Marabaixo Amapá dança",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Marabaixo%20Amap%C3%A1%20dan%C3%A7a&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "AP Amapá",
+    "categoria": "03_Natureza_Praias_Rios_Cachoeiras",
+    "busca": "Parque Nacional Montanhas do Tumucumaque",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Parque%20Nacional%20Montanhas%20do%20Tumucumaque&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "AP Amapá",
+    "categoria": "04_Gastronomia",
+    "busca": "tacacá Macapá",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=tacac%C3%A1%20Macap%C3%A1&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "AM Amazonas",
+    "categoria": "01_Pontos_Turisticos",
+    "busca": "Teatro Amazonas Manaus",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Teatro%20Amazonas%20Manaus&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "AM Amazonas",
+    "categoria": "02_Cultura_e_Festas",
+    "busca": "Festival Folclórico de Parintins boi bumbá",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Festival%20Folcl%C3%B3rico%20de%20Parintins%20boi%20bumb%C3%A1&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "AM Amazonas",
+    "categoria": "03_Natureza_Praias_Rios_Cachoeiras",
+    "busca": "Encontro das Águas Manaus",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Encontro%20das%20%C3%81guas%20Manaus&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "AM Amazonas",
+    "categoria": "04_Gastronomia",
+    "busca": "tambaqui assado Amazonas",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=tambaqui%20assado%20Amazonas&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "BA Bahia",
+    "categoria": "01_Pontos_Turisticos",
+    "busca": "Pelourinho Salvador",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Pelourinho%20Salvador&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "BA Bahia",
+    "categoria": "02_Cultura_e_Festas",
+    "busca": "capoeira Salvador Bahia",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=capoeira%20Salvador%20Bahia&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "BA Bahia",
+    "categoria": "03_Natureza_Praias_Rios_Cachoeiras",
+    "busca": "Chapada Diamantina Cachoeira da Fumaça",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Chapada%20Diamantina%20Cachoeira%20da%20Fuma%C3%A7a&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "BA Bahia",
+    "categoria": "04_Gastronomia",
+    "busca": "acarajé Bahia",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=acaraj%C3%A9%20Bahia&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "CE Ceará",
+    "categoria": "01_Pontos_Turisticos",
+    "busca": "Jericoacoara dunas",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Jericoacoara%20dunas&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "CE Ceará",
+    "categoria": "02_Cultura_e_Festas",
+    "busca": "renda de bilro Ceará artesanato",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=renda%20de%20bilro%20Cear%C3%A1%20artesanato&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "CE Ceará",
+    "categoria": "03_Natureza_Praias_Rios_Cachoeiras",
+    "busca": "Canoa Quebrada falésias",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Canoa%20Quebrada%20fal%C3%A9sias&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "CE Ceará",
+    "categoria": "04_Gastronomia",
+    "busca": "baião de dois Ceará",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=bai%C3%A3o%20de%20dois%20Cear%C3%A1&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "DF Distrito Federal",
+    "categoria": "01_Pontos_Turisticos",
+    "busca": "Congresso Nacional Brasília",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Congresso%20Nacional%20Bras%C3%ADlia&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "DF Distrito Federal",
+    "categoria": "02_Cultura_e_Festas",
+    "busca": "Catedral Metropolitana de Brasília",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Catedral%20Metropolitana%20de%20Bras%C3%ADlia&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "DF Distrito Federal",
+    "categoria": "03_Natureza_Praias_Rios_Cachoeiras",
+    "busca": "Lago Paranoá Brasília",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Lago%20Parano%C3%A1%20Bras%C3%ADlia&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "DF Distrito Federal",
+    "categoria": "04_Gastronomia",
+    "busca": "galinhada Brasília",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=galinhada%20Bras%C3%ADlia&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "ES Espírito Santo",
+    "categoria": "01_Pontos_Turisticos",
+    "busca": "Convento da Penha Vila Velha",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Convento%20da%20Penha%20Vila%20Velha&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "ES Espírito Santo",
+    "categoria": "02_Cultura_e_Festas",
+    "busca": "panela de barro Goiabeiras Vitória",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=panela%20de%20barro%20Goiabeiras%20Vit%C3%B3ria&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "ES Espírito Santo",
+    "categoria": "03_Natureza_Praias_Rios_Cachoeiras",
+    "busca": "Pedra Azul Espírito Santo",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Pedra%20Azul%20Esp%C3%ADrito%20Santo&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "ES Espírito Santo",
+    "categoria": "04_Gastronomia",
+    "busca": "moqueca capixaba",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=moqueca%20capixaba&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "GO Goiás",
+    "categoria": "01_Pontos_Turisticos",
+    "busca": "Cidade de Goiás arquitetura colonial",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Cidade%20de%20Goi%C3%A1s%20arquitetura%20colonial&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "GO Goiás",
+    "categoria": "02_Cultura_e_Festas",
+    "busca": "Cavalhadas Pirenópolis",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Cavalhadas%20Piren%C3%B3polis&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "GO Goiás",
+    "categoria": "03_Natureza_Praias_Rios_Cachoeiras",
+    "busca": "Chapada dos Veadeiros cachoeiras",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Chapada%20dos%20Veadeiros%20cachoeiras&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "GO Goiás",
+    "categoria": "04_Gastronomia",
+    "busca": "empadão goiano",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=empad%C3%A3o%20goiano&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "MA Maranhão",
+    "categoria": "01_Pontos_Turisticos",
+    "busca": "Lençóis Maranhenses dunas",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Len%C3%A7%C3%B3is%20Maranhenses%20dunas&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "MA Maranhão",
+    "categoria": "02_Cultura_e_Festas",
+    "busca": "Bumba meu boi Maranhão",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Bumba%20meu%20boi%20Maranh%C3%A3o&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "MA Maranhão",
+    "categoria": "03_Natureza_Praias_Rios_Cachoeiras",
+    "busca": "Centro Histórico São Luís",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Centro%20Hist%C3%B3rico%20S%C3%A3o%20Lu%C3%ADs&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "MA Maranhão",
+    "categoria": "04_Gastronomia",
+    "busca": "arroz de cuxá Maranhão",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=arroz%20de%20cux%C3%A1%20Maranh%C3%A3o&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "MT Mato Grosso",
+    "categoria": "01_Pontos_Turisticos",
+    "busca": "Chapada dos Guimarães",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Chapada%20dos%20Guimar%C3%A3es&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "MT Mato Grosso",
+    "categoria": "02_Cultura_e_Festas",
+    "busca": "Siriri e Cururu Mato Grosso",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Siriri%20e%20Cururu%20Mato%20Grosso&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "MT Mato Grosso",
+    "categoria": "03_Natureza_Praias_Rios_Cachoeiras",
+    "busca": "Pantanal Mato Grosso",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Pantanal%20Mato%20Grosso&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "MT Mato Grosso",
+    "categoria": "04_Gastronomia",
+    "busca": "mojica de pintado Mato Grosso",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=mojica%20de%20pintado%20Mato%20Grosso&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "MS Mato Grosso do Sul",
+    "categoria": "01_Pontos_Turisticos",
+    "busca": "Bonito Rio da Prata",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Bonito%20Rio%20da%20Prata&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "MS Mato Grosso do Sul",
+    "categoria": "02_Cultura_e_Festas",
+    "busca": "dança do chamamé Mato Grosso do Sul",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=dan%C3%A7a%20do%20chamam%C3%A9%20Mato%20Grosso%20do%20Sul&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "MS Mato Grosso do Sul",
+    "categoria": "03_Natureza_Praias_Rios_Cachoeiras",
+    "busca": "Pantanal Mato Grosso do Sul",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Pantanal%20Mato%20Grosso%20do%20Sul&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "MS Mato Grosso do Sul",
+    "categoria": "04_Gastronomia",
+    "busca": "sobá Campo Grande",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=sob%C3%A1%20Campo%20Grande&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "MG Minas Gerais",
+    "categoria": "01_Pontos_Turisticos",
+    "busca": "Ouro Preto Minas Gerais",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Ouro%20Preto%20Minas%20Gerais&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "MG Minas Gerais",
+    "categoria": "02_Cultura_e_Festas",
+    "busca": "Congado Minas Gerais",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Congado%20Minas%20Gerais&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "MG Minas Gerais",
+    "categoria": "03_Natureza_Praias_Rios_Cachoeiras",
+    "busca": "Serra do Cipó cachoeira",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Serra%20do%20Cip%C3%B3%20cachoeira&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "MG Minas Gerais",
+    "categoria": "04_Gastronomia",
+    "busca": "pão de queijo Minas Gerais",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=p%C3%A3o%20de%20queijo%20Minas%20Gerais&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "PA Pará",
+    "categoria": "01_Pontos_Turisticos",
+    "busca": "Ver-o-Peso Belém",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Ver-o-Peso%20Bel%C3%A9m&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "PA Pará",
+    "categoria": "02_Cultura_e_Festas",
+    "busca": "Círio de Nazaré Belém",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=C%C3%ADrio%20de%20Nazar%C3%A9%20Bel%C3%A9m&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "PA Pará",
+    "categoria": "03_Natureza_Praias_Rios_Cachoeiras",
+    "busca": "Alter do Chão Santarém praia",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Alter%20do%20Ch%C3%A3o%20Santar%C3%A9m%20praia&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "PA Pará",
+    "categoria": "04_Gastronomia",
+    "busca": "pato no tucupi Pará",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=pato%20no%20tucupi%20Par%C3%A1&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "PB Paraíba",
+    "categoria": "01_Pontos_Turisticos",
+    "busca": "Farol do Cabo Branco João Pessoa",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Farol%20do%20Cabo%20Branco%20Jo%C3%A3o%20Pessoa&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "PB Paraíba",
+    "categoria": "02_Cultura_e_Festas",
+    "busca": "São João Campina Grande quadrilha",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=S%C3%A3o%20Jo%C3%A3o%20Campina%20Grande%20quadrilha&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "PB Paraíba",
+    "categoria": "03_Natureza_Praias_Rios_Cachoeiras",
+    "busca": "Praia de Coqueirinho Paraíba",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Praia%20de%20Coqueirinho%20Para%C3%ADba&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "PB Paraíba",
+    "categoria": "04_Gastronomia",
+    "busca": "rubacão Paraíba",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=rubac%C3%A3o%20Para%C3%ADba&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "PR Paraná",
+    "categoria": "01_Pontos_Turisticos",
+    "busca": "Cataratas do Iguaçu",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Cataratas%20do%20Igua%C3%A7u&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "PR Paraná",
+    "categoria": "02_Cultura_e_Festas",
+    "busca": "Fandango caiçara Paraná",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Fandango%20cai%C3%A7ara%20Paran%C3%A1&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "PR Paraná",
+    "categoria": "03_Natureza_Praias_Rios_Cachoeiras",
+    "busca": "Ilha do Mel Paraná",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Ilha%20do%20Mel%20Paran%C3%A1&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "PR Paraná",
+    "categoria": "04_Gastronomia",
+    "busca": "barreado Morretes",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=barreado%20Morretes&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "PE Pernambuco",
+    "categoria": "01_Pontos_Turisticos",
+    "busca": "Recife Marco Zero",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Recife%20Marco%20Zero&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "PE Pernambuco",
+    "categoria": "02_Cultura_e_Festas",
+    "busca": "frevo Recife passistas",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=frevo%20Recife%20passistas&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "PE Pernambuco",
+    "categoria": "03_Natureza_Praias_Rios_Cachoeiras",
+    "busca": "Fernando de Noronha Baía do Sancho",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Fernando%20de%20Noronha%20Ba%C3%ADa%20do%20Sancho&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "PE Pernambuco",
+    "categoria": "04_Gastronomia",
+    "busca": "bolo de rolo Pernambuco",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=bolo%20de%20rolo%20Pernambuco&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "PI Piauí",
+    "categoria": "01_Pontos_Turisticos",
+    "busca": "Parque Nacional Serra da Capivara",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Parque%20Nacional%20Serra%20da%20Capivara&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "PI Piauí",
+    "categoria": "02_Cultura_e_Festas",
+    "busca": "arte rupestre Serra da Capivara",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=arte%20rupestre%20Serra%20da%20Capivara&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "PI Piauí",
+    "categoria": "03_Natureza_Praias_Rios_Cachoeiras",
+    "busca": "Delta do Parnaíba",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Delta%20do%20Parna%C3%ADba&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "PI Piauí",
+    "categoria": "04_Gastronomia",
+    "busca": "maria isabel arroz Piauí",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=maria%20isabel%20arroz%20Piau%C3%AD&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "RJ Rio de Janeiro",
+    "categoria": "01_Pontos_Turisticos",
+    "busca": "Cristo Redentor Rio de Janeiro",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Cristo%20Redentor%20Rio%20de%20Janeiro&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "RJ Rio de Janeiro",
+    "categoria": "02_Cultura_e_Festas",
+    "busca": "Carnaval sambódromo Rio de Janeiro",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Carnaval%20samb%C3%B3dromo%20Rio%20de%20Janeiro&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "RJ Rio de Janeiro",
+    "categoria": "03_Natureza_Praias_Rios_Cachoeiras",
+    "busca": "Pão de Açúcar Rio de Janeiro",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=P%C3%A3o%20de%20A%C3%A7%C3%BAcar%20Rio%20de%20Janeiro&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "RJ Rio de Janeiro",
+    "categoria": "04_Gastronomia",
+    "busca": "feijoada carioca",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=feijoada%20carioca&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "RN Rio Grande do Norte",
+    "categoria": "01_Pontos_Turisticos",
+    "busca": "Dunas de Genipabu Natal",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Dunas%20de%20Genipabu%20Natal&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "RN Rio Grande do Norte",
+    "categoria": "02_Cultura_e_Festas",
+    "busca": "Festa de Sant Ana Caicó",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Festa%20de%20Sant%20Ana%20Caic%C3%B3&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "RN Rio Grande do Norte",
+    "categoria": "03_Natureza_Praias_Rios_Cachoeiras",
+    "busca": "Praia de Pipa Rio Grande do Norte",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Praia%20de%20Pipa%20Rio%20Grande%20do%20Norte&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "RN Rio Grande do Norte",
+    "categoria": "04_Gastronomia",
+    "busca": "ginga com tapioca Natal",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=ginga%20com%20tapioca%20Natal&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "RS Rio Grande do Sul",
+    "categoria": "01_Pontos_Turisticos",
+    "busca": "Gramado Lago Negro",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Gramado%20Lago%20Negro&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "RS Rio Grande do Sul",
+    "categoria": "02_Cultura_e_Festas",
+    "busca": "dança tradicionalista gaúcha",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=dan%C3%A7a%20tradicionalista%20ga%C3%BAcha&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "RS Rio Grande do Sul",
+    "categoria": "03_Natureza_Praias_Rios_Cachoeiras",
+    "busca": "Cânion Itaimbezinho Aparados da Serra",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=C%C3%A2nion%20Itaimbezinho%20Aparados%20da%20Serra&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "RS Rio Grande do Sul",
+    "categoria": "04_Gastronomia",
+    "busca": "churrasco gaúcho",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=churrasco%20ga%C3%BAcho&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "RO Rondônia",
+    "categoria": "01_Pontos_Turisticos",
+    "busca": "Forte Príncipe da Beira",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Forte%20Pr%C3%ADncipe%20da%20Beira&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "RO Rondônia",
+    "categoria": "02_Cultura_e_Festas",
+    "busca": "Arraial Flor do Maracujá Porto Velho",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Arraial%20Flor%20do%20Maracuj%C3%A1%20Porto%20Velho&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "RO Rondônia",
+    "categoria": "03_Natureza_Praias_Rios_Cachoeiras",
+    "busca": "Rio Madeira Porto Velho",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Rio%20Madeira%20Porto%20Velho&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "RO Rondônia",
+    "categoria": "04_Gastronomia",
+    "busca": "tambaqui na brasa Rondônia",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=tambaqui%20na%20brasa%20Rond%C3%B4nia&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "RR Roraima",
+    "categoria": "01_Pontos_Turisticos",
+    "busca": "Monte Roraima paisagem",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Monte%20Roraima%20paisagem&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "RR Roraima",
+    "categoria": "02_Cultura_e_Festas",
+    "busca": "artesanato indígena Roraima",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=artesanato%20ind%C3%ADgena%20Roraima&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "RR Roraima",
+    "categoria": "03_Natureza_Praias_Rios_Cachoeiras",
+    "busca": "Serra do Tepequém",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Serra%20do%20Tepequ%C3%A9m&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "RR Roraima",
+    "categoria": "04_Gastronomia",
+    "busca": "damurida Roraima",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=damurida%20Roraima&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "SC Santa Catarina",
+    "categoria": "01_Pontos_Turisticos",
+    "busca": "Florianópolis Ponte Hercílio Luz",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Florian%C3%B3polis%20Ponte%20Herc%C3%ADlio%20Luz&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "SC Santa Catarina",
+    "categoria": "02_Cultura_e_Festas",
+    "busca": "Oktoberfest Blumenau desfile",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Oktoberfest%20Blumenau%20desfile&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "SC Santa Catarina",
+    "categoria": "03_Natureza_Praias_Rios_Cachoeiras",
+    "busca": "Praia do Rosa Santa Catarina",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Praia%20do%20Rosa%20Santa%20Catarina&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "SC Santa Catarina",
+    "categoria": "04_Gastronomia",
+    "busca": "sequência de camarão Santa Catarina",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=sequ%C3%AAncia%20de%20camar%C3%A3o%20Santa%20Catarina&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "SP São Paulo",
+    "categoria": "01_Pontos_Turisticos",
+    "busca": "Avenida Paulista MASP",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Avenida%20Paulista%20MASP&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "SP São Paulo",
+    "categoria": "02_Cultura_e_Festas",
+    "busca": "Festa do Divino São Luiz do Paraitinga",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Festa%20do%20Divino%20S%C3%A3o%20Luiz%20do%20Paraitinga&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "SP São Paulo",
+    "categoria": "03_Natureza_Praias_Rios_Cachoeiras",
+    "busca": "Parque Estadual Intervales",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Parque%20Estadual%20Intervales&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "SP São Paulo",
+    "categoria": "04_Gastronomia",
+    "busca": "virado à paulista",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=virado%20%C3%A0%20paulista&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "SE Sergipe",
+    "categoria": "01_Pontos_Turisticos",
+    "busca": "Orla de Atalaia Aracaju",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Orla%20de%20Atalaia%20Aracaju&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "SE Sergipe",
+    "categoria": "02_Cultura_e_Festas",
+    "busca": "São João Sergipe quadrilha",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=S%C3%A3o%20Jo%C3%A3o%20Sergipe%20quadrilha&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "SE Sergipe",
+    "categoria": "03_Natureza_Praias_Rios_Cachoeiras",
+    "busca": "Cânion do Xingó Sergipe",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=C%C3%A2nion%20do%20Xing%C3%B3%20Sergipe&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "SE Sergipe",
+    "categoria": "04_Gastronomia",
+    "busca": "caranguejada Sergipe",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=caranguejada%20Sergipe&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "TO Tocantins",
+    "categoria": "01_Pontos_Turisticos",
+    "busca": "Jalapão dunas fervedouro",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Jalap%C3%A3o%20dunas%20fervedouro&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "TO Tocantins",
+    "categoria": "02_Cultura_e_Festas",
+    "busca": "Capim dourado Jalapão artesanato",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Capim%20dourado%20Jalap%C3%A3o%20artesanato&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "TO Tocantins",
+    "categoria": "03_Natureza_Praias_Rios_Cachoeiras",
+    "busca": "Ilha do Bananal Tocantins",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=Ilha%20do%20Bananal%20Tocantins&title=Special:MediaSearch&type=image"
+  },
+  {
+    "estado": "TO Tocantins",
+    "categoria": "04_Gastronomia",
+    "busca": "chambari Tocantins",
+    "url_pesquisa": "https://commons.wikimedia.org/w/index.php?search=chambari%20Tocantins&title=Special:MediaSearch&type=image"
+  }
+]
