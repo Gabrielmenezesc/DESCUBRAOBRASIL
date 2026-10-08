@@ -5,7 +5,7 @@ import { mountBrazilMap } from './mapa-vivo.mjs?v=4';
 import { introAudioData } from './intro-audio.mjs?v=1';
 
 const $=id=>document.getElementById(id), content=$('content');
-const paths={mapa:'<path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3Z"/><path d="M9 3v15m6-12v15"/>',explorar:'<circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/>',jogos:'<path d="M8 6h8l4 5 1 7-3 1-4-4h-4l-4 4-3-1 1-7Z"/><path d="M6 10v4m-2-2h4m8-1h.1m2 2h.1"/>',ofertas:'<path d="M3 3h8l10 10-8 8L3 11Z"/><circle cx="7" cy="7" r="1"/>',noticias:'<path d="M4 3h16v18H4Z M8 7h8M8 11h8M8 15h8"/>',empresas:'<path d="M4 21V7l8-4 8 4v14M2 21h20M8 8v2m8-2v2M8 13v2m8-2v2M10 21v-4h4v4"/>',conta:'<circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/>',sun:'<circle cx="12" cy="12" r="4"/><path d="M12 1v3m0 16v3M1 12h3m16 0h3M4 4l2 2m12 12 2 2M4 20l2-2M18 6l2-2"/>',moon:'<path d="M21 13A9 9 0 0 1 11 3a9 9 0 1 0 10 10Z"/>',arrow:'<path d="M4 12h16m-6-6 6 6-6 6"/>',heart:'<path d="M20 4c-3-3-7-1-8 1-1-2-5-4-8-1-4 4 0 9 8 16 8-7 12-12 8-16Z"/>'};
+const paths={mapa:'<path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3Z"/><path d="M9 3v15m6-12v15"/>',explorar:'<circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/>',jogos:'<path d="M8 6h8l4 5 1 7-3 1-4-4h-4l-4 4-3-1 1-7Z"/><path d="M6 10v4m-2-2h4m8-1h.1m2 2h.1"/>',ofertas:'<path d="M3 3h8l10 10-8 8L3 11Z"/><circle cx="7" cy="7" r="1"/>',noticias:'<path d="M4 3h16v18H4Z M8 7h8M8 11h8M8 15h8"/>',empresas:'<path d="M4 21V7l8-4 8 4v14M2 21h20M8 8v2m8-2v2M8 13v2m8-2v2M10 21v-4h4v4"/>',conta:'<circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/>',sun:'<circle cx="12" cy="12" r="4"/><path d="M12 1v3m0 16v3M1 12h3m16 0h3M4 4l2 2m12 12 2 2M4 20l2-2M18 6l2-2"/>',moon:'<path d="M21 13A9 9 0 0 1 11 3a9 9 0 1 0 10 10Z"/>',arrow:'<path d="M4 12h16m-6-6 6 6-6 6"/>',heart:'<path d="M20 4c-3-3-7-1-8 1-1-2-5-4-8-1-4 4 0 9 8 16 8-7 12-12 8-16Z"/>',mic:'<rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3m-4 0h8"/>',locate:'<circle cx="12" cy="12" r="3"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3"/>'};
 const icon=name=>`<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths[name]||paths.arrow}</svg>`;
 const visualPhotos={
   'rio de janeiro':'photo-1483729558449-99ef09a8c325',
@@ -235,12 +235,31 @@ function explore(){
     </div>
   `;
 
+  const homeQuick=`<section class="home-quick-discovery" aria-labelledby="home-quick-title">
+    <div class="home-quick-copy"><p class="eyebrow">ENCONTRE O SEU PRÓXIMO DESTINO</p><h2 id="home-quick-title">Para onde você quer ir?</h2></div>
+    <form id="home-quick-form" class="home-quick-search" role="search">
+      <label class="sr-only" for="home-quick-query">Pesquise uma cidade, praia, restaurante ou atração</label>
+      <span class="home-quick-icon" aria-hidden="true">${icon('explorar')}</span>
+      <input id="home-quick-query" type="search" autocomplete="off" placeholder="Cidade, praia, restaurante ou atração">
+      <button type="button" id="home-quick-voice" class="home-quick-voice" aria-label="Pesquisar por voz">${icon('mic')}<span>Voz</span></button>
+      <button type="submit" class="home-quick-submit">Buscar</button>
+    </form>
+    <div class="home-quick-actions">
+      <button type="button" id="home-quick-near">${icon('locate')}<span>Perto de mim</span></button>
+      <button type="button" data-home-quick-category="praia">Praias</button>
+      <button type="button" data-home-quick-category="gastronomia">Restaurantes</button>
+      <button type="button" data-home-quick-category="hotel">Hotéis</button>
+      <button type="button" id="home-quick-map">Abrir mapa 3D</button>
+    </div>
+    <p class="home-quick-weather" id="home-quick-weather">O clima aparece no mapa quando você escolher um local.</p>
+  </section>
+
   const homeHero=`<section class="travel-hero" aria-label="Destaque de viagem">
     <img src="https://images.unsplash.com/photo-1483729558449-99ef09a8c325?auto=format&fit=crop&w=1400&q=84" alt="Vista do Rio de Janeiro" loading="eager">
     <div class="travel-hero-shade"></div>
     <div class="travel-hero-copy"><p>VIAGENS COM MAIS SENTIDO</p><h2>Explore o Brasil<br><em>ao seu estilo</em></h2><span>Destinos, experiências e roteiros para planejar com calma.</span><div><button type="button" id="hero-destinations">Ver destinos em destaque</button><button type="button" class="ghost" id="hero-maya">Criar roteiro com a Maya</button><button type="button" class="ghost" id="hero-business">Sou empresa? Anuncie aqui</button></div></div>
   </section>`;
-  content.innerHTML=homeHero+head('Para onde você quer ir?','Encontre seu próximo destino','Busque por cidade, estado, atração ou categoria. Seus filtros e favoritos ficam salvos neste aparelho.')
+  content.innerHTML=homeQuick+homeHero+head('Para onde você quer ir?','Encontre seu próximo destino','Busque por cidade, estado, atração ou categoria. Seus filtros e favoritos ficam salvos neste aparelho.')
     + storiesMarkup
     + `<section class="booking-panel"><div class="booking-tabs" role="tablist" aria-label="Como deseja planejar"><button type="button" id="mode-search" role="tab" aria-selected="true">Buscar viagem</button><button type="button" id="mode-map" role="tab" aria-selected="false">Explorar no mapa</button><button type="button" id="mode-itinerary" role="tab" aria-selected="false">Roteiros com IA</button></div><div class="filters" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap:12px;">
       <label>Destino, cidade ou atração<input id="search" type="search" list="destination-suggestions" placeholder="Para onde você quer ir?" value="${e(search)}"><datalist id="destination-suggestions">${[...new Set(places.flatMap(p=>[p.name,p.city,p.state]))].sort().slice(0,250).map(item=>`<option value="${e(item)}"></option>`).join('')}</datalist></label>
@@ -294,6 +313,27 @@ function explore(){
     <section class="maya-cta"><img src="maya-avatar.webp" alt="Maya, assistente de viagens"><div><p class="eyebrow">ROTEIROS PERSONALIZADOS</p><h2>Monte sua viagem com a Maya</h2><p>Conte seus interesses e receba sugestões ajustáveis ao seu plano.</p></div><button type="button" id="open-maya-cta">Criar meu roteiro</button></section>
     <a class="business-cta" href="#empresas"><span>PARA EMPRESAS</span><strong>Sou empresa? Anuncie aqui</strong><small>Divulgue seu serviço para viajantes em todo o Brasil.</small></a>
     <p class="source">Seleção editorial do projeto Descubra o Brasil. Consulte informações locais antes de viajar.</p>`;
+
+  const quickForm=$('home-quick-form'), quickInput=$('home-quick-query');
+  const runQuickSearch=question=>{
+    search=String(question||'').trim();
+    if($('search'))$('search').value=search;
+    renderPlaces();
+    $('place-results')?.scrollIntoView({behavior:'smooth',block:'start'});
+  };
+  quickForm.onsubmit=event=>{event.preventDefault();runQuickSearch(quickInput.value);};
+  $('home-quick-voice').onclick=()=>{
+    const Recognition=window.SpeechRecognition||window.webkitSpeechRecognition;
+    if(!Recognition){toast('A pesquisa por voz não é compatível com este navegador.');return;}
+    const recognition=new Recognition();recognition.lang='pt-BR';recognition.interimResults=false;recognition.maxAlternatives=1;
+    $('home-quick-weather').textContent='Estou ouvindo. Diga uma cidade, praia, hotel ou atração.';
+    recognition.onresult=event=>{const spoken=event.results[0][0].transcript;quickInput.value=spoken;runQuickSearch(spoken);window.dispatchEvent(new CustomEvent('descubra:maya-question',{detail:{question:`Quero pesquisar ${spoken}. Ajude com lugares, roteiro e opções gratuitas.`}}));};
+    recognition.onerror=()=>{$('home-quick-weather').textContent='Não foi possível usar o microfone. Confira a permissão do navegador.';};
+    recognition.start();
+  };
+  $('home-quick-near').onclick=()=>{$('near-me-btn')?.click();};
+  $('home-quick-map').onclick=()=>{$('home-map-root')?.scrollIntoView({behavior:'smooth',block:'start'});};
+  content.querySelectorAll('[data-home-quick-category]').forEach(button=>button.onclick=()=>{selectedCategory=button.dataset.homeQuickCategory||'';explore();setTimeout(()=>$('place-results')?.scrollIntoView({behavior:'smooth',block:'start'}),0);});
 
   $('search').oninput=ev=>{search=ev.target.value;renderPlaces();};
   $('region').onchange=ev=>{region=ev.target.value;renderPlaces();};
