@@ -5,7 +5,7 @@ const REGION_BY_UF={
   AC:'Norte',AL:'Nordeste',AP:'Norte',AM:'Norte',BA:'Nordeste',CE:'Nordeste',DF:'Centro-Oeste',ES:'Sudeste',GO:'Centro-Oeste',MA:'Nordeste',MT:'Centro-Oeste',MS:'Centro-Oeste',MG:'Sudeste',PA:'Norte',PB:'Nordeste',PR:'Sul',PE:'Nordeste',PI:'Nordeste',RJ:'Sudeste',RN:'Nordeste',RS:'Sul',RO:'Norte',RR:'Norte',SC:'Sul',SP:'Sudeste',SE:'Nordeste',TO:'Norte'
 };
 const REGION_COLORS={Norte:'#168f70',Nordeste:'#e6a31d','Centro-Oeste':'#0d719d',Sudeste:'#b54978',Sul:'#6849b7'};
-const MAP_FILTERS=[['all','Tudo'],['praia','Praias'],['cultura','Cultura'],['hotel','Hotéis'],['gastronomia','Restaurantes'],['cafe','Cafés'],['cachoeira','Cachoeiras'],['parque','Parques'],['museu','Museus'],['historico','História'],['gratis','Grátis'],['diroma','diRoma']];
+const MAP_FILTERS=[['all','Tudo'],['praia','Praias'],['gastronomia','Restaurantes'],['hotel','Hotéis'],['atracao','Atrações'],['cultura','Cultura'],['cafe','Cafés'],['cachoeira','Cachoeiras'],['parque','Parques'],['museu','Museus'],['historico','História'],['gratis','Grátis'],['diroma','diRoma'],['clima','Clima']];
 const UF_BY_IBGE_CODE={11:'RO',12:'AC',13:'AM',14:'RR',15:'PA',16:'AP',17:'TO',21:'MA',22:'PI',23:'CE',24:'RN',25:'PB',26:'PE',27:'AL',28:'SE',29:'BA',31:'MG',32:'ES',33:'RJ',35:'SP',41:'PR',42:'SC',43:'RS',50:'MS',51:'MT',52:'GO',53:'DF'};
 let maplibreReady;
 
@@ -47,7 +47,7 @@ function insertStyles(){
   .map-live-search button,.map-live-pill,.map-live-action{border:0;cursor:pointer;font:inherit;font-weight:800}
   .map-live-search button{min-height:48px;border-radius:16px;padding:0 14px;color:#fff;background:#087447}
   .map-live-search button:hover,.map-live-action:hover{background:#075d3a}
-  .map-voice-button{width:48px;padding:0!important;border-radius:16px!important}
+  .map-voice-button{width:48px;padding:0!important;border-radius:16px!important}.map-nearby-button{background:#e8f6ee!important;color:#075d3a!important;border:1px solid #c9e5d4!important}
   .map-live-filters{display:flex;gap:8px;overflow:auto;scrollbar-width:none;max-width:900px;width:100%;margin:0 auto;padding:2px}
   .map-live-filters::-webkit-scrollbar{display:none}.map-live-pill{white-space:nowrap;padding:10px 14px;color:#123426;background:rgba(255,255,255,.94);border-radius:999px;box-shadow:0 8px 22px rgba(2,26,18,.17)}
   .map-live-pill[aria-pressed="true"]{color:#fff;background:#087447}
@@ -95,7 +95,7 @@ export async function mountBrazilMap(root,{places=[],askMaya,toast=()=>{},mode='
     <div class="map-live-top">
       <form class="map-live-search" id="map-live-search">
         <label><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/></svg><input id="map-live-query" type="search" autocomplete="off" placeholder="Busque cidade, praia, hotel ou atração"></label>
-        <button type="submit">Explorar</button><button type="button" class="map-voice-button" id="map-live-voice" aria-label="Falar com a Maya">Voz</button>
+        <button type="submit">Explorar</button><button type="button" class="map-voice-button" id="map-live-voice" aria-label="Pesquisar por voz com a Maya">Voz</button><button type="button" class="map-nearby-button" id="map-live-nearby" aria-label="Pesquisar perto de mim">Perto de mim</button>
       </form>
       <div class="map-live-filters" aria-label="Categorias do mapa">
         ${MAP_FILTERS.map(([id,label])=>`<button class="map-live-pill" data-map-filter="${id}" aria-pressed="${id==='all'}">${label}</button>`).join('')}
@@ -147,6 +147,7 @@ export async function mountBrazilMap(root,{places=[],askMaya,toast=()=>{},mode='
   const setFilter=filter=>{
     activeFilter=filter;
     root.querySelectorAll('[data-map-filter]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.mapFilter===filter)));
+    if(filter==='clima'){const center=map.getCenter();setWeather(center.lng,center.lat,'Clima no centro do mapa');setStatus('Previsão atualizada para a área exibida.');return;}
     if(filter==='diroma'){query.value='diRoma Caldas Novas';runSearch(query.value);return;}
     renderMarkers();setStatus(filter==='all'?'Mostrando os pontos do catálogo.':`Filtro ${filter} aplicado.`);
   };
@@ -186,10 +187,13 @@ export async function mountBrazilMap(root,{places=[],askMaya,toast=()=>{},mode='
     recognition.onerror=()=>setStatus('Não foi possível usar o microfone. Confira a permissão.');
     recognition.start();
   };
-  $('map-locate').onclick=()=>{
+  const locateUser=()=>{
     if(!navigator.geolocation){setStatus('Localização não disponível neste aparelho.');return;}
+    setStatus('Localizando você no mapa...');
     navigator.geolocation.getCurrentPosition(position=>{const {latitude,longitude}=position.coords;const place={name:'Sua localização',city:'Sua localização',lat:latitude,lng:longitude,zoom:13};showPlace(place);setStatus('Sua localização foi centralizada no mapa.');},()=>setStatus('Permita sua localização para usar este recurso.'),{enableHighAccuracy:true,timeout:12000,maximumAge:60000});
   };
+  $('map-locate').onclick=locateUser;
+  $('map-live-nearby').onclick=locateUser;
   $('map-recenter').onclick=()=>{sheet.hidden=true;map.flyTo({center:BRAZIL,zoom:3.4,pitch:43,bearing:-8,essential:true});setStatus('Voltamos para a visão geral do Brasil.');};
   $('map-rotate').onclick=()=>{const next=map.getPitch()>5?0:55;map.easeTo({pitch:next,bearing:next?map.getBearing()+26:0,duration:750});setStatus(next?'Visualização 3D ativada.':'Visualização plana ativada.');};
   $('map-sheet-action').onclick=()=>{if(!activePlace)return;askMaya?.(`Estou vendo ${activePlace.name||activePlace.city} no mapa. Monte um roteiro com locais gratuitos, culturais, hospedagem e cuidados para a visita.`);toast('A Maya recebeu o destino selecionado.');};
