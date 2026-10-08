@@ -1,7 +1,7 @@
 import {normalize,escapeHTML as e,safeURL,dayKey,shuffle,dailyQuiz,freshProgress,cleanProgress,award,totalXP,checkVisit,offerPrice,offerIsActive} from './core.mjs';
 
 import { mountMaya } from './maya.mjs?v=18';
-import { mountBrazilMap } from './mapa-vivo.mjs?v=2';
+import { mountBrazilMap } from './mapa-vivo.mjs?v=3';
 import { introAudioData } from './intro-audio.mjs?v=1';
 
 const $=id=>document.getElementById(id), content=$('content');
