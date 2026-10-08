@@ -299,3 +299,26 @@ body {
 .hidden, [hidden] {
   display: none !important;
 }
+
+
+/* Ajuste final: viewport móvel real e ocupação total da tela. */
+html {
+  inline-size: 100%;
+  min-block-size: 100%;
+  background: var(--background);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+body {
+  inline-size: 100%;
+  min-inline-size: 0;
+  min-block-size: 100vh;
+  min-block-size: 100svh;
+  min-block-size: 100dvh;
+  margin: 0;
+  overflow-x: hidden;
+  overflow-x: clip;
+}
+img, picture, video, canvas, svg {
+  max-inline-size: 100%;
+}
