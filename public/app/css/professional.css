@@ -134,3 +134,7 @@ html,body{min-height:100%;overscroll-behavior-y:auto}
   #search-with-maya{width:100%;justify-content:center}
   .destination-rail .card--visual{flex-basis:80vw}
 }
+
+/* Fallback da entrada: mantém a identidade do Brasil se o vídeo estiver indisponível. */
+.mobile-intro.video-unavailable{background:radial-gradient(circle at 50% 46%,#123b8b 0 22%,transparent 23%),linear-gradient(145deg,#08783e 0 30%,#f5d547 31% 68%,#08783e 69%)}
+.mobile-intro.video-unavailable video{display:none}
