@@ -5,6 +5,7 @@ const REGION_BY_UF={
   AC:'Norte',AL:'Nordeste',AP:'Norte',AM:'Norte',BA:'Nordeste',CE:'Nordeste',DF:'Centro-Oeste',ES:'Sudeste',GO:'Centro-Oeste',MA:'Nordeste',MT:'Centro-Oeste',MS:'Centro-Oeste',MG:'Sudeste',PA:'Norte',PB:'Nordeste',PR:'Sul',PE:'Nordeste',PI:'Nordeste',RJ:'Sudeste',RN:'Nordeste',RS:'Sul',RO:'Norte',RR:'Norte',SC:'Sul',SP:'Sudeste',SE:'Nordeste',TO:'Norte'
 };
 const REGION_COLORS={Norte:'#168f70',Nordeste:'#e6a31d','Centro-Oeste':'#0d719d',Sudeste:'#b54978',Sul:'#6849b7'};
+const MAP_FILTERS=[['all','Tudo'],['praia','Praias'],['cultura','Cultura'],['hotel','Hotéis'],['gastronomia','Restaurantes'],['cafe','Cafés'],['cachoeira','Cachoeiras'],['parque','Parques'],['museu','Museus'],['historico','História'],['gratis','Grátis'],['diroma','diRoma']];
 const UF_BY_IBGE_CODE={11:'RO',12:'AC',13:'AM',14:'RR',15:'PA',16:'AP',17:'TO',21:'MA',22:'PI',23:'CE',24:'RN',25:'PB',26:'PE',27:'AL',28:'SE',29:'BA',31:'MG',32:'ES',33:'RJ',35:'SP',41:'PR',42:'SC',43:'RS',50:'MS',51:'MT',52:'GO',53:'DF'};
 let maplibreReady;
 
@@ -34,8 +35,8 @@ function loadMapLibre(){
 function insertStyles(){
   if(document.getElementById('mapa-vivo-styles'))return;
   const style=document.createElement('style');style.id='mapa-vivo-styles';style.textContent=`
-  .map-live{position:relative;min-height:calc(100dvh - 72px);margin:-18px -14px 0;background:#082b23;color:#10221b;overflow:hidden}
-  .map-live-canvas{position:absolute;inset:0;background:linear-gradient(145deg,#b9dff0,#dff2e4)}
+  .map-live{position:relative;min-height:calc(100dvh - 72px);margin:-18px -14px 0;background:#082b23;color:#10221b;overflow:hidden}.map-live--home{min-height:680px;margin:0;border-radius:28px;box-shadow:0 24px 60px rgba(3,35,24,.24)}
+  .map-live-canvas{position:absolute;inset:0;background:linear-gradient(145deg,#b9dff0,#dff2e4)}.map-live::after{content:'';position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(120deg,transparent 26%,rgba(255,255,255,.2) 47%,transparent 62%);transform:translateX(-115%);animation:map-light-sweep 8s cubic-bezier(.16,1,.3,1) infinite}@keyframes map-light-sweep{0%,25%{transform:translateX(-115%)}55%,100%{transform:translateX(115%)}}
   .map-live-canvas .maplibregl-ctrl-bottom-right,.map-live-canvas .maplibregl-ctrl-bottom-left{display:none}
   .map-live-top{position:relative;z-index:5;display:grid;gap:10px;padding:max(14px,env(safe-area-inset-top)) 14px 0;pointer-events:none}
   .map-live-search,.map-live-filters,.map-live-search *,.map-live-filters *{pointer-events:auto}
@@ -61,7 +62,7 @@ function insertStyles(){
   .map-live-status{position:absolute;z-index:7;left:50%;bottom:130px;transform:translateX(-50%);max-width:calc(100% - 36px);padding:9px 13px;border-radius:999px;background:rgba(3,34,24,.9);color:#fff;font-size:12px;box-shadow:0 10px 25px rgba(0,0,0,.25)}
   .map-live-status:empty{display:none}.map-live-region-legend{position:absolute;z-index:4;left:14px;bottom:156px;display:flex;gap:6px;flex-wrap:wrap;max-width:260px}.map-live-region-legend span{padding:7px 9px;border-radius:999px;background:rgba(255,255,255,.9);color:#18362a;font-size:10px;font-weight:800;box-shadow:0 7px 18px rgba(2,26,18,.14)}.map-live-region-legend i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:4px}
   .map-live-marker{width:34px;height:34px;border:3px solid #fff;border-radius:50% 50% 50% 6px;transform:rotate(-45deg);box-shadow:0 8px 18px rgba(2,26,18,.34);display:grid;place-items:center}.map-live-marker b{transform:rotate(45deg);font-size:10px;color:#fff;line-height:1}.map-live-marker--free{background:#087447}.map-live-marker--culture{background:#a14777}.map-live-marker--nature{background:#158c74}.map-live-marker--partner{background:#d18a13}.map-live-marker--hotel{background:#226ba2}
-  @media(max-width:700px){.map-live{margin:-12px -12px 0;min-height:calc(100dvh - 66px)}.map-live-top{padding:14px 10px 0}.map-live-search{grid-template-columns:1fr auto;gap:7px;padding:7px;border-radius:21px}.map-live-search label{grid-column:1/-1}.map-live-search input{height:46px;font-size:14px}.map-live-search button{min-height:44px;font-size:12px}.map-live-filters{padding-left:4px}.map-live-pill{padding:9px 12px;font-size:12px}.map-live-weather{top:151px;right:10px;width:206px;padding:11px}.map-live-weather h2{font-size:12px}.map-live-weather .map-temp{font-size:29px}.map-live-weather-stats{gap:4px;margin-top:8px}.map-live-weather-stats div{padding:6px 3px}.map-live-weather-stats strong{font-size:11px}.map-live-tools{right:10px;top:298px}.map-live-tools button{width:43px;height:43px}.map-live-region-legend{display:none}.map-live-sheet{bottom:max(12px,env(safe-area-inset-bottom));grid-template-columns:auto 1fr;gap:10px;border-radius:22px;padding:10px}.map-live-sheet img{width:62px;height:62px}.map-live-sheet h2{font-size:15px}.map-live-sheet p{font-size:11px}.map-live-sheet .map-live-action{grid-column:1/-1;width:100%;padding:11px}.map-live-status{bottom:140px;font-size:11px}.map-live-canvas .maplibregl-ctrl-top-right{top:0}.map-live-canvas .maplibregl-ctrl-group{border-radius:12px;overflow:hidden}}
+  @media(max-width:700px){.map-live{margin:-12px -12px 0;min-height:calc(100dvh - 66px)}.map-live--home{min-height:620px;margin:0;border-radius:24px}.map-live-top{padding:14px 10px 0}.map-live-search{grid-template-columns:1fr auto;gap:7px;padding:7px;border-radius:21px}.map-live-search label{grid-column:1/-1}.map-live-search input{height:46px;font-size:14px}.map-live-search button{min-height:44px;font-size:12px}.map-live-filters{padding-left:4px}.map-live-pill{padding:9px 12px;font-size:12px}.map-live-weather{top:151px;right:10px;width:206px;padding:11px}.map-live-weather h2{font-size:12px}.map-live-weather .map-temp{font-size:29px}.map-live-weather-stats{gap:4px;margin-top:8px}.map-live-weather-stats div{padding:6px 3px}.map-live-weather-stats strong{font-size:11px}.map-live-tools{right:10px;top:298px}.map-live-tools button{width:43px;height:43px}.map-live-region-legend{display:none}.map-live-sheet{bottom:max(12px,env(safe-area-inset-bottom));grid-template-columns:auto 1fr;gap:10px;border-radius:22px;padding:10px}.map-live-sheet img{width:62px;height:62px}.map-live-sheet h2{font-size:15px}.map-live-sheet p{font-size:11px}.map-live-sheet .map-live-action{grid-column:1/-1;width:100%;padding:11px}.map-live-status{bottom:140px;font-size:11px}.map-live-canvas .maplibregl-ctrl-top-right{top:0}.map-live-canvas .maplibregl-ctrl-group{border-radius:12px;overflow:hidden}}
   @media(prefers-reduced-motion:reduce){.map-live *{transition:none!important;animation:none!important}}
   `;document.head.append(style);
 }
@@ -85,9 +86,11 @@ async function locatePlace(query){
   const url=new URL('https://geocoding-api.open-meteo.com/v1/search');url.searchParams.set('name',query);url.searchParams.set('count','10');url.searchParams.set('language','pt');url.searchParams.set('format','json');url.searchParams.set('countryCode','BR');
   const response=await fetch(url);if(!response.ok)throw new Error('Localização indisponível');return (await response.json()).results||[];
 }
-export async function mountBrazilMap(root,{places=[],askMaya,toast=()=>{}}={}){
+export async function mountBrazilMap(root,{places=[],askMaya,toast=()=>{},mode='full'}={}){
+  root._mapDestroy?.();
   insertStyles();
-  root.innerHTML=`<section class="map-live" aria-label="Mapa vivo do Brasil">
+  const compact=mode==='home';
+  root.innerHTML=`<section class="map-live${compact?' map-live--home':''}" aria-label="Mapa vivo do Brasil">
     <div class="map-live-canvas" id="brazil-live-map" role="application" aria-label="Mapa interativo 3D do Brasil"></div>
     <div class="map-live-top">
       <form class="map-live-search" id="map-live-search">
@@ -95,7 +98,7 @@ export async function mountBrazilMap(root,{places=[],askMaya,toast=()=>{}}={}){
         <button type="submit">Explorar</button><button type="button" class="map-voice-button" id="map-live-voice" aria-label="Falar com a Maya">Voz</button>
       </form>
       <div class="map-live-filters" aria-label="Categorias do mapa">
-        <button class="map-live-pill" data-map-filter="all" aria-pressed="true">Tudo</button><button class="map-live-pill" data-map-filter="praia" aria-pressed="false">Praias</button><button class="map-live-pill" data-map-filter="cultura" aria-pressed="false">Cultura</button><button class="map-live-pill" data-map-filter="hotel" aria-pressed="false">Hotéis</button><button class="map-live-pill" data-map-filter="gastronomia" aria-pressed="false">Restaurantes</button><button class="map-live-pill" data-map-filter="gratis" aria-pressed="false">Grátis</button><button class="map-live-pill" data-map-filter="diroma" aria-pressed="false">diRoma</button>
+        ${MAP_FILTERS.map(([id,label])=>`<button class="map-live-pill" data-map-filter="${id}" aria-pressed="${id==='all'}">${label}</button>`).join('')}
       </div>
       <div class="map-live-suggestions" id="map-live-suggestions" hidden></div>
     </div>
@@ -191,6 +194,9 @@ export async function mountBrazilMap(root,{places=[],askMaya,toast=()=>{}}={}){
   $('map-rotate').onclick=()=>{const next=map.getPitch()>5?0:55;map.easeTo({pitch:next,bearing:next?map.getBearing()+26:0,duration:750});setStatus(next?'Visualização 3D ativada.':'Visualização plana ativada.');};
   $('map-sheet-action').onclick=()=>{if(!activePlace)return;askMaya?.(`Estou vendo ${activePlace.name||activePlace.city} no mapa. Monte um roteiro com locais gratuitos, culturais, hospedagem e cuidados para a visita.`);toast('A Maya recebeu o destino selecionado.');};
   root.querySelectorAll('[data-map-filter]').forEach(button=>button.onclick=()=>setFilter(button.dataset.mapFilter));
+  const receiveMapSearch=event=>{const requested=String(event.detail?.query||'').trim();if(!requested)return;query.value=requested;runSearch(requested).catch(()=>setStatus('A pesquisa solicitada não está disponível agora.'));};
+  window.addEventListener('descubra:map-search',receiveMapSearch);
+  root._mapDestroy=()=>{window.removeEventListener('descubra:map-search',receiveMapSearch);try{map?.remove();}catch{};root._mapDestroy=null;};
   map.on('load',async()=>{
     renderMarkers();setWeather(BRAZIL[0],BRAZIL[1],'Brasil');
     try{
