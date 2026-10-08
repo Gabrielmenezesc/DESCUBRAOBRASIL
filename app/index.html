@@ -3,20 +3,23 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Descubra o Brasil | Seu próximo destino</title><meta name="description" content="Explore destinos brasileiros, monte seu roteiro, jogue desafios culturais e conheça ofertas de empresas locais.">
 <meta name="theme-color" content="#11664f"><link rel="manifest" href="./manifest.json"><link rel="apple-touch-icon" href="../icon-192.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Descubra BR">
-<script src="js/theme.js"></script><link rel="stylesheet" href="css/professional.css?v=29"><script src="vendor/supabase.js" defer></script><script src="js/app.mjs?v=29" type="module"></script>
+<script src="js/theme.js"></script><link rel="stylesheet" href="css/professional.css?v=30"><script src="vendor/supabase.js" defer></script><script src="js/app.mjs?v=30" type="module"></script>
 <link rel="stylesheet" href="../editorial.css"></head><body><a class="skip" href="#content">Pular para o conteúdo</a>
 <section class="mobile-intro" id="mobile-intro" aria-label="Boas-vindas ao aplicativo">
 <video autoplay muted loop playsinline preload="auto" aria-hidden="true"><source src="../media/bandeira-brasil.mp4" type="video/mp4"></video>
+<audio id="intro-audio" preload="auto"><source src="../media/vinheta-descubra-brasil.mpeg" type="audio/mpeg"></audio>
 <div class="mobile-intro-shade" aria-hidden="true"></div>
 <div class="mobile-intro-content">
-  <p class="mobile-intro-kicker">SEJA BEM-VINDO</p>
-  <h1><span>Seja Bem-vindo</span><strong>Descubra o Brasil</strong></h1>
+  <p class="mobile-intro-kicker" aria-hidden="true">SEJA BEM-VINDO</p>
+  <h1><span>Seja bem-vindo</span><strong>Descubra o Brasil</strong></h1>
   <p class="mobile-intro-lead">Prepare-se para explorar.</p>
   <div class="mobile-intro-actions" aria-label="Entrar no aplicativo">
-    <a href="#perfil" class="mobile-intro-email" data-enter-app>Entrar com e-mail</a>
-    <button type="button" id="enter-app">Continuar como visitante</button>
+    <button type="button" class="intro-provider-button" data-intro-account="google"><img src="https://cdn.simpleicons.org/google/1f2937" alt="" aria-hidden="true"><span>Entrar com Google</span></button>
+    <a href="#conta" class="intro-email-button" data-enter-app>Entrar com e-mail</a>
+    <button type="button" class="intro-provider-button" data-intro-account="facebook"><img src="https://cdn.simpleicons.org/facebook/1877F2" alt="" aria-hidden="true"><span>Entrar com Facebook</span></button>
+    <button type="button" id="enter-app" class="intro-guest-button">Continuar como convidado</button>
   </div>
-  <small>O vídeo é silencioso por padrão.</small>
+  <button type="button" id="intro-sound" class="intro-sound-button" hidden>Ativar som da abertura</button>
 </div>
 </section>
 <header class="app-header"><a href="../" class="brand">descubra o brasil<small>VIAGENS COM MAIS SENTIDO</small></a><div class="header-tools"><button id="install" hidden>Instalar app</button><button id="theme-toggle" aria-label="Trocar tema"></button></div></header>
