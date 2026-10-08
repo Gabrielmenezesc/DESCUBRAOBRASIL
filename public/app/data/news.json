@@ -1,7 +1,12 @@
 {
   "source": "https://www.gov.br/turismo/pt-br/assuntos/noticias",
-  "fetchedAt": "2026-10-07T17:26:45.492Z",
+  "fetchedAt": "2026-10-08T17:25:16.578Z",
   "items": [
+    {
+      "title": "Dia do Nordestino: cultura, história, festas, sabores e belezas naturais que encantam o Brasil e o mundo",
+      "url": "https://www.gov.br/turismo/pt-br/assuntos/noticias/dia-do-nordestino-cultura-historia-festas-sabores-e-belezas-naturais-que-encantam-o-brasil-e-o-mundo",
+      "date": "2026-10-08T12:00:00-03:00"
+    },
     {
       "title": "Caminho de Santana: entre serras e cachoeiras, os encantos de Cavalcante",
       "url": "https://www.gov.br/turismo/pt-br/assuntos/noticias/caminho-de-santana-entre-serras-e-cachoeiras-os-encantos-de-cavalcante",
@@ -55,11 +60,6 @@
     {
       "title": "Sítio Burle Marx: primeiro jardim tropical modernista reconhecido pela UNESCO",
       "url": "https://www.gov.br/turismo/pt-br/assuntos/noticias/conheca-o-sitio-burle-marx-primeiro-jardim-tropical-modernista-reconhecido-pela-unesco",
-      "date": "2026-09-18T12:00:00-03:00"
-    },
-    {
-      "title": "Caminhos de Trajano de Moraes: a trilha fluminense que une a herança colonial aos encantos da Mata Atlântica",
-      "url": "https://www.gov.br/turismo/pt-br/assuntos/noticias/caminhos-de-trajano-de-moraes-a-trilha-fluminense-que-une-a-heranca-colonial-aos-encantos-da-mata-atlantica",
       "date": "2026-09-18T12:00:00-03:00"
     }
   ]
