@@ -121,3 +121,16 @@ html,body{min-height:100%;overscroll-behavior-y:auto}
   .bottom-nav a{display:flex!important;min-width:0;min-height:60px!important;padding:7px 1px!important;font-size:10px!important}
   .bottom-nav .icon{width:22px;height:22px}
 }
+
+/* Estrutura visual inspirada no protótipo enviado, conectada aos dados reais do aplicativo. */
+.travel-hero{min-height:420px;border-radius:34px;box-shadow:0 22px 56px rgba(5,53,31,.22)}
+.booking-panel{position:relative;z-index:3;margin-top:-42px;background:color-mix(in srgb,var(--panel) 94%,transparent);backdrop-filter:blur(18px)}
+#search-with-maya{white-space:nowrap}
+.maya-drawer{border:1px solid color-mix(in srgb,var(--accent) 28%,var(--line));box-shadow:0 28px 72px rgba(0,33,20,.32)}
+.maya-drawer .maya-box{border:0;box-shadow:none;background:transparent}
+@media(max-width:700px){
+  .travel-hero{min-height:390px;border-radius:27px}
+  .booking-panel{margin-top:-26px}
+  #search-with-maya{width:100%;justify-content:center}
+  .destination-rail .card--visual{flex-basis:80vw}
+}
