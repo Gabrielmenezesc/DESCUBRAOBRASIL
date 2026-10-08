@@ -30,7 +30,7 @@ function setupMobileIntro(){
   document.documentElement.classList.add(capable?'enhanced-motion':'standard-motion');
   const close=()=>{
     intro.classList.add('is-leaving');
-    setTimeout(()=>intro.remove(),850);
+    setTimeout(()=>{intro.remove();document.body.classList.remove('intro-open');},850);
   };
   document.body.classList.add('intro-open');
   const introTimer=setTimeout(()=>intro.classList.add('is-ready'),6000);
@@ -221,6 +221,8 @@ function explore(){
     </div></section>
     <section class="maya-cta"><img src="maya-avatar.webp" alt="Maya, assistente de viagens"><div><p class="eyebrow">ROTEIROS PERSONALIZADOS</p><h2>Monte sua viagem com a Maya</h2><p>Conte seus interesses e receba sugestões ajustáveis ao seu plano.</p></div><button type="button" id="open-maya-cta">Criar meu roteiro</button></section>
     <a class="business-cta" href="#empresas"><span>PARA EMPRESAS</span><strong>Sou empresa? Anuncie aqui</strong><small>Divulgue seu serviço para viajantes em todo o Brasil.</small></a>
+    <section class="home-offers" aria-label="Ofertas em destaque"><div class="section-head"><div><p class="eyebrow">OFERTAS E VANTAGENS</p><h2>Planeje com condições claras</h2></div><a href="#ofertas">Ver ofertas</a></div><article class="home-offer-card"><img src="./assets/diroma-caldas-novas.jpg" alt="Parque aquático diRoma em Caldas Novas" loading="lazy"><div><span>PARCEIRO OFICIAL · CALDAS NOVAS</span><h3>Experiência diRoma</h3><p>Consulte disponibilidade e regras no canal oficial antes de reservar.</p><div class="home-offer-actions"><button type="button" id="home-copy-coupon">Copiar cupom DESCUBRAOBRASIL</button><a href="https://diroma.com.br/" target="_blank" rel="noopener noreferrer">Consultar parceiro</a></div></div></article></section>
+    <section class="home-more"><a href="#jogos"><img src="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&w=720&q=80" alt="Paisagem brasileira" loading="lazy"><div><span>JOGOS</span><strong>Viaje também jogando</strong><small>Quiz, memória e missões.</small></div></a><a href="#noticias"><img src="https://images.unsplash.com/photo-1549918864-48ac978761a4?auto=format&fit=crop&w=720&q=80" alt="Cultura brasileira" loading="lazy"><div><span>NOTÍCIAS</span><strong>Informação para viajar melhor</strong><small>Publicações com origem identificada.</small></div></a></section>
     <div class="section-head"><h2>Seu roteiro</h2><button id="export-trip">Baixar roteiro</button></div>
     <section class="panel" id="itinerary"></section>
     <p class="source">Seleção editorial do projeto Descubra o Brasil. Consulte informações locais antes de viajar.</p>`;
@@ -263,6 +265,7 @@ function explore(){
   };
 
   $('show-all-destinations').onclick=()=>{nearbyCoordinates=null;onlySaved=false;selectedCategory='';renderPlaces();$('place-results').scrollIntoView({behavior:'smooth',block:'start'});};
+  $('home-copy-coupon').onclick=async()=>{try{await navigator.clipboard.writeText('DESCUBRAOBRASIL');toast('Cupom DESCUBRAOBRASIL copiado.');}catch{toast('Cupom: DESCUBRAOBRASIL');}};
   $('open-maya-cta').onclick=()=>$('maya-toggle').click();
 
   $('smart-itinerary-btn').onclick=()=>{
