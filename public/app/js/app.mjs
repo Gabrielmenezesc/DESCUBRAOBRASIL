@@ -90,7 +90,7 @@ function setupMayaDrawer(){
     toggle.setAttribute('aria-expanded','true');
     if(!mayaDrawerMounted){
       mayaDrawerMounted=true;
-      mountMaya(root,{config,getContext:()=>({places:places.slice(0,12),activePage:location.hash.slice(1)||'explorar'})});
+      mountMaya(root,{config,getContext:()=>({places:places.slice(0,6).map(({name,city,state,category,free,description})=>({name,city,state,category,free,description})),activePage:location.hash.slice(1)||'explorar'})});
     }
     if(question) root.dispatchEvent(new CustomEvent('descubra:maya-question',{detail:{question}}));
   };
