@@ -8,6 +8,7 @@ import dynamic from 'next/dynamic';
 import Navbar from './Navbar';
 import FooterSection from './FooterSection';
 import MayaChat from './MayaChat';
+import AmbientEffects from './AmbientEffects';
 import { assetPath } from '@/lib/assetPath';
 
 const BrazilMap = dynamic(() => import('./MapExplorerComponent'), {
@@ -262,6 +263,7 @@ export default function ProfessionalHome() {
           className="cine-hero-stage"
           aria-label="Bem-vindo ao Descubra o Brasil"
         >
+          <AmbientEffects videoSrc={assetPath('/media/bandeira-brasil.mp4')} />
           <motion.video
             className="cine-hero-video"
             autoPlay muted loop playsInline preload="metadata"
