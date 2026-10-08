@@ -29,7 +29,24 @@ function setupMobileIntro(){
   const capable=!reduced&&!connection?.saveData&&(navigator.deviceMemory||4)>=4&&(navigator.hardwareConcurrency||4)>=4;
   document.documentElement.classList.add(capable?'enhanced-motion':'standard-motion');
   const video=intro.querySelector('video');
+  const introAudio=$('intro-audio'),soundButton=$('intro-sound');
+  let audioStarted=false;
+  const playIntroSound=()=>{
+    if(!introAudio||audioStarted)return;
+    introAudio.volume=.82;
+    const playback=introAudio.play();
+    if(playback&&typeof playback.catch==='function'){
+      playback.then(()=>{audioStarted=true;soundButton?.setAttribute('hidden','');}).catch(()=>{
+        intro.classList.add('sound-needs-gesture');
+        soundButton?.removeAttribute('hidden');
+      });
+    }
+  };
   video?.addEventListener('error',()=>intro.classList.add('video-unavailable'),{once:true});
+  introAudio?.addEventListener('error',()=>soundButton?.setAttribute('hidden',''),{once:true});
+  soundButton?.addEventListener('click',()=>{audioStarted=false;playIntroSound();});
+  intro.addEventListener('pointerdown',playIntroSound,{once:true});
+  setTimeout(playIntroSound,120);
   let closed=false;
   const releaseScroll=()=>{
     document.body.classList.remove('intro-open');
@@ -40,6 +57,7 @@ function setupMobileIntro(){
     if(closed)return;
     closed=true;
     intro.classList.add('is-leaving');
+    if(introAudio){introAudio.pause();introAudio.currentTime=0;}
     releaseScroll();
     setTimeout(()=>{intro.remove();releaseScroll();},850);
   };
@@ -48,6 +66,13 @@ function setupMobileIntro(){
   const introTimer=setTimeout(()=>intro.classList.add('is-ready'),6000);
   $('enter-app').onclick=()=>{clearTimeout(introTimer);close();};
   intro.querySelectorAll('[data-enter-app]').forEach(link=>link.onclick=()=>{clearTimeout(introTimer);close();});
+  intro.querySelectorAll('[data-intro-account]').forEach(button=>button.onclick=()=>{
+    clearTimeout(introTimer);
+    const provider=button.dataset.introAccount;
+    close();
+    location.hash='conta';
+    setTimeout(()=>toast(provider==='facebook'?'A entrada com Facebook será liberada após a configuração oficial.':'Continue o acesso pela área de conta.'),900);
+  });
   intro.addEventListener('transitionend',()=>{if(intro.classList.contains('is-leaving'))releaseScroll();},{once:true});
 }
 setupMobileIntro();
