@@ -1,10 +1,11 @@
 import {normalize,escapeHTML as e,safeURL,dayKey,shuffle,dailyQuiz,freshProgress,cleanProgress,award,totalXP,checkVisit,offerPrice,offerIsActive} from './core.mjs';
 
 import { mountMaya } from './maya.mjs?v=18';
+import { mountBrazilMap } from './mapa-vivo.mjs?v=1';
 import { introAudioData } from './intro-audio.mjs?v=1';
 
 const $=id=>document.getElementById(id), content=$('content');
-const paths={explorar:'<circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/>',jogos:'<path d="M8 6h8l4 5 1 7-3 1-4-4h-4l-4 4-3-1 1-7Z"/><path d="M6 10v4m-2-2h4m8-1h.1m2 2h.1"/>',ofertas:'<path d="M3 3h8l10 10-8 8L3 11Z"/><circle cx="7" cy="7" r="1"/>',noticias:'<path d="M4 3h16v18H4Z M8 7h8M8 11h8M8 15h8"/>',empresas:'<path d="M4 21V7l8-4 8 4v14M2 21h20M8 8v2m8-2v2M8 13v2m8-2v2M10 21v-4h4v4"/>',conta:'<circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/>',sun:'<circle cx="12" cy="12" r="4"/><path d="M12 1v3m0 16v3M1 12h3m16 0h3M4 4l2 2m12 12 2 2M4 20l2-2M18 6l2-2"/>',moon:'<path d="M21 13A9 9 0 0 1 11 3a9 9 0 1 0 10 10Z"/>',arrow:'<path d="M4 12h16m-6-6 6 6-6 6"/>',heart:'<path d="M20 4c-3-3-7-1-8 1-1-2-5-4-8-1-4 4 0 9 8 16 8-7 12-12 8-16Z"/>'};
+const paths={mapa:'<path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3Z"/><path d="M9 3v15m6-12v15"/>',explorar:'<circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/>',jogos:'<path d="M8 6h8l4 5 1 7-3 1-4-4h-4l-4 4-3-1 1-7Z"/><path d="M6 10v4m-2-2h4m8-1h.1m2 2h.1"/>',ofertas:'<path d="M3 3h8l10 10-8 8L3 11Z"/><circle cx="7" cy="7" r="1"/>',noticias:'<path d="M4 3h16v18H4Z M8 7h8M8 11h8M8 15h8"/>',empresas:'<path d="M4 21V7l8-4 8 4v14M2 21h20M8 8v2m8-2v2M8 13v2m8-2v2M10 21v-4h4v4"/>',conta:'<circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/>',sun:'<circle cx="12" cy="12" r="4"/><path d="M12 1v3m0 16v3M1 12h3m16 0h3M4 4l2 2m12 12 2 2M4 20l2-2M18 6l2-2"/>',moon:'<path d="M21 13A9 9 0 0 1 11 3a9 9 0 1 0 10 10Z"/>',arrow:'<path d="M4 12h16m-6-6 6 6-6 6"/>',heart:'<path d="M20 4c-3-3-7-1-8 1-1-2-5-4-8-1-4 4 0 9 8 16 8-7 12-12 8-16Z"/>'};
 const icon=name=>`<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths[name]||paths.arrow}</svg>`;
 const visualPhotos={
   'rio de janeiro':'photo-1483729558449-99ef09a8c325',
@@ -17,7 +18,7 @@ const visualPhotos={
 const categoryPhotos={praia:'photo-1559825481-12a05cc00344',natureza:'photo-1516026672322-bc52d61a55d5',aventura:'photo-1610741083757-34e0a0e0f4ec',cultura:'photo-1549918864-48ac978761a4',gastronomia:'photo-1414235077428-338989a2e8c0'};
 function photoFor(place){const city=normalize(place.city||'');const photo=visualPhotos[city]||categoryPhotos[place.category]||'photo-1500530855697-b586d89ba3ee';return 'https://images.unsplash.com/'+photo+'?auto=format&fit=crop&w=900&q=82';}
 
-const labels={explorar:'Início',jogos:'Jogos',ofertas:'Ofertas',noticias:'Notícias',conta:'Conta'};
+const labels={explorar:'Início',mapa:'Mapa',ofertas:'Ofertas',noticias:'Notícias',conta:'Conta'};
 let states=[],places=[],config={},client=null,user=null,progress=freshProgress(),epoch=0,toastTimer,gameTimer,localOnly=false,mayaDrawerMounted=false;
 let search=new URLSearchParams(location.search).get('q')||'',region='',selectedState='',selectedCategory='',onlySaved=false,nearbyCoordinates=null;
 
@@ -288,7 +289,7 @@ function explore(){
   $('search').oninput=ev=>{search=ev.target.value;renderPlaces();};
   $('region').onchange=ev=>{region=ev.target.value;renderPlaces();};
   $('mode-search').onclick=()=>$('search').focus();
-  $('mode-map').onclick=()=>window.open('https://www.google.com/maps/search/?api=1&query=Brasil','_blank','noopener');
+  $('mode-map').onclick=()=>{location.hash='mapa';};
   $('mode-itinerary').onclick=()=>{const box=$('smart-itinerary-box');box.style.display='block';box.scrollIntoView({behavior:'smooth',block:'center'});};
   $('search-with-maya').onclick=()=>{
     const destination=$('search').value.trim()||'um destino no Brasil';
@@ -397,6 +398,20 @@ function memory(){const turn=epoch;let cards=shuffle(shuffle(states).slice(0,6).
 function visits(){const targets=places.filter(p=>Number.isFinite(p.lat)&&Number.isFinite(p.lng));showGame(`<section class="panel"><p class="eyebrow">Missão no mundo real</p><h2>Registre uma descoberta.</h2><p>Escolha um lugar que você está visitando. O app só solicita sua localização quando você tocar em verificar. As coordenadas são usadas neste aparelho e não são armazenadas.</p><label>Local da visita<select id="visit-place">${targets.map(p=>`<option value="${e(p.id)}">${e(p.name)} — ${e(p.city)}</option>`).join('')}</select></label><div class="actions" style="margin-top:18px"><button id="verify-visit" class="primary">Verificar minha presença</button></div><p id="visit-status" class="feedback" role="status"></p><p class="source">Missão recreativa baseada no GPS do aparelho. Não comprova presença para benefícios comerciais.</p></section>`);
   $('verify-visit').onclick=()=>{const b=$('verify-visit'),status=$('visit-status'),p=targets.find(x=>x.id===$('visit-place').value);if(!navigator.geolocation){status.textContent='Este navegador não oferece localização.';return;}if(progress.awards[`visit:${p.id}`]){status.textContent='Você já registrou este local.';return;}b.disabled=true;status.textContent='Consultando o GPS...';navigator.geolocation.getCurrentPosition(pos=>{const result=checkVisit(pos.coords,p);if(result.ok){award(progress,`visit:${p.id}`,80);save();}status.textContent=result.message+(result.ok?' Você ganhou 80 pontos.':'');b.disabled=false;},err=>{status.textContent=err.code===1?'Permissão de localização não concedida. Você pode continuar nos outros jogos.':'Não foi possível obter a localização. Tente novamente em uma área aberta.';b.disabled=false;},{enableHighAccuracy:true,timeout:15000,maximumAge:0});};}
 
+async function mapa(){
+  content.innerHTML='<p class="sr-only">Carregando o Mapa Vivo do Brasil.</p>';
+  try{
+    await mountBrazilMap(content,{
+      places,
+      toast,
+      askMaya:question=>window.dispatchEvent(new CustomEvent('descubra:maya-question',{detail:{question}}))
+    });
+  }catch{
+    content.innerHTML=head('Mapa vivo indisponível','Não foi possível abrir o mapa agora.','Verifique a conexão e tente novamente.')+'<button type="button" id="retry-map" class="primary">Tentar novamente</button>';
+    $('retry-map').onclick=mapa;
+  }
+}
+
 async function offers(){
   const current=epoch;
   const partnerCard=`<article class="offer-feature"><img src="./assets/diroma-caldas-novas.jpg" alt="Parque aquático diRoma em Caldas Novas"><div><span class="offer-kicker">PARCEIRO OFICIAL · CALDAS NOVAS</span><h2>Experiência diRoma</h2><p>Hospedagem, lazer e parques aquáticos. Consulte regras, períodos e disponibilidade diretamente com o parceiro.</p><div class="coupon"><span>Cupom de parceria</span><strong>DESCUBRAOBRASIL</strong><button type="button" data-copy-coupon>Copiar cupom</button></div><a class="button primary" href="https://diroma.com.br/" target="_blank" rel="noopener noreferrer sponsored">Consultar parceiro oficial</a></div></article>`;
@@ -459,7 +474,7 @@ function authForm(){const box=$('auth-panel');box.innerHTML=`<h2>Entre ou crie s
   const redirect=new URL('./index.html',location.href).href;
   $('email-login').onsubmit=async ev=>{ev.preventDefault();const b=ev.target.querySelector('button');b.disabled=true;$('auth-status').textContent='Solicitando link...';try{const{error}=await client.auth.signInWithOtp({email:new FormData(ev.target).get('email').trim(),options:{emailRedirectTo:redirect,shouldCreateUser:true}});$('auth-status').textContent=error?'Não foi possível enviar. Verifique o e-mail e tente novamente mais tarde.':'Se o endereço puder receber o acesso, o link chegará em instantes. Confira também a pasta de spam.';}catch{$('auth-status').textContent='Sem conexão. Tente novamente.';}b.disabled=false;};if($('google-login'))$('google-login').onclick=async()=>{if(!$('email-login').querySelector('input[type=checkbox]').checked){toast('Leia e aceite os termos antes de continuar.');return;}const{error}=await client.auth.signInWithOAuth({provider:'google',options:{redirectTo:redirect}});if(error)$('auth-status').textContent='Login com Google indisponível. Tente o acesso por e-mail.';};}
 
-function route(){epoch++;clearTimeout(gameTimer);nav();const page=location.hash.slice(1)||'explorar';document.title=`${labels[page]||'Explorar'} | Descubra o Brasil`;({explorar:explore,jogos:games,ofertas:offers,noticias:news,empresas:business,conta:account}[page]||explore)();window.scrollTo(0,0);content.focus({preventScroll:true});}
+function route(){epoch++;clearTimeout(gameTimer);nav();const page=location.hash.slice(1)||'explorar';document.title=`${labels[page]||'Explorar'} | Descubra o Brasil`;({explorar:explore,mapa,ofertas:offers,noticias:news,empresas:business,conta:account,jogos:games}[page]||explore)();window.scrollTo(0,0);content.focus({preventScroll:true});}
 
 async function init(){try{const r=await fetch('./data/destinations.json');if(!r.ok)throw Error();const data=await r.json();states=data.states;places=data.places;readProgress();route();window.addEventListener('hashchange',route);}catch{content.innerHTML=head('Conexão indisponível','Não conseguimos carregar os destinos.','Verifique a conexão e recarregue a página.')+'<button id="retry">Tentar novamente</button>';$('retry').onclick=()=>location.reload();return;}
   try{config=await(await fetch('./config.json',{cache:'no-store'})).json();if(config.supabaseUrl&&config.supabaseKey&&window.supabase){client=window.supabase.createClient(config.supabaseUrl,config.supabaseKey,{auth:{detectSessionInUrl:true,persistSession:true,autoRefreshToken:true}});const{data}=await client.auth.getSession();user=data.session?.user||null;readProgress();client.auth.onAuthStateChange((event,session)=>{const next=session?.user||null;if(next?.id!==user?.id){user=next;readProgress();if(['conta','empresas','ofertas'].includes(location.hash.slice(1)))route();}});if(user){await loadProgressFromCloud();if(location.hash.includes('access_token')||location.hash===''||location.hash.includes('error'))history.replaceState(null,'',location.pathname+'#conta');}route();}}catch{localOnly=true;}
