@@ -252,7 +252,7 @@ function explore(){
       <button type="button" id="home-quick-map">Abrir mapa 3D</button>
     </div>
     <p class="home-quick-weather" id="home-quick-weather">O clima aparece no mapa quando você escolher um local.</p>
-  </section>
+  </section>`;
 
   const homeHero=`<section class="travel-hero" aria-label="Destaque de viagem">
     <img src="https://images.unsplash.com/photo-1483729558449-99ef09a8c325?auto=format&fit=crop&w=1400&q=84" alt="Vista do Rio de Janeiro" loading="eager">
