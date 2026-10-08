@@ -138,3 +138,27 @@ html,body{min-height:100%;overscroll-behavior-y:auto}
 /* Fallback da entrada: mantém a identidade do Brasil se o vídeo estiver indisponível. */
 .mobile-intro.video-unavailable{background:radial-gradient(circle at 50% 46%,#123b8b 0 22%,transparent 23%),linear-gradient(145deg,#08783e 0 30%,#f5d547 31% 68%,#08783e 69%)}
 .mobile-intro.video-unavailable video{display:none}
+
+/* Linha do tempo da abertura: bandeira + boas-vindas por seis segundos, acesso depois. */
+@media(max-width:700px){
+  .mobile-intro-content{opacity:1!important;transform:none!important;justify-content:flex-end!important}
+  .mobile-intro-kicker{display:none!important}
+  .mobile-intro h1{margin-bottom:0}
+  .mobile-intro h1 span,.mobile-intro h1 strong,.mobile-intro-lead{opacity:0}
+  .mobile-intro h1 span{animation:intro-welcome-word 2.05s .35s both!important}
+  .mobile-intro h1 strong{margin-top:9px;animation:intro-brand-word 1.15s 3.05s both!important}
+  .mobile-intro-lead{animation:intro-brand-word .75s 4.3s both!important}
+  .mobile-intro-actions{visibility:hidden;opacity:0;transform:translateY(15px);display:grid;grid-template-columns:1fr 1fr;gap:10px;width:min(100%,440px)}
+  .mobile-intro.is-ready .mobile-intro-actions{visibility:visible;animation:intro-access-in .7s both}
+  .intro-provider-button,.intro-email-button,.intro-guest-button{display:flex!important;align-items:center;justify-content:center;gap:8px;min-height:54px;margin:0!important;padding:9px 10px!important;border-radius:15px!important;font:800 13px/1 Inter,system-ui,sans-serif!important;text-decoration:none}
+  .intro-provider-button{border:1px solid rgba(255,255,255,.88)!important;background:rgba(255,255,255,.97)!important;color:#102a1d!important}
+  .intro-provider-button img{width:20px;height:20px;object-fit:contain}
+  .intro-email-button{border:1px solid rgba(255,255,255,.7)!important;background:rgba(8,70,43,.72)!important;color:#fff!important}
+  .intro-guest-button{grid-column:1/-1;border:1px solid rgba(255,255,255,.58)!important;background:transparent!important;color:#fff!important}
+  .intro-sound-button{display:none;margin:12px auto 0;min-height:36px;padding:7px 12px;border:1px solid rgba(255,255,255,.65);border-radius:999px;background:rgba(3,24,17,.5);color:#fff;font-size:11px;font-weight:800}
+  .mobile-intro.sound-needs-gesture .intro-sound-button:not([hidden]){display:inline-flex;align-items:center;justify-content:center}
+}
+@keyframes intro-welcome-word{from{opacity:0;transform:translateY(24px);letter-spacing:.04em;filter:blur(5px)}to{opacity:1;transform:translateY(0);letter-spacing:-.055em;filter:blur(0)}}
+@keyframes intro-brand-word{from{opacity:0;transform:translateY(20px);filter:blur(4px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
+@keyframes intro-access-in{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){.mobile-intro h1 span,.mobile-intro h1 strong,.mobile-intro-lead{opacity:1!important;animation:none!important}.mobile-intro-actions{visibility:visible!important;opacity:1!important;transform:none!important;animation:none!important}}
