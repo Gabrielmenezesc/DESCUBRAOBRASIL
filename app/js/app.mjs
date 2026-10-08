@@ -1,7 +1,7 @@
 import {normalize,escapeHTML as e,safeURL,dayKey,shuffle,dailyQuiz,freshProgress,cleanProgress,award,totalXP,checkVisit,offerPrice,offerIsActive} from './core.mjs';
 
 import { mountMaya } from './maya.mjs?v=18';
-import { mountBrazilMap } from './mapa-vivo.mjs?v=3';
+import { mountBrazilMap } from './mapa-vivo.mjs?v=4';
 import { introAudioData } from './intro-audio.mjs?v=1';
 
 const $=id=>document.getElementById(id), content=$('content');
@@ -18,7 +18,7 @@ const visualPhotos={
 const categoryPhotos={praia:'photo-1559825481-12a05cc00344',natureza:'photo-1516026672322-bc52d61a55d5',aventura:'photo-1610741083757-34e0a0e0f4ec',cultura:'photo-1549918864-48ac978761a4',gastronomia:'photo-1414235077428-338989a2e8c0'};
 function photoFor(place){const city=normalize(place.city||'');const photo=visualPhotos[city]||categoryPhotos[place.category]||'photo-1500530855697-b586d89ba3ee';return 'https://images.unsplash.com/'+photo+'?auto=format&fit=crop&w=900&q=82';}
 
-const labels={explorar:'Início',mapa:'Mapa',ofertas:'Ofertas',noticias:'Notícias',conta:'Conta'};
+const labels={explorar:'Início',jogos:'Jogos',ofertas:'Ofertas',noticias:'Notícias',conta:'Conta'};
 let states=[],places=[],config={},client=null,user=null,progress=freshProgress(),epoch=0,toastTimer,gameTimer,localOnly=false,mayaDrawerMounted=false;
 let search=new URLSearchParams(location.search).get('q')||'',region='',selectedState='',selectedCategory='',onlySaved=false,nearbyCoordinates=null;
 
@@ -214,6 +214,7 @@ const categoriesList = [
 
 function explore(){
   const allStates = [...new Set(places.map(p=>p.state))].sort();
+  const stateMenuOptions=[...new Map(places.map(p=>[p.code,{code:p.code,name:p.state}])).values()].sort((a,b)=>a.name.localeCompare(b.name,'pt-BR'));
   const storiesMarkup = `
     <div style="margin: 20px 0 28px; overflow-x: auto; display: flex; gap: 14px; padding-bottom: 6px;">
       ${[
@@ -260,6 +261,14 @@ function explore(){
       <button id="search-with-maya" class="primary">Perguntar à Maya</button>
       <span class="source" id="result-count" role="status"></span>
     </div></section>
+    <section class="home-state-map-section" aria-labelledby="home-map-heading">
+      <div class="section-head"><div><p class="eyebrow">MAPA VIVO DO BRASIL</p><h2 id="home-map-heading">Explore por estado e categoria</h2></div><button type="button" class="subtle" id="home-map-fullscreen">Mapa em tela cheia</button></div>
+      <p class="source">Escolha um estado e descubra referências de turismo, cultura, natureza e gastronomia. Os temas usam o catálogo dos 27 estados e podem ser enviados à Maya.</p>
+      <label class="home-state-select-label">Estado<select id="home-state-menu"><option value="">Escolha um estado</option>${stateMenuOptions.map(item=>`<option value="${e(item.code)}">${e(item.name)}</option>`).join('')}</select></label>
+      <div id="home-state-themes" class="home-state-themes"><p class="empty">Selecione um estado para ver categorias.</p></div>
+      <div id="home-map-root" data-map-root aria-label="Mapa interativo na Home"></div>
+    </section>
+
 
     <div id="smart-itinerary-box" style="display:none; margin:20px 0; padding:20px; border:1px solid var(--accent); border-radius:16px; background:var(--soft);">
       <h3>Monte sua Viagem Inteligente</h3>
@@ -289,7 +298,7 @@ function explore(){
   $('search').oninput=ev=>{search=ev.target.value;renderPlaces();};
   $('region').onchange=ev=>{region=ev.target.value;renderPlaces();};
   $('mode-search').onclick=()=>$('search').focus();
-  $('mode-map').onclick=()=>{location.hash='mapa';};
+  $('mode-map').onclick=()=>{$('home-map-root')?.scrollIntoView({behavior:'smooth',block:'start'});};
   $('mode-itinerary').onclick=()=>{const box=$('smart-itinerary-box');box.style.display='block';box.scrollIntoView({behavior:'smooth',block:'center'});};
   $('search-with-maya').onclick=()=>{
     const destination=$('search').value.trim()||'um destino no Brasil';
@@ -338,6 +347,20 @@ function explore(){
     const box = $('smart-itinerary-box');
     box.style.display = box.style.display==='none' ? 'block' : 'none';
   };
+
+  const homeMapRoot=$('home-map-root');
+  if(homeMapRoot){
+    mountBrazilMap(homeMapRoot,{places,toast,mode:'home',askMaya:question=>window.dispatchEvent(new CustomEvent('descubra:maya-question',{detail:{question}}))}).catch(()=>{homeMapRoot.innerHTML='<p class="empty">Não foi possível carregar o mapa agora. Tente novamente mais tarde.</p>';});
+    $('home-map-fullscreen').onclick=()=>{location.hash='mapa';};
+    const themeBox=$('home-state-themes'), stateMenu=$('home-state-menu');
+    const drawThemes=entries=>{
+      const code=stateMenu.value;
+      const themes=entries.filter(item=>String(item.estado||'').startsWith(code+' '));
+      themeBox.innerHTML=themes.length?themes.map(item=>`<button type="button" class="home-state-theme" data-state-theme="${e(item.busca)}"><span>${e(String(item.categoria||'').replace(/^0\\d_/,'').replaceAll('_',' '))}</span><strong>${e(item.busca)}</strong></button>`).join(''):'<p class="empty">Escolha um estado para acessar seus temas.</p>';
+      themeBox.querySelectorAll('[data-state-theme]').forEach(button=>button.onclick=()=>{const query=button.dataset.stateTheme||'';homeMapRoot.scrollIntoView({behavior:'smooth',block:'start'});window.dispatchEvent(new CustomEvent('descubra:map-search',{detail:{query}}));window.dispatchEvent(new CustomEvent('descubra:maya-question',{detail:{question:`No mapa, quero explorar ${query}. Mostre opções culturais, de natureza, gratuitas e cuidados para planejar.`}}));});
+    };
+    fetch('./data/turismo-cultura-estados.json',{cache:'force-cache'}).then(response=>response.ok?response.json():Promise.reject()).then(entries=>{stateMenu.onchange=()=>drawThemes(entries);stateMenu.value=stateMenuOptions.find(item=>item.code==='DF')?.code||stateMenuOptions[0]?.code||'';drawThemes(entries);}).catch(()=>{themeBox.innerHTML='<p class="empty">O catálogo por estado não está disponível agora.</p>';});
+  }
 
   $('it-generate').onclick=()=>{
     const city = $('it-city').value || 'Brasília';
@@ -474,7 +497,7 @@ function authForm(){const box=$('auth-panel');box.innerHTML=`<h2>Entre ou crie s
   const redirect=new URL('./index.html',location.href).href;
   $('email-login').onsubmit=async ev=>{ev.preventDefault();const b=ev.target.querySelector('button');b.disabled=true;$('auth-status').textContent='Solicitando link...';try{const{error}=await client.auth.signInWithOtp({email:new FormData(ev.target).get('email').trim(),options:{emailRedirectTo:redirect,shouldCreateUser:true}});$('auth-status').textContent=error?'Não foi possível enviar. Verifique o e-mail e tente novamente mais tarde.':'Se o endereço puder receber o acesso, o link chegará em instantes. Confira também a pasta de spam.';}catch{$('auth-status').textContent='Sem conexão. Tente novamente.';}b.disabled=false;};if($('google-login'))$('google-login').onclick=async()=>{if(!$('email-login').querySelector('input[type=checkbox]').checked){toast('Leia e aceite os termos antes de continuar.');return;}const{error}=await client.auth.signInWithOAuth({provider:'google',options:{redirectTo:redirect}});if(error)$('auth-status').textContent='Login com Google indisponível. Tente o acesso por e-mail.';};}
 
-function route(){epoch++;clearTimeout(gameTimer);nav();const page=location.hash.slice(1)||'explorar';document.title=`${labels[page]||'Explorar'} | Descubra o Brasil`;({explorar:explore,mapa,ofertas:offers,noticias:news,empresas:business,conta:account,jogos:games}[page]||explore)();window.scrollTo(0,0);content.focus({preventScroll:true});}
+function route(){epoch++;clearTimeout(gameTimer);content._mapDestroy?.();content.querySelectorAll('[data-map-root]').forEach(node=>node._mapDestroy?.());nav();const page=location.hash.slice(1)||'explorar';document.title=`${labels[page]||'Explorar'} | Descubra o Brasil`;({explorar:explore,mapa,ofertas:offers,noticias:news,empresas:business,conta:account,jogos:games}[page]||explore)();window.scrollTo(0,0);content.focus({preventScroll:true});}
 
 async function init(){try{const r=await fetch('./data/destinations.json');if(!r.ok)throw Error();const data=await r.json();states=data.states;places=data.places;readProgress();route();window.addEventListener('hashchange',route);}catch{content.innerHTML=head('Conexão indisponível','Não conseguimos carregar os destinos.','Verifique a conexão e recarregue a página.')+'<button id="retry">Tentar novamente</button>';$('retry').onclick=()=>location.reload();return;}
   try{config=await(await fetch('./config.json',{cache:'no-store'})).json();if(config.supabaseUrl&&config.supabaseKey&&window.supabase){client=window.supabase.createClient(config.supabaseUrl,config.supabaseKey,{auth:{detectSessionInUrl:true,persistSession:true,autoRefreshToken:true}});const{data}=await client.auth.getSession();user=data.session?.user||null;readProgress();client.auth.onAuthStateChange((event,session)=>{const next=session?.user||null;if(next?.id!==user?.id){user=next;readProgress();if(['conta','empresas','ofertas'].includes(location.hash.slice(1)))route();}});if(user){await loadProgressFromCloud();if(location.hash.includes('access_token')||location.hash===''||location.hash.includes('error'))history.replaceState(null,'',location.pathname+'#conta');}route();}}catch{localOnly=true;}
