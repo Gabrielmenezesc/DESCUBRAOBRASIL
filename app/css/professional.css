@@ -270,14 +270,3 @@ html,body{height:100%;margin:0;overflow:hidden}
   .bottom-nav{min-height:78px}
   .maya-float{bottom:calc(96px + env(safe-area-inset-bottom,0px))!important}
 }
-
-
-/* Entrada simplificada: provedores por logotipo e e-mail em ação própria. */
-@media(max-width:700px){
-  .mobile-intro-actions{display:grid!important;grid-template-columns:1fr!important;gap:14px!important;width:min(100%,360px)!important}
-  .intro-provider-logos{display:flex;justify-content:center;gap:16px}
-  .intro-provider-logo{display:grid!important;place-items:center;width:66px;height:66px;min-height:66px!important;padding:0!important;border:1px solid rgba(255,255,255,.92)!important;border-radius:50%!important;background:rgba(255,255,255,.98)!important;box-shadow:0 12px 26px rgba(0,0,0,.2)}
-  .intro-provider-logo img{width:28px!important;height:28px!important;object-fit:contain}
-  .intro-email-button{grid-column:auto!important;min-height:58px!important;border-radius:16px!important;background:rgba(7,74,45,.8)!important;font-size:16px!important;letter-spacing:0!important}
-  .intro-email-button span{font-size:21px}
-}
