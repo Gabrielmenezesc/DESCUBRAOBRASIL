@@ -1,7 +1,27 @@
 {
   "source": "https://www.gov.br/turismo/pt-br/assuntos/noticias",
-  "fetchedAt": "2026-10-08T17:25:16.578Z",
+  "fetchedAt": "2026-10-13T17:37:10.652Z",
   "items": [
+    {
+      "title": "Amazônia Central: Patrimônio Mundial da Unesco protege mais de 6 milhões de hectares de floresta",
+      "url": "https://www.gov.br/turismo/pt-br/assuntos/noticias/amazonia-central-patrimonio-mundial-da-unesco-protege-mais-de-6-milhoes-de-hectares-de-floresta",
+      "date": "2026-10-09T12:00:00-03:00"
+    },
+    {
+      "title": "Dia das Crianças: 5 destinos brasileiros para sair da rotina e viver momentos inesquecíveis",
+      "url": "https://www.gov.br/turismo/pt-br/assuntos/noticias/dia-das-criancas-5-destinos-brasileiros-para-sair-da-rotina-e-viver-momentos-inesqueciveis",
+      "date": "2026-10-08T12:00:00-03:00"
+    },
+    {
+      "title": "Bandeira Azul: Brasil terá 75 praias e marinas com reconhecimento internacional",
+      "url": "https://www.gov.br/turismo/pt-br/assuntos/noticias/bandeira-azul-brasil-tera-75-praias-e-marinas-com-reconhecimento-internacional",
+      "date": "2026-10-08T12:00:00-03:00"
+    },
+    {
+      "title": "Mais de 500 mil fiéis são aguardados no Santuário Nacional de Aparecida para a festa da Padroeira",
+      "url": "https://www.gov.br/turismo/pt-br/assuntos/noticias/mais-de-500-mil-fieis-sao-aguardados-no-santuario-nacional-de-aparecida-para-a-festa-da-padroeira",
+      "date": "2026-10-08T12:00:00-03:00"
+    },
     {
       "title": "Dia do Nordestino: cultura, história, festas, sabores e belezas naturais que encantam o Brasil e o mundo",
       "url": "https://www.gov.br/turismo/pt-br/assuntos/noticias/dia-do-nordestino-cultura-historia-festas-sabores-e-belezas-naturais-que-encantam-o-brasil-e-o-mundo",
@@ -41,26 +61,6 @@
       "title": "Ministério do Turismo participa da abertura da ABAV Expo 2026, em São Paulo",
       "url": "https://www.gov.br/turismo/pt-br/assuntos/noticias/ministerio-do-turismo-participa-da-abertura-da-abav-expo-2026-em-sao-paulo-1",
       "date": "2026-09-29T12:00:00-03:00"
-    },
-    {
-      "title": "Ministério do Turismo e BID abrem seleção para consultoria voltada ao financiamento do setor no Brasil",
-      "url": "https://www.gov.br/turismo/pt-br/assuntos/noticias/ministerio-do-turismo-e-bid-abrem-selecao-para-consultoria-voltada-ao-financiamento-do-setor-no-brasil",
-      "date": "2026-09-23T12:00:00-03:00"
-    },
-    {
-      "title": "Costa do Descobrimento: Patrimônio Mundial protege um dos trechos mais ricos da Mata Atlântica",
-      "url": "https://www.gov.br/turismo/pt-br/assuntos/noticias/costa-do-descobrimento-patrimonio-mundial-protege-um-dos-trechos-mais-ricos-da-mata-atlantica",
-      "date": "2026-09-22T12:00:00-03:00"
-    },
-    {
-      "title": "Trilha Amazônia Atlântica impulsiona ecoturismo no Pará, em corredor que liga Belém à Serra do Piriá",
-      "url": "https://www.gov.br/turismo/pt-br/assuntos/noticias/trilha-amazonia-atlantica-impulsiona-ecoturismo-no-para-em-corredor-que-liga-belem-a-serra-do-piria",
-      "date": "2026-09-22T12:00:00-03:00"
-    },
-    {
-      "title": "Sítio Burle Marx: primeiro jardim tropical modernista reconhecido pela UNESCO",
-      "url": "https://www.gov.br/turismo/pt-br/assuntos/noticias/conheca-o-sitio-burle-marx-primeiro-jardim-tropical-modernista-reconhecido-pela-unesco",
-      "date": "2026-09-18T12:00:00-03:00"
     }
   ]
 }
