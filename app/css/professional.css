@@ -239,3 +239,13 @@ html,body{overscroll-behavior-y:none}
   .bottom-nav{padding-bottom:calc(8px + env(safe-area-inset-bottom,0px))}
   .maya-float{right:14px;bottom:calc(142px + env(safe-area-inset-bottom,0px))}
 }
+
+
+/* Rolagem móvel: mantém controles visíveis sem travar a página. */
+html{height:auto!important;min-height:100%;overflow-y:auto!important;overscroll-behavior-y:contain}
+body:not(.intro-open){height:auto!important;min-height:100dvh;overflow-x:clip;overflow-y:auto!important;touch-action:pan-y}
+.app-header{position:sticky!important;top:0;z-index:80}
+.app-main{padding-top:36px!important;padding-bottom:calc(148px + env(safe-area-inset-bottom,0px))!important}
+.bottom-nav{position:fixed!important;z-index:80}
+.maya-float{position:fixed!important;z-index:81}
+@media(max-width:700px){.app-main{padding-top:24px!important;padding-bottom:calc(148px + env(safe-area-inset-bottom,0px))!important}}
