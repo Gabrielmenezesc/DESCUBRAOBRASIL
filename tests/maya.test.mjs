@@ -4,7 +4,7 @@ import {requestMaya,renderMayaText} from '../public/app/js/maya.mjs';
 const config={mayaProxyUrl:'https://example.com/maya',supabaseKey:'public-test-key'};
 test('Maya sends recent conversation and requests research',async()=>{
  const result=await requestMaya(config,'E com crianças?',Array.from({length:12},(_,i)=>({role:'user',text:String(i)})),{},async(url,options)=>{
-  const body=JSON.parse(options.body);assert.equal(body.history.length,8);assert.equal(body.history[0].text,'4');assert.equal(body.search,true);assert.equal(options.headers.authorization,'Bearer public-test-key');
+  const body=JSON.parse(options.body);assert.equal(body.history.length,4);assert.equal(body.history[0].text,'8');assert.equal(body.search,true);assert.equal(options.headers.authorization,'Bearer public-test-key');
   return {ok:true,json:async()=>({answer:'Visite parques.',sources:[]})};
  });assert.equal(result.answer,'Visite parques.');
 });
