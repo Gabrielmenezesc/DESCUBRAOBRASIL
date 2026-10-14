@@ -228,47 +228,29 @@ html,body{overscroll-behavior-y:none}
 @media(max-width:700px){.bottom-nav{padding-bottom:calc(8px + env(safe-area-inset-bottom));}.plan-card{align-items:flex-start;flex-direction:column;padding:18px}.plan-card button{width:100%}}
 
 
-/* Navegação persistente: cabeçalho, Maya e menu ficam visíveis; somente o conteúdo rola. */
-.app-header{position:fixed;inset:0 0 auto;width:100%;z-index:80}
-.app-main{position:relative;z-index:1;padding-top:calc(92px + env(safe-area-inset,0px))}
-.bottom-nav{position:fixed;z-index:80}
-.maya-float{position:fixed;z-index:81}
-@media(max-width:700px){
-  .app-header{min-height:76px}
-  .app-main{padding-top:calc(92px + env(safe-area-inset-top,0px));padding-bottom:calc(142px + env(safe-area-inset-bottom,0px))}
-  .bottom-nav{padding-bottom:calc(8px + env(safe-area-inset-bottom,0px))}
-  .maya-float{right:14px;bottom:calc(142px + env(safe-area-inset-bottom,0px))}
-}
-
-
-/* Rolagem móvel: mantém controles visíveis sem travar a página. */
-html{height:auto!important;min-height:100%;overflow-y:auto!important;overscroll-behavior-y:contain}
-body:not(.intro-open){height:auto!important;min-height:100dvh;overflow-x:clip;overflow-y:auto!important;touch-action:pan-y}
-.app-header{position:sticky!important;top:0;z-index:80}
-.app-main{padding-top:36px!important;padding-bottom:calc(148px + env(safe-area-inset-bottom,0px))!important}
-.bottom-nav{position:fixed!important;z-index:80}
-.maya-float{position:fixed!important;z-index:81}
-@media(max-width:700px){.app-main{padding-top:24px!important;padding-bottom:calc(148px + env(safe-area-inset-bottom,0px))!important}}
-
-
-/* Estrutura responsiva do aplicativo: conteúdo rola em sua própria área em qualquer tela. */
-html,body{height:100%;margin:0;overflow:hidden}
+/* Estrutura estável e fluida: rolagem nativa e menu inferior sempre perfeitamente alinhado */
+html{height:auto!important;min-height:100%!important;overflow-x:hidden!important;overflow-y:auto!important;overscroll-behavior-y:contain!important}
+body{height:auto!important;min-height:100dvh!important;margin:0!important;overflow-x:hidden!important;overflow-y:auto!important;-webkit-overflow-scrolling:touch!important;touch-action:pan-y!important}
+body.intro-open{height:100vh!important;overflow:hidden!important}
 .desktop-app-notice{display:none!important}
-.app-header{position:fixed!important;inset:0 0 auto!important;width:100%;z-index:100}
-.app-main{position:fixed!important;inset:76px 0 82px!important;display:block!important;width:100%;max-width:none!important;margin:0!important;overflow-x:hidden!important;overflow-y:auto!important;-webkit-overflow-scrolling:touch;overscroll-behavior-y:contain;touch-action:pan-y;padding:24px 16px 92px!important;z-index:1}
-.bottom-nav{position:fixed!important;inset:auto 0 0!important;display:grid!important;width:100%!important;z-index:100}
-.maya-float{position:fixed!important;z-index:101}
+.app-header{position:fixed!important;inset:0 0 auto!important;top:0!important;left:0!important;right:0!important;width:100%!important;z-index:100!important}
+.app-main{position:relative!important;inset:auto!important;display:block!important;width:100%!important;max-width:1120px!important;margin:0 auto!important;overflow:visible!important;-webkit-overflow-scrolling:touch!important;padding:calc(84px + env(safe-area-inset-top,0px)) 16px calc(104px + env(safe-area-inset-bottom,0px))!important;z-index:1!important}
+.bottom-nav{position:fixed!important;bottom:0!important;left:0!important;right:0!important;width:100%!important;transform:none!important;z-index:100!important;display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;background:var(--panel)!important;border-top:1px solid var(--line)!important;border-radius:20px 20px 0 0!important;box-shadow:0 -4px 24px var(--shadow)!important;padding:6px 4px calc(6px + env(safe-area-inset-bottom,0px))!important;min-height:68px!important}
+.bottom-nav a{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:3px!important;min-width:0!important;min-height:54px!important;padding:4px 2px!important;font-size:10px!important;font-weight:700!important;color:var(--muted)!important;text-decoration:none!important;border-radius:12px!important}
+.bottom-nav a[aria-current="page"]{color:var(--accent)!important;background:var(--soft)!important;font-weight:800!important}
+.bottom-nav .icon{width:22px!important;height:22px!important}
+.maya-float{position:fixed!important;right:16px!important;bottom:calc(78px + env(safe-area-inset-bottom,0px))!important;z-index:101!important}
 @media(min-width:701px){
   body>.app-header{display:flex!important}
-  body>.app-main{display:block!important;inset:84px 0 82px!important;padding:34px max(24px,calc((100vw - 1120px)/2)) 104px!important}
-  body>.maya-float{display:flex!important}
-  body>.bottom-nav{display:grid!important;grid-template-columns:repeat(var(--nav-items,5),minmax(0,1fr))!important;max-width:760px!important;left:50%!important;right:auto!important;transform:translateX(-50%)!important}
+  body>.app-main{padding:calc(92px + env(safe-area-inset-top,0px)) 24px calc(112px + env(safe-area-inset-bottom,0px))!important}
+  body>.maya-float{display:flex!important;bottom:calc(82px + env(safe-area-inset-bottom,0px))!important}
+  body>.bottom-nav{display:grid!important;grid-template-columns:repeat(5,minmax(0,1fr))!important;width:100%!important;max-width:680px!important;left:50%!important;right:auto!important;transform:translateX(-50%)!important;border:1px solid var(--line)!important;border-bottom:0!important}
 }
 @media(max-width:700px){
-  .app-header{min-height:76px}
-  .app-main{inset:76px 0 78px!important;padding:24px 16px 94px!important}
-  .bottom-nav{min-height:78px}
-  .maya-float{bottom:calc(96px + env(safe-area-inset-bottom,0px))!important}
+  .app-header{min-height:72px}
+  .app-main{padding:calc(84px + env(safe-area-inset-top,0px)) 16px calc(100px + env(safe-area-inset-bottom,0px))!important}
+  .bottom-nav{left:0!important;right:0!important;width:100%!important;transform:none!important;min-height:68px}
+  .maya-float{right:14px!important;bottom:calc(76px + env(safe-area-inset-bottom,0px))!important}
 }
 
 
