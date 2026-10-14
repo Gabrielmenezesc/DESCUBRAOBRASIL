@@ -1,7 +1,8 @@
 import {normalize,escapeHTML as e,safeURL,dayKey,shuffle,dailyQuiz,freshProgress,cleanProgress,award,totalXP,checkVisit,offerPrice,offerIsActive} from './core.mjs';
 
-import { mountMaya } from './maya.mjs?v=18';
-import { mountBrazilMap } from './mapa-vivo.mjs?v=5';
+import { mountMaya } from './maya.mjs?v=19';
+import { mountBrazilMap } from './mapa-vivo.mjs?v=6';
+import { mountTravelSearch } from './travel-search.mjs?v=1';
 import { introAudioData } from './intro-audio.mjs?v=1';
 
 const $=id=>document.getElementById(id), content=$('content');
@@ -90,7 +91,7 @@ function setupMayaDrawer(){
     toggle.setAttribute('aria-expanded','true');
     if(!mayaDrawerMounted){
       mayaDrawerMounted=true;
-      mountMaya(root,{config,getContext:()=>({places:places.slice(0,12),activePage:location.hash.slice(1)||'explorar'})});
+      mountMaya(root,{config,getContext:()=>({places:places.slice(0,6).map(({name,city,state,category,free,description})=>({name,city,state,category,free,description})),activePage:location.hash.slice(1)||'explorar'})});
     }
     if(question) root.dispatchEvent(new CustomEvent('descubra:maya-question',{detail:{question}}));
   };
@@ -261,7 +262,7 @@ function explore(){
     <div class="travel-hero-shade"></div>
     <div class="travel-hero-copy"><p>VIAGENS COM MAIS SENTIDO</p><h2>Explore o Brasil<br><em>ao seu estilo</em></h2><span>Destinos, experiências e roteiros para planejar com calma.</span><div><button type="button" id="hero-destinations">Ver destinos em destaque</button><button type="button" class="ghost" id="hero-maya">Criar roteiro com a Maya</button><button type="button" class="ghost" id="hero-business">Sou empresa? Anuncie aqui</button></div></div>
   </section>`;
-  content.innerHTML=homeQuick+homeHero+head('Para onde você quer ir?','Encontre seu próximo destino','Busque por cidade, estado, atração ou categoria. Seus filtros e favoritos ficam salvos neste aparelho.')
+  content.innerHTML=homeQuick+'<div id="travel-search-root"></div>'+homeHero+head('Para onde você quer ir?','Encontre seu próximo destino','Busque por cidade, estado, atração ou categoria. Seus filtros e favoritos ficam salvos neste aparelho.')
     + storiesMarkup
     + `<section class="booking-panel"><div class="booking-tabs" role="tablist" aria-label="Como deseja planejar"><button type="button" id="mode-search" role="tab" aria-selected="true">Buscar viagem</button><button type="button" id="mode-map" role="tab" aria-selected="false">Explorar no mapa</button><button type="button" id="mode-itinerary" role="tab" aria-selected="false">Roteiros com IA</button></div><div class="filters" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap:12px;">
       <label>Destino, cidade ou atração<input id="search" type="search" list="destination-suggestions" placeholder="Para onde você quer ir?" value="${e(search)}"><datalist id="destination-suggestions">${[...new Set(places.flatMap(p=>[p.name,p.city,p.state]))].sort().slice(0,250).map(item=>`<option value="${e(item)}"></option>`).join('')}</datalist></label>
@@ -315,6 +316,8 @@ function explore(){
     <section class="maya-cta"><img src="maya-avatar.webp" alt="Maya, assistente de viagens"><div><p class="eyebrow">ROTEIROS PERSONALIZADOS</p><h2>Monte sua viagem com a Maya</h2><p>Conte seus interesses e receba sugestões ajustáveis ao seu plano.</p></div><button type="button" id="open-maya-cta">Criar meu roteiro</button></section>
     <a class="business-cta" href="#empresas"><span>PARA EMPRESAS</span><strong>Sou empresa? Anuncie aqui</strong><small>Divulgue seu serviço para viajantes em todo o Brasil.</small></a>
     <p class="source">Seleção editorial do projeto Descubra o Brasil. Consulte informações locais antes de viajar.</p>`;
+
+  mountTravelSearch($('travel-search-root'),{apiUrl:config.travelSearchApiUrl||'',askMaya:question=>window.dispatchEvent(new CustomEvent('descubra:maya-question',{detail:{question}}))});
 
   const quickForm=$('home-quick-form'), quickInput=$('home-quick-query');
   const runQuickSearch=question=>{
