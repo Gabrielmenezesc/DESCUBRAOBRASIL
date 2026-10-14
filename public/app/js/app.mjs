@@ -64,24 +64,27 @@ function setupMobileIntro(){
   const close=()=>{
     if(closed)return;
     closed=true;
+    clearTimeout(introTimer);
     intro.classList.add('is-leaving');
     if(introAudio){introAudio.pause();introAudio.currentTime=0;}
     releaseScroll();
-    setTimeout(()=>{intro.remove();releaseScroll();},850);
+    setTimeout(()=>{intro.remove();releaseScroll();},600);
   };
   document.body.classList.add('intro-open');
   window.addEventListener('pageshow',()=>{if(!document.getElementById('mobile-intro'))releaseScroll();},{once:true});
-  const introTimer=setTimeout(()=>intro.classList.add('is-ready'),6000);
-  $('enter-app')?.addEventListener('click',()=>{clearTimeout(introTimer);close();});
-  intro.querySelectorAll('[data-enter-app]').forEach(link=>link.onclick=()=>{clearTimeout(introTimer);close();});
-  intro.querySelectorAll('[data-intro-account]').forEach(button=>button.onclick=()=>{
-    clearTimeout(introTimer);
+  window.addEventListener('hashchange',()=>{if(location.hash&&location.hash!=='#')close();});
+  const introTimer=setTimeout(()=>{intro.classList.add('is-ready');},4500);
+  intro.addEventListener('click',e=>{if(!e.target.closest('[data-intro-account]')&&!e.target.closest('#intro-sound'))close();});
+  $('enter-app')?.addEventListener('click',close);
+  intro.querySelectorAll('[data-enter-app]').forEach(link=>link.onclick=close);
+  intro.querySelectorAll('[data-intro-account]').forEach(button=>button.onclick=(e)=>{
+    e.stopPropagation();
     const provider=button.dataset.introAccount;
     close();
     location.hash='conta';
-    setTimeout(()=>toast(provider==='facebook'?'A entrada com Facebook será liberada após a configuração oficial.':'Continue o acesso pela área de conta.'),900);
+    setTimeout(()=>toast(provider==='facebook'?'A entrada com Facebook será liberada após a configuração oficial.':'Continue o acesso pela área de conta.'),800);
   });
-  intro.addEventListener('transitionend',()=>{if(intro.classList.contains('is-leaving'))releaseScroll();},{once:true});
+  intro.addEventListener('transitionend',releaseScroll);
 }
 setupMobileIntro();
 
