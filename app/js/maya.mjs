@@ -3,9 +3,9 @@ import {escapeHTML as escape, safeURL} from './core.mjs';
 export async function requestMaya(config, question, history, context, fetcher=fetch) {
   if (!config.mayaProxyUrl || !config.supabaseKey) throw new Error('A conexão da Maya ainda não está configurada.');
   const requestOptions={
-    method:'POST', signal:AbortSignal.timeout(55000),
+    method:'POST', signal:AbortSignal.timeout(35000),
     headers:{'content-type':'application/json',apikey:config.supabaseKey,authorization:`Bearer ${config.supabaseKey}`},
-    body:JSON.stringify({question,history:history.slice(-8),context,search:true}),
+    body:JSON.stringify({question,history:history.slice(-4),context,search:true}),
   };
   let response;
   try{
@@ -49,7 +49,7 @@ export function mountMaya(root,{config,getContext}) {
     const previous=history.slice();
     messages.insertAdjacentHTML('beforeend',`<div class="maya-message user">${escape(question)}</div>`);
     root.querySelectorAll('button').forEach(b=>b.disabled=true);input.disabled=true;
-    status.textContent='Maya está preparando sua resposta. Isso pode levar alguns segundos.';
+    status.textContent='Maya está pesquisando e preparando uma resposta.';
     try{
       const data=await requestMaya(config,question,previous,getContext());
       if(!root.isConnected)return;
