@@ -249,3 +249,24 @@ body:not(.intro-open){height:auto!important;min-height:100dvh;overflow-x:clip;ov
 .bottom-nav{position:fixed!important;z-index:80}
 .maya-float{position:fixed!important;z-index:81}
 @media(max-width:700px){.app-main{padding-top:24px!important;padding-bottom:calc(148px + env(safe-area-inset-bottom,0px))!important}}
+
+
+/* Estrutura responsiva do aplicativo: conteúdo rola em sua própria área em qualquer tela. */
+html,body{height:100%;margin:0;overflow:hidden}
+.desktop-app-notice{display:none!important}
+.app-header{position:fixed!important;inset:0 0 auto!important;width:100%;z-index:100}
+.app-main{position:fixed!important;inset:76px 0 82px!important;display:block!important;width:100%;max-width:none!important;margin:0!important;overflow-x:hidden!important;overflow-y:auto!important;-webkit-overflow-scrolling:touch;overscroll-behavior-y:contain;touch-action:pan-y;padding:24px 16px 92px!important;z-index:1}
+.bottom-nav{position:fixed!important;inset:auto 0 0!important;display:grid!important;width:100%!important;z-index:100}
+.maya-float{position:fixed!important;z-index:101}
+@media(min-width:701px){
+  body>.app-header{display:flex!important}
+  body>.app-main{display:block!important;inset:84px 0 82px!important;padding:34px max(24px,calc((100vw - 1120px)/2)) 104px!important}
+  body>.maya-float{display:flex!important}
+  body>.bottom-nav{display:grid!important;grid-template-columns:repeat(var(--nav-items,5),minmax(0,1fr))!important;max-width:760px!important;left:50%!important;right:auto!important;transform:translateX(-50%)!important}
+}
+@media(max-width:700px){
+  .app-header{min-height:76px}
+  .app-main{inset:76px 0 78px!important;padding:24px 16px 94px!important}
+  .bottom-nav{min-height:78px}
+  .maya-float{bottom:calc(96px + env(safe-area-inset-bottom,0px))!important}
+}
