@@ -78,7 +78,7 @@ function setupMobileIntro(){
   document.body.classList.add('intro-open');
   window.addEventListener('pageshow',()=>{if(!document.getElementById('mobile-intro'))releaseScroll();},{once:true});
   const introTimer=setTimeout(()=>intro.classList.add('is-ready'),6000);
-  $('enter-app').onclick=()=>{clearTimeout(introTimer);close();};
+  $('enter-app')?.addEventListener('click',()=>{clearTimeout(introTimer);close();});
   intro.querySelectorAll('[data-enter-app]').forEach(link=>link.onclick=()=>{clearTimeout(introTimer);close();});
   intro.querySelectorAll('[data-intro-account]').forEach(button=>button.onclick=()=>{
     clearTimeout(introTimer);
