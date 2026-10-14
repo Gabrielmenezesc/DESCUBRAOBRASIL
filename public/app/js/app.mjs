@@ -317,7 +317,7 @@ function explore(){
     <a class="business-cta" href="#empresas"><span>PARA EMPRESAS</span><strong>Sou empresa? Anuncie aqui</strong><small>Divulgue seu serviço para viajantes em todo o Brasil.</small></a>
     <p class="source">Seleção editorial do projeto Descubra o Brasil. Consulte informações locais antes de viajar.</p>`;
 
-  mountTravelSearch($('travel-search-root'),{askMaya:question=>window.dispatchEvent(new CustomEvent('descubra:maya-question',{detail:{question}}))});
+  mountTravelSearch($('travel-search-root'),{apiUrl:config.travelSearchApiUrl||'',askMaya:question=>window.dispatchEvent(new CustomEvent('descubra:maya-question',{detail:{question}}))});
 
   const quickForm=$('home-quick-form'), quickInput=$('home-quick-query');
   const runQuickSearch=question=>{
