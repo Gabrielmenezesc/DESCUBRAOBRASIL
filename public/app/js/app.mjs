@@ -577,3 +577,6 @@ function preventPullToRefresh(){
 preventPullToRefresh();
 let deferredInstall=null;window.addEventListener('beforeinstallprompt',event=>{event.preventDefault();deferredInstall=event;$('install').hidden=false;});$('install').onclick=async()=>{if(!deferredInstall)return;await deferredInstall.prompt();await deferredInstall.userChoice;deferredInstall=null;$('install').hidden=true;};window.addEventListener('appinstalled',()=>{$('install').hidden=true;});setupMayaDrawer();
 init();
+
+/* Impede somente o gesto de puxar para recarregar quando a rolagem já está no topo. */
+(()=>{let startY=0;document.addEventListener('touchstart',event=>{startY=event.touches[0]?.clientY||0},{passive:true});document.addEventListener('touchmove',event=>{const y=event.touches[0]?.clientY||0;if(window.scrollY<=0&&y>startY+8)event.preventDefault()},{passive:false})})();
