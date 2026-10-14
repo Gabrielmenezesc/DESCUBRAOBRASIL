@@ -4,5 +4,6 @@
   "googleEnabled": false,
   "mayaProxyUrl": "https://elxbxidaubgddwoizcwi.supabase.co/functions/v1/maya",
   "googleMapsApiKey": "",
-  "googleMapsMapId": ""
+  "googleMapsMapId": "",
+  "travelSearchApiUrl": ""
 }
