@@ -1,12 +1,16 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {requestMaya,renderMayaText} from '../public/app/js/maya.mjs';
+import {requestMaya,renderMayaText,needsLiveResearch} from '../public/app/js/maya.mjs';
 const config={mayaProxyUrl:'https://example.com/maya',supabaseKey:'public-test-key'};
-test('Maya sends recent conversation and requests research',async()=>{
+test('Maya mantém o histórico curto e evita pesquisa online em roteiros estáveis',async()=>{
  const result=await requestMaya(config,'E com crianças?',Array.from({length:12},(_,i)=>({role:'user',text:String(i)})),{},async(url,options)=>{
-  const body=JSON.parse(options.body);assert.equal(body.history.length,4);assert.equal(body.history[0].text,'8');assert.equal(body.search,true);assert.equal(options.headers.authorization,'Bearer public-test-key');
+  const body=JSON.parse(options.body);assert.equal(body.history.length,4);assert.equal(body.history[0].text,'8');assert.equal(body.search,false);assert.equal(options.headers.authorization,'Bearer public-test-key');
   return {ok:true,json:async()=>({answer:'Visite parques.',sources:[]})};
- });assert.equal(result.answer,'Visite parques.');
+ });assert.equal(result.answer,'Visite parques.');assert.equal(result.liveResearch,false);
+});
+test('Maya ativa pesquisa online para informações que mudam',()=>{
+ assert.equal(needsLiveResearch('Qual a previsão do tempo hoje em Salvador?'),true);
+ assert.equal(needsLiveResearch('Quero um roteiro de dois dias'),false);
 });
 test('Maya reports unavailable service instead of a fabricated AI answer',async()=>{
  await assert.rejects(()=>requestMaya(config,'O que visitar?',[],{},async()=>({ok:false,status:503,json:async()=>({error:'unavailable'})})),/indisponível/);
